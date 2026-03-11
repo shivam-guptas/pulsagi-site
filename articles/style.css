@@ -1,0 +1,106 @@
+/* ── articles/style.css — shared styles for all Pulsagi article pages ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #09090b;
+  --surface:    #111113;
+  --surface2:   #18181b;
+  --border:     #1f1f23;
+  --text:       #fafafa;
+  --muted:      #71717a;
+  --muted2:     #a1a1aa;
+  --accent:     #6ee7b7;
+  --accent2:    #34d399;
+  --red:        #f87171;
+  --green:      #4ade80;
+  --yellow:     #fbbf24;
+  --mono:       'Courier New', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(9,9,11,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); text-decoration: none; }
+.nav-back {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.82rem; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text); }
+
+/* PAGE WRAPPER */
+.art-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+/* META ROW */
+.art-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.art-date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+/* TAGS */
+.stag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+.t-def  { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+.t-ems  { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+.t-tech { background: rgba(110,231,183,0.12); color: var(--accent); border: 1px solid rgba(110,231,183,0.25); }
+
+.sbadge { font-family: var(--mono); font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
+.bullish { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+.neutral { background: rgba(251,191,36,0.12); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+.cautious { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+
+/* HEADINGS */
+h1 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; color: var(--text); }
+h2 { font-size: 1.2rem; font-weight: 600; margin: 2.5rem 0 0.85rem; color: var(--text); padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+
+/* LEAD */
+.lead { font-size: 1.05rem; color: var(--muted2); line-height: 1.75; margin-bottom: 2.5rem; border-left: 3px solid var(--accent); padding-left: 1.1rem; }
+
+/* BODY TEXT */
+p { font-size: 0.94rem; color: var(--muted2); line-height: 1.8; margin-bottom: 1rem; }
+strong { color: var(--text); }
+
+/* TABLE */
+.tbl-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 10px; border: 1px solid var(--border); }
+.ftbl { width: 100%; border-collapse: collapse; font-size: 0.84rem; font-family: var(--mono); }
+.ftbl thead th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+.ftbl tbody td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted2); }
+.ftbl tbody tr:last-child td { border-bottom: none; }
+.ftbl tbody tr:hover td { background: rgba(255,255,255,0.02); }
+.ftbl td:first-child { color: var(--text); font-weight: 600; }
+.vup { color: var(--green) !important; }
+.vdn { color: var(--red)   !important; }
+.vne { color: var(--yellow)!important; }
+
+/* PROS / CONS */
+.pc { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+.pros, .cons { background: var(--surface); border-radius: 10px; padding: 1.25rem; border: 1px solid var(--border); }
+.pros h4 { color: var(--green); font-size: 0.73rem; font-family: var(--mono); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.cons h4 { color: var(--red);   font-size: 0.73rem; font-family: var(--mono); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.pros ul, .cons ul { list-style: none; }
+.pros li, .cons li { font-size: 0.84rem; color: var(--muted2); padding: 0.35rem 0; border-bottom: 1px solid var(--border); line-height: 1.45; }
+.pros li:last-child, .cons li:last-child { border-bottom: none; }
+.pros li::before { content: '✓ '; color: var(--green); }
+.cons li::before { content: '✗ '; color: var(--red); }
+
+/* VERDICT */
+.verdict { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 2.5rem 0; }
+.verdict-lbl { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.verdict p { font-size: 0.92rem; color: var(--muted2); line-height: 1.75; margin-bottom: 0; }
+
+/* DISCLAIMER */
+.disc { margin-top: 2.5rem; padding: 1rem; background: rgba(251,191,36,0.04); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; font-size: 0.77rem; color: var(--muted); font-family: var(--mono); line-height: 1.6; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 640px) {
+  .art-wrap { padding: 2rem 1.25rem 4rem; }
+  .pc { grid-template-columns: 1fr; }
+}

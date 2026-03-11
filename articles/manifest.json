@@ -1,0 +1,70 @@
+[
+  {
+    "file": "bel.html",
+    "date": "2026-03-11",
+    "ticker": "NSE: BEL",
+    "company": "Bharat Electronics Ltd (BEL)",
+    "sector": "Defense / PSU",
+    "sectorClass": "t-def",
+    "sentiment": "Bullish",
+    "sentimentClass": "bullish",
+    "summary": "India's premier defence electronics PSU with a ₹74,859 Cr order book and accelerating quarterly profits under India's Make in India push.",
+    "metrics": [
+      { "label": "Mkt Cap", "value": "₹3.37L Cr" },
+      { "label": "P/E",     "value": "~54x" },
+      { "label": "Revenue", "value": "₹26,535 Cr" },
+      { "label": "Q3 Profit Growth", "value": "+20% YoY" }
+    ]
+  },
+  {
+    "file": "dixon.html",
+    "date": "2026-03-11",
+    "ticker": "NSE: DIXON",
+    "company": "Dixon Technologies (India) Ltd",
+    "sector": "EMS",
+    "sectorClass": "t-ems",
+    "sentiment": "Neutral",
+    "sentimentClass": "neutral",
+    "summary": "India's largest EMS company riding the PLI wave, with ₹48,655 Cr in revenue — but structurally thin margins require careful valuation scrutiny.",
+    "metrics": [
+      { "label": "Mkt Cap",    "value": "₹65,507 Cr" },
+      { "label": "Revenue",    "value": "₹48,655 Cr" },
+      { "label": "Net Margin", "value": "~2.8%" },
+      { "label": "1Y Return",  "value": "-18%" }
+    ]
+  },
+  {
+    "file": "tanla.html",
+    "date": "2026-03-11",
+    "ticker": "NSE: TANLA",
+    "company": "Tanla Platforms Ltd",
+    "sector": "CPaaS / Tech",
+    "sectorClass": "t-tech",
+    "sentiment": "Bullish",
+    "sentimentClass": "bullish",
+    "summary": "India's dominant CPaaS and A2P SMS leader with a 12x P/E, virtually debt-free balance sheet, and AI-native Wisely platform showing international momentum.",
+    "metrics": [
+      { "label": "Mkt Cap",  "value": "~₹5,748 Cr" },
+      { "label": "P/E",      "value": "~12x" },
+      { "label": "ROCE",     "value": "27.3%" },
+      { "label": "Net Cash", "value": "₹457 Cr" }
+    ]
+  },
+  {
+    "file": "avalon.html",
+    "date": "2026-03-11",
+    "ticker": "NSE: AVALON",
+    "company": "Avalon Technologies Ltd",
+    "sector": "EMS / Small Cap",
+    "sectorClass": "t-ems",
+    "sentiment": "Neutral",
+    "sentimentClass": "neutral",
+    "summary": "A differentiated EMS player with a dual-shore model serving US OEMs across defence, clean energy, and industrials — growth is real, but 68x PE demands precision.",
+    "metrics": [
+      { "label": "Mkt Cap",        "value": "~₹6,033 Cr" },
+      { "label": "P/E",            "value": "~68x" },
+      { "label": "Revenue Growth", "value": "+39% YoY" },
+      { "label": "Order Book",     "value": "₹1,863 Cr" }
+    ]
+  }
+]
