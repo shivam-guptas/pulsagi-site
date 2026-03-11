@@ -1,0 +1,33 @@
+# Pulsagi
+
+> AI infrastructure for the next generation — fast, scalable, and built to ship.
+
+Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Architect and AI engineering practitioner based in 2026.
+
+## About Pulsagi
+
+- **Website**: https://pulsagi.com
+- **Founded**: 2026
+- **Stage**: Pre-launch / Launching Soon
+- **Focus**: AI infrastructure, scalable platform architecture, modern software delivery
+- **Contact**: hello@pulsagi.com
+
+## Core Values
+
+- **Fast**: Speed, clarity, and modern AI-first thinking for real-world execution
+- **Scalable**: Designed for ambitious products and long-term technical growth
+- **Focused**: Useful infrastructure, strong foundations, products that ship
+
+## Founder
+
+- **Name**: Shivam Gupta
+- **Role**: Founder & Salesforce Architect
+- **Site**: https://shivam.pulsagi.com
+- **LinkedIn**: https://www.linkedin.com/in/shivam-guptas
+- **Expertise**: Salesforce Architecture, AI-Assisted Engineering, Enterprise Systems, Agentforce, Codex, Claude
+
+## Links
+
+- Homepage: https://pulsagi.com
+- Founder profile: https://shivam.pulsagi.com
+- Contact: mailto:hello@pulsagi.com
