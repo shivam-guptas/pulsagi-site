@@ -3,412 +3,314 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulsagi AI</title>
-  <meta name="description" content="Pulsagi is building AI infrastructure for the next generation." />
+  <title>Pulsagi — AI Infrastructure for the Next Generation</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Pulsagi builds AI infrastructure for the next generation — fast, modern, and built to scale. Founded by Salesforce Architect Shivam Gupta." />
+  <meta name="keywords" content="AI infrastructure, AI platform, Pulsagi, Shivam Gupta, scalable AI, modern AI tools, AI engineering" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pulsagi — AI Infrastructure for the Next Generation" />
+  <meta property="og:description" content="Fast, modern, and built to scale. Pulsagi is crafting AI infrastructure for ambitious products." />
+  <meta property="og:url" content="https://pulsagi.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pulsagi — AI Infrastructure" />
+  <meta name="twitter:description" content="Fast, modern AI infrastructure built to scale. Launching soon." />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com",
+    "description": "AI infrastructure for the next generation — fast, modern, and built to scale.",
+    "foundingDate": "2026",
+    "founder": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com",
+      "sameAs": "https://www.linkedin.com/in/shivam-guptas"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@pulsagi.com",
+      "contactType": "General Inquiry"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/shivam-guptas"
+    ],
+    "knowsAbout": [
+      "AI Infrastructure",
+      "Machine Learning Platforms",
+      "Scalable Software Systems",
+      "Enterprise AI",
+      "Salesforce Architecture"
+    ]
+  }
+  </script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-1: #020617;
-      --bg-2: #0f172a;
-      --bg-3: #111827;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --line: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.05);
-      --glow: rgba(59,130,246,0.35);
-      --accent1: #60a5fa;
-      --accent2: #a78bfa;
-      --accent3: #22d3ee;
+      --bg: #09090b;
+      --surface: #111113;
+      --border: #1f1f23;
+      --text: #fafafa;
+      --muted: #71717a;
+      --accent: #6ee7b7;
+      --accent2: #34d399;
     }
 
-    html, body {
-      min-height: 100%;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(96,165,250,0.14), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(167,139,250,0.12), transparent 22%),
-        radial-gradient(circle at 50% 85%, rgba(34,211,238,0.08), transparent 20%),
-        linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
-      color: var(--text);
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      position: relative;
-      overflow-x: hidden;
+      font-family: 'Georgia', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
     }
 
-    .bg-grid {
+    nav {
       position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .orb {
-      position: fixed;
-      border-radius: 999px;
-      filter: blur(70px);
-      opacity: 0.55;
-      animation: float 12s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .orb.one {
-      width: 220px;
-      height: 220px;
-      background: rgba(59,130,246,0.2);
-      top: 60px;
-      left: 8%;
-    }
-
-    .orb.two {
-      width: 180px;
-      height: 180px;
-      background: rgba(168,85,247,0.18);
-      right: 10%;
-      top: 140px;
-      animation-delay: -4s;
-    }
-
-    .orb.three {
-      width: 240px;
-      height: 240px;
-      background: rgba(34,211,238,0.12);
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation-delay: -7s;
-    }
-
-    .container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      margin-bottom: 36px;
-    }
-
-    .nav-inner {
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 16px 20px;
-      border: 1px solid var(--line);
-      background: rgba(2,6,23,0.55);
-      backdrop-filter: blur(14px);
-      border-radius: 18px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+      padding: 1.25rem 2rem;
+      background: rgba(9,9,11,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .brand {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .brand span {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #cbd5e1;
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent);
       text-decoration: none;
-      font-size: 14px;
     }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-family: 'Courier New', monospace;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
 
     .hero {
-      padding-top: 30px;
-      padding-bottom: 30px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border-radius: 28px;
-      padding: 56px 32px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow:
-        0 20px 80px rgba(0,0,0,0.32),
-        inset 0 1px 0 rgba(255,255,255,0.06);
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(110,231,183,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(110,231,183,0.3);
       border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #cbd5e1;
-      font-size: 14px;
-      margin-bottom: 22px;
+      font-size: 0.75rem;
+      font-family: 'Courier New', monospace;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      letter-spacing: 0.08em;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 12px #22c55e;
+    .badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
     h1 {
-      font-size: clamp(44px, 8vw, 88px);
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-bottom: 18px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fafafa 0%, #71717a 100%);
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 30px var(--glow);
     }
 
-    .sub {
-      max-width: 760px;
-      margin: 0 auto;
-      color: #dbeafe;
-      font-size: clamp(18px, 2.5vw, 24px);
-      line-height: 1.6;
-    }
-
-    .coming {
-      margin-top: 18px;
+    .hero-sub {
+      font-size: 1.125rem;
       color: var(--muted);
-      font-size: 17px;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
     }
 
-    .cta-row {
-      margin-top: 34px;
+    .cta-group {
       display: flex;
-      justify-content: center;
-      gap: 14px;
+      gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 170px;
-      padding: 14px 22px;
-      border-radius: 14px;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
       text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
-      background: linear-gradient(90deg, #2563eb, #7c3aed);
-      color: white;
-      box-shadow: 0 10px 30px rgba(37,99,235,0.28);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.04);
-      color: #e2e8f0;
-      border-color: rgba(255,255,255,0.10);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .section {
-      margin-top: 28px;
-    }
-
-    .section-title {
-      font-size: 28px;
+      background: var(--accent);
+      color: #09090b;
       font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.03em;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
 
-    .feature-grid {
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: var(--text);
+    }
+
+    .pillars {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
     }
 
-    .feature-card {
-      padding: 22px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(8px);
+    .pillar {
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: border-color 0.2s;
     }
 
-    .feature-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
+    .pillar:hover { border-color: rgba(110,231,183,0.3); }
+
+    .pillar-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
     }
 
-    .feature-card p {
-      color: #cbd5e1;
-      line-height: 1.6;
-      font-size: 15px;
+    .pillar h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
 
-    .footer {
-      margin-top: 28px;
-      padding: 24px 0 10px;
+    .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
       text-align: center;
-      color: rgba(203,213,225,0.78);
-      font-size: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
     }
 
-    .footer a {
-      color: #bfdbfe;
-      text-decoration: none;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) translateX(0px); }
-      50% { transform: translateY(-16px) translateX(10px); }
-    }
-
-    @media (max-width: 900px) {
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card {
-        padding: 40px 22px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 16px;
-      }
-
-      .nav-inner {
-        padding: 14px 16px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
-      .brand {
-        font-size: 20px;
-      }
-
-      .sub {
-        font-size: 17px;
-      }
-
-      .section-title {
-        font-size: 24px;
-      }
-    }
+    footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-  <div class="orb three"></div>
 
-  <div class="container">
-    <header class="navbar">
-      <div class="nav-inner">
-        <div class="brand"><span>Pulsagi</span></div>
-        <nav class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="mailto:hello@pulsagi.com">Contact</a>
-        </nav>
+  <nav>
+    <a class="nav-brand" href="#home">Pulsagi</a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="badge">AI Infrastructure • Launching Soon</div>
+      <h1>Pulsagi</h1>
+      <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
+      <div class="cta-group">
+        <a href="#about" class="btn btn-primary">Learn More</a>
+        <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="hero-card">
-          <div class="badge">
-            <span class="badge-dot"></span>
-            AI Infrastructure • Launching Soon
-          </div>
+    <section id="about">
+      <div class="section-label">What Pulsagi stands for</div>
+      <h2>Built to last. Built to ship.</h2>
+      <div class="pillars">
+        <article class="pillar">
+          <div class="pillar-icon">⚡</div>
+          <h3>Fast</h3>
+          <p>Built with speed, clarity, and modern AI-first thinking for real-world execution.</p>
+        </article>
+        <article class="pillar">
+          <div class="pillar-icon">📐</div>
+          <h3>Scalable</h3>
+          <p>Designed for ambitious products, durable systems, and long-term technical growth.</p>
+        </article>
+        <article class="pillar">
+          <div class="pillar-icon">🎯</div>
+          <h3>Focused</h3>
+          <p>One vision: useful infrastructure, strong foundations, and products that actually ship.</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
-          <h1><span class="gradient-text">Pulsagi</span></h1>
+  <footer>
+    <p>© 2026 Pulsagi • Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  </footer>
 
-          <p class="sub">
-            AI infrastructure for the next generation — fast, modern, and built to scale.
-          </p>
-
-          <p class="coming">
-            🚀 We’re crafting something powerful. The full experience will be live soon.
-          </p>
-
-          <div class="cta-row">
-            <a href="#" class="btn btn-primary">Launching Soon</a>
-            <a href="mailto:er.shivam.guptas@gmail.com" class="btn btn-secondary">Contact</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="about">
-        <h2 class="section-title">What Pulsagi stands for</h2>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>Fast</h3>
-            <p>Built with speed, clarity, and modern AI-first thinking for real-world execution.</p>
-          </div>
-          <div class="feature-card">
-            <h3>Scalable</h3>
-            <p>Designed for ambitious products, durable systems, and long-term technical growth.</p>
-          </div>
-          <div class="feature-card">
-            <h3>Focused</h3>
-            <p>One vision: useful infrastructure, strong foundations, and products that actually ship.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      © 2026 Pulsagi • Built by
-      <a href="https://www.linkedin.com/in/shivam-guptas" target="_blank" rel="noopener noreferrer">Shivam Gupta</a>
-    </footer>
-  </div>
 </body>
 </html>
