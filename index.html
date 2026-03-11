@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulsagi — AI Infrastructure for the Next Generation</title>
+  <title>Pulsagi — AI Infrastructure & Market Insights</title>
 
-  <!-- Primary SEO -->
-  <meta name="description" content="Pulsagi builds AI infrastructure for the next generation — fast, modern, and built to scale. Founded by Salesforce Architect Shivam Gupta." />
-  <meta name="keywords" content="AI infrastructure, AI platform, Pulsagi, Shivam Gupta, scalable AI, modern AI tools, AI engineering" />
+  <meta name="description" content="Pulsagi builds AI infrastructure for the next generation — fast, modern, and built to scale. Founded by Salesforce Architect Shivam Gupta. Features stock market fundamental analysis of Indian equities." />
+  <meta name="keywords" content="AI infrastructure, Pulsagi, Shivam Gupta, stock market analysis, Indian stocks, fundamental analysis, NSE" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://pulsagi.com/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Pulsagi — AI Infrastructure for the Next Generation" />
-  <meta property="og:description" content="Fast, modern, and built to scale. Pulsagi is crafting AI infrastructure for ambitious products." />
+  <meta property="og:title" content="Pulsagi — AI Infrastructure & Market Insights" />
+  <meta property="og:description" content="AI infrastructure for the next generation, plus in-depth fundamental analysis of Indian stocks." />
   <meta property="og:url" content="https://pulsagi.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pulsagi — AI Infrastructure" />
-  <meta name="twitter:description" content="Fast, modern AI infrastructure built to scale. Launching soon." />
+  <meta name="twitter:title" content="Pulsagi — AI Infrastructure & Market Insights" />
+  <meta name="twitter:description" content="Fast, modern AI infrastructure. Plus stock market fundamental analysis." />
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,21 +35,8 @@
       "url": "https://shivam.pulsagi.com",
       "sameAs": "https://www.linkedin.com/in/shivam-guptas"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "hello@pulsagi.com",
-      "contactType": "General Inquiry"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/shivam-guptas"
-    ],
-    "knowsAbout": [
-      "AI Infrastructure",
-      "Machine Learning Platforms",
-      "Scalable Software Systems",
-      "Enterprise AI",
-      "Salesforce Architecture"
-    ]
+    "contactPoint": { "@type": "ContactPoint", "email": "hello@pulsagi.com", "contactType": "General Inquiry" },
+    "sameAs": ["https://www.linkedin.com/in/shivam-guptas"]
   }
   </script>
 
@@ -61,256 +44,249 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #09090b;
-      --surface: #111113;
-      --border: #1f1f23;
-      --text: #fafafa;
-      --muted: #71717a;
-      --accent: #6ee7b7;
-      --accent2: #34d399;
+      --bg: #09090b; --surface: #111113; --border: #1f1f23;
+      --text: #fafafa; --muted: #71717a; --muted2: #a1a1aa;
+      --accent: #6ee7b7; --accent2: #34d399;
+      --accent-dim: rgba(110,231,183,0.1);
+      --red: #f87171; --green: #4ade80; --yellow: #fbbf24;
+      --mono: 'Courier New', monospace;
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-    body {
-      font-family: 'Georgia', serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 2rem;
-      background: rgba(9,9,11,0.85);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: rgba(9,9,11,0.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-brand {
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-family: 'Courier New', monospace;
-      transition: color 0.2s;
-    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-family: var(--mono); transition: color 0.2s; cursor: pointer; }
     nav a:hover { color: var(--text); }
+    .nav-art { background: var(--accent-dim); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid rgba(110,231,183,0.2); }
+    .nav-art:hover { background: rgba(110,231,183,0.15) !important; }
 
+    /* ── PAGES ── */
+    .page { display: none; min-height: 100vh; padding-top: 64px; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
+      min-height: calc(100vh - 64px); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 4rem 2rem; position: relative; overflow: hidden;
     }
-
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0; pointer-events: none;
       background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(110,231,183,0.06) 0%, transparent 70%);
-      pointer-events: none;
     }
-
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.9rem;
-      border: 1px solid rgba(110,231,183,0.3);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-family: 'Courier New', monospace;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      letter-spacing: 0.08em;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.9rem; border: 1px solid rgba(110,231,183,0.3);
+      border-radius: 999px; font-size: 0.75rem; font-family: var(--mono);
+      color: var(--accent); margin-bottom: 2rem; letter-spacing: 0.08em;
     }
-
-    .badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
+    .badge::before { content: '●'; font-size: 0.5rem; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
+      font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.05; margin-bottom: 1.5rem;
       background: linear-gradient(135deg, #fafafa 0%, #71717a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-
-    .hero-sub {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 0.75rem 1.75rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-family: 'Courier New', monospace;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #09090b;
-      font-weight: 700;
-    }
+    .hero-sub { font-size: 1.125rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-family: var(--mono); text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; display: inline-block; }
+    .btn-primary { background: var(--accent); color: #09090b; font-weight: 700; }
     .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
     .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
 
-    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-
-    .section-label {
-      font-family: 'Courier New', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      color: var(--text);
-    }
-
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .pillar {
-      padding: 1.75rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-      transition: border-color 0.2s;
-    }
-
+    /* ── ABOUT ── */
+    .about-sec { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .sec-label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .pillar { padding: 1.75rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); transition: border-color 0.2s; }
     .pillar:hover { border-color: rgba(110,231,183,0.3); }
-
-    .pillar-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .pillar h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
+    .pillar-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-family: 'Courier New', monospace;
-    }
+    /* ── ARTICLES PAGE ── */
+    .art-page { padding: 3rem 2rem 5rem; max-width: 940px; margin: 0 auto; }
+    .art-header { margin-bottom: 3rem; }
+    .art-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .art-header p { color: var(--muted); font-size: 0.95rem; }
 
+    /* Article grid rendered by JS */
+    #art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1.25rem; }
+
+    .acard { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-decoration: none; display: block; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+    .acard:hover { border-color: rgba(110,231,183,0.4); box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .acard-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .stag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+    .t-def  { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .t-ems  { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+    .t-tech { background: rgba(110,231,183,0.12); color: var(--accent); border: 1px solid rgba(110,231,183,0.25); }
+    .sbadge { font-family: var(--mono); font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
+    .bullish { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .neutral { background: rgba(251,191,36,0.12); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+    .cautious { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+    .acard .ticker { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .acard h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; line-height: 1.3; }
+    .acard p { font-size: 0.85rem; color: var(--muted2); line-height: 1.5; margin-bottom: 0.75rem; }
+    .mpills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .mp { font-family: var(--mono); font-size: 0.67rem; color: var(--muted); background: #18181b; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    .mp span { color: var(--muted2); }
+    .read-more { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.75rem; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+
+    /* Loading / error states */
+    .art-loading { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding: 2rem 0; }
+    .art-error   { font-family: var(--mono); font-size: 0.85rem; color: var(--red);   padding: 2rem 0; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); font-family: var(--mono); }
     footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 700px) {
+      nav ul { gap: 1rem; }
+      #art-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a class="nav-brand" href="#home">Pulsagi</a>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a class="nav-brand" href="/" onclick="showPage('home');return false;">Pulsagi</a>
+  <ul>
+    <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
+    <li><a href="#about" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),50);return false;">About</a></li>
+    <li><a href="#articles" class="nav-art" onclick="showPage('articles');return false;">Articles</a></li>
+    <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
+  </ul>
+</nav>
 
-  <main>
-    <section class="hero" id="home" aria-label="Hero">
-      <div class="badge">AI Infrastructure • Launching Soon</div>
-      <h1>Pulsagi</h1>
-      <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
-      <div class="cta-group">
-        <a href="#about" class="btn btn-primary">Learn More</a>
-        <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
-      </div>
-    </section>
+<!-- ════════ HOME PAGE ════════ -->
+<div id="page-home" class="page active">
 
-    <section id="about">
-      <div class="section-label">What Pulsagi stands for</div>
-      <h2>Built to last. Built to ship.</h2>
-      <div class="pillars">
-        <article class="pillar">
-          <div class="pillar-icon">⚡</div>
-          <h3>Fast</h3>
-          <p>Built with speed, clarity, and modern AI-first thinking for real-world execution.</p>
-        </article>
-        <article class="pillar">
-          <div class="pillar-icon">📐</div>
-          <h3>Scalable</h3>
-          <p>Designed for ambitious products, durable systems, and long-term technical growth.</p>
-        </article>
-        <article class="pillar">
-          <div class="pillar-icon">🎯</div>
-          <h3>Focused</h3>
-          <p>One vision: useful infrastructure, strong foundations, and products that actually ship.</p>
-        </article>
-      </div>
-    </section>
-  </main>
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="badge">AI Infrastructure • Launching Soon</div>
+    <h1>Pulsagi</h1>
+    <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
+    <div class="cta-group">
+      <a href="#articles" class="btn btn-primary" onclick="showPage('articles');return false;">Read Articles</a>
+      <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2026 Pulsagi • Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
-  </footer>
+  <section class="about-sec" id="about">
+    <div class="sec-label">What Pulsagi stands for</div>
+    <h2>Built to last. Built to ship.</h2>
+    <div class="pillars">
+      <article class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <h3>Fast</h3>
+        <p>Built with speed, clarity, and modern AI-first thinking for real-world execution.</p>
+      </article>
+      <article class="pillar">
+        <div class="pillar-icon">📐</div>
+        <h3>Scalable</h3>
+        <p>Designed for ambitious products, durable systems, and long-term technical growth.</p>
+      </article>
+      <article class="pillar">
+        <div class="pillar-icon">🎯</div>
+        <h3>Focused</h3>
+        <p>One vision: useful infrastructure, strong foundations, and products that actually ship.</p>
+      </article>
+    </div>
+  </section>
+
+</div>
+
+<!-- ════════ ARTICLES PAGE ════════ -->
+<div id="page-articles" class="page" id="articles">
+  <div class="art-page">
+    <div class="art-header">
+      <div class="sec-label">Market Insights</div>
+      <h2>Stock Analysis</h2>
+      <p>Fundamental analysis of Indian equities — financials, valuation, and investment outlook.</p>
+    </div>
+    <!-- Cards are injected here by loadArticles() -->
+    <div id="art-grid">
+      <p class="art-loading">Loading articles...</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+
+<script>
+  /* ── Page switching ── */
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+    if (name === 'articles') loadArticles();
+  }
+
+  /* Handle direct URL hash on load */
+  if (window.location.hash === '#articles') {
+    showPage('articles');
+  }
+
+  /* ── Load articles from manifest.json ── */
+  let loaded = false;
+
+  async function loadArticles() {
+    if (loaded) return;       // only fetch once per session
+    const grid = document.getElementById('art-grid');
+
+    try {
+      const res  = await fetch('articles/manifest.json');
+      if (!res.ok) throw new Error('Could not load manifest');
+      const list = await res.json();
+
+      if (!list.length) {
+        grid.innerHTML = '<p class="art-loading">No articles yet — check back soon.</p>';
+        return;
+      }
+
+      grid.innerHTML = list.map(a => `
+        <a class="acard" href="articles/${a.file}">
+          <div class="acard-top">
+            <span class="stag ${a.sectorClass}">${a.sector}</span>
+            <span class="sbadge ${a.sentimentClass}">${a.sentiment === 'Bullish' ? '▲' : a.sentiment === 'Cautious' ? '▼' : '◆'} ${a.sentiment}</span>
+          </div>
+          <div class="ticker">${a.ticker}</div>
+          <h3>${a.company}</h3>
+          <p>${a.summary}</p>
+          <div class="mpills">
+            ${a.metrics.map(m => `<div class="mp">${m.label} <span>${m.value}</span></div>`).join('')}
+          </div>
+          <div class="read-more">Read Analysis →</div>
+        </a>
+      `).join('');
+
+      loaded = true;
+
+    } catch (err) {
+      grid.innerHTML = '<p class="art-error">⚠ Could not load articles. Please try refreshing.</p>';
+      console.error(err);
+    }
+  }
+
+  /* Pre-load if articles page is active on initial render */
+  if (document.getElementById('page-articles').classList.contains('active')) {
+    loadArticles();
+  }
+</script>
 
 </body>
 </html>
