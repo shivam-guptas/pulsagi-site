@@ -3,1310 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flow JSON Viewer for Salesforce | Pulsagi Tools</title>
-  <meta name="description" content="Free browser-based Flow JSON Viewer for Salesforce. Paste or upload Flow JSON to visualize connectors, inspect structure, and review quick insights." />
-  <meta name="keywords" content="Flow JSON Viewer, Salesforce Flow, JSON visualizer, Salesforce developer tools, Pulsagi tools" />
+  <title>JSON Viewer and Flow Visualizer | Pulsagi Tools</title>
+  <meta name="description" content="Free browser-based JSON viewer for API payloads, config files, arrays, logs, and Salesforce Flow JSON. Format, inspect, search, and visualize JSON in one fast tool." />
+  <meta name="keywords" content="JSON viewer, JSON formatter, JSON visualizer, Flow JSON Viewer, Salesforce Flow, developer tools, Pulsagi tools" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="canonical" href="https://pulsagi.com/tools/json-viewer.html" />
-
-  <meta property="og:title" content="Flow JSON Viewer for Salesforce | Pulsagi Tools" />
-  <meta property="og:description" content="Visualize Salesforce Flow JSON in the browser with a graph view, JSON tree, and quick insights." />
+  <meta property="og:title" content="JSON Viewer and Flow Visualizer | Pulsagi Tools" />
+  <meta property="og:description" content="Paste or upload any valid JSON to format, inspect, search, analyze, and visualize it in the browser." />
   <meta property="og:url" content="https://pulsagi.com/tools/json-viewer.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
-
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Flow JSON Viewer for Salesforce | Pulsagi Tools" />
-  <meta name="twitter:description" content="Paste or upload Flow JSON to visualize connectors, inspect structure, and review quick insights." />
-
+  <meta name="twitter:title" content="JSON Viewer and Flow Visualizer | Pulsagi Tools" />
+  <meta name="twitter:description" content="A fast browser-based JSON viewer with formatting, tree search, insights, and Flow-style visualization." />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Pulsagi Flow JSON Viewer",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web",
-    "url": "https://pulsagi.com/tools/json-viewer.html",
-    "description": "Browser-based Flow JSON Viewer for Salesforce that visualizes connectors, structure, and insights from Flow JSON.",
-    "creator": {
-      "@type": "Person",
-      "name": "Shivam Gupta",
-      "url": "https://shivam.pulsagi.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Pulsagi",
-      "url": "https://pulsagi.com"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi JSON Viewer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://pulsagi.com/tools/json-viewer.html","description":"Browser-based JSON viewer for formatting, searching, inspecting, and visualizing generic JSON and Salesforce Flow JSON.","creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
   </script>
   <style>
-    :root {
-      --bg: #0b1020;
-      --panel: #121a30;
-      --panel-2: #182341;
-      --text: #eaf0ff;
-      --muted: #a7b3d1;
-      --border: #2b3963;
-      --accent: #7c9cff;
-      --accent-2: #5eead4;
-      --danger: #ff7b7b;
-      --warning: #ffd36d;
-      --success: #77f2a1;
-      --shadow: 0 20px 50px rgba(0,0,0,.35);
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: linear-gradient(180deg, #09101e, #0e1630 45%, #0b1020); color: var(--text); }
-    body { min-height: 100vh; }
-
-    .container {
-      max-width: 1480px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .title h1 {
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-
-    .title p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 880px;
-      font-size: 15px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(124,156,255,.08);
-      color: #dfe7ff;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 430px minmax(0, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(24,35,65,.98), rgba(13,20,38,.98));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: 18px 18px 0;
-    }
-
-    .card-header h2 {
-      margin: 0;
-      font-size: 18px;
-    }
-
-    .card-header p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .card-body { padding: 18px; }
-
-    textarea {
-      width: 100%;
-      min-height: 310px;
-      resize: vertical;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: #0a1122;
-      color: var(--text);
-      padding: 16px;
-      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      outline: none;
-    }
-
-    textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(124,156,255,.12); }
-
-    .dropzone {
-      display: grid;
-      place-items: center;
-      text-align: center;
-      border: 1px dashed #4560a6;
-      border-radius: 18px;
-      padding: 18px;
-      margin-top: 14px;
-      color: var(--muted);
-      background: rgba(124,156,255,.04);
-      transition: .2s ease;
-    }
-
-    .dropzone.dragover { border-color: var(--accent-2); background: rgba(94,234,212,.07); color: #d8fff8; }
-
-    .button-row, .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    button, .file-label {
-      border: 1px solid var(--border);
-      background: #15203d;
-      color: var(--text);
-      border-radius: 14px;
-      padding: 11px 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: .18s ease;
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    button:hover, .file-label:hover { transform: translateY(-1px); border-color: #536fc1; }
-    button.primary { background: linear-gradient(180deg, #6d87ff, #5c73ec); border-color: transparent; }
-    button.ghost { background: transparent; }
-    button.success { background: rgba(119,242,161,.09); color: #d9ffe7; }
-    button.warn { background: rgba(255,211,109,.1); color: #fff3cb; }
-
-    .helper {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .mini {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,.02);
-    }
-
-    .mini b { display: block; font-size: 13px; margin-bottom: 6px; }
-    .mini span { color: var(--muted); font-size: 12px; }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      padding: 14px 18px 0;
-      flex-wrap: wrap;
-    }
-
-    .tab {
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-      color: var(--muted);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .tab.active {
-      background: rgba(124,156,255,.14);
-      color: var(--text);
-      border-color: #4e68ba;
-    }
-
-    .pane { display: none; }
-    .pane.active { display: block; }
-
-    .viz-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      padding: 16px 18px 0;
-      flex-wrap: wrap;
-    }
-
-    .status {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .canvas-wrap {
-      margin: 14px 18px 18px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(circle at top left, rgba(124,156,255,.09), transparent 22%),
-        linear-gradient(180deg, #0b1226, #0b1120);
-      height: 720px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    svg { width: 100%; height: 100%; display: block; cursor: grab; }
-    svg.dragging { cursor: grabbing; }
-
-    .legend {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding: 0 18px 16px;
-    }
-
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.02);
-    }
-
-    .dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
-
-    .tree-wrap, .insights-wrap {
-      padding: 18px;
-    }
-
-    .tree-view {
-      max-height: 780px;
-      overflow: auto;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: #0a1122;
-      padding: 14px;
-      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    details {
-      margin-left: 12px;
-      border-left: 1px dashed rgba(255,255,255,.09);
-      padding-left: 12px;
-    }
-
-    summary {
-      cursor: pointer;
-      color: #d9e4ff;
-      margin: 6px 0;
-      list-style: none;
-    }
-
-    summary::-webkit-details-marker { display: none; }
-
-    .leaf { margin: 4px 0 4px 24px; color: #d6dcf4; }
-    .leaf .key { color: #9fc2ff; }
-    .leaf .string { color: #9cf1bf; }
-    .leaf .number { color: #ffd58a; }
-    .leaf .bool { color: #ff9ac8; }
-    .leaf .null { color: #9a9a9a; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .stat {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .stat .label { color: var(--muted); font-size: 12px; }
-    .stat .value { font-size: 28px; font-weight: 700; margin-top: 6px; }
-
-    .list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .list-item {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,.02);
-    }
-
-    .list-item h4 { margin: 0 0 6px; font-size: 14px; }
-    .list-item p { margin: 0; color: var(--muted); font-size: 13px; }
-
-    .error-box {
-      display: none;
-      margin-top: 14px;
-      border: 1px solid rgba(255,123,123,.35);
-      background: rgba(255,123,123,.08);
-      color: #ffd3d3;
-      border-radius: 16px;
-      padding: 12px;
-      font-size: 13px;
-    }
-
-    .muted { color: var(--muted); }
-    .hidden { display: none !important; }
-    input[type="file"] { display: none; }
-
-    @media (max-width: 1180px) {
-      .layout { grid-template-columns: 1fr; }
-      .canvas-wrap { height: 600px; }
-    }
-
-    @media (max-width: 760px) {
-      .container { padding: 14px; }
-      .helper, .grid { grid-template-columns: 1fr; }
-      .canvas-wrap { height: 480px; }
-      .hero { flex-direction: column; }
-    }
+    :root{--bg:#0b1020;--panel:#121a30;--panel-2:#182341;--text:#eaf0ff;--muted:#a7b3d1;--border:#2b3963;--accent:#7c9cff;--accent-2:#5eead4;--danger:#ff7b7b;--warning:#ffd36d;--success:#77f2a1;--shadow:0 20px 50px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#09101e,#0e1630 45%,#0b1020);color:var(--text)}body{min-height:100vh}button,input,textarea{font:inherit}
+    .container{max-width:1480px;margin:0 auto;padding:24px}.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.title h1{margin:0 0 8px;font-size:clamp(28px,4vw,42px);line-height:1.05;letter-spacing:-.03em}.title p{margin:0;color:var(--muted);max-width:920px;font-size:15px}.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(124,156,255,.08);color:#dfe7ff;font-size:13px;white-space:nowrap}
+    .layout{display:grid;grid-template-columns:440px minmax(0,1fr);gap:20px;align-items:start}.card{background:linear-gradient(180deg,rgba(24,35,65,.98),rgba(13,20,38,.98));border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.card-header{padding:18px 18px 0}.card-header h2{margin:0;font-size:18px}.card-header p{margin:8px 0 0;color:var(--muted);font-size:13px}.card-body{padding:18px}
+    .status-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}.status-pill{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.03);padding:12px}.status-pill b{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}.status-pill span{font-size:14px;font-weight:700;word-break:break-word}
+    textarea,.toolbar-input,.tree-view,.json-output{border:1px solid var(--border);background:#0a1122;color:var(--text)}textarea{width:100%;min-height:360px;resize:vertical;border-radius:18px;padding:16px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;outline:none;tab-size:2}textarea:focus,.toolbar-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,156,255,.12);outline:none}
+    .button-row,.toolbar,.tree-toolbar,.json-toolbar{display:flex;flex-wrap:wrap;gap:10px}.toolbar-input{min-width:240px;flex:1 1 280px;border-radius:14px;padding:11px 14px}
+    button,.file-label{border:1px solid var(--border);background:#15203d;color:var(--text);border-radius:14px;padding:11px 14px;font-weight:600;cursor:pointer;transition:.18s ease;font-size:14px;text-decoration:none}button:hover,.file-label:hover{transform:translateY(-1px);border-color:#536fc1}button.primary{background:linear-gradient(180deg,#6d87ff,#5c73ec);border-color:transparent}button.ghost{background:transparent}button.success{background:rgba(119,242,161,.09);color:#d9ffe7}button.warn{background:rgba(255,211,109,.1);color:#fff3cb}input[type=file]{display:none}
+    .dropzone{display:grid;place-items:center;text-align:center;border:1px dashed #4560a6;border-radius:18px;padding:18px;margin-top:14px;color:var(--muted);background:rgba(124,156,255,.04);transition:.2s ease}.dropzone.dragover{border-color:var(--accent-2);background:rgba(94,234,212,.07);color:#d8fff8}
+    .helper{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.mini{border:1px solid var(--border);border-radius:16px;padding:12px;background:rgba(255,255,255,.02)}.mini b{display:block;font-size:13px;margin-bottom:6px}.mini span{color:var(--muted);font-size:12px}
+    .error-box,.notice-box{display:none;margin-top:14px;border-radius:16px;padding:12px;font-size:13px;line-height:1.55}.error-box{border:1px solid rgba(255,123,123,.35);background:rgba(255,123,123,.08);color:#ffd3d3}.notice-box{border:1px solid rgba(255,211,109,.28);background:rgba(255,211,109,.08);color:#fff3cb}
+    .tabs{display:flex;gap:8px;padding:14px 18px 0;flex-wrap:wrap}.tab{padding:10px 14px;border-radius:999px;font-size:13px;border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--muted);cursor:pointer;user-select:none}.tab.active{background:rgba(124,156,255,.14);color:var(--text);border-color:#4e68ba}.pane{display:none}.pane.active{display:block}
+    .viz-header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px 0;flex-wrap:wrap}.status{color:var(--muted);font-size:13px;line-height:1.5;max-width:720px}
+    .canvas-wrap{margin:14px 18px 18px;border-radius:20px;border:1px solid var(--border);background:radial-gradient(circle at top left,rgba(124,156,255,.09),transparent 22%),linear-gradient(180deg,#0b1226,#0b1120);height:720px;overflow:hidden;position:relative}.canvas-empty{position:absolute;inset:18px;display:grid;place-items:center;text-align:center;border:1px dashed rgba(124,156,255,.22);border-radius:18px;color:var(--muted);background:rgba(255,255,255,.02);pointer-events:none}.canvas-empty strong{display:block;margin-bottom:8px;color:var(--text)}svg{width:100%;height:100%;display:block;cursor:grab}svg.dragging{cursor:grabbing}
+    .legend{display:flex;gap:10px;flex-wrap:wrap;padding:0 18px 16px}.legend-item{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;border:1px solid var(--border);padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.02)}.dot{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .tree-wrap,.insights-wrap,.json-wrap{padding:18px}.tree-view,.json-output{max-height:780px;overflow:auto;border-radius:18px;padding:14px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.json-output{white-space:pre;margin:0}.tree-count,.toolbar-note{color:var(--muted);font-size:12px}
+    details{margin-left:12px;border-left:1px dashed rgba(255,255,255,.09);padding-left:12px}summary{cursor:pointer;color:#d9e4ff;margin:6px 0;list-style:none;border-radius:8px;padding:2px 4px}summary::-webkit-details-marker{display:none}.leaf{margin:4px 0 4px 24px;color:#d6dcf4;border-radius:8px;padding:2px 4px}.match{background:rgba(124,156,255,.12);box-shadow:inset 0 0 0 1px rgba(124,156,255,.18)}
+    .leaf .key{color:#9fc2ff}.leaf .string{color:#9cf1bf}.leaf .number{color:#ffd58a}.leaf .bool{color:#ff9ac8}.leaf .null{color:#9a9a9a}.leaf .path,.node-path{color:#7f94c7}.node-preview{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat{border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:18px;padding:14px}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:22px;font-weight:700;margin-top:8px;word-break:break-word}
+    .list{display:grid;gap:10px}.list-item{border:1px solid var(--border);border-radius:16px;padding:12px;background:rgba(255,255,255,.02)}.list-item h4{margin:0 0 6px;font-size:14px}.list-item p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .hidden{display:none!important}
+    @media (max-width:1180px){.layout{grid-template-columns:1fr}.canvas-wrap{height:600px}}@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.status-strip{grid-template-columns:1fr}}@media (max-width:760px){.container{padding:14px}.helper,.grid{grid-template-columns:1fr}.canvas-wrap{height:480px}.hero{flex-direction:column}.toolbar-input{min-width:100%}}
   </style>
   <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true;
-    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-    f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NFJXRZSV');
-  </script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
   <!-- End Google Tag Manager -->
-
-  <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-S55MNPYJF8');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div class="container">
     <div class="hero">
       <div class="title">
-        <h1>Flow JSON Viewer</h1>
-        <p>Paste or upload Salesforce Flow JSON and instantly visualize its elements, connectors, structure, and basic health insights. Built as a lightweight static tool for <strong>pulsagi.com/tools</strong>.</p>
+        <h1>JSON Viewer</h1>
+        <p>Paste or upload any valid JSON to format, inspect, search, analyze, and visualize it. Flow-style JSON still gets relationship detection, but the tool is now built for generic JSON too.</p>
       </div>
       <div class="badge">Pulsagi Developer Toolbox</div>
     </div>
-
     <div class="layout">
       <section class="card">
         <div class="card-header">
           <h2>Input</h2>
-          <p>Works best with Salesforce Flow metadata exported as JSON or Flow-like structured JSON from APIs, CLI transforms, or custom converters.</p>
+          <p>Generic JSON support, formatting, autosave, file upload, safe rendering limits, and production-friendly error handling.</p>
         </div>
         <div class="card-body">
-          <textarea id="jsonInput" spellcheck="false" placeholder='Paste Flow JSON here...'></textarea>
-
+          <div class="status-strip">
+            <div class="status-pill"><b>Detected profile</b><span id="profileBadge">No data loaded</span></div>
+            <div class="status-pill"><b>JSON health</b><span id="healthBadge">Waiting for input</span></div>
+          </div>
+          <textarea id="jsonInput" spellcheck="false" placeholder='Paste any valid JSON here...'></textarea>
           <div class="button-row" style="margin-top:14px;">
-            <button class="primary" id="renderBtn">Visualize Flow</button>
-            <button id="sampleBtn">Load Sample</button>
+            <button class="primary" id="renderBtn">Analyze JSON</button>
+            <button id="formatBtn">Format</button>
+            <button id="minifyBtn">Minify</button>
+            <button id="sampleBtn">Flow Sample</button>
+            <button id="genericSampleBtn">Generic Sample</button>
             <button class="ghost" id="clearBtn">Clear</button>
-            <button class="success" id="copyBtn">Copy JSON</button>
+            <button class="success" id="copyBtn">Copy</button>
+            <button class="warn" id="downloadJsonBtn">Download JSON</button>
             <label class="file-label" for="fileInput">Upload .json</label>
             <input type="file" id="fileInput" accept=".json,application/json" />
           </div>
-
-          <div id="dropzone" class="dropzone">
-            <div>
-              <strong>Drag & drop JSON file here</strong>
-              <div class="muted" style="margin-top:6px;">or use the upload button above</div>
-            </div>
-          </div>
-
+          <div id="dropzone" class="dropzone"><div><strong>Drag and drop JSON here</strong><div style="margin-top:6px;">Works with objects, arrays, primitives, config files, API payloads, and Flow metadata</div></div></div>
           <div id="errorBox" class="error-box"></div>
-
+          <div id="noticeBox" class="notice-box"></div>
           <div class="helper">
-            <div class="mini">
-              <b>Best for</b>
-              <span>Quick flow inspection, demos, debugging, documentation screenshots.</span>
-            </div>
-            <div class="mini">
-              <b>Understands</b>
-              <span>start, screens, decisions, actionCalls, lookups, updates, creates, deletes, loops, assignments, subflows.</span>
-            </div>
-            <div class="mini">
-              <b>Fallback mode</b>
-              <span>If graph nodes are not detected, the tool still shows a full JSON tree and summary.</span>
-            </div>
+            <div class="mini"><b>Supports</b><span>Generic JSON, nested arrays, API responses, config documents, logs, and Salesforce Flow-style metadata.</span></div>
+            <div class="mini"><b>Shortcuts</b><span>Ctrl/Cmd + Enter analyzes. Ctrl/Cmd + Shift + F formats. Autosave keeps drafts between refreshes.</span></div>
+            <div class="mini"><b>Safeguards</b><span>Tree and graph rendering are capped for large payloads so the page stays responsive.</span></div>
           </div>
         </div>
       </section>
-
       <section class="card">
         <div class="tabs">
           <div class="tab active" data-tab="diagram">Diagram</div>
-          <div class="tab" data-tab="tree">JSON Tree</div>
+          <div class="tab" data-tab="tree">Tree</div>
+          <div class="tab" data-tab="json">Formatted JSON</div>
           <div class="tab" data-tab="insights">Insights</div>
         </div>
-
         <div class="pane active" id="diagramPane">
           <div class="viz-header">
-            <div class="status" id="statusText">No flow loaded yet.</div>
+            <div class="status" id="statusText">No JSON loaded yet.</div>
             <div class="toolbar">
               <button id="fitBtn">Fit</button>
               <button id="zoomInBtn">Zoom In</button>
               <button id="zoomOutBtn">Zoom Out</button>
-              <button class="warn" id="downloadBtn">Download SVG</button>
+              <button class="warn" id="downloadSvgBtn">Download SVG</button>
             </div>
           </div>
-
-          <div class="canvas-wrap" id="canvasWrap">
-            <svg id="svgCanvas" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" aria-label="Flow diagram">
+          <div class="canvas-wrap">
+            <div class="canvas-empty" id="canvasEmpty"><div><strong>Diagram will appear here</strong><span>Flow-like JSON gets relationship visualization. Generic JSON gets a safe structural map.</span></div></div>
+            <svg id="svgCanvas" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" aria-label="JSON diagram">
               <defs>
-                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="#90a8ff"></path>
-                </marker>
-                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="rgba(0,0,0,.35)" />
-                </filter>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#90a8ff"></path></marker>
+                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="rgba(0,0,0,.35)" /></filter>
               </defs>
               <g id="viewportGroup"></g>
             </svg>
           </div>
-
-          <div class="legend">
-            <span class="legend-item"><span class="dot" style="background:#7c9cff"></span> Screen / UI</span>
-            <span class="legend-item"><span class="dot" style="background:#5eead4"></span> Data / Action</span>
-            <span class="legend-item"><span class="dot" style="background:#ffd36d"></span> Decision / Logic</span>
-            <span class="legend-item"><span class="dot" style="background:#ff9ac8"></span> Start / Loop / Assignment</span>
-          </div>
+          <div class="legend" id="legend"></div>
         </div>
-
         <div class="pane" id="treePane">
           <div class="tree-wrap">
-            <div class="tree-view" id="treeView">Paste Flow JSON and click <strong>Visualize Flow</strong>.</div>
+            <div class="tree-toolbar">
+              <input class="toolbar-input" id="treeSearchInput" type="search" placeholder="Search keys, paths, and values..." />
+              <button id="expandAllBtn">Expand all</button>
+              <button id="collapseAllBtn">Collapse all</button>
+              <span class="tree-count" id="treeSearchCount">0 matches</span>
+            </div>
+            <div class="tree-view" id="treeView">Paste JSON and click <strong>Analyze JSON</strong>.</div>
           </div>
         </div>
-
+        <div class="pane" id="jsonPane">
+          <div class="json-wrap">
+            <div class="json-toolbar">
+              <button id="copyFormattedBtn">Copy formatted</button>
+              <button id="downloadFormattedBtn">Download formatted</button>
+              <span class="toolbar-note" id="jsonMetaText">No formatted output yet.</span>
+            </div>
+            <pre class="json-output" id="formattedOutput">Paste JSON and click Analyze JSON.</pre>
+          </div>
+        </div>
         <div class="pane" id="insightsPane">
           <div class="insights-wrap">
             <div class="grid">
-              <div class="stat"><div class="label">Flow Name</div><div class="value" id="flowNameStat">—</div></div>
-              <div class="stat"><div class="label">Nodes</div><div class="value" id="nodeCountStat">0</div></div>
-              <div class="stat"><div class="label">Connectors</div><div class="value" id="edgeCountStat">0</div></div>
+              <div class="stat"><div class="label">Root Type</div><div class="value" id="rootTypeStat">-</div></div>
+              <div class="stat"><div class="label">Estimated Size</div><div class="value" id="sizeStat">0 B</div></div>
+              <div class="stat"><div class="label">Max Depth</div><div class="value" id="depthStat">0</div></div>
+              <div class="stat"><div class="label">Graph Nodes</div><div class="value" id="nodeCountStat">0</div></div>
             </div>
-
-            <div class="list" id="insightList">
-              <div class="list-item"><h4>No insights yet</h4><p>Load JSON to see element counts, potential issues, and structure summary.</p></div>
-            </div>
+            <div class="list" id="insightList"><div class="list-item"><h4>No insights yet</h4><p>Load JSON to see structure summaries, type counts, graph coverage, and safe rendering notes.</p></div></div>
           </div>
         </div>
       </section>
     </div>
   </div>
-
   <script>
-    const inputEl = document.getElementById('jsonInput');
-    const renderBtn = document.getElementById('renderBtn');
-    const sampleBtn = document.getElementById('sampleBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const copyBtn = document.getElementById('copyBtn');
-    const fileInput = document.getElementById('fileInput');
-    const dropzone = document.getElementById('dropzone');
-    const errorBox = document.getElementById('errorBox');
-    const statusText = document.getElementById('statusText');
-    const treeView = document.getElementById('treeView');
-    const insightList = document.getElementById('insightList');
-    const flowNameStat = document.getElementById('flowNameStat');
-    const nodeCountStat = document.getElementById('nodeCountStat');
-    const edgeCountStat = document.getElementById('edgeCountStat');
-    const svgCanvas = document.getElementById('svgCanvas');
-    const viewportGroup = document.getElementById('viewportGroup');
-
-    const TYPE_COLORS = {
-      start: '#ff9ac8',
-      screen: '#7c9cff',
-      decision: '#ffd36d',
-      assignment: '#ff9ac8',
-      loop: '#ff9ac8',
-      actionCall: '#5eead4',
-      subflow: '#5eead4',
-      recordLookup: '#5eead4',
-      recordCreate: '#5eead4',
-      recordUpdate: '#5eead4',
-      recordDelete: '#5eead4',
-      collectionProcessor: '#5eead4',
-      formula: '#ffd36d',
-      wait: '#ffd36d',
-      default: '#90a8ff'
-    };
-
-    const TYPE_LABELS = {
-      start: 'Start',
-      screen: 'Screen',
-      decision: 'Decision',
-      assignment: 'Assignment',
-      loop: 'Loop',
-      actionCall: 'Action',
-      subflow: 'Subflow',
-      recordLookup: 'Lookup',
-      recordCreate: 'Create',
-      recordUpdate: 'Update',
-      recordDelete: 'Delete',
-      collectionProcessor: 'Collection',
-      formula: 'Formula',
-      wait: 'Wait',
-      default: 'Element'
-    };
-
-    const ELEMENT_MAP = [
-      { key: 'start', aliases: ['start', 'starts'] },
-      { key: 'screen', aliases: ['screens'] },
-      { key: 'decision', aliases: ['decisions'] },
-      { key: 'assignment', aliases: ['assignments'] },
-      { key: 'loop', aliases: ['loops'] },
-      { key: 'actionCall', aliases: ['actionCalls', 'apexPluginCalls', 'coreActionCalls'] },
-      { key: 'subflow', aliases: ['subflows'] },
-      { key: 'recordLookup', aliases: ['recordLookups'] },
-      { key: 'recordCreate', aliases: ['recordCreates'] },
-      { key: 'recordUpdate', aliases: ['recordUpdates'] },
-      { key: 'recordDelete', aliases: ['recordDeletes'] },
-      { key: 'collectionProcessor', aliases: ['collectionProcessors'] },
-      { key: 'formula', aliases: ['formulas'] },
-      { key: 'wait', aliases: ['waits', 'pauses'] }
-    ];
-
-    const SAMPLE_JSON = {
-      label: 'Merchant Onboarding Flow',
-      processType: 'Flow',
-      status: 'Active',
-      start: {
-        name: 'Start',
-        label: 'Start',
-        object: 'Lead',
-        triggerType: 'RecordAfterSave',
-        connector: { targetReference: 'Check_Eligibility' }
-      },
-      recordLookups: [
-        {
-          name: 'Get_Merchant',
-          label: 'Get Merchant',
-          object: 'Merchant__c',
-          connector: { targetReference: 'Create_Case' }
-        }
-      ],
-      decisions: [
-        {
-          name: 'Check_Eligibility',
-          label: 'Check Eligibility',
-          rules: [
-            { name: 'Eligible', label: 'Eligible', connector: { targetReference: 'Get_Merchant' } },
-            { name: 'Needs Review', label: 'Needs Review', connector: { targetReference: 'Manager_Approval' } }
-          ],
-          defaultConnector: { targetReference: 'Send_Rejection_Email' }
-        }
-      ],
-      actionCalls: [
-        {
-          name: 'Manager_Approval',
-          label: 'Manager Approval Action',
-          connector: { targetReference: 'Create_Case' }
-        },
-        {
-          name: 'Send_Rejection_Email',
-          label: 'Send Rejection Email',
-          connector: { targetReference: 'End_Screen' }
-        }
-      ],
-      recordCreates: [
-        {
-          name: 'Create_Case',
-          label: 'Create Case',
-          object: 'Case',
-          connector: { targetReference: 'Notify_Sales' }
-        }
-      ],
-      subflows: [
-        {
-          name: 'Notify_Sales',
-          label: 'Notify Sales Team',
-          flowName: 'Send_Notification_Subflow',
-          connector: { targetReference: 'End_Screen' }
-        }
-      ],
-      screens: [
-        {
-          name: 'End_Screen',
-          label: 'Completion Screen'
-        }
-      ]
-    };
-
-    let viewState = { x: 40, y: 40, scale: 1 };
-    let currentFlowData = null;
-
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab + 'Pane').classList.add('active');
-      });
-    });
-
-    renderBtn.addEventListener('click', handleRender);
-    sampleBtn.addEventListener('click', () => {
-      inputEl.value = JSON.stringify(SAMPLE_JSON, null, 2);
-      handleRender();
-    });
-    clearBtn.addEventListener('click', () => {
-      inputEl.value = '';
-      errorBox.style.display = 'none';
-      treeView.innerHTML = 'Paste Flow JSON and click <strong>Visualize Flow</strong>.';
-      insightList.innerHTML = '<div class="list-item"><h4>No insights yet</h4><p>Load JSON to see element counts, potential issues, and structure summary.</p></div>';
-      flowNameStat.textContent = '—';
-      nodeCountStat.textContent = '0';
-      edgeCountStat.textContent = '0';
-      statusText.textContent = 'No flow loaded yet.';
-      viewportGroup.innerHTML = '';
-      currentFlowData = null;
-    });
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(inputEl.value || '');
-        copyBtn.textContent = 'Copied';
-        setTimeout(() => copyBtn.textContent = 'Copy JSON', 1200);
-      } catch {
-        showError('Unable to copy JSON from browser clipboard.');
-      }
-    });
-
-    fileInput.addEventListener('change', async (e) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
-      inputEl.value = await file.text();
-      handleRender();
-    });
-
-    ['dragenter', 'dragover'].forEach(evt => {
-      dropzone.addEventListener(evt, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.add('dragover');
-      });
-    });
-
-    ['dragleave', 'drop'].forEach(evt => {
-      dropzone.addEventListener(evt, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.remove('dragover');
-      });
-    });
-
-    dropzone.addEventListener('drop', async (e) => {
-      const file = e.dataTransfer.files?.[0];
-      if (!file) return;
-      inputEl.value = await file.text();
-      handleRender();
-    });
-
-    function handleRender() {
-      try {
-        errorBox.style.display = 'none';
-        const raw = inputEl.value.trim();
-        if (!raw) {
-          showError('Please paste or upload JSON first.');
-          return;
-        }
-        const parsed = JSON.parse(raw);
-        const flowData = buildFlowModel(parsed);
-        currentFlowData = flowData;
-        renderTree(parsed);
-        renderInsights(flowData);
-        renderDiagram(flowData);
-      } catch (error) {
-        console.error(error);
-        showError(error.message || 'Invalid JSON.');
-      }
-    }
-
-    function showError(message) {
-      errorBox.textContent = message;
-      errorBox.style.display = 'block';
-    }
-
-    function buildFlowModel(json) {
-      const nodes = [];
-      const edges = [];
-      const nodeMap = new Map();
-      const rawCounts = {};
-      const root = json.flow || json.Flow || json;
-
-      const flowName = root.label || root.fullName || root.name || 'Untitled Flow';
-      const status = root.status || 'Unknown';
-      const processType = root.processType || root.processMetadataType || 'Flow';
-
-      for (const definition of ELEMENT_MAP) {
-        for (const alias of definition.aliases) {
-          const value = root[alias];
-          if (!value) continue;
-          const list = Array.isArray(value) ? value : [value];
-          rawCounts[definition.key] = (rawCounts[definition.key] || 0) + list.length;
-
-          list.forEach((item, index) => {
-            const normalized = normalizeNode(item, definition.key, alias, index);
-            if (!normalized.id) normalized.id = `${definition.key}_${index + 1}`;
-            if (!nodeMap.has(normalized.id)) {
-              nodes.push(normalized);
-              nodeMap.set(normalized.id, normalized);
-            }
-
-            collectEdges(normalized, item).forEach(edge => edges.push(edge));
-          });
-        }
-      }
-
-      if (!nodes.length) {
-        const genericNodes = extractGenericNodes(root);
-        genericNodes.nodes.forEach(node => {
-          nodes.push(node);
-          nodeMap.set(node.id, node);
-        });
-        genericNodes.edges.forEach(edge => edges.push(edge));
-      }
-
-      edges.forEach((edge, index) => {
-        edge.id = edge.id || `edge_${index + 1}`;
-      });
-
-      const uniqueEdges = dedupeEdges(edges);
-      ensurePlaceholderNodes(uniqueEdges, nodeMap, nodes);
-      const layout = layoutNodes(nodes, uniqueEdges);
-
-      return {
-        flowName,
-        status,
-        processType,
-        nodes: layout.nodes,
-        edges: uniqueEdges,
-        counts: rawCounts,
-        raw: json
-      };
-    }
-
-    function normalizeNode(item, type, sourceAlias, index) {
-      const id = item?.name || item?.id || item?.developerName || `${type}_${index + 1}`;
-      const label = item?.label || item?.name || item?.developerName || TYPE_LABELS[type] || 'Element';
-      const subtitle = item?.object || item?.flowName || item?.actionType || item?.description || item?.dataType || sourceAlias;
-      return {
-        id,
-        label,
-        type,
-        subtitle,
-        raw: item || {}
-      };
-    }
-
-    function collectEdges(node, rawNode) {
-      const edges = [];
-      const pushEdge = (target, text = '') => {
-        if (!target) return;
-        edges.push({ source: node.id, target, label: text || '' });
-      };
-
-      if (rawNode?.connector?.targetReference) pushEdge(rawNode.connector.targetReference);
-      if (rawNode?.defaultConnector?.targetReference) pushEdge(rawNode.defaultConnector.targetReference, 'Default');
-      if (rawNode?.nextValueConnector?.targetReference) pushEdge(rawNode.nextValueConnector.targetReference, 'Next');
-      if (rawNode?.noMoreValuesConnector?.targetReference) pushEdge(rawNode.noMoreValuesConnector.targetReference, 'Done');
-      if (rawNode?.faultConnector?.targetReference) pushEdge(rawNode.faultConnector.targetReference, 'Fault');
-
-      if (Array.isArray(rawNode?.rules)) {
-        rawNode.rules.forEach(rule => pushEdge(rule?.connector?.targetReference, rule?.label || rule?.name || 'Rule'));
-      }
-      if (Array.isArray(rawNode?.outcomes)) {
-        rawNode.outcomes.forEach(outcome => pushEdge(outcome?.connector?.targetReference, outcome?.label || outcome?.name || 'Outcome'));
-      }
-      if (Array.isArray(rawNode?.scheduledPaths)) {
-        rawNode.scheduledPaths.forEach(path => pushEdge(path?.connector?.targetReference, path?.label || path?.name || 'Scheduled'));
-      }
-      if (Array.isArray(rawNode?.choices)) {
-        rawNode.choices.forEach(choice => pushEdge(choice?.connector?.targetReference, choice?.label || choice?.name || 'Choice'));
-      }
-      if (Array.isArray(rawNode?.assignmentItems)) {
-        rawNode.assignmentItems.forEach(item => {
-          if (item?.connector?.targetReference) pushEdge(item.connector.targetReference, item.name || 'Assignment');
-        });
-      }
-      return edges;
-    }
-
-    function extractGenericNodes(root) {
-      const nodes = [];
-      const edges = [];
-      const candidates = [];
-
-      Object.entries(root).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          value.forEach((item, index) => {
-            if (item && typeof item === 'object' && (item.name || item.label || item.id)) {
-              candidates.push({ key, item, index });
-            }
-          });
-        }
-      });
-
-      candidates.forEach(({ key, item, index }) => {
-        const id = item.name || item.id || `${key}_${index + 1}`;
-        nodes.push({ id, label: item.label || item.name || id, type: inferTypeFromKey(key), subtitle: key, raw: item });
-        collectEdges({ id }, item).forEach(edge => edges.push(edge));
-      });
-
-      return { nodes, edges };
-    }
-
-    function inferTypeFromKey(key) {
-      const lower = String(key).toLowerCase();
-      if (lower.includes('screen')) return 'screen';
-      if (lower.includes('decision')) return 'decision';
-      if (lower.includes('lookup')) return 'recordLookup';
-      if (lower.includes('create')) return 'recordCreate';
-      if (lower.includes('update')) return 'recordUpdate';
-      if (lower.includes('delete')) return 'recordDelete';
-      if (lower.includes('loop')) return 'loop';
-      if (lower.includes('assign')) return 'assignment';
-      if (lower.includes('subflow')) return 'subflow';
-      if (lower.includes('start')) return 'start';
-      if (lower.includes('action')) return 'actionCall';
-      return 'default';
-    }
-
-    function dedupeEdges(edges) {
-      const seen = new Set();
-      return edges.filter(edge => {
-        const key = `${edge.source}__${edge.target}__${edge.label || ''}`;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-    }
-
-    function ensurePlaceholderNodes(edges, nodeMap, nodes) {
-      edges.forEach(edge => {
-        if (!nodeMap.has(edge.target)) {
-          const placeholder = {
-            id: edge.target,
-            label: edge.target,
-            type: 'default',
-            subtitle: 'Referenced only',
-            raw: {}
-          };
-          nodeMap.set(placeholder.id, placeholder);
-          nodes.push(placeholder);
-        }
-      });
-    }
-
-    function layoutNodes(nodes, edges) {
-      const incoming = new Map();
-      const outgoing = new Map();
-      nodes.forEach(node => {
-        incoming.set(node.id, 0);
-        outgoing.set(node.id, []);
-      });
-
-      edges.forEach(edge => {
-        incoming.set(edge.target, (incoming.get(edge.target) || 0) + 1);
-        outgoing.get(edge.source)?.push(edge.target);
-      });
-
-      const startNodes = nodes.filter(node => incoming.get(node.id) === 0);
-      const queue = [...startNodes.map(node => ({ id: node.id, level: 0 }))];
-      const levels = new Map();
-
-      startNodes.forEach(node => levels.set(node.id, 0));
-
-      while (queue.length) {
-        const current = queue.shift();
-        const targets = outgoing.get(current.id) || [];
-        targets.forEach(target => {
-          const nextLevel = current.level + 1;
-          const existing = levels.get(target);
-          if (existing == null || nextLevel > existing) {
-            levels.set(target, nextLevel);
-            queue.push({ id: target, level: nextLevel });
-          }
-        });
-      }
-
-      nodes.forEach((node, index) => {
-        if (!levels.has(node.id)) levels.set(node.id, Math.min(3, index));
-      });
-
-      const grouped = new Map();
-      nodes.forEach(node => {
-        const level = levels.get(node.id) || 0;
-        if (!grouped.has(level)) grouped.set(level, []);
-        grouped.get(level).push(node);
-      });
-
-      const xGap = 310;
-      const yGap = 160;
-      const xStart = 80;
-      const yStart = 80;
-      const resultNodes = [];
-
-      [...grouped.entries()].sort((a, b) => a[0] - b[0]).forEach(([level, list]) => {
-        list.sort((a, b) => (a.label || '').localeCompare(b.label || ''));
-        list.forEach((node, row) => {
-          resultNodes.push({
-            ...node,
-            x: xStart + level * xGap,
-            y: yStart + row * yGap,
-            width: 220,
-            height: 88
-          });
-        });
-      });
-
-      return { nodes: resultNodes, edges };
-    }
-
-    function renderDiagram(flowData) {
-      const { flowName, status, processType, nodes, edges } = flowData;
-      statusText.textContent = `${flowName} • ${processType} • ${status} • ${nodes.length} nodes / ${edges.length} connectors`;
-      viewportGroup.innerHTML = '';
-
-      const nodeIndex = new Map(nodes.map(node => [node.id, node]));
-
-      edges.forEach(edge => {
-        const source = nodeIndex.get(edge.source);
-        const target = nodeIndex.get(edge.target);
-        if (!source || !target) return;
-
-        const x1 = source.x + source.width;
-        const y1 = source.y + source.height / 2;
-        const x2 = target.x;
-        const y2 = target.y + target.height / 2;
-        const dx = Math.max(50, (x2 - x1) * 0.5);
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`);
-        path.setAttribute('fill', 'none');
-        path.setAttribute('stroke', '#90a8ff');
-        path.setAttribute('stroke-width', '2.2');
-        path.setAttribute('marker-end', 'url(#arrow)');
-        path.setAttribute('opacity', '.9');
-        viewportGroup.appendChild(path);
-
-        if (edge.label) {
-          const midX = (x1 + x2) / 2;
-          const midY = (y1 + y2) / 2 - 8;
-          const textBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-          textBg.setAttribute('x', midX - 34);
-          textBg.setAttribute('y', midY - 12);
-          textBg.setAttribute('width', 68);
-          textBg.setAttribute('height', 20);
-          textBg.setAttribute('rx', 10);
-          textBg.setAttribute('fill', '#0b1226');
-          textBg.setAttribute('stroke', '#31436f');
-          viewportGroup.appendChild(textBg);
-
-          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          text.setAttribute('x', midX);
-          text.setAttribute('y', midY + 2);
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('fill', '#dfe8ff');
-          text.setAttribute('font-size', '11');
-          text.setAttribute('font-weight', '600');
-          text.textContent = edge.label.length > 12 ? edge.label.slice(0, 12) + '…' : edge.label;
-          viewportGroup.appendChild(text);
-        }
-      });
-
-      nodes.forEach(node => {
-        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        group.setAttribute('transform', `translate(${node.x}, ${node.y})`);
-        group.style.cursor = 'pointer';
-
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('width', node.width);
-        rect.setAttribute('height', node.height);
-        rect.setAttribute('rx', '22');
-        rect.setAttribute('fill', '#12203c');
-        rect.setAttribute('stroke', TYPE_COLORS[node.type] || TYPE_COLORS.default);
-        rect.setAttribute('stroke-width', '2');
-        rect.setAttribute('filter', 'url(#softShadow)');
-        group.appendChild(rect);
-
-        const topBar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        topBar.setAttribute('width', node.width);
-        topBar.setAttribute('height', '10');
-        topBar.setAttribute('rx', '22');
-        topBar.setAttribute('fill', TYPE_COLORS[node.type] || TYPE_COLORS.default);
-        topBar.setAttribute('opacity', '.95');
-        group.appendChild(topBar);
-
-        const typeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        typeText.setAttribute('x', '18');
-        typeText.setAttribute('y', '31');
-        typeText.setAttribute('fill', '#9db3ef');
-        typeText.setAttribute('font-size', '12');
-        typeText.setAttribute('font-weight', '700');
-        typeText.textContent = TYPE_LABELS[node.type] || TYPE_LABELS.default;
-        group.appendChild(typeText);
-
-        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        label.setAttribute('x', '18');
-        label.setAttribute('y', '52');
-        label.setAttribute('fill', '#eef3ff');
-        label.setAttribute('font-size', '15');
-        label.setAttribute('font-weight', '700');
-        label.textContent = truncate(node.label, 24);
-        group.appendChild(label);
-
-        const subtitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        subtitle.setAttribute('x', '18');
-        subtitle.setAttribute('y', '72');
-        subtitle.setAttribute('fill', '#a7b3d1');
-        subtitle.setAttribute('font-size', '12');
-        subtitle.textContent = truncate(node.subtitle || node.id, 28);
-        group.appendChild(subtitle);
-
-        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-        title.textContent = `${TYPE_LABELS[node.type] || 'Element'}\n${node.label}\n${node.subtitle || ''}`;
-        group.appendChild(title);
-
-        group.addEventListener('click', () => focusNodeInTree(node.id));
-        viewportGroup.appendChild(group);
-      });
-
-      fitToView(nodes);
-    }
-
-    function fitToView(nodes) {
-      if (!nodes.length) {
-        viewState = { x: 40, y: 40, scale: 1 };
-        applyViewTransform();
-        return;
-      }
-      const minX = Math.min(...nodes.map(n => n.x));
-      const minY = Math.min(...nodes.map(n => n.y));
-      const maxX = Math.max(...nodes.map(n => n.x + n.width));
-      const maxY = Math.max(...nodes.map(n => n.y + n.height));
-      const boxWidth = maxX - minX + 120;
-      const boxHeight = maxY - minY + 120;
-      const svgRect = svgCanvas.getBoundingClientRect();
-      const scaleX = svgRect.width / boxWidth;
-      const scaleY = svgRect.height / boxHeight;
-      const scale = Math.min(1.15, Math.max(0.45, Math.min(scaleX, scaleY)));
-      viewState = {
-        scale,
-        x: 60 - minX * scale,
-        y: 60 - minY * scale
-      };
-      applyViewTransform();
-    }
-
-    function applyViewTransform() {
-      viewportGroup.setAttribute('transform', `translate(${viewState.x}, ${viewState.y}) scale(${viewState.scale})`);
-    }
-
-    function renderTree(json) {
-      treeView.innerHTML = '';
-      treeView.appendChild(buildTreeNode('root', json, true));
-    }
-
-    function buildTreeNode(key, value, open = false) {
-      if (value === null || typeof value !== 'object') {
-        const div = document.createElement('div');
-        div.className = 'leaf';
-        div.innerHTML = `<span class="key">${escapeHtml(key)}</span>: ${formatPrimitive(value)}`;
-        return div;
-      }
-
-      const details = document.createElement('details');
-      details.open = open;
-      const summary = document.createElement('summary');
-      const size = Array.isArray(value) ? `[${value.length}]` : `{${Object.keys(value).length}}`;
-      summary.innerHTML = `<strong>${escapeHtml(key)}</strong> <span class="muted">${size}</span>`;
-      details.appendChild(summary);
-
-      if (Array.isArray(value)) {
-        value.forEach((item, index) => details.appendChild(buildTreeNode(index, item)));
-      } else {
-        Object.entries(value).forEach(([childKey, childValue]) => details.appendChild(buildTreeNode(childKey, childValue)));
-      }
-      return details;
-    }
-
-    function formatPrimitive(value) {
-      if (typeof value === 'string') return `<span class="string">"${escapeHtml(value)}"</span>`;
-      if (typeof value === 'number') return `<span class="number">${value}</span>`;
-      if (typeof value === 'boolean') return `<span class="bool">${value}</span>`;
-      if (value === null) return `<span class="null">null</span>`;
-      return escapeHtml(String(value));
-    }
-
-    function renderInsights(flowData) {
-      const { flowName, nodes, edges, counts, status, processType } = flowData;
-      flowNameStat.textContent = truncate(flowName, 18);
-      flowNameStat.title = flowName;
-      nodeCountStat.textContent = String(nodes.length);
-      edgeCountStat.textContent = String(edges.length);
-
-      const countEntries = Object.entries(counts).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
-      const disconnected = nodes.filter(node => !edges.some(e => e.source === node.id || e.target === node.id));
-      const noOutgoing = nodes.filter(node => !edges.some(e => e.source === node.id));
-      const noIncoming = nodes.filter(node => !edges.some(e => e.target === node.id));
-
-      const items = [
-        {
-          title: 'Flow summary',
-          text: `${flowName} is a ${processType} flow with status ${status}. The viewer found ${nodes.length} nodes and ${edges.length} connectors.`
-        },
-        {
-          title: 'Element distribution',
-          text: countEntries.length ? countEntries.map(([type, count]) => `${TYPE_LABELS[type] || type}: ${count}`).join(' • ') : 'No standard flow element groups detected. Falling back to generic JSON analysis.'
-        }
-      ];
-
-      if (disconnected.length) {
-        items.push({
-          title: 'Disconnected elements',
-          text: `${disconnected.length} element(s) appear isolated: ${disconnected.slice(0, 6).map(n => n.label).join(', ')}${disconnected.length > 6 ? '…' : ''}`
-        });
-      }
-
-      if (noOutgoing.length) {
-        items.push({
-          title: 'Potential end nodes',
-          text: `${noOutgoing.length} element(s) do not have outgoing connectors: ${noOutgoing.slice(0, 6).map(n => n.label).join(', ')}${noOutgoing.length > 6 ? '…' : ''}`
-        });
-      }
-
-      if (noIncoming.length > 1) {
-        items.push({
-          title: 'Multiple entry candidates',
-          text: `${noIncoming.length} elements have no incoming connectors. This may be fine for referenced-only nodes, but it is worth checking: ${noIncoming.slice(0, 6).map(n => n.label).join(', ')}${noIncoming.length > 6 ? '…' : ''}`
-        });
-      }
-
-      insightList.innerHTML = items.map(item => `
-        <div class="list-item">
-          <h4>${escapeHtml(item.title)}</h4>
-          <p>${escapeHtml(item.text)}</p>
-        </div>
-      `).join('');
-    }
-
-    function focusNodeInTree(nodeId) {
-      document.querySelector('[data-tab="tree"]').click();
-      const summaries = [...treeView.querySelectorAll('summary')];
-      const match = summaries.find(s => s.textContent.includes(nodeId));
-      if (match) {
-        let parent = match.parentElement;
-        while (parent && parent !== treeView) {
-          if (parent.tagName === 'DETAILS') parent.open = true;
-          parent = parent.parentElement;
-        }
-        match.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-
-    function truncate(value, max) {
-      const s = String(value || '');
-      return s.length > max ? s.slice(0, max - 1) + '…' : s;
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    let isPanning = false;
-    let panStart = { x: 0, y: 0 };
-    let viewStart = { x: 0, y: 0 };
-
-    svgCanvas.addEventListener('mousedown', (e) => {
-      isPanning = true;
-      svgCanvas.classList.add('dragging');
-      panStart = { x: e.clientX, y: e.clientY };
-      viewStart = { x: viewState.x, y: viewState.y };
-    });
-
-    window.addEventListener('mouseup', () => {
-      isPanning = false;
-      svgCanvas.classList.remove('dragging');
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isPanning) return;
-      viewState.x = viewStart.x + (e.clientX - panStart.x);
-      viewState.y = viewStart.y + (e.clientY - panStart.y);
-      applyViewTransform();
-    });
-
-    svgCanvas.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const factor = e.deltaY < 0 ? 1.08 : 0.92;
-      viewState.scale = Math.max(0.25, Math.min(2.3, viewState.scale * factor));
-      applyViewTransform();
-    }, { passive: false });
-
-    document.getElementById('fitBtn').addEventListener('click', () => {
-      if (currentFlowData) fitToView(currentFlowData.nodes);
-    });
-    document.getElementById('zoomInBtn').addEventListener('click', () => {
-      viewState.scale = Math.min(2.3, viewState.scale * 1.12);
-      applyViewTransform();
-    });
-    document.getElementById('zoomOutBtn').addEventListener('click', () => {
-      viewState.scale = Math.max(0.25, viewState.scale * 0.9);
-      applyViewTransform();
-    });
-
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-      const serializer = new XMLSerializer();
-      const source = serializer.serializeToString(svgCanvas);
-      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'flow-diagram.svg';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    inputEl.value = JSON.stringify(SAMPLE_JSON, null, 2);
-    handleRender();
+    const STORAGE_KEY='pulsagi-json-viewer-input-v3',MAX_GRAPH_NODES=140,MAX_TREE_NODES=5000,MAX_CHILDREN=18,MAX_GRAPH_DEPTH=5;
+    const $=(id)=>document.getElementById(id),inputEl=$('jsonInput'),errorBox=$('errorBox'),noticeBox=$('noticeBox'),profileBadge=$('profileBadge'),healthBadge=$('healthBadge'),statusText=$('statusText'),treeView=$('treeView'),treeSearchInput=$('treeSearchInput'),treeSearchCount=$('treeSearchCount'),formattedOutput=$('formattedOutput'),jsonMetaText=$('jsonMetaText'),insightList=$('insightList'),rootTypeStat=$('rootTypeStat'),sizeStat=$('sizeStat'),depthStat=$('depthStat'),nodeCountStat=$('nodeCountStat'),canvasEmpty=$('canvasEmpty'),legend=$('legend'),svgCanvas=$('svgCanvas'),viewportGroup=$('viewportGroup');
+    const TYPE_COLORS={start:'#ff9ac8',screen:'#7c9cff',decision:'#ffd36d',assignment:'#ff9ac8',loop:'#ff9ac8',actionCall:'#5eead4',subflow:'#5eead4',recordLookup:'#5eead4',recordCreate:'#5eead4',recordUpdate:'#5eead4',recordDelete:'#5eead4',collectionProcessor:'#5eead4',formula:'#ffd36d',wait:'#ffd36d',object:'#7c9cff',array:'#5eead4',string:'#77f2a1',number:'#ffd36d',boolean:'#ff9ac8',null:'#8894bb',default:'#90a8ff'};
+    const TYPE_LABELS={start:'Start',screen:'Screen',decision:'Decision',assignment:'Assignment',loop:'Loop',actionCall:'Action',subflow:'Subflow',recordLookup:'Lookup',recordCreate:'Create',recordUpdate:'Update',recordDelete:'Delete',collectionProcessor:'Collection',formula:'Formula',wait:'Wait',object:'Object',array:'Array',string:'String',number:'Number',boolean:'Boolean',null:'Null',default:'Element'};
+    const ELEMENT_MAP=[{key:'start',aliases:['start','starts']},{key:'screen',aliases:['screens']},{key:'decision',aliases:['decisions']},{key:'assignment',aliases:['assignments']},{key:'loop',aliases:['loops']},{key:'actionCall',aliases:['actionCalls','apexPluginCalls','coreActionCalls']},{key:'subflow',aliases:['subflows']},{key:'recordLookup',aliases:['recordLookups']},{key:'recordCreate',aliases:['recordCreates']},{key:'recordUpdate',aliases:['recordUpdates']},{key:'recordDelete',aliases:['recordDeletes']},{key:'collectionProcessor',aliases:['collectionProcessors']},{key:'formula',aliases:['formulas']},{key:'wait',aliases:['waits','pauses']}];
+    const FLOW_SAMPLE={label:'Merchant Onboarding Flow',processType:'Flow',status:'Active',start:{name:'Start',label:'Start',object:'Lead',connector:{targetReference:'Check_Eligibility'}},recordLookups:[{name:'Get_Merchant',label:'Get Merchant',object:'Merchant__c',connector:{targetReference:'Create_Case'}}],decisions:[{name:'Check_Eligibility',label:'Check Eligibility',rules:[{name:'Eligible',label:'Eligible',connector:{targetReference:'Get_Merchant'}},{name:'Needs Review',label:'Needs Review',connector:{targetReference:'Manager_Approval'}}],defaultConnector:{targetReference:'Send_Rejection_Email'}}],actionCalls:[{name:'Manager_Approval',label:'Manager Approval Action',connector:{targetReference:'Create_Case'}},{name:'Send_Rejection_Email',label:'Send Rejection Email',connector:{targetReference:'End_Screen'}}],recordCreates:[{name:'Create_Case',label:'Create Case',object:'Case',connector:{targetReference:'Notify_Sales'}}],subflows:[{name:'Notify_Sales',label:'Notify Sales Team',flowName:'Send_Notification_Subflow',connector:{targetReference:'End_Screen'}}],screens:[{name:'End_Screen',label:'Completion Screen'}]};
+    const GENERIC_SAMPLE={app:'pulsagi-site',version:3,environment:'production',features:{search:true,autosave:true,diagram:true,flowDetection:true},release:{date:'2026-03-14',owners:['Shivam','Platform'],metrics:{uptime:99.97,p95Ms:182,dailyUsers:4218}},endpoints:[{name:'health',method:'GET',path:'/health',cached:false},{name:'manifest',method:'GET',path:'/articles/manifest.json',cached:true},{name:'tool',method:'GET',path:'/tools/json-viewer.html',cached:true}],notes:['Handles generic JSON and Flow JSON','Supports format, minify, search, and export','Uses safe graph limits for large payloads'],nullable:null};
+    let viewState={x:40,y:40,scale:1},currentParsed=null,currentAnalysis=null,autosaveTimer=null,isPanning=false,panStart={x:0,y:0},viewStart={x:0,y:0};
+
+    function updateLegend(mode){legend.innerHTML=(mode==='flow'?['<span class="legend-item"><span class="dot" style="background:#7c9cff"></span> Screen / UI</span>','<span class="legend-item"><span class="dot" style="background:#5eead4"></span> Data / Action</span>','<span class="legend-item"><span class="dot" style="background:#ffd36d"></span> Decision / Logic</span>','<span class="legend-item"><span class="dot" style="background:#ff9ac8"></span> Start / Loop / Assignment</span>']:['<span class="legend-item"><span class="dot" style="background:#7c9cff"></span> Objects</span>','<span class="legend-item"><span class="dot" style="background:#5eead4"></span> Arrays</span>','<span class="legend-item"><span class="dot" style="background:#77f2a1"></span> Strings</span>','<span class="legend-item"><span class="dot" style="background:#ffd36d"></span> Numbers</span>','<span class="legend-item"><span class="dot" style="background:#ff9ac8"></span> Booleans</span>']).join('')}
+    function clearMessages(){errorBox.style.display='none';noticeBox.style.display='none';errorBox.textContent='';noticeBox.textContent=''}
+    function showError(msg){errorBox.textContent=msg;errorBox.style.display='block'}
+    function showNotice(msg){noticeBox.textContent=msg;noticeBox.style.display='block'}
+    function truncate(v,max){const s=String(v==null?'':v);return s.length>max?s.slice(0,max-1)+'...':s}
+    function escapeHtml(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+    function getType(v){if(v===null)return'null';if(Array.isArray(v))return'array';return typeof v}
+    function normalizeType(t){return ['object','array','string','number','boolean','null'].includes(t)?t:'default'}
+    function summarize(v){const t=getType(v);if(t==='object')return Object.keys(v).length+' keys';if(t==='array')return v.length+' items';if(t==='string')return '"'+truncate(v,26)+'"';if(t==='number'||t==='boolean')return String(v);if(t==='null')return'null';return t}
+    function formatPrimitive(v){if(typeof v==='string')return '<span class="string">"'+escapeHtml(v)+'"</span>';if(typeof v==='number')return '<span class="number">'+v+'</span>';if(typeof v==='boolean')return '<span class="bool">'+v+'</span>';if(v===null)return '<span class="null">null</span>';return escapeHtml(String(v))}
+    function estimateBytes(v){try{return new Blob([JSON.stringify(v)]).size}catch{return JSON.stringify(v).length}}
+    function formatBytes(bytes){if(!bytes)return'0 B';const units=['B','KB','MB','GB'];let value=bytes,index=0;while(value>=1024&&index<units.length-1){value/=1024;index+=1}return (value>=10||index===0?value.toFixed(0):value.toFixed(1))+' '+units[index]}
+    function countLines(t){return String(t).split('\n').length}
+    function formatParseError(error,raw){const message=error&&error.message?error.message:'Invalid JSON.';const match=message.match(/position\s+(\d+)/i);if(!match)return message;const pos=Number(match[1]),prefix=raw.slice(0,pos),line=prefix.split('\n').length,column=prefix.length-prefix.lastIndexOf('\n');return 'Invalid JSON near line '+line+', column '+column+'. '+message}
+    function persistDraft(){try{localStorage.setItem(STORAGE_KEY,inputEl.value)}catch{}}
+    function scheduleDraftSave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(persistDraft,250)}
+    function flashButton(btn,label){const original=btn.textContent;btn.textContent=label;setTimeout(()=>btn.textContent=original,1200)}
+    function downloadText(filename,content,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url)}
+    function resetOutput(){statusText.textContent='No JSON loaded yet.';treeView.innerHTML='Paste JSON and click <strong>Analyze JSON</strong>.';treeSearchCount.textContent='0 matches';formattedOutput.textContent='Paste JSON and click Analyze JSON.';jsonMetaText.textContent='No formatted output yet.';insightList.innerHTML='<div class="list-item"><h4>No insights yet</h4><p>Load JSON to see structure summaries, type counts, graph coverage, and safe rendering notes.</p></div>';rootTypeStat.textContent='-';sizeStat.textContent='0 B';depthStat.textContent='0';nodeCountStat.textContent='0';canvasEmpty.classList.remove('hidden');viewportGroup.innerHTML='';updateLegend('generic');fitToView([])}
+    function tryParseInput(){const raw=inputEl.value.trim();if(!raw)return{success:false,message:'Please paste or upload JSON first.'};try{return{success:true,value:JSON.parse(raw)}}catch(error){return{success:false,message:formatParseError(error,raw)}}}
+    function createStats(){return{rootType:'',maxDepth:0,totalNodes:0,objectCount:0,arrayCount:0,stringCount:0,numberCount:0,booleanCount:0,nullCount:0,keyCount:0,itemCount:0,maxArrayLength:0,maxObjectKeys:0,topKeys:new Map(),byteSize:0,treeTruncated:false}}
+    function walk(v,depth,stats){const t=getType(v);if(!stats.rootType)stats.rootType=t;stats.maxDepth=Math.max(stats.maxDepth,depth);stats.totalNodes+=1;if(t==='object'){stats.objectCount+=1;const keys=Object.keys(v);stats.keyCount+=keys.length;stats.maxObjectKeys=Math.max(stats.maxObjectKeys,keys.length);keys.forEach((k)=>{stats.topKeys.set(k,(stats.topKeys.get(k)||0)+1);walk(v[k],depth+1,stats)})}else if(t==='array'){stats.arrayCount+=1;stats.itemCount+=v.length;stats.maxArrayLength=Math.max(stats.maxArrayLength,v.length);v.forEach((item)=>walk(item,depth+1,stats))}else if(t==='string')stats.stringCount+=1;else if(t==='number')stats.numberCount+=1;else if(t==='boolean')stats.booleanCount+=1;else if(t==='null')stats.nullCount+=1;if(depth===0)stats.byteSize=estimateBytes(v)}
+    function describeProfile(value,stats){const type=getType(value);if(type==='array')return'Array payload';if(type!=='object')return'Primitive JSON';const keys=Object.keys(value).map((k)=>k.toLowerCase());if(keys.includes('data')||keys.includes('items')||keys.includes('results'))return'API-style response';if(keys.includes('config')||keys.includes('settings')||keys.includes('features'))return'Configuration document';if(stats.maxDepth>6)return'Nested document';return'Generic object'}
+  </script>
+  <script>
+    function normalizeFlowNode(item,type,alias,index){const id=item&&(item.name||item.id||item.developerName)?(item.name||item.id||item.developerName):(type+'_'+(index+1));const label=item&&(item.label||item.name||item.developerName)?(item.label||item.name||item.developerName):(TYPE_LABELS[type]||'Element');const subtitle=item&&(item.object||item.flowName||item.actionType||item.description||item.dataType)?(item.object||item.flowName||item.actionType||item.description||item.dataType):alias;return{id,label,type,subtitle}}
+    function collectFlowEdges(node,rawNode){const edges=[],push=(target,label)=>{if(target)edges.push({source:node.id,target,label:label||''})};if(rawNode?.connector?.targetReference)push(rawNode.connector.targetReference);if(rawNode?.defaultConnector?.targetReference)push(rawNode.defaultConnector.targetReference,'Default');if(rawNode?.nextValueConnector?.targetReference)push(rawNode.nextValueConnector.targetReference,'Next');if(rawNode?.noMoreValuesConnector?.targetReference)push(rawNode.noMoreValuesConnector.targetReference,'Done');if(rawNode?.faultConnector?.targetReference)push(rawNode.faultConnector.targetReference,'Fault');(rawNode?.rules||[]).forEach((x)=>push(x?.connector?.targetReference,x?.label||x?.name||'Rule'));(rawNode?.outcomes||[]).forEach((x)=>push(x?.connector?.targetReference,x?.label||x?.name||'Outcome'));(rawNode?.scheduledPaths||[]).forEach((x)=>push(x?.connector?.targetReference,x?.label||x?.name||'Scheduled'));(rawNode?.choices||[]).forEach((x)=>push(x?.connector?.targetReference,x?.label||x?.name||'Choice'));(rawNode?.assignmentItems||[]).forEach((x)=>{if(x?.connector?.targetReference)push(x.connector.targetReference,x.name||'Assignment')});return edges}
+    function dedupeEdges(edges){const seen=new Set();return edges.filter((edge)=>{const key=edge.source+'__'+edge.target+'__'+(edge.label||'');if(seen.has(key))return false;seen.add(key);return true})}
+    function ensurePlaceholderNodes(edges,nodeMap,nodes){edges.forEach((edge)=>{if(nodeMap.has(edge.target))return;const placeholder={id:edge.target,label:edge.target,type:'default',subtitle:'Referenced only'};nodeMap.set(placeholder.id,placeholder);nodes.push(placeholder)})}
+    function layoutNodes(nodes,edges){const incoming=new Map(),outgoing=new Map();nodes.forEach((n)=>{incoming.set(n.id,0);outgoing.set(n.id,[])});edges.forEach((e)=>{incoming.set(e.target,(incoming.get(e.target)||0)+1);if(outgoing.has(e.source))outgoing.get(e.source).push(e.target)});const starts=nodes.filter((n)=>incoming.get(n.id)===0),queue=starts.map((n)=>({id:n.id,level:0})),levels=new Map();starts.forEach((n)=>levels.set(n.id,0));while(queue.length){const current=queue.shift();(outgoing.get(current.id)||[]).forEach((target)=>{const next=current.level+1,existing=levels.get(target);if(existing==null||next>existing){levels.set(target,next);queue.push({id:target,level:next})}})}nodes.forEach((n,i)=>{if(!levels.has(n.id))levels.set(n.id,Math.min(3,i))});const grouped=new Map(),result=[],xGap=310,yGap=160,xStart=80,yStart=80;nodes.forEach((n)=>{const level=levels.get(n.id)||0;if(!grouped.has(level))grouped.set(level,[]);grouped.get(level).push(n)});Array.from(grouped.entries()).sort((a,b)=>a[0]-b[0]).forEach(([level,list])=>{list.sort((a,b)=>(a.label||'').localeCompare(b.label||''));list.forEach((n,row)=>result.push({...n,x:xStart+level*xGap,y:yStart+row*yGap,width:230,height:92}))});return{nodes:result,edges}}
+    function buildFlowGraph(json){const nodes=[],edges=[],nodeMap=new Map(),counts={},root=json&&typeof json==='object'?(json.flow||json.Flow||json):json;if(!root||typeof root!=='object'||Array.isArray(root))return{mode:'generic',detectedFlow:false,nodes:[],edges:[],counts:{},truncated:false,flowName:'JSON Root',status:'Generic',processType:'Generic JSON'};let detected=0;for(const def of ELEMENT_MAP){for(const alias of def.aliases){const value=root[alias];if(!value)continue;detected+=1;const list=Array.isArray(value)?value:[value];counts[def.key]=(counts[def.key]||0)+list.length;list.forEach((item,index)=>{const n=normalizeFlowNode(item,def.key,alias,index);if(!nodeMap.has(n.id)){nodeMap.set(n.id,n);nodes.push(n)}collectFlowEdges(n,item).forEach((e)=>edges.push(e))})}}if(!detected)return{mode:'generic',detectedFlow:false,nodes:[],edges:[],counts:{},truncated:false,flowName:'JSON Root',status:'Generic',processType:'Generic JSON'};const unique=dedupeEdges(edges);ensurePlaceholderNodes(unique,nodeMap,nodes);const layout=layoutNodes(nodes,unique);return{mode:'flow',detectedFlow:true,nodes:layout.nodes,edges:layout.edges,counts,flowName:root.label||root.fullName||root.name||'Untitled Flow',status:root.status||'Unknown',processType:root.processType||root.processMetadataType||'Flow',truncated:false}}
+    function buildStructureGraph(value){const nodes=[],edges=[],queue=[];let nextId=1,truncated=false;const addNode=(label,type,subtitle,path)=>{const node={id:'node_'+nextId++,label,type,subtitle,path};nodes.push(node);return node};const rootType=getType(value),rootLabel=rootType==='array'?'root[]':rootType==='object'?'root{}':'root',rootNode=addNode(rootLabel,normalizeType(rootType),summarize(value),'$');queue.push({value,node:rootNode,depth:0,path:'$'});while(queue.length){if(nodes.length>=MAX_GRAPH_NODES){truncated=true;break}const current=queue.shift(),currentType=getType(current.value);if(current.depth>=MAX_GRAPH_DEPTH||!['object','array'].includes(currentType))continue;const entries=currentType==='array'?current.value.map((item,index)=>[String(index),item]):Object.entries(current.value),visible=entries.slice(0,MAX_CHILDREN);visible.forEach(([key,childValue])=>{if(nodes.length>=MAX_GRAPH_NODES){truncated=true;return}const childType=normalizeType(getType(childValue)),childPath=currentType==='array'?current.path+'['+key+']':current.path+'.'+key,label=currentType==='array'?'['+key+']':key,childNode=addNode(label,childType,summarize(childValue),childPath);edges.push({source:current.node.id,target:childNode.id,label:truncate(label,18)});if(['object','array'].includes(getType(childValue)))queue.push({value:childValue,node:childNode,depth:current.depth+1,path:childPath})});if(entries.length>visible.length&&nodes.length<MAX_GRAPH_NODES){const hidden=entries.length-visible.length,moreNode=addNode('+'+hidden+' more','default','Branch trimmed for performance',current.path+'.__more__');edges.push({source:current.node.id,target:moreNode.id,label:'trimmed'});truncated=true}}const layout=layoutNodes(nodes,edges);return{mode:'generic',detectedFlow:false,nodes:layout.nodes,edges:layout.edges,counts:{},truncated,flowName:'JSON Root',status:getType(value),processType:'Generic JSON'}}
+    function analyzeJson(value){const stats=createStats();walk(value,0,stats);const flowGraph=buildFlowGraph(value),graph=flowGraph.detectedFlow&&flowGraph.nodes.length?flowGraph:buildStructureGraph(value),profileLabel=flowGraph.detectedFlow?'Flow-style JSON':describeProfile(value,stats),health=[];if(stats.byteSize>750000)health.push('Large payload');if(stats.maxDepth>12)health.push('Deep nesting');if(graph.truncated)health.push('Graph trimmed');const messages=[];if(stats.byteSize>750000)messages.push('Large documents are intentionally capped in the graph and tree views to keep the page responsive.');if(stats.maxDepth>12)messages.push('This JSON is deeply nested, so searching paths may be more useful than scanning visually.');if(graph.truncated)messages.push('Diagram coverage is partial because the viewer hit its safe graph limit.');return{stats,flowGraph,graph,profileLabel,healthLabel:health.length?health.join(' | '):'Valid JSON',messages}}
+    function renderDiagram(graph,analysis){const nodes=graph.nodes||[],edges=graph.edges||[];viewportGroup.innerHTML='';updateLegend(graph.mode);if(!nodes.length){canvasEmpty.classList.remove('hidden');statusText.textContent='No graphable structure was found, but the tree and formatted views are still available.';return}canvasEmpty.classList.add('hidden');statusText.textContent=graph.mode==='flow'?graph.flowName+' | '+graph.processType+' | '+graph.status+' | '+nodes.length+' nodes / '+edges.length+' connectors':analysis.profileLabel+' | '+analysis.stats.rootType+' root | '+nodes.length+' diagram nodes / '+edges.length+' connections';const nodeIndex=new Map(nodes.map((n)=>[n.id,n]));edges.forEach((edge)=>{const source=nodeIndex.get(edge.source),target=nodeIndex.get(edge.target);if(!source||!target)return;const x1=source.x+source.width,y1=source.y+source.height/2,x2=target.x,y2=target.y+target.height/2,dx=Math.max(50,(x2-x1)*.5),path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M '+x1+' '+y1+' C '+(x1+dx)+' '+y1+', '+(x2-dx)+' '+y2+', '+x2+' '+y2);path.setAttribute('fill','none');path.setAttribute('stroke','#90a8ff');path.setAttribute('stroke-width','2.2');path.setAttribute('marker-end','url(#arrow)');path.setAttribute('opacity','.9');viewportGroup.appendChild(path);if(edge.label){const midX=(x1+x2)/2,midY=(y1+y2)/2-8,bg=document.createElementNS('http://www.w3.org/2000/svg','rect');bg.setAttribute('x',midX-38);bg.setAttribute('y',midY-12);bg.setAttribute('width',76);bg.setAttribute('height',20);bg.setAttribute('rx',10);bg.setAttribute('fill','#0b1226');bg.setAttribute('stroke','#31436f');viewportGroup.appendChild(bg);const text=document.createElementNS('http://www.w3.org/2000/svg','text');text.setAttribute('x',midX);text.setAttribute('y',midY+2);text.setAttribute('text-anchor','middle');text.setAttribute('fill','#dfe8ff');text.setAttribute('font-size','11');text.setAttribute('font-weight','600');text.textContent=truncate(edge.label,12);viewportGroup.appendChild(text)}});nodes.forEach((node)=>{const group=document.createElementNS('http://www.w3.org/2000/svg','g');group.setAttribute('transform','translate('+node.x+', '+node.y+')');group.style.cursor='pointer';const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');rect.setAttribute('width',node.width);rect.setAttribute('height',node.height);rect.setAttribute('rx','22');rect.setAttribute('fill','#12203c');rect.setAttribute('stroke',TYPE_COLORS[node.type]||TYPE_COLORS.default);rect.setAttribute('stroke-width','2');rect.setAttribute('filter','url(#softShadow)');group.appendChild(rect);const topBar=document.createElementNS('http://www.w3.org/2000/svg','rect');topBar.setAttribute('width',node.width);topBar.setAttribute('height','10');topBar.setAttribute('rx','22');topBar.setAttribute('fill',TYPE_COLORS[node.type]||TYPE_COLORS.default);topBar.setAttribute('opacity','.95');group.appendChild(topBar);const typeText=document.createElementNS('http://www.w3.org/2000/svg','text');typeText.setAttribute('x','18');typeText.setAttribute('y','31');typeText.setAttribute('fill','#9db3ef');typeText.setAttribute('font-size','12');typeText.setAttribute('font-weight','700');typeText.textContent=TYPE_LABELS[node.type]||TYPE_LABELS.default;group.appendChild(typeText);const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('x','18');label.setAttribute('y','52');label.setAttribute('fill','#eef3ff');label.setAttribute('font-size','15');label.setAttribute('font-weight','700');label.textContent=truncate(node.label,25);group.appendChild(label);const subtitle=document.createElementNS('http://www.w3.org/2000/svg','text');subtitle.setAttribute('x','18');subtitle.setAttribute('y','72');subtitle.setAttribute('fill','#a7b3d1');subtitle.setAttribute('font-size','12');subtitle.textContent=truncate(node.subtitle||node.path||node.id,30);group.appendChild(subtitle);const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=(TYPE_LABELS[node.type]||'Element')+'\n'+(node.path||node.label)+'\n'+(node.subtitle||'');group.appendChild(title);if(node.path)group.addEventListener('click',()=>focusPathInTree(node.path));viewportGroup.appendChild(group)});fitToView(nodes)}
+    function fitToView(nodes){if(!nodes.length){viewState={x:40,y:40,scale:1};applyViewTransform();return}const minX=Math.min(...nodes.map((n)=>n.x)),minY=Math.min(...nodes.map((n)=>n.y)),maxX=Math.max(...nodes.map((n)=>n.x+n.width)),maxY=Math.max(...nodes.map((n)=>n.y+n.height)),boxWidth=maxX-minX+120,boxHeight=maxY-minY+120,svgRect=svgCanvas.getBoundingClientRect(),scaleX=svgRect.width/boxWidth,scaleY=svgRect.height/boxHeight,scale=Math.min(1.15,Math.max(.45,Math.min(scaleX,scaleY)));viewState={scale,x:60-minX*scale,y:60-minY*scale};applyViewTransform()}
+    function applyViewTransform(){viewportGroup.setAttribute('transform','translate('+viewState.x+', '+viewState.y+') scale('+viewState.scale+')')}
+  </script>
+  <script>
+    function buildTreeNode(key,value,path,depth,state){state.count+=1;if(state.count>MAX_TREE_NODES){state.truncated=true;const div=document.createElement('div');div.className='leaf';div.innerHTML='<span class="key">trimmed</span>: <span class="null">Tree output capped for performance</span>';return div}const type=getType(value);if(type!=='object'&&type!=='array'){const div=document.createElement('div');div.className='leaf';div.dataset.search=(path+' '+key+' '+String(value)).toLowerCase();div.innerHTML='<span class="key">'+escapeHtml(String(key))+'</span>: '+formatPrimitive(value)+' <span class="path">('+escapeHtml(path)+')</span>';return div}const details=document.createElement('details');details.open=depth<2;const summary=document.createElement('summary'),size=type==='array'?'['+value.length+']':'{'+Object.keys(value).length+'}';summary.dataset.search=(path+' '+key+' '+summarize(value)).toLowerCase();summary.innerHTML='<strong>'+escapeHtml(String(key))+'</strong> <span class="muted">'+escapeHtml(size)+'</span> <span class="node-path">'+escapeHtml(path)+'</span> <span class="node-preview">'+escapeHtml(summarize(value))+'</span>';details.appendChild(summary);if(type==='array')value.forEach((item,index)=>details.appendChild(buildTreeNode('['+index+']',item,path+'['+index+']',depth+1,state)));else Object.entries(value).forEach(([childKey,childValue])=>details.appendChild(buildTreeNode(childKey,childValue,path+'.'+childKey,depth+1,state)));return details}
+    function applyTreeSearch(term){const normalized=String(term||'').trim().toLowerCase(),targets=Array.from(treeView.querySelectorAll('[data-search],summary,.leaf'));let matches=0;treeView.querySelectorAll('.match').forEach((n)=>n.classList.remove('match'));if(!normalized){treeSearchCount.textContent='0 matches';return}targets.forEach((node)=>{const haystack=(node.dataset.search||node.textContent||'').toLowerCase();if(!haystack.includes(normalized))return;matches+=1;node.classList.add('match');let parent=node.parentElement;while(parent&&parent!==treeView){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement}});treeSearchCount.textContent=matches+' match'+(matches===1?'':'es')}
+    function focusPathInTree(path){document.querySelector('[data-tab="tree"]').click();const match=Array.from(treeView.querySelectorAll('summary')).find((s)=>s.textContent.includes(path));if(!match)return;let parent=match.parentElement;while(parent&&parent!==treeView){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement}match.classList.add('match');match.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>match.classList.remove('match'),1800)}
+    function renderTree(value,analysis){treeView.innerHTML='';const state={count:0,truncated:false};treeView.appendChild(buildTreeNode('root',value,'$',0,state));analysis.stats.treeTruncated=state.truncated;if(state.truncated){const note=document.createElement('div');note.className='toolbar-note';note.style.marginTop='12px';note.textContent='Tree output was trimmed to keep rendering responsive.';treeView.appendChild(note)}applyTreeSearch(treeSearchInput.value)}
+    function renderFormatted(value,analysis){const formatted=JSON.stringify(value,null,2);formattedOutput.textContent=formatted;jsonMetaText.textContent=analysis.stats.rootType+' root | '+formatBytes(analysis.stats.byteSize)+' | '+countLines(formatted)+' lines'}
+    function renderInsights(analysis){const stats=analysis.stats,graph=analysis.graph,topKeys=Array.from(stats.topKeys.entries()).sort((a,b)=>b[1]-a[1]).slice(0,8),typeSummary=['Objects: '+stats.objectCount,'Arrays: '+stats.arrayCount,'Strings: '+stats.stringCount,'Numbers: '+stats.numberCount,'Booleans: '+stats.booleanCount,'Nulls: '+stats.nullCount];rootTypeStat.textContent=stats.rootType;sizeStat.textContent=formatBytes(stats.byteSize);depthStat.textContent=String(stats.maxDepth);nodeCountStat.textContent=String(graph.nodes.length);const items=[{title:'Profile',text:analysis.profileLabel+'. Root type is '+stats.rootType+' with approximately '+stats.totalNodes+' total values across the document.'},{title:'Composition',text:typeSummary.join(' | ')},{title:'Structure',text:'Max depth: '+stats.maxDepth+'. Total keys: '+stats.keyCount+'. Total array items: '+stats.itemCount+'. Largest array length: '+stats.maxArrayLength+'. Largest object keys: '+stats.maxObjectKeys+'.'},{title:'Common keys',text:topKeys.length?topKeys.map(([k,c])=>k+' ('+c+')').join(', '):'No repeated object keys detected.'}];if(analysis.flowGraph.detectedFlow){const entries=Object.entries(analysis.flowGraph.counts).filter(([,v])=>v>0);items.push({title:'Flow detection',text:'The viewer detected Flow-like metadata. Element counts: '+entries.map(([t,v])=>(TYPE_LABELS[t]||t)+' '+v).join(', ')+'.'})}else items.push({title:'Diagram mode',text:graph.truncated?'Generic structural diagram rendered with safe limits to keep the UI responsive.':'Generic structural diagram rendered from the root and nested branches.'});if(analysis.messages.length)items.push({title:'Performance notes',text:analysis.messages.join(' ')});insightList.innerHTML=items.map((item)=>'<div class="list-item"><h4>'+escapeHtml(item.title)+'</h4><p>'+escapeHtml(item.text)+'</p></div>').join('')}
+    function clearAll(){inputEl.value='';currentParsed=null;currentAnalysis=null;clearMessages();try{localStorage.removeItem(STORAGE_KEY)}catch{}resetOutput();profileBadge.textContent='No data loaded';healthBadge.textContent='Waiting for input';treeSearchInput.value=''}
+    function handleFormat(){const parsed=tryParseInput();if(!parsed.success){showError(parsed.message);return}inputEl.value=JSON.stringify(parsed.value,null,2);persistDraft();clearMessages();healthBadge.textContent='Formatted and valid'}
+    function handleMinify(){const parsed=tryParseInput();if(!parsed.success){showError(parsed.message);return}inputEl.value=JSON.stringify(parsed.value);persistDraft();clearMessages();healthBadge.textContent='Minified and valid'}
+    function handleRender(){clearMessages();const parsed=tryParseInput();if(!parsed.success){showError(parsed.message);currentParsed=null;currentAnalysis=null;resetOutput();profileBadge.textContent='Invalid JSON';healthBadge.textContent='Fix parse error';return}currentParsed=parsed.value;currentAnalysis=analyzeJson(parsed.value);persistDraft();renderFormatted(currentParsed,currentAnalysis);renderTree(currentParsed,currentAnalysis);renderInsights(currentAnalysis);renderDiagram(currentAnalysis.graph,currentAnalysis);profileBadge.textContent=currentAnalysis.profileLabel;healthBadge.textContent=currentAnalysis.healthLabel+(currentAnalysis.stats.treeTruncated?' | Tree trimmed':'');if(currentAnalysis.messages.length)showNotice(currentAnalysis.messages.join(' '))}
+    document.querySelectorAll('.tab').forEach((tab)=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach((x)=>x.classList.remove('active'));document.querySelectorAll('.pane').forEach((x)=>x.classList.remove('active'));tab.classList.add('active');$(tab.dataset.tab+'Pane').classList.add('active')}));
+    $('renderBtn').addEventListener('click',handleRender);$('formatBtn').addEventListener('click',handleFormat);$('minifyBtn').addEventListener('click',handleMinify);$('sampleBtn').addEventListener('click',()=>{inputEl.value=JSON.stringify(FLOW_SAMPLE,null,2);persistDraft();handleRender()});$('genericSampleBtn').addEventListener('click',()=>{inputEl.value=JSON.stringify(GENERIC_SAMPLE,null,2);persistDraft();handleRender()});$('clearBtn').addEventListener('click',clearAll);
+    $('copyBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(inputEl.value||'');flashButton($('copyBtn'),'Copied')}catch{showError('Unable to copy JSON from the browser clipboard.')}});$('downloadJsonBtn').addEventListener('click',()=>{if(!inputEl.value.trim()){showError('Nothing to download yet.');return}downloadText('payload.json',inputEl.value,'application/json;charset=utf-8')});$('copyFormattedBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(formattedOutput.textContent||'');flashButton($('copyFormattedBtn'),'Copied')}catch{showError('Unable to copy formatted JSON.')}});$('downloadFormattedBtn').addEventListener('click',()=>{if(!currentParsed){showError('Analyze JSON before downloading formatted output.');return}downloadText('formatted.json',JSON.stringify(currentParsed,null,2),'application/json;charset=utf-8')});
+    $('fileInput').addEventListener('change',async(e)=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{inputEl.value=await file.text();persistDraft();clearMessages();handleRender()}catch{showError('Unable to read the selected file.')}finally{$('fileInput').value=''}});['dragenter','dragover'].forEach((evt)=>$('dropzone').addEventListener(evt,(e)=>{e.preventDefault();e.stopPropagation();$('dropzone').classList.add('dragover')}));['dragleave','drop'].forEach((evt)=>$('dropzone').addEventListener(evt,(e)=>{e.preventDefault();e.stopPropagation();$('dropzone').classList.remove('dragover')}));$('dropzone').addEventListener('drop',async(e)=>{const file=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(!file)return;try{inputEl.value=await file.text();persistDraft();clearMessages();handleRender()}catch{showError('Unable to read the dropped file.')}});
+    inputEl.addEventListener('input',()=>{scheduleDraftSave();clearMessages();healthBadge.textContent=inputEl.value.trim()?'Draft updated':'Waiting for input'});inputEl.addEventListener('keydown',(e)=>{const mod=e.ctrlKey||e.metaKey;if(mod&&e.key==='Enter'){e.preventDefault();handleRender()}if(mod&&e.shiftKey&&e.key.toLowerCase()==='f'){e.preventDefault();handleFormat()}});
+    treeSearchInput.addEventListener('input',()=>applyTreeSearch(treeSearchInput.value));$('expandAllBtn').addEventListener('click',()=>treeView.querySelectorAll('details').forEach((n)=>n.open=true));$('collapseAllBtn').addEventListener('click',()=>treeView.querySelectorAll('details').forEach((n,i)=>n.open=i===0));
+    svgCanvas.addEventListener('mousedown',(e)=>{isPanning=true;svgCanvas.classList.add('dragging');panStart={x:e.clientX,y:e.clientY};viewStart={x:viewState.x,y:viewState.y}});window.addEventListener('mouseup',()=>{isPanning=false;svgCanvas.classList.remove('dragging')});window.addEventListener('mousemove',(e)=>{if(!isPanning)return;viewState.x=viewStart.x+(e.clientX-panStart.x);viewState.y=viewStart.y+(e.clientY-panStart.y);applyViewTransform()});svgCanvas.addEventListener('wheel',(e)=>{e.preventDefault();const factor=e.deltaY<0?1.08:.92;viewState.scale=Math.max(.25,Math.min(2.3,viewState.scale*factor));applyViewTransform()},{passive:false});$('fitBtn').addEventListener('click',()=>{if(currentAnalysis)fitToView(currentAnalysis.graph.nodes)});$('zoomInBtn').addEventListener('click',()=>{viewState.scale=Math.min(2.3,viewState.scale*1.12);applyViewTransform()});$('zoomOutBtn').addEventListener('click',()=>{viewState.scale=Math.max(.25,viewState.scale*.9);applyViewTransform()});$('downloadSvgBtn').addEventListener('click',()=>{if(!currentAnalysis||!currentAnalysis.graph.nodes.length){showError('Analyze JSON before downloading the diagram.');return}downloadText('json-diagram.svg',new XMLSerializer().serializeToString(svgCanvas),'image/svg+xml;charset=utf-8')});
+    try{const saved=localStorage.getItem(STORAGE_KEY);if(saved)inputEl.value=saved}catch{}resetOutput();if(inputEl.value.trim())handleRender();else{inputEl.value=JSON.stringify(GENERIC_SAMPLE,null,2);persistDraft();handleRender()}
   </script>
 </body>
 </html>
