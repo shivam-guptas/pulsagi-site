@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulsagi — AI Infrastructure & Market Insights</title>
+  <title>Pulsagi — AI Infrastructure, Market Insights & Developer Tools</title>
 
-  <meta name="description" content="Pulsagi builds AI infrastructure for the next generation — fast, modern, and built to scale. Founded by Salesforce Architect Shivam Gupta. Features stock market fundamental analysis of Indian equities." />
-  <meta name="keywords" content="AI infrastructure, Pulsagi, Shivam Gupta, stock market analysis, Indian stocks, fundamental analysis, NSE" />
+  <meta name="description" content="Pulsagi builds AI infrastructure and lightweight developer tools, with stock market fundamental analysis of Indian equities and utilities like the Flow JSON Viewer." />
+  <meta name="keywords" content="AI infrastructure, Pulsagi, Shivam Gupta, developer tools, Flow JSON Viewer, Salesforce Flow, stock market analysis, Indian stocks, fundamental analysis, NSE" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#09090b" />
   <link rel="canonical" href="https://pulsagi.com/" />
 
-  <meta property="og:title" content="Pulsagi — AI Infrastructure & Market Insights" />
-  <meta property="og:description" content="AI infrastructure for the next generation, plus in-depth fundamental analysis of Indian stocks." />
+  <meta property="og:title" content="Pulsagi — AI Infrastructure, Market Insights & Developer Tools" />
+  <meta property="og:description" content="AI infrastructure, lightweight browser tools, and in-depth fundamental analysis of Indian stocks." />
   <meta property="og:url" content="https://pulsagi.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pulsagi — AI Infrastructure & Market Insights" />
-  <meta name="twitter:description" content="Fast, modern AI infrastructure. Plus stock market fundamental analysis." />
+  <meta name="twitter:title" content="Pulsagi — AI Infrastructure, Market Insights & Developer Tools" />
+  <meta name="twitter:description" content="Fast AI infrastructure, lightweight browser tools, and stock market fundamental analysis." />
 
   <script type="application/ld+json">
   {
@@ -37,6 +38,19 @@
     },
     "contactPoint": { "@type": "ContactPoint", "email": "hello@pulsagi.com", "contactType": "General Inquiry" },
     "sameAs": ["https://www.linkedin.com/in/shivam-guptas"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com/",
+    "description": "Pulsagi publishes AI infrastructure updates, stock market analysis, and lightweight developer tools.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pulsagi"
+    }
   }
   </script>
 
@@ -67,8 +81,8 @@
     nav ul { list-style: none; display: flex; gap: 1.75rem; align-items: center; }
     nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-family: var(--mono); transition: color 0.2s; cursor: pointer; }
     nav a:hover { color: var(--text); }
-    .nav-art { background: var(--accent-dim); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid rgba(110,231,183,0.2); }
-    .nav-art:hover { background: rgba(110,231,183,0.15) !important; }
+    .nav-pill { background: var(--accent-dim); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid rgba(110,231,183,0.2); }
+    .nav-pill:hover { background: rgba(110,231,183,0.15) !important; }
 
     /* ── PAGES ── */
     .page { display: none; min-height: 100vh; padding-top: 64px; }
@@ -117,6 +131,31 @@
     .pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
+    .tools-sec { padding: 0 2rem 5rem; max-width: 900px; margin: 0 auto; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .tool-card {
+      display: block; text-decoration: none; color: inherit;
+      padding: 1.6rem; border: 1px solid var(--border); border-radius: 14px;
+      background: linear-gradient(180deg, rgba(17,17,19,0.98), rgba(12,12,14,0.98));
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tool-card:hover { border-color: rgba(110,231,183,0.4); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.28); }
+    .tool-card-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.9rem; }
+    .tool-badge {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+      padding: 0.22rem 0.65rem; border-radius: 999px;
+      color: var(--accent); background: rgba(110,231,183,0.1); border: 1px solid rgba(110,231,183,0.2);
+    }
+    .tool-status { font-family: var(--mono); font-size: 0.72rem; color: var(--muted2); }
+    .tool-card h3 { font-size: 1.1rem; margin-bottom: 0.45rem; }
+    .tool-card p { color: var(--muted2); font-size: 0.9rem; margin-bottom: 1rem; }
+    .tool-meta { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tool-meta span {
+      font-family: var(--mono); font-size: 0.67rem; color: var(--muted);
+      background: #18181b; padding: 0.25rem 0.55rem; border-radius: 999px;
+    }
+    .tool-link { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+
     /* ── ARTICLES PAGE ── */
     .art-page { padding: 3rem 2rem 5rem; max-width: 940px; margin: 0 auto; }
     .art-header { margin-bottom: 3rem; }
@@ -148,6 +187,11 @@
     /* Loading / error states */
     .art-loading { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding: 2rem 0; }
     .art-error   { font-family: var(--mono); font-size: 0.85rem; color: var(--red);   padding: 2rem 0; }
+
+    .tool-page { padding: 3rem 2rem 5rem; max-width: 940px; margin: 0 auto; }
+    .tool-header { margin-bottom: 3rem; }
+    .tool-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .tool-header p { color: var(--muted); font-size: 0.95rem; }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); font-family: var(--mono); }
@@ -193,7 +237,8 @@
   <ul>
     <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
     <li><a href="#about" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),50);return false;">About</a></li>
-    <li><a href="#articles" class="nav-art" onclick="showPage('articles');return false;">Articles</a></li>
+    <li><a href="#articles" class="nav-pill" onclick="showPage('articles');return false;">Articles</a></li>
+    <li><a href="#tools" class="nav-pill" onclick="showPage('tools');return false;">Tools</a></li>
     <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
   </ul>
 </nav>
@@ -207,6 +252,7 @@
     <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
     <div class="cta-group">
       <a href="#articles" class="btn btn-primary" onclick="showPage('articles');return false;">Read Articles</a>
+      <a href="#tools" class="btn btn-ghost" onclick="showPage('tools');return false;">Explore Tools</a>
       <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
     </div>
   </section>
@@ -233,6 +279,27 @@
     </div>
   </section>
 
+  <section class="tools-sec" id="tools-preview">
+    <div class="sec-label">Developer Tools</div>
+    <h2>Small utilities that save real time.</h2>
+    <div class="tools-grid">
+      <a class="tool-card" href="tools/json-viewer.html">
+        <div class="tool-card-top">
+          <span class="tool-badge">NEW TOOL</span>
+          <span class="tool-status">Static utility</span>
+        </div>
+        <h3>Flow JSON Viewer</h3>
+        <p>Paste or upload Salesforce Flow JSON to inspect structure, visualize connectors, and review quick health insights.</p>
+        <div class="tool-meta">
+          <span>Salesforce</span>
+          <span>JSON</span>
+          <span>Visualization</span>
+        </div>
+        <div class="tool-link">Open tool -></div>
+      </a>
+    </div>
+  </section>
+
 </div>
 
 <!-- ════════ ARTICLES PAGE ════════ -->
@@ -250,6 +317,32 @@
   </div>
 </div>
 
+<div id="page-tools" class="page">
+  <div class="tool-page">
+    <div class="tool-header">
+      <div class="sec-label">Pulsagi Tools</div>
+      <h2>Utility-first products for builders</h2>
+      <p>Lightweight browser tools for inspecting data, speeding up analysis, and handling day-to-day developer tasks.</p>
+    </div>
+    <div class="tools-grid">
+      <a class="tool-card" href="tools/json-viewer.html">
+        <div class="tool-card-top">
+          <span class="tool-badge">JSON</span>
+          <span class="tool-status">Available now</span>
+        </div>
+        <h3>Flow JSON Viewer</h3>
+        <p>Visualize Salesforce Flow JSON with a graph view, JSON tree, and quick insights in one static page.</p>
+        <div class="tool-meta">
+          <span>Upload .json</span>
+          <span>SVG export</span>
+          <span>Browser-based</span>
+        </div>
+        <div class="tool-link">Launch viewer -></div>
+      </a>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p>© 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
 </footer>
@@ -259,6 +352,11 @@
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
+    if (name === 'home') {
+      history.replaceState(null, '', window.location.pathname);
+    } else {
+      history.replaceState(null, '', '#' + name);
+    }
     window.scrollTo(0, 0);
     if (name === 'articles') loadArticles();
   }
@@ -266,6 +364,8 @@
   /* Handle direct URL hash on load */
   if (window.location.hash === '#articles') {
     showPage('articles');
+  } else if (window.location.hash === '#tools') {
+    showPage('tools');
   }
 
   /* ── Load articles from manifest.json ── */

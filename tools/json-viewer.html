@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow JSON Viewer for Salesforce | Pulsagi Tools</title>
+  <meta name="description" content="Free browser-based Flow JSON Viewer for Salesforce. Paste or upload Flow JSON to visualize connectors, inspect structure, and review quick insights." />
+  <meta name="keywords" content="Flow JSON Viewer, Salesforce Flow, JSON visualizer, Salesforce developer tools, Pulsagi tools" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="canonical" href="https://pulsagi.com/tools/json-viewer.html" />
+
+  <meta property="og:title" content="Flow JSON Viewer for Salesforce | Pulsagi Tools" />
+  <meta property="og:description" content="Visualize Salesforce Flow JSON in the browser with a graph view, JSON tree, and quick insights." />
+  <meta property="og:url" content="https://pulsagi.com/tools/json-viewer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Flow JSON Viewer for Salesforce | Pulsagi Tools" />
+  <meta name="twitter:description" content="Paste or upload Flow JSON to visualize connectors, inspect structure, and review quick insights." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pulsagi Flow JSON Viewer",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://pulsagi.com/tools/json-viewer.html",
+    "description": "Browser-based Flow JSON Viewer for Salesforce that visualizes connectors, structure, and insights from Flow JSON.",
+    "creator": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pulsagi",
+      "url": "https://pulsagi.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-2: #182341;
+      --text: #eaf0ff;
+      --muted: #a7b3d1;
+      --border: #2b3963;
+      --accent: #7c9cff;
+      --accent-2: #5eead4;
+      --danger: #ff7b7b;
+      --warning: #ffd36d;
+      --success: #77f2a1;
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: linear-gradient(180deg, #09101e, #0e1630 45%, #0b1020); color: var(--text); }
+    body { min-height: 100vh; }
+
+    .container {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .title h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 880px;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(124,156,255,.08);
+      color: #dfe7ff;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 430px minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(24,35,65,.98), rgba(13,20,38,.98));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 18px 0;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body { padding: 18px; }
+
+    textarea {
+      width: 100%;
+      min-height: 310px;
+      resize: vertical;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #0a1122;
+      color: var(--text);
+      padding: 16px;
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      outline: none;
+    }
+
+    textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(124,156,255,.12); }
+
+    .dropzone {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px dashed #4560a6;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+      color: var(--muted);
+      background: rgba(124,156,255,.04);
+      transition: .2s ease;
+    }
+
+    .dropzone.dragover { border-color: var(--accent-2); background: rgba(94,234,212,.07); color: #d8fff8; }
+
+    .button-row, .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button, .file-label {
+      border: 1px solid var(--border);
+      background: #15203d;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 11px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .18s ease;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    button:hover, .file-label:hover { transform: translateY(-1px); border-color: #536fc1; }
+    button.primary { background: linear-gradient(180deg, #6d87ff, #5c73ec); border-color: transparent; }
+    button.ghost { background: transparent; }
+    button.success { background: rgba(119,242,161,.09); color: #d9ffe7; }
+    button.warn { background: rgba(255,211,109,.1); color: #fff3cb; }
+
+    .helper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .mini {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .mini b { display: block; font-size: 13px; margin-bottom: 6px; }
+    .mini span { color: var(--muted); font-size: 12px; }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 14px 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tab.active {
+      background: rgba(124,156,255,.14);
+      color: var(--text);
+      border-color: #4e68ba;
+    }
+
+    .pane { display: none; }
+    .pane.active { display: block; }
+
+    .viz-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .canvas-wrap {
+      margin: 14px 18px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,.09), transparent 22%),
+        linear-gradient(180deg, #0b1226, #0b1120);
+      height: 720px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    svg { width: 100%; height: 100%; display: block; cursor: grab; }
+    svg.dragging { cursor: grabbing; }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 0 18px 16px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+
+    .tree-wrap, .insights-wrap {
+      padding: 18px;
+    }
+
+    .tree-view {
+      max-height: 780px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #0a1122;
+      padding: 14px;
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    details {
+      margin-left: 12px;
+      border-left: 1px dashed rgba(255,255,255,.09);
+      padding-left: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: #d9e4ff;
+      margin: 6px 0;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .leaf { margin: 4px 0 4px 24px; color: #d6dcf4; }
+    .leaf .key { color: #9fc2ff; }
+    .leaf .string { color: #9cf1bf; }
+    .leaf .number { color: #ffd58a; }
+    .leaf .bool { color: #ff9ac8; }
+    .leaf .null { color: #9a9a9a; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .stat .label { color: var(--muted); font-size: 12px; }
+    .stat .value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .list-item h4 { margin: 0 0 6px; font-size: 14px; }
+    .list-item p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .error-box {
+      display: none;
+      margin-top: 14px;
+      border: 1px solid rgba(255,123,123,.35);
+      background: rgba(255,123,123,.08);
+      color: #ffd3d3;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+    input[type="file"] { display: none; }
+
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 1fr; }
+      .canvas-wrap { height: 600px; }
+    }
+
+    @media (max-width: 760px) {
+      .container { padding: 14px; }
+      .helper, .grid { grid-template-columns: 1fr; }
+      .canvas-wrap { height: 480px; }
+      .hero { flex-direction: column; }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;
+    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NFJXRZSV');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-S55MNPYJF8');
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+    <div class="hero">
+      <div class="title">
+        <h1>Flow JSON Viewer</h1>
+        <p>Paste or upload Salesforce Flow JSON and instantly visualize its elements, connectors, structure, and basic health insights. Built as a lightweight static tool for <strong>pulsagi.com/tools</strong>.</p>
+      </div>
+      <div class="badge">Pulsagi Developer Toolbox</div>
+    </div>
+
+    <div class="layout">
+      <section class="card">
+        <div class="card-header">
+          <h2>Input</h2>
+          <p>Works best with Salesforce Flow metadata exported as JSON or Flow-like structured JSON from APIs, CLI transforms, or custom converters.</p>
+        </div>
+        <div class="card-body">
+          <textarea id="jsonInput" spellcheck="false" placeholder='Paste Flow JSON here...'></textarea>
+
+          <div class="button-row" style="margin-top:14px;">
+            <button class="primary" id="renderBtn">Visualize Flow</button>
+            <button id="sampleBtn">Load Sample</button>
+            <button class="ghost" id="clearBtn">Clear</button>
+            <button class="success" id="copyBtn">Copy JSON</button>
+            <label class="file-label" for="fileInput">Upload .json</label>
+            <input type="file" id="fileInput" accept=".json,application/json" />
+          </div>
+
+          <div id="dropzone" class="dropzone">
+            <div>
+              <strong>Drag & drop JSON file here</strong>
+              <div class="muted" style="margin-top:6px;">or use the upload button above</div>
+            </div>
+          </div>
+
+          <div id="errorBox" class="error-box"></div>
+
+          <div class="helper">
+            <div class="mini">
+              <b>Best for</b>
+              <span>Quick flow inspection, demos, debugging, documentation screenshots.</span>
+            </div>
+            <div class="mini">
+              <b>Understands</b>
+              <span>start, screens, decisions, actionCalls, lookups, updates, creates, deletes, loops, assignments, subflows.</span>
+            </div>
+            <div class="mini">
+              <b>Fallback mode</b>
+              <span>If graph nodes are not detected, the tool still shows a full JSON tree and summary.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="tabs">
+          <div class="tab active" data-tab="diagram">Diagram</div>
+          <div class="tab" data-tab="tree">JSON Tree</div>
+          <div class="tab" data-tab="insights">Insights</div>
+        </div>
+
+        <div class="pane active" id="diagramPane">
+          <div class="viz-header">
+            <div class="status" id="statusText">No flow loaded yet.</div>
+            <div class="toolbar">
+              <button id="fitBtn">Fit</button>
+              <button id="zoomInBtn">Zoom In</button>
+              <button id="zoomOutBtn">Zoom Out</button>
+              <button class="warn" id="downloadBtn">Download SVG</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrap" id="canvasWrap">
+            <svg id="svgCanvas" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" aria-label="Flow diagram">
+              <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L10,5 L0,10 z" fill="#90a8ff"></path>
+                </marker>
+                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="rgba(0,0,0,.35)" />
+                </filter>
+              </defs>
+              <g id="viewportGroup"></g>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <span class="legend-item"><span class="dot" style="background:#7c9cff"></span> Screen / UI</span>
+            <span class="legend-item"><span class="dot" style="background:#5eead4"></span> Data / Action</span>
+            <span class="legend-item"><span class="dot" style="background:#ffd36d"></span> Decision / Logic</span>
+            <span class="legend-item"><span class="dot" style="background:#ff9ac8"></span> Start / Loop / Assignment</span>
+          </div>
+        </div>
+
+        <div class="pane" id="treePane">
+          <div class="tree-wrap">
+            <div class="tree-view" id="treeView">Paste Flow JSON and click <strong>Visualize Flow</strong>.</div>
+          </div>
+        </div>
+
+        <div class="pane" id="insightsPane">
+          <div class="insights-wrap">
+            <div class="grid">
+              <div class="stat"><div class="label">Flow Name</div><div class="value" id="flowNameStat">—</div></div>
+              <div class="stat"><div class="label">Nodes</div><div class="value" id="nodeCountStat">0</div></div>
+              <div class="stat"><div class="label">Connectors</div><div class="value" id="edgeCountStat">0</div></div>
+            </div>
+
+            <div class="list" id="insightList">
+              <div class="list-item"><h4>No insights yet</h4><p>Load JSON to see element counts, potential issues, and structure summary.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const inputEl = document.getElementById('jsonInput');
+    const renderBtn = document.getElementById('renderBtn');
+    const sampleBtn = document.getElementById('sampleBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const fileInput = document.getElementById('fileInput');
+    const dropzone = document.getElementById('dropzone');
+    const errorBox = document.getElementById('errorBox');
+    const statusText = document.getElementById('statusText');
+    const treeView = document.getElementById('treeView');
+    const insightList = document.getElementById('insightList');
+    const flowNameStat = document.getElementById('flowNameStat');
+    const nodeCountStat = document.getElementById('nodeCountStat');
+    const edgeCountStat = document.getElementById('edgeCountStat');
+    const svgCanvas = document.getElementById('svgCanvas');
+    const viewportGroup = document.getElementById('viewportGroup');
+
+    const TYPE_COLORS = {
+      start: '#ff9ac8',
+      screen: '#7c9cff',
+      decision: '#ffd36d',
+      assignment: '#ff9ac8',
+      loop: '#ff9ac8',
+      actionCall: '#5eead4',
+      subflow: '#5eead4',
+      recordLookup: '#5eead4',
+      recordCreate: '#5eead4',
+      recordUpdate: '#5eead4',
+      recordDelete: '#5eead4',
+      collectionProcessor: '#5eead4',
+      formula: '#ffd36d',
+      wait: '#ffd36d',
+      default: '#90a8ff'
+    };
+
+    const TYPE_LABELS = {
+      start: 'Start',
+      screen: 'Screen',
+      decision: 'Decision',
+      assignment: 'Assignment',
+      loop: 'Loop',
+      actionCall: 'Action',
+      subflow: 'Subflow',
+      recordLookup: 'Lookup',
+      recordCreate: 'Create',
+      recordUpdate: 'Update',
+      recordDelete: 'Delete',
+      collectionProcessor: 'Collection',
+      formula: 'Formula',
+      wait: 'Wait',
+      default: 'Element'
+    };
+
+    const ELEMENT_MAP = [
+      { key: 'start', aliases: ['start', 'starts'] },
+      { key: 'screen', aliases: ['screens'] },
+      { key: 'decision', aliases: ['decisions'] },
+      { key: 'assignment', aliases: ['assignments'] },
+      { key: 'loop', aliases: ['loops'] },
+      { key: 'actionCall', aliases: ['actionCalls', 'apexPluginCalls', 'coreActionCalls'] },
+      { key: 'subflow', aliases: ['subflows'] },
+      { key: 'recordLookup', aliases: ['recordLookups'] },
+      { key: 'recordCreate', aliases: ['recordCreates'] },
+      { key: 'recordUpdate', aliases: ['recordUpdates'] },
+      { key: 'recordDelete', aliases: ['recordDeletes'] },
+      { key: 'collectionProcessor', aliases: ['collectionProcessors'] },
+      { key: 'formula', aliases: ['formulas'] },
+      { key: 'wait', aliases: ['waits', 'pauses'] }
+    ];
+
+    const SAMPLE_JSON = {
+      label: 'Merchant Onboarding Flow',
+      processType: 'Flow',
+      status: 'Active',
+      start: {
+        name: 'Start',
+        label: 'Start',
+        object: 'Lead',
+        triggerType: 'RecordAfterSave',
+        connector: { targetReference: 'Check_Eligibility' }
+      },
+      recordLookups: [
+        {
+          name: 'Get_Merchant',
+          label: 'Get Merchant',
+          object: 'Merchant__c',
+          connector: { targetReference: 'Create_Case' }
+        }
+      ],
+      decisions: [
+        {
+          name: 'Check_Eligibility',
+          label: 'Check Eligibility',
+          rules: [
+            { name: 'Eligible', label: 'Eligible', connector: { targetReference: 'Get_Merchant' } },
+            { name: 'Needs Review', label: 'Needs Review', connector: { targetReference: 'Manager_Approval' } }
+          ],
+          defaultConnector: { targetReference: 'Send_Rejection_Email' }
+        }
+      ],
+      actionCalls: [
+        {
+          name: 'Manager_Approval',
+          label: 'Manager Approval Action',
+          connector: { targetReference: 'Create_Case' }
+        },
+        {
+          name: 'Send_Rejection_Email',
+          label: 'Send Rejection Email',
+          connector: { targetReference: 'End_Screen' }
+        }
+      ],
+      recordCreates: [
+        {
+          name: 'Create_Case',
+          label: 'Create Case',
+          object: 'Case',
+          connector: { targetReference: 'Notify_Sales' }
+        }
+      ],
+      subflows: [
+        {
+          name: 'Notify_Sales',
+          label: 'Notify Sales Team',
+          flowName: 'Send_Notification_Subflow',
+          connector: { targetReference: 'End_Screen' }
+        }
+      ],
+      screens: [
+        {
+          name: 'End_Screen',
+          label: 'Completion Screen'
+        }
+      ]
+    };
+
+    let viewState = { x: 40, y: 40, scale: 1 };
+    let currentFlowData = null;
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + 'Pane').classList.add('active');
+      });
+    });
+
+    renderBtn.addEventListener('click', handleRender);
+    sampleBtn.addEventListener('click', () => {
+      inputEl.value = JSON.stringify(SAMPLE_JSON, null, 2);
+      handleRender();
+    });
+    clearBtn.addEventListener('click', () => {
+      inputEl.value = '';
+      errorBox.style.display = 'none';
+      treeView.innerHTML = 'Paste Flow JSON and click <strong>Visualize Flow</strong>.';
+      insightList.innerHTML = '<div class="list-item"><h4>No insights yet</h4><p>Load JSON to see element counts, potential issues, and structure summary.</p></div>';
+      flowNameStat.textContent = '—';
+      nodeCountStat.textContent = '0';
+      edgeCountStat.textContent = '0';
+      statusText.textContent = 'No flow loaded yet.';
+      viewportGroup.innerHTML = '';
+      currentFlowData = null;
+    });
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(inputEl.value || '');
+        copyBtn.textContent = 'Copied';
+        setTimeout(() => copyBtn.textContent = 'Copy JSON', 1200);
+      } catch {
+        showError('Unable to copy JSON from browser clipboard.');
+      }
+    });
+
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      inputEl.value = await file.text();
+      handleRender();
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', async (e) => {
+      const file = e.dataTransfer.files?.[0];
+      if (!file) return;
+      inputEl.value = await file.text();
+      handleRender();
+    });
+
+    function handleRender() {
+      try {
+        errorBox.style.display = 'none';
+        const raw = inputEl.value.trim();
+        if (!raw) {
+          showError('Please paste or upload JSON first.');
+          return;
+        }
+        const parsed = JSON.parse(raw);
+        const flowData = buildFlowModel(parsed);
+        currentFlowData = flowData;
+        renderTree(parsed);
+        renderInsights(flowData);
+        renderDiagram(flowData);
+      } catch (error) {
+        console.error(error);
+        showError(error.message || 'Invalid JSON.');
+      }
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.style.display = 'block';
+    }
+
+    function buildFlowModel(json) {
+      const nodes = [];
+      const edges = [];
+      const nodeMap = new Map();
+      const rawCounts = {};
+      const root = json.flow || json.Flow || json;
+
+      const flowName = root.label || root.fullName || root.name || 'Untitled Flow';
+      const status = root.status || 'Unknown';
+      const processType = root.processType || root.processMetadataType || 'Flow';
+
+      for (const definition of ELEMENT_MAP) {
+        for (const alias of definition.aliases) {
+          const value = root[alias];
+          if (!value) continue;
+          const list = Array.isArray(value) ? value : [value];
+          rawCounts[definition.key] = (rawCounts[definition.key] || 0) + list.length;
+
+          list.forEach((item, index) => {
+            const normalized = normalizeNode(item, definition.key, alias, index);
+            if (!normalized.id) normalized.id = `${definition.key}_${index + 1}`;
+            if (!nodeMap.has(normalized.id)) {
+              nodes.push(normalized);
+              nodeMap.set(normalized.id, normalized);
+            }
+
+            collectEdges(normalized, item).forEach(edge => edges.push(edge));
+          });
+        }
+      }
+
+      if (!nodes.length) {
+        const genericNodes = extractGenericNodes(root);
+        genericNodes.nodes.forEach(node => {
+          nodes.push(node);
+          nodeMap.set(node.id, node);
+        });
+        genericNodes.edges.forEach(edge => edges.push(edge));
+      }
+
+      edges.forEach((edge, index) => {
+        edge.id = edge.id || `edge_${index + 1}`;
+      });
+
+      const uniqueEdges = dedupeEdges(edges);
+      ensurePlaceholderNodes(uniqueEdges, nodeMap, nodes);
+      const layout = layoutNodes(nodes, uniqueEdges);
+
+      return {
+        flowName,
+        status,
+        processType,
+        nodes: layout.nodes,
+        edges: uniqueEdges,
+        counts: rawCounts,
+        raw: json
+      };
+    }
+
+    function normalizeNode(item, type, sourceAlias, index) {
+      const id = item?.name || item?.id || item?.developerName || `${type}_${index + 1}`;
+      const label = item?.label || item?.name || item?.developerName || TYPE_LABELS[type] || 'Element';
+      const subtitle = item?.object || item?.flowName || item?.actionType || item?.description || item?.dataType || sourceAlias;
+      return {
+        id,
+        label,
+        type,
+        subtitle,
+        raw: item || {}
+      };
+    }
+
+    function collectEdges(node, rawNode) {
+      const edges = [];
+      const pushEdge = (target, text = '') => {
+        if (!target) return;
+        edges.push({ source: node.id, target, label: text || '' });
+      };
+
+      if (rawNode?.connector?.targetReference) pushEdge(rawNode.connector.targetReference);
+      if (rawNode?.defaultConnector?.targetReference) pushEdge(rawNode.defaultConnector.targetReference, 'Default');
+      if (rawNode?.nextValueConnector?.targetReference) pushEdge(rawNode.nextValueConnector.targetReference, 'Next');
+      if (rawNode?.noMoreValuesConnector?.targetReference) pushEdge(rawNode.noMoreValuesConnector.targetReference, 'Done');
+      if (rawNode?.faultConnector?.targetReference) pushEdge(rawNode.faultConnector.targetReference, 'Fault');
+
+      if (Array.isArray(rawNode?.rules)) {
+        rawNode.rules.forEach(rule => pushEdge(rule?.connector?.targetReference, rule?.label || rule?.name || 'Rule'));
+      }
+      if (Array.isArray(rawNode?.outcomes)) {
+        rawNode.outcomes.forEach(outcome => pushEdge(outcome?.connector?.targetReference, outcome?.label || outcome?.name || 'Outcome'));
+      }
+      if (Array.isArray(rawNode?.scheduledPaths)) {
+        rawNode.scheduledPaths.forEach(path => pushEdge(path?.connector?.targetReference, path?.label || path?.name || 'Scheduled'));
+      }
+      if (Array.isArray(rawNode?.choices)) {
+        rawNode.choices.forEach(choice => pushEdge(choice?.connector?.targetReference, choice?.label || choice?.name || 'Choice'));
+      }
+      if (Array.isArray(rawNode?.assignmentItems)) {
+        rawNode.assignmentItems.forEach(item => {
+          if (item?.connector?.targetReference) pushEdge(item.connector.targetReference, item.name || 'Assignment');
+        });
+      }
+      return edges;
+    }
+
+    function extractGenericNodes(root) {
+      const nodes = [];
+      const edges = [];
+      const candidates = [];
+
+      Object.entries(root).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach((item, index) => {
+            if (item && typeof item === 'object' && (item.name || item.label || item.id)) {
+              candidates.push({ key, item, index });
+            }
+          });
+        }
+      });
+
+      candidates.forEach(({ key, item, index }) => {
+        const id = item.name || item.id || `${key}_${index + 1}`;
+        nodes.push({ id, label: item.label || item.name || id, type: inferTypeFromKey(key), subtitle: key, raw: item });
+        collectEdges({ id }, item).forEach(edge => edges.push(edge));
+      });
+
+      return { nodes, edges };
+    }
+
+    function inferTypeFromKey(key) {
+      const lower = String(key).toLowerCase();
+      if (lower.includes('screen')) return 'screen';
+      if (lower.includes('decision')) return 'decision';
+      if (lower.includes('lookup')) return 'recordLookup';
+      if (lower.includes('create')) return 'recordCreate';
+      if (lower.includes('update')) return 'recordUpdate';
+      if (lower.includes('delete')) return 'recordDelete';
+      if (lower.includes('loop')) return 'loop';
+      if (lower.includes('assign')) return 'assignment';
+      if (lower.includes('subflow')) return 'subflow';
+      if (lower.includes('start')) return 'start';
+      if (lower.includes('action')) return 'actionCall';
+      return 'default';
+    }
+
+    function dedupeEdges(edges) {
+      const seen = new Set();
+      return edges.filter(edge => {
+        const key = `${edge.source}__${edge.target}__${edge.label || ''}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function ensurePlaceholderNodes(edges, nodeMap, nodes) {
+      edges.forEach(edge => {
+        if (!nodeMap.has(edge.target)) {
+          const placeholder = {
+            id: edge.target,
+            label: edge.target,
+            type: 'default',
+            subtitle: 'Referenced only',
+            raw: {}
+          };
+          nodeMap.set(placeholder.id, placeholder);
+          nodes.push(placeholder);
+        }
+      });
+    }
+
+    function layoutNodes(nodes, edges) {
+      const incoming = new Map();
+      const outgoing = new Map();
+      nodes.forEach(node => {
+        incoming.set(node.id, 0);
+        outgoing.set(node.id, []);
+      });
+
+      edges.forEach(edge => {
+        incoming.set(edge.target, (incoming.get(edge.target) || 0) + 1);
+        outgoing.get(edge.source)?.push(edge.target);
+      });
+
+      const startNodes = nodes.filter(node => incoming.get(node.id) === 0);
+      const queue = [...startNodes.map(node => ({ id: node.id, level: 0 }))];
+      const levels = new Map();
+
+      startNodes.forEach(node => levels.set(node.id, 0));
+
+      while (queue.length) {
+        const current = queue.shift();
+        const targets = outgoing.get(current.id) || [];
+        targets.forEach(target => {
+          const nextLevel = current.level + 1;
+          const existing = levels.get(target);
+          if (existing == null || nextLevel > existing) {
+            levels.set(target, nextLevel);
+            queue.push({ id: target, level: nextLevel });
+          }
+        });
+      }
+
+      nodes.forEach((node, index) => {
+        if (!levels.has(node.id)) levels.set(node.id, Math.min(3, index));
+      });
+
+      const grouped = new Map();
+      nodes.forEach(node => {
+        const level = levels.get(node.id) || 0;
+        if (!grouped.has(level)) grouped.set(level, []);
+        grouped.get(level).push(node);
+      });
+
+      const xGap = 310;
+      const yGap = 160;
+      const xStart = 80;
+      const yStart = 80;
+      const resultNodes = [];
+
+      [...grouped.entries()].sort((a, b) => a[0] - b[0]).forEach(([level, list]) => {
+        list.sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+        list.forEach((node, row) => {
+          resultNodes.push({
+            ...node,
+            x: xStart + level * xGap,
+            y: yStart + row * yGap,
+            width: 220,
+            height: 88
+          });
+        });
+      });
+
+      return { nodes: resultNodes, edges };
+    }
+
+    function renderDiagram(flowData) {
+      const { flowName, status, processType, nodes, edges } = flowData;
+      statusText.textContent = `${flowName} • ${processType} • ${status} • ${nodes.length} nodes / ${edges.length} connectors`;
+      viewportGroup.innerHTML = '';
+
+      const nodeIndex = new Map(nodes.map(node => [node.id, node]));
+
+      edges.forEach(edge => {
+        const source = nodeIndex.get(edge.source);
+        const target = nodeIndex.get(edge.target);
+        if (!source || !target) return;
+
+        const x1 = source.x + source.width;
+        const y1 = source.y + source.height / 2;
+        const x2 = target.x;
+        const y2 = target.y + target.height / 2;
+        const dx = Math.max(50, (x2 - x1) * 0.5);
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#90a8ff');
+        path.setAttribute('stroke-width', '2.2');
+        path.setAttribute('marker-end', 'url(#arrow)');
+        path.setAttribute('opacity', '.9');
+        viewportGroup.appendChild(path);
+
+        if (edge.label) {
+          const midX = (x1 + x2) / 2;
+          const midY = (y1 + y2) / 2 - 8;
+          const textBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          textBg.setAttribute('x', midX - 34);
+          textBg.setAttribute('y', midY - 12);
+          textBg.setAttribute('width', 68);
+          textBg.setAttribute('height', 20);
+          textBg.setAttribute('rx', 10);
+          textBg.setAttribute('fill', '#0b1226');
+          textBg.setAttribute('stroke', '#31436f');
+          viewportGroup.appendChild(textBg);
+
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', midX);
+          text.setAttribute('y', midY + 2);
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('fill', '#dfe8ff');
+          text.setAttribute('font-size', '11');
+          text.setAttribute('font-weight', '600');
+          text.textContent = edge.label.length > 12 ? edge.label.slice(0, 12) + '…' : edge.label;
+          viewportGroup.appendChild(text);
+        }
+      });
+
+      nodes.forEach(node => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('transform', `translate(${node.x}, ${node.y})`);
+        group.style.cursor = 'pointer';
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('width', node.width);
+        rect.setAttribute('height', node.height);
+        rect.setAttribute('rx', '22');
+        rect.setAttribute('fill', '#12203c');
+        rect.setAttribute('stroke', TYPE_COLORS[node.type] || TYPE_COLORS.default);
+        rect.setAttribute('stroke-width', '2');
+        rect.setAttribute('filter', 'url(#softShadow)');
+        group.appendChild(rect);
+
+        const topBar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        topBar.setAttribute('width', node.width);
+        topBar.setAttribute('height', '10');
+        topBar.setAttribute('rx', '22');
+        topBar.setAttribute('fill', TYPE_COLORS[node.type] || TYPE_COLORS.default);
+        topBar.setAttribute('opacity', '.95');
+        group.appendChild(topBar);
+
+        const typeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        typeText.setAttribute('x', '18');
+        typeText.setAttribute('y', '31');
+        typeText.setAttribute('fill', '#9db3ef');
+        typeText.setAttribute('font-size', '12');
+        typeText.setAttribute('font-weight', '700');
+        typeText.textContent = TYPE_LABELS[node.type] || TYPE_LABELS.default;
+        group.appendChild(typeText);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', '18');
+        label.setAttribute('y', '52');
+        label.setAttribute('fill', '#eef3ff');
+        label.setAttribute('font-size', '15');
+        label.setAttribute('font-weight', '700');
+        label.textContent = truncate(node.label, 24);
+        group.appendChild(label);
+
+        const subtitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        subtitle.setAttribute('x', '18');
+        subtitle.setAttribute('y', '72');
+        subtitle.setAttribute('fill', '#a7b3d1');
+        subtitle.setAttribute('font-size', '12');
+        subtitle.textContent = truncate(node.subtitle || node.id, 28);
+        group.appendChild(subtitle);
+
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${TYPE_LABELS[node.type] || 'Element'}\n${node.label}\n${node.subtitle || ''}`;
+        group.appendChild(title);
+
+        group.addEventListener('click', () => focusNodeInTree(node.id));
+        viewportGroup.appendChild(group);
+      });
+
+      fitToView(nodes);
+    }
+
+    function fitToView(nodes) {
+      if (!nodes.length) {
+        viewState = { x: 40, y: 40, scale: 1 };
+        applyViewTransform();
+        return;
+      }
+      const minX = Math.min(...nodes.map(n => n.x));
+      const minY = Math.min(...nodes.map(n => n.y));
+      const maxX = Math.max(...nodes.map(n => n.x + n.width));
+      const maxY = Math.max(...nodes.map(n => n.y + n.height));
+      const boxWidth = maxX - minX + 120;
+      const boxHeight = maxY - minY + 120;
+      const svgRect = svgCanvas.getBoundingClientRect();
+      const scaleX = svgRect.width / boxWidth;
+      const scaleY = svgRect.height / boxHeight;
+      const scale = Math.min(1.15, Math.max(0.45, Math.min(scaleX, scaleY)));
+      viewState = {
+        scale,
+        x: 60 - minX * scale,
+        y: 60 - minY * scale
+      };
+      applyViewTransform();
+    }
+
+    function applyViewTransform() {
+      viewportGroup.setAttribute('transform', `translate(${viewState.x}, ${viewState.y}) scale(${viewState.scale})`);
+    }
+
+    function renderTree(json) {
+      treeView.innerHTML = '';
+      treeView.appendChild(buildTreeNode('root', json, true));
+    }
+
+    function buildTreeNode(key, value, open = false) {
+      if (value === null || typeof value !== 'object') {
+        const div = document.createElement('div');
+        div.className = 'leaf';
+        div.innerHTML = `<span class="key">${escapeHtml(key)}</span>: ${formatPrimitive(value)}`;
+        return div;
+      }
+
+      const details = document.createElement('details');
+      details.open = open;
+      const summary = document.createElement('summary');
+      const size = Array.isArray(value) ? `[${value.length}]` : `{${Object.keys(value).length}}`;
+      summary.innerHTML = `<strong>${escapeHtml(key)}</strong> <span class="muted">${size}</span>`;
+      details.appendChild(summary);
+
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => details.appendChild(buildTreeNode(index, item)));
+      } else {
+        Object.entries(value).forEach(([childKey, childValue]) => details.appendChild(buildTreeNode(childKey, childValue)));
+      }
+      return details;
+    }
+
+    function formatPrimitive(value) {
+      if (typeof value === 'string') return `<span class="string">"${escapeHtml(value)}"</span>`;
+      if (typeof value === 'number') return `<span class="number">${value}</span>`;
+      if (typeof value === 'boolean') return `<span class="bool">${value}</span>`;
+      if (value === null) return `<span class="null">null</span>`;
+      return escapeHtml(String(value));
+    }
+
+    function renderInsights(flowData) {
+      const { flowName, nodes, edges, counts, status, processType } = flowData;
+      flowNameStat.textContent = truncate(flowName, 18);
+      flowNameStat.title = flowName;
+      nodeCountStat.textContent = String(nodes.length);
+      edgeCountStat.textContent = String(edges.length);
+
+      const countEntries = Object.entries(counts).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+      const disconnected = nodes.filter(node => !edges.some(e => e.source === node.id || e.target === node.id));
+      const noOutgoing = nodes.filter(node => !edges.some(e => e.source === node.id));
+      const noIncoming = nodes.filter(node => !edges.some(e => e.target === node.id));
+
+      const items = [
+        {
+          title: 'Flow summary',
+          text: `${flowName} is a ${processType} flow with status ${status}. The viewer found ${nodes.length} nodes and ${edges.length} connectors.`
+        },
+        {
+          title: 'Element distribution',
+          text: countEntries.length ? countEntries.map(([type, count]) => `${TYPE_LABELS[type] || type}: ${count}`).join(' • ') : 'No standard flow element groups detected. Falling back to generic JSON analysis.'
+        }
+      ];
+
+      if (disconnected.length) {
+        items.push({
+          title: 'Disconnected elements',
+          text: `${disconnected.length} element(s) appear isolated: ${disconnected.slice(0, 6).map(n => n.label).join(', ')}${disconnected.length > 6 ? '…' : ''}`
+        });
+      }
+
+      if (noOutgoing.length) {
+        items.push({
+          title: 'Potential end nodes',
+          text: `${noOutgoing.length} element(s) do not have outgoing connectors: ${noOutgoing.slice(0, 6).map(n => n.label).join(', ')}${noOutgoing.length > 6 ? '…' : ''}`
+        });
+      }
+
+      if (noIncoming.length > 1) {
+        items.push({
+          title: 'Multiple entry candidates',
+          text: `${noIncoming.length} elements have no incoming connectors. This may be fine for referenced-only nodes, but it is worth checking: ${noIncoming.slice(0, 6).map(n => n.label).join(', ')}${noIncoming.length > 6 ? '…' : ''}`
+        });
+      }
+
+      insightList.innerHTML = items.map(item => `
+        <div class="list-item">
+          <h4>${escapeHtml(item.title)}</h4>
+          <p>${escapeHtml(item.text)}</p>
+        </div>
+      `).join('');
+    }
+
+    function focusNodeInTree(nodeId) {
+      document.querySelector('[data-tab="tree"]').click();
+      const summaries = [...treeView.querySelectorAll('summary')];
+      const match = summaries.find(s => s.textContent.includes(nodeId));
+      if (match) {
+        let parent = match.parentElement;
+        while (parent && parent !== treeView) {
+          if (parent.tagName === 'DETAILS') parent.open = true;
+          parent = parent.parentElement;
+        }
+        match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function truncate(value, max) {
+      const s = String(value || '');
+      return s.length > max ? s.slice(0, max - 1) + '…' : s;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    let isPanning = false;
+    let panStart = { x: 0, y: 0 };
+    let viewStart = { x: 0, y: 0 };
+
+    svgCanvas.addEventListener('mousedown', (e) => {
+      isPanning = true;
+      svgCanvas.classList.add('dragging');
+      panStart = { x: e.clientX, y: e.clientY };
+      viewStart = { x: viewState.x, y: viewState.y };
+    });
+
+    window.addEventListener('mouseup', () => {
+      isPanning = false;
+      svgCanvas.classList.remove('dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isPanning) return;
+      viewState.x = viewStart.x + (e.clientX - panStart.x);
+      viewState.y = viewStart.y + (e.clientY - panStart.y);
+      applyViewTransform();
+    });
+
+    svgCanvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.08 : 0.92;
+      viewState.scale = Math.max(0.25, Math.min(2.3, viewState.scale * factor));
+      applyViewTransform();
+    }, { passive: false });
+
+    document.getElementById('fitBtn').addEventListener('click', () => {
+      if (currentFlowData) fitToView(currentFlowData.nodes);
+    });
+    document.getElementById('zoomInBtn').addEventListener('click', () => {
+      viewState.scale = Math.min(2.3, viewState.scale * 1.12);
+      applyViewTransform();
+    });
+    document.getElementById('zoomOutBtn').addEventListener('click', () => {
+      viewState.scale = Math.max(0.25, viewState.scale * 0.9);
+      applyViewTransform();
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const serializer = new XMLSerializer();
+      const source = serializer.serializeToString(svgCanvas);
+      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'flow-diagram.svg';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    inputEl.value = JSON.stringify(SAMPLE_JSON, null, 2);
+    handleRender();
+  </script>
+</body>
+</html>
