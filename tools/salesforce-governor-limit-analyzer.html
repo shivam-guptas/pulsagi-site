@@ -89,6 +89,12 @@
     .chip{padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:#1a2750;font-size:12px;color:#d3e0ff}
     .section{padding:18px}
     .section h3{margin:0 0 14px;font-size:18px}
+    .findingsPanel{display:flex;flex-direction:column;min-height:0}
+    .findingsList{display:flex;flex-direction:column;gap:14px;max-height:min(920px,calc(100vh - 260px));overflow-y:auto;overflow-x:hidden;padding-right:6px;scrollbar-width:thin;scrollbar-color:#3653a6 rgba(255,255,255,.04);overscroll-behavior:contain}
+    .findingsList::-webkit-scrollbar{width:10px}
+    .findingsList::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:999px}
+    .findingsList::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#3653a6,#223770);border-radius:999px;border:2px solid rgba(7,17,38,.7)}
+    .findingsList.empty{display:block;max-height:none;overflow:visible;padding-right:0}
     .finding{border:1px solid var(--line);border-left-width:5px;border-radius:18px;padding:18px;background:linear-gradient(180deg,#121d3e,#0f1834);margin-bottom:14px}
     .finding.high{border-left-color:var(--red)} .finding.medium{border-left-color:var(--amber)} .finding.low{border-left-color:var(--green)}
     .fhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px}
@@ -101,6 +107,14 @@
     .empty{color:var(--muted);padding:18px;border:1px dashed var(--line);border-radius:16px;background:rgba(255,255,255,.02)}
     details{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.025)}
     summary{cursor:pointer;font-weight:700}
+    .toastStack{position:fixed;right:18px;bottom:18px;z-index:250;display:flex;flex-direction:column;gap:10px;max-width:min(420px,calc(100vw - 24px));pointer-events:none}
+    .toast{pointer-events:auto;padding:14px 16px;border-radius:16px;border:1px solid rgba(143,176,255,.28);background:linear-gradient(180deg,rgba(12,22,50,.96),rgba(9,15,34,.96));box-shadow:0 18px 40px rgba(0,0,0,.34);color:var(--text);transform:translateY(12px);opacity:0;transition:opacity .22s ease,transform .22s ease}
+    .toast.show{opacity:1;transform:translateY(0)}
+    .toast.success{border-color:rgba(34,197,94,.35)}
+    .toast.info{border-color:rgba(34,211,238,.32)}
+    .toast.warn{border-color:rgba(245,158,11,.35)}
+    .toastTitle{font-size:13px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+    .toastBody{font-size:14px;line-height:1.5;color:#dbe7ff}
     footer{border-top:1px solid var(--site-border);padding:2rem;text-align:center;font-size:.8rem;color:var(--site-muted);font-family:'Courier New',monospace}
     footer a{color:var(--site-accent);text-decoration:none}
     @media (max-width:760px){
@@ -110,6 +124,8 @@
       .heroTitle{flex-direction:column;align-items:flex-start}
       .heroTitle h1,.heroTitle p{white-space:normal}
       textarea{min-height:520px}
+      .findingsList{max-height:none;overflow:visible;padding-right:0}
+      .toastStack{left:12px;right:12px;bottom:12px;max-width:none}
     }
   </style>
   <!-- Google Tag Manager -->
@@ -183,25 +199,32 @@
           </div>
         </div>
 
-        <div class="panel section">
+        <div class="panel section findingsPanel">
           <h3>Findings</h3>
-          <div id="findings" class="empty">No findings yet.</div>
+          <div id="findings" class="findingsList empty">No findings yet.</div>
         </div>
 
         <div class="panel section">
           <h3>Parser Notes</h3>
           <details>
-            <summary>What changed in V2</summary>
+            <summary>What changed in V3</summary>
             <div class="meta" style="margin-top:10px">
               <ul>
                 <li>Strings and comments are stripped before rule evaluation, reducing noisy matches.</li>
                 <li>Curly-brace blocks are tracked, so statements are associated to loop or method scope more accurately.</li>
                 <li>Bulk DML outside loops, like <span class="mono">update scope;</span> in Batch Apex, is no longer treated as loop DML.</li>
+                <li>SOQL-for loops are recognized as safe query-iteration patterns instead of being flagged like per-record queries.</li>
                 <li>Async constructs such as Batch, Queueable, Future, and Schedulable add context-specific guidance.</li>
+                <li>Reports now export from the analyzer state itself, so the downloaded output stays aligned with the findings on screen.</li>
                 <li>Line numbers are mapped from sanitized code back to original source lines.</li>
               </ul>
             </div>
           </details>
+        </div>
+
+        <div class="panel section">
+          <h3>Salesforce Context</h3>
+          <div id="contextNotes" class="empty">Run analysis to see execution-model guidance, governor-limit reminders, and context-specific review notes for the pasted Apex.</div>
         </div>
       </div>
     </div>
@@ -210,6 +233,7 @@
   <footer>
     <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
   </footer>
+  <div id="toastStack" class="toastStack" aria-live="polite" aria-atomic="false"></div>
 
   <script>
     const codeEl = document.getElementById('code');
@@ -218,6 +242,10 @@
     const fileInput = document.getElementById('fileInput');
     const dropZone = document.getElementById('dropZone');
     const chipsEl = document.getElementById('chips');
+    const contextNotesEl = document.getElementById('contextNotes');
+    const toastStackEl = document.getElementById('toastStack');
+    let lastAnalysis = null;
+    let toastTimerId = 0;
 
     function syncGutter(){
       const lines = Math.max(1, codeEl.value.split('\n').length);
@@ -232,7 +260,7 @@
 
     function loadFile(file){
       const reader = new FileReader();
-      reader.onload = e => { codeEl.value = e.target.result; syncGutter(); analyze(); };
+      reader.onload = e => { codeEl.value = e.target.result; syncGutter(); analyze({source:'upload', showStart:false}); };
       reader.readAsText(file);
     }
     fileInput.addEventListener('change', e => { if(e.target.files[0]) loadFile(e.target.files[0]); });
@@ -240,39 +268,58 @@
     ['dragleave','drop'].forEach(evt => dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.remove('drag'); }));
     dropZone.addEventListener('drop', e => { const f = e.dataTransfer.files?.[0]; if(f) loadFile(f); });
 
-    document.getElementById('clearBtn').addEventListener('click', ()=>{ codeEl.value=''; syncGutter(); resetUI(); });
+    document.getElementById('clearBtn').addEventListener('click', ()=>{ codeEl.value=''; syncGutter(); resetUI(); showToast('Editor cleared', 'Paste Apex code and run a fresh analysis whenever you are ready.', 'info'); });
     document.getElementById('sampleBtn').addEventListener('click', ()=>{
-      codeEl.value = `global class UpdateAccountsBatch implements Database.Batchable<sObject> {
-    global Database.QueryLocator start(Database.BatchableContext bc) {
-        return Database.getQueryLocator('SELECT Id, Industry FROM Account');
-    }
-
-    global void execute(Database.BatchableContext bc, List<Account> scope) {
-        for (Account acc : scope) {
-            acc.Industry = 'Technology';
-        }
-        update scope;
-    }
-
-    global void finish(Database.BatchableContext bc) {
-        System.debug('Account Industry update batch completed');
+      codeEl.value = `trigger contactTrigger on Contact (after insert) {
+    for (Contact con : Trigger.new) {
+        // BAD: This runs a query for every Contact record
+        Account acc = [SELECT Id, NumberOfEmployees
+                       FROM Account
+                       WHERE Id = :con.AccountId
+                       LIMIT 1];
+        acc.NumberOfEmployees = acc.NumberOfEmployees + 1;
+        update acc; // BAD: DML inside a loop
     }
 }`;
-      syncGutter(); analyze();
+      syncGutter(); analyze({source:'sample', showStart:false});
     });
-    document.getElementById('analyzeBtn').addEventListener('click', analyze);
+    document.getElementById('analyzeBtn').addEventListener('click', ()=> analyze({source:'button'}));
     document.getElementById('reportBtn').addEventListener('click', downloadReport);
 
     function resetUI(){
+      lastAnalysis = null;
       setText('riskScore','0'); setText('riskLevel','Low'); setText('findingCount','0'); setText('loopCount','0');
       document.getElementById('meterFill').style.width = '0%';
       setText('headline','Ready to analyze');
       setText('summaryText','Paste code and run analysis. This analyzer is heuristic, but it now tracks block context more accurately so DML and SOQL are only flagged when they truly appear inside loops or risky nested constructs.');
       chipsEl.innerHTML = '';
-      findingsEl.className = 'empty'; findingsEl.innerHTML = 'No findings yet.';
+      findingsEl.className = 'findingsList empty'; findingsEl.innerHTML = 'No findings yet.';
+      contextNotesEl.className = 'empty';
+      contextNotesEl.textContent = 'Run analysis to see execution-model guidance, governor-limit reminders, and context-specific review notes for the pasted Apex.';
     }
 
     function setText(id, value){ document.getElementById(id).textContent = value; }
+
+    function showToast(title, message, tone = 'info'){
+      if(!toastStackEl) return;
+      if(toastTimerId){
+        clearTimeout(toastTimerId);
+        toastTimerId = 0;
+      }
+      toastStackEl.innerHTML = '';
+      const toast = document.createElement('div');
+      toast.className = `toast ${tone}`;
+      toast.setAttribute('role', 'status');
+      toast.innerHTML = `<div class="toastTitle">${escapeHtml(title)}</div><div class="toastBody">${escapeHtml(message)}</div>`;
+      toastStackEl.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.add('show'));
+      toastTimerId = window.setTimeout(() => {
+        toast.classList.remove('show');
+        window.setTimeout(() => {
+          if(toast.parentNode === toastStackEl) toastStackEl.removeChild(toast);
+        }, 220);
+      }, 2600);
+    }
 
     function buildLineStarts(src){
       const starts = [0];
@@ -350,8 +397,6 @@
       const lines = src.split('\n');
       const blocks = [];
       const contexts = [];
-      const blockMap = new Map();
-      const methodMap = new Map();
       const loopLines = [];
       let pendingContext = null;
       let currentMethod = null;
@@ -377,8 +422,7 @@
             const block = {type:ctx.type, startLine:lineNo, depth:braceDepth, method: ctx.type === 'method' ? ctx.name : currentMethod, name:ctx.name || null};
             blocks.push(block);
             contexts.push(block);
-            blockMap.set(lineNo + ':' + braceDepth, block);
-            if(ctx.type === 'method'){ currentMethod = ctx.name; methodMap.set(ctx.name, block); }
+            if(ctx.type === 'method') currentMethod = ctx.name;
             if(ctx.type === 'loop') loopLines.push(lineNo);
             pendingContext = null;
           } else if(ch === '}'){
@@ -403,7 +447,7 @@
           }
         }
       }
-      return {blocks, methodMap, loopLines};
+      return {blocks, loopLines};
     }
 
     function getContextAtLine(lineNo, blocks){
@@ -415,9 +459,120 @@
       };
     }
 
-    function analyze(){
+    function collectBracketQueries(src, starts, keyword){
+      const matches = [];
+      const keywordRegex = new RegExp(`\\b${keyword}\\b`, 'i');
+      for(let i=0;i<src.length;i++){
+        if(src[i] !== '[') continue;
+        let depth = 1;
+        let j = i + 1;
+        while(j < src.length && depth > 0){
+          if(src[j] === '[') depth++;
+          else if(src[j] === ']') depth--;
+          j++;
+        }
+        if(depth !== 0) break;
+        const text = src.slice(i, j);
+        const focus = keywordRegex.exec(text);
+        if(focus){
+          matches.push({
+            index: i,
+            lineNo: getLineNumberFromIndex(i + focus.index, starts),
+            text
+          });
+        }
+        i = j - 1;
+      }
+      return matches;
+    }
+
+    function isSoqlForLoop(src, index){
+      const windowStart = Math.max(0, index - 220);
+      const preceding = src.slice(windowStart, index);
+      return /\bfor\s*\([\s\S]*:\s*$/i.test(preceding);
+    }
+
+    function getPrimaryContext(meta){
+      if(meta.isBatch) return 'Batch Apex';
+      if(meta.isQueueable) return 'Queueable Apex';
+      if(meta.isFuture) return '@future Apex';
+      if(meta.isSchedulable) return 'Schedulable Apex';
+      if(meta.isTrigger) return 'Trigger transaction';
+      return 'Synchronous Apex';
+    }
+
+    function getLimitProfile(meta){
+      const asyncProfile = meta.isBatch || meta.isQueueable || meta.isFuture;
+      return asyncProfile
+        ? {
+            label: 'Async transaction profile',
+            limits: ['SOQL queries: up to 200', 'DML statements: up to 150', 'CPU time: up to 60,000 ms', 'Heap size: up to 12 MB', 'Callouts: up to 100']
+          }
+        : {
+            label: 'Standard transaction profile',
+            limits: ['SOQL queries: up to 100', 'DML statements: up to 150', 'CPU time: up to 10,000 ms', 'Heap size: up to 6 MB', 'Callouts: up to 100']
+          };
+    }
+
+    function buildContextDetails(meta, findings){
+      const limitProfile = getLimitProfile(meta);
+      const notes = [];
+      if(meta.isTrigger){
+        notes.push('Triggers can receive up to 200 records at once, so queries, DML, and expensive loops must be bulk-safe.');
+        notes.push('Direct callouts are not allowed in trigger context; move them to Queueable or Future Apex when needed.');
+      } else if(meta.isBatch){
+        notes.push('Each execute chunk gets fresh limits, but per-record SOQL, DML, and callouts inside loops are still risky.');
+        notes.push('Database.QueryLocator belongs in start(), while execute() should aggregate work and commit in bulk.');
+      } else if(meta.isQueueable){
+        notes.push('Queueable is well-suited for async orchestration, moderate payloads, and chained follow-up work.');
+        notes.push('If the job makes callouts, the class should implement Database.AllowsCallouts.');
+      } else if(meta.isFuture){
+        notes.push('Future methods are best for lightweight async offloading and can make callouts only with @future(callout=true).');
+      } else if(meta.isSchedulable){
+        notes.push('Schedulable jobs should delegate heavy lifting to Batch or Queueable Apex so one scheduled transaction does not carry all the load.');
+      } else {
+        notes.push('Synchronous Apex shares one governor budget across the transaction, including workflow, flows, and automation fired in the same save cycle.');
+      }
+
+      if(findings.some(f => f.id === 'soql-for-loop-info')){
+        notes.push('SOQL-for loops were detected and treated as chunked query iteration, which is usually safer than querying per record.');
+      }
+      if(findings.some(f => f.id === 'trigger-single-record')){
+        notes.push('Single-record trigger access patterns often hide bulk defects even when the code works in one-record tests.');
+      }
+
+      return {
+        title: getPrimaryContext(meta),
+        profileLabel: limitProfile.label,
+        limits: limitProfile.limits,
+        notes
+      };
+    }
+
+    function renderContextNotes(context){
+      contextNotesEl.className = '';
+      contextNotesEl.innerHTML = `
+        <div class="meta"><strong>${escapeHtml(context.title)}</strong> · ${escapeHtml(context.profileLabel)}</div>
+        <ul>
+          ${context.limits.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+        <ul>
+          ${context.notes.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    function analyze(options = {}){
+      const {source = 'manual', showStart = true} = options;
       const code = codeEl.value;
-      if(!code.trim()) return resetUI();
+      if(!code.trim()){
+        resetUI();
+        showToast('No code to analyze', 'Paste an Apex class or trigger first, then run the analyzer.', 'warn');
+        return;
+      }
+      if(showStart){
+        showToast('Analysis running', 'Reviewing Apex structure, loop safety, and Salesforce execution context.', 'info');
+      }
       const sanitized = sanitizePreserveLines(code);
       const sanitizedLineStarts = buildLineStarts(sanitized);
       const meta = detectMeta(sanitized);
@@ -429,8 +584,16 @@
         if(existing) return;
         findings.push({id,title,severity,lineNo,description,fixes});
       };
+      const nativeDmlMatches = collectMatches(sanitized, /\b(insert|update|upsert|delete|undelete|merge)\s+[\w\[\].:<>,()]+\s*;/i, sanitizedLineStarts);
+      const soqlMatches = collectBracketQueries(sanitized, sanitizedLineStarts, 'SELECT');
+      const soslMatches = collectBracketQueries(sanitized, sanitizedLineStarts, 'FIND');
+      const databaseDmlMatches = collectMatches(sanitized, /\bDatabase\.(insert|update|upsert|delete|undelete|merge)\s*\(/i, sanitizedLineStarts);
+      const dynamicSoqlMatches = collectMatches(sanitized, /\bDatabase\.(query|countQuery|queryWithBinds)\s*\(/i, sanitizedLineStarts);
+      const dynamicSoslMatches = collectMatches(sanitized, /\bSearch\.(query|find)\s*\(/i, sanitizedLineStarts);
+      const calloutMatches = collectMatches(sanitized, /\b(Http(Request|Response)?|Continuation|WebServiceCallout\.invoke)\b|\.send\s*\(/i, sanitizedLineStarts);
+      const bodyWrites = [...nativeDmlMatches, ...databaseDmlMatches];
 
-      collectMatches(sanitized, /\b(insert|update|upsert|delete|undelete|merge)\s+[\w\[\].:<>,()]+\s*;/i, sanitizedLineStarts).forEach(({lineNo}) => {
+      nativeDmlMatches.forEach(({lineNo}) => {
         const ctx = getContextAtLine(lineNo, parse.blocks);
         if(ctx.loops.length){
           addFinding('dml-loop','DML detected inside loop','high',lineNo,
@@ -439,7 +602,13 @@
         }
       });
 
-      collectMatches(sanitized, /\[[\s\S]*?\bSELECT\b[\s\S]*?\]/i, sanitizedLineStarts, /\bSELECT\b/i).forEach(({lineNo}) => {
+      soqlMatches.forEach(({lineNo, index}) => {
+        if(isSoqlForLoop(sanitized, index)){
+          addFinding('soql-for-loop-info','SOQL-for loop detected','low',lineNo,
+            'This query appears inside a SOQL-for loop, which is a Salesforce-safe iteration pattern for larger result sets.',
+            ['Keep the loop body bulk-safe.', 'Still add selective filters when the underlying object is large.']);
+          return;
+        }
         const ctx = getContextAtLine(lineNo, parse.blocks);
         if(ctx.loops.length){
           addFinding('soql-loop','SOQL detected inside loop','high',lineNo,
@@ -448,7 +617,7 @@
         }
       });
 
-      collectMatches(sanitized, /\[[\s\S]*?\bFIND\b[\s\S]*?\]/i, sanitizedLineStarts, /\bFIND\b/i).forEach(({lineNo}) => {
+      soslMatches.forEach(({lineNo}) => {
         const ctx = getContextAtLine(lineNo, parse.blocks);
         if(ctx.loops.length){
           addFinding('sosl-loop','SOSL detected inside loop','high',lineNo,
@@ -457,12 +626,42 @@
         }
       });
 
-      collectMatches(sanitized, /\bhttps?\s*:\/\/|\bHttp(Request|Response)?\b|\bWebServiceCallout\.invoke\b|\.send\s*\(/i, sanitizedLineStarts).forEach(({lineNo}) => {
+      dynamicSoqlMatches.forEach(({lineNo}) => {
+        const ctx = getContextAtLine(lineNo, parse.blocks);
+        if(ctx.loops.length){
+          addFinding('dynamic-soql-loop','Dynamic SOQL detected inside loop','high',lineNo,
+            'Database.query-style execution inside a loop can exhaust SOQL limits quickly and is harder to reason about.',
+            ['Build the full record set outside the loop.', 'Prefer one bulk query with bind variables over per-record dynamic SOQL.']);
+        }
+      });
+
+      dynamicSoslMatches.forEach(({lineNo}) => {
+        const ctx = getContextAtLine(lineNo, parse.blocks);
+        if(ctx.loops.length){
+          addFinding('dynamic-sosl-loop','Dynamic SOSL detected inside loop','high',lineNo,
+            'Search.query/Search.find inside a loop compounds search cost and can become unscalable quickly.',
+            ['Collect search inputs before the loop.', 'Avoid one-search-per-record patterns.']);
+        }
+      });
+
+      calloutMatches.forEach(({lineNo}) => {
         const ctx = getContextAtLine(lineNo, parse.blocks);
         if(ctx.loops.length){
           addFinding('callout-loop','Callout pattern inside loop','high',lineNo,
             'Callouts inside loops are risky and can exceed limits or create long-running transactions.',
             ['Queue work asynchronously when possible.', 'Aggregate requests instead of making one call per record.']);
+        } else if(meta.isTrigger){
+          addFinding('trigger-callout','Callout pattern found in trigger context','high',lineNo,
+            'Apex triggers cannot perform callouts directly in the transaction that fired the trigger.',
+            ['Move the callout to Queueable or @future(callout=true).', 'Store state first, then invoke async integration logic.']);
+        } else if((meta.isBatch || meta.isQueueable) && !meta.allowsCallouts){
+          addFinding('allows-callouts','Async callout context missing Database.AllowsCallouts','high',lineNo,
+            'Batch and Queueable classes that perform callouts should implement Database.AllowsCallouts.',
+            ['Add Database.AllowsCallouts to the class declaration.', 'Keep callouts outside per-record loops.']);
+        } else if(meta.isFuture && !meta.futureCalloutEnabled){
+          addFinding('future-callout-flag','Future method callout may be missing callout=true','high',lineNo,
+            'Future methods need @future(callout=true) before they can perform callouts safely.',
+            ['Update the annotation to @future(callout=true).', 'Consider Queueable if you need richer chaining or payload support.']);
         } else if(!meta.isAsyncCapable){
           addFinding('callout-sync','Possible synchronous callout','medium',lineNo,
             'Verify that callouts occur in a supported context and that transaction size stays reasonable.',
@@ -470,7 +669,7 @@
         }
       });
 
-      collectMatches(sanitized, /\bDatabase\.(insert|update|upsert|delete|undelete|merge)\s*\(/i, sanitizedLineStarts).forEach(({lineNo}) => {
+      databaseDmlMatches.forEach(({lineNo}) => {
         const ctx = getContextAtLine(lineNo, parse.blocks);
         if(ctx.loops.length){
           addFinding('database-dml-loop','Database.* DML inside loop','high',lineNo,
@@ -507,20 +706,27 @@
       });
 
       // Whole-code rules
-      if(/\btrigger\b/i.test(sanitized) && /\bTrigger\.(new|old)\b/i.test(sanitized) && !/\b(Set|Map)<\s*Id\s*,?/i.test(sanitized) && /\[[\s\S]*?\bSELECT\b[\s\S]*?\]/i.test(sanitized)){
+      const hasBulkIdPattern = /\b(Set|Map)<\s*Id\b/i.test(sanitized) || /\bTrigger\.(newMap|oldMap)\b/i.test(sanitized) || /\bkeySet\s*\(/i.test(sanitized);
+      if(meta.isTrigger && /\bTrigger\.(new|old|newMap|oldMap)\b/i.test(sanitized) && !hasBulkIdPattern && soqlMatches.length){
         addFinding('trigger-bulk','Trigger may not be fully bulkified','medium',findFirstMatchLine(sanitized, /^\s*trigger\s+\w+/im, sanitizedLineStarts, 1),
           'The trigger references trigger collections and SOQL, but there is no obvious Id-based Map/Set indexing pattern.',
           ['Collect Ids into a Set<Id>.', 'Query once and store results in a Map keyed by Id or foreign key.']);
       }
 
-      if(/\b(recursive|isExecuting)\b/i.test(sanitized) === false && /\btrigger\b/i.test(sanitized) && /\b(update|insert|upsert|delete)\b/i.test(sanitized)){
-        addFinding('recursion-guard','Trigger recursion guard not obvious','low',findFirstMatchLine(sanitized, /\b(insert|update|upsert|delete)\b/i, sanitizedLineStarts, 1),
+      collectMatches(sanitized, /\bTrigger\.(new|old)\s*\[\s*0\s*\]/i, sanitizedLineStarts).forEach(({lineNo}) => {
+        addFinding('trigger-single-record','Single-record trigger access detected','medium',lineNo,
+          'Using Trigger.new[0] or Trigger.old[0] assumes a one-record transaction and usually breaks bulk safety.',
+          ['Iterate over Trigger.new / Trigger.old collections.', 'Use Trigger.newMap or Trigger.oldMap for keyed access.']);
+      });
+
+      if(meta.isTrigger && !/\b(recursive|isExecuting)\b/i.test(sanitized) && bodyWrites.length){
+        addFinding('recursion-guard','Trigger recursion guard not obvious','low',bodyWrites[0].lineNo,
           'If this trigger performs writes that can re-enter itself, add a safe recursion-control strategy.',
           ['Use a static Set/Map keyed by record Id or operation.', 'Avoid over-broad static booleans when bulk behavior matters.']);
       }
 
       // Unselective query approximation
-      collectMatches(sanitized, /\[[\s\S]*?\bSELECT\b[\s\S]*?\]/i, sanitizedLineStarts, /\bSELECT\b/i).forEach(({lineNo, text}) => {
+      soqlMatches.forEach(({lineNo, text}) => {
         if(!/\bWHERE\b/i.test(text) && !/\bLIMIT\b/i.test(text) && !/\bCOUNT\b\s*\(/i.test(text)){
           addFinding('unselective-query','Potentially unselective query','medium',lineNo,
             'A broad query without WHERE or LIMIT can create row, heap, or CPU pressure.',
@@ -535,8 +741,17 @@
       if(meta.isQueueable){
         findings.push({id:'queueable-info', title:'Queueable context detected', severity:'low', lineNo:findFirstMatchLine(sanitized, /implements\s+Queueable|QueueableContext/i, sanitizedLineStarts, 1), informational:true, description:'Queueable jobs are better for chained async work and moderate payloads, but CPU and heap still matter.', fixes:['Keep payloads lean.', 'Chain sparingly and monitor enqueue patterns.']});
       }
+      if(meta.isTrigger){
+        findings.push({id:'trigger-info', title:'Trigger transaction detected', severity:'low', lineNo:findFirstMatchLine(sanitized, /^\s*trigger\s+\w+/im, sanitizedLineStarts, 1), informational:true, description:'Trigger logic shares one transaction budget with other automation and should always assume bulk operations.', fixes:['Design for up to 200 records per invocation.', 'Keep trigger handlers thin and delegate heavy work to services or async jobs.']});
+      }
 
-      renderResults(findings, parse, meta);
+      lastAnalysis = renderResults(findings, parse, meta);
+      const actionableCount = lastAnalysis.findings.filter(f => !f.informational).length;
+      const originLabel = source === 'upload' ? 'File analysis complete' : source === 'sample' ? 'Sample analysis complete' : 'Analysis complete';
+      const detail = actionableCount
+        ? `${actionableCount} finding${actionableCount === 1 ? '' : 's'} detected. Risk level: ${lastAnalysis.level}.`
+        : `No major hotspots found. Risk level: ${lastAnalysis.level}.`;
+      showToast(originLabel, detail, actionableCount ? (lastAnalysis.level === 'High' ? 'warn' : 'info') : 'success');
     }
 
     function detectMeta(src){
@@ -546,6 +761,8 @@
         isFuture: /@future\b/i.test(src),
         isSchedulable: /implements\s+Schedulable|SchedulableContext/i.test(src),
         isTrigger: /^\s*trigger\s+/im.test(src),
+        allowsCallouts: /\bDatabase\.AllowsCallouts\b/i.test(src),
+        futureCalloutEnabled: /@future\s*\(\s*callout\s*=\s*true\s*\)/i.test(src),
         get isAsyncCapable(){ return this.isBatch || this.isQueueable || this.isFuture; }
       };
     }
@@ -579,14 +796,16 @@
           ? 'The analyzer found mostly structural or selectivity concerns. Review findings before code review and bulk testing.'
           : 'No major governor-limit hotspots were detected in this pass. You should still validate with bulk-data tests and org-specific query plans.';
       setText('summaryText', summary);
+      const context = buildContextDetails(meta, findings);
+      renderContextNotes(context);
 
       const ordered = [...findings].sort((a,b) => severityRank(b.severity) - severityRank(a.severity) || a.lineNo - b.lineNo);
       if(!ordered.length){
-        findingsEl.className = 'empty';
+        findingsEl.className = 'findingsList empty';
         findingsEl.innerHTML = 'No findings yet.';
-        return;
+        return {score, level, summary, loops, tags, context, findings: []};
       }
-      findingsEl.className = '';
+      findingsEl.className = 'findingsList';
       findingsEl.innerHTML = ordered.map(f => `
         <div class="finding ${f.severity}">
           <div class="fhead">
@@ -598,6 +817,7 @@
           ${f.fixes?.length ? `<ul>${f.fixes.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
         </div>
       `).join('');
+      return {score, level, summary, loops, tags, context, findings: ordered};
     }
 
     function severityRank(sev){ return sev === 'high' ? 3 : sev === 'medium' ? 2 : 1; }
@@ -605,17 +825,28 @@
 
     function downloadReport(){
       const title = 'Governor Limit Analyzer Report';
-      const score = document.getElementById('riskScore').textContent;
-      const level = document.getElementById('riskLevel').textContent;
-      const summary = document.getElementById('summaryText').textContent;
-      const findings = [...document.querySelectorAll('#findings .finding')].map(el => el.innerText.trim()).join('\n\n---\n\n');
-      const content = `${title}\n\nRisk score: ${score}\nRisk level: ${level}\n\nSummary\n${summary}\n\nFindings\n${findings || 'None'}\n\nBuilt by Shivam Gupta - https://shivam.pulsagi.com`;
+      const report = lastAnalysis;
+      if(!report){
+        showToast('Run analysis first', 'Generate results before downloading a governor-limit report.', 'warn');
+        return;
+      }
+      const tagText = report.tags.join(', ');
+      const contextLines = [
+        `${report.context.title} (${report.context.profileLabel})`,
+        ...report.context.limits.map(item => `- ${item}`),
+        ...report.context.notes.map(item => `- ${item}`)
+      ].join('\n');
+      const findings = report.findings.length
+        ? report.findings.map(f => `${f.title}\nSeverity: ${f.severity.toUpperCase()}\nLine: ${f.lineNo}\n${f.description}${f.fixes?.length ? `\nFixes:\n- ${f.fixes.join('\n- ')}` : ''}`).join('\n\n---\n\n')
+        : 'None';
+      const content = `${title}\n\nRisk score: ${report.score}\nRisk level: ${report.level}\nLoops detected: ${report.loops}\nContext tags: ${tagText}\n\nSummary\n${report.summary}\n\nSalesforce context\n${contextLines}\n\nFindings\n${findings}\n\nBuilt by Shivam Gupta - https://shivam.pulsagi.com`;
       const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = 'governor-limit-analysis-report.txt';
       a.click();
       URL.revokeObjectURL(a.href);
+      showToast('Report downloaded', 'The current governor-limit analysis report has been prepared as a text file.', 'success');
     }
 
     resetUI();
