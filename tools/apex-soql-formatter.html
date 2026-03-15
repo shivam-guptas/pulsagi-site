@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex and SOQL Formatter | Pulsagi Tools</title>
+  <meta name="description" content="Free browser-based Apex and SOQL formatter for Salesforce developers. Format Apex classes, triggers, anonymous Apex, and SOQL queries in one static tool." />
+  <meta name="keywords" content="Apex formatter, SOQL formatter, Salesforce code formatter, Apex code formatter, SOQL query formatter, Salesforce developer tools, Pulsagi tools" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="application-name" content="Pulsagi Apex and SOQL Formatter" />
+  <meta name="apple-mobile-web-app-title" content="Pulsagi Apex Formatter" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#08101f" />
+  <link rel="canonical" href="https://pulsagi.com/tools/apex-soql-formatter.html" />
+  <meta property="og:title" content="Apex and SOQL Formatter | Pulsagi Tools" />
+  <meta property="og:description" content="Format Salesforce Apex classes, triggers, anonymous Apex, and SOQL queries directly in the browser." />
+  <meta property="og:url" content="https://pulsagi.com/tools/apex-soql-formatter.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Apex and SOQL Formatter | Pulsagi Tools" />
+  <meta name="twitter:description" content="Browser-based formatting for Apex classes, triggers, anonymous Apex, and SOQL queries." />
+  <meta name="twitter:url" content="https://pulsagi.com/tools/apex-soql-formatter.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi Apex and SOQL Formatter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://pulsagi.com/tools/apex-soql-formatter.html","description":"Browser-based formatter for Salesforce Apex code and SOQL queries.","creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Apex and SOQL Formatter","url":"https://pulsagi.com/tools/apex-soql-formatter.html","description":"A browser-based Salesforce formatter for Apex and SOQL.","isPartOf":{"@type":"WebSite","name":"Pulsagi","url":"https://pulsagi.com/"},"about":{"@type":"Thing","name":"Salesforce Apex and SOQL formatting"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pulsagi","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pulsagi.com/tools/"},{"@type":"ListItem","position":3,"name":"Apex and SOQL Formatter","item":"https://pulsagi.com/tools/apex-soql-formatter.html"}]}}
+  </script>
+  <style>
+    :root{--panel:#111831;--text:#e7ecff;--muted:#95a0c8;--line:#2b3766;--accent:#7aa2ff;--accent2:#9b87f5;--good:#3ddc97;--shadow:0 18px 40px rgba(0,0,0,.35);--radius:18px;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:Inter,ui-sans-serif,system-ui,sans-serif;--site-border:#1f1f23;--site-muted:#71717a;--site-accent:#6ee7b7;--site-accent-dim:rgba(110,231,183,.1)}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:var(--sans);color:var(--text);background:radial-gradient(1200px 500px at 20% -10%, rgba(122,162,255,.18), transparent 60%),radial-gradient(900px 400px at 100% 0%, rgba(155,135,245,.18), transparent 50%),linear-gradient(180deg,#08101f 0%, #0b1020 100%);min-height:100vh}
+    a{color:#aecdff}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;background:rgba(9,9,11,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--site-border)}
+    .nav-brand{font-size:1.1rem;font-weight:700;letter-spacing:.05em;color:var(--site-accent);text-decoration:none}
+    nav ul{list-style:none;display:flex;gap:1.75rem;align-items:center;margin:0;padding:0}
+    nav a{color:var(--site-muted);text-decoration:none;font-size:.85rem;font-family:'Courier New',monospace;transition:color .2s;cursor:pointer}
+    nav a:hover{color:#fafafa;text-decoration:none}
+    .nav-pill{background:var(--site-accent-dim);color:var(--site-accent)!important;padding:.35rem .9rem;border-radius:6px;border:1px solid rgba(110,231,183,.2)}
+    .nav-pill:hover{background:rgba(110,231,183,.15)!important}
+    .wrap{max-width:1300px;margin:0 auto;padding:96px 18px 36px}
+    .hero{margin-bottom:18px}
+    .hero-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .hero h1{margin:0;font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-.03em;white-space:nowrap;background:linear-gradient(135deg,#f4f7ff 0%,#a9c1ff 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-copy{margin:0;color:var(--muted);max-width:760px;font-size:14px;line-height:1.65;flex:1 1 620px}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(122,162,255,.28);border-radius:999px;background:linear-gradient(180deg,rgba(122,162,255,.12),rgba(155,135,245,.08));color:#dce7ff;font-size:12px;white-space:nowrap;flex:0 0 auto;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;margin-bottom:18px}
+    .badge{background:rgba(122,162,255,.12);border:1px solid rgba(122,162,255,.28);color:#dce7ff;border-radius:999px;padding:8px 12px;font-size:12px}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);flex-wrap:wrap}
+    .card-head h2{margin:0;font-size:16px}
+    .sub{color:var(--muted);font-size:12px}
+    .card-body{padding:14px 16px}
+    .controls,.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn,.select,.file-label{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:10px 13px;font-size:14px;cursor:pointer;text-decoration:none;transition:.18s ease}
+    .btn:hover,.select:hover,.file-label:hover{transform:translateY(-1px);border-color:#4263c6}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#08101f;border:none;font-weight:700}
+    .btn.good{background:rgba(61,220,151,.12);border-color:rgba(61,220,151,.35)}
+    .select{min-width:160px}
+    .spacer{flex:1}
+    .dropzone{border:1.5px dashed #43549a;background:rgba(122,162,255,.06);border-radius:14px;padding:14px;margin:12px 0;color:var(--muted);text-align:center;font-size:14px}
+    .dropzone.dragover{border-color:#8eb0ff;background:rgba(122,162,255,.12);color:#dce7ff}
+    textarea{width:100%;min-height:460px;resize:vertical;background:#0a1123;color:#eaf0ff;border:1px solid var(--line);border-radius:14px;padding:14px;font:13px/1.55 var(--mono);outline:none}
+    .output{min-height:460px;background:#0a1123;border:1px solid var(--line);border-radius:14px;overflow:auto}
+    .output pre{margin:0;padding:14px;white-space:pre-wrap;word-break:break-word;font:13px/1.55 var(--mono);color:#eaf0ff}
+    .muted{color:var(--muted)}
+    .syntax .kw{color:#9ec2ff;font-weight:700}
+    .syntax .type{color:#8fe1c2}
+    .syntax .num{color:#f7cd74}
+    .syntax .str{color:#bce784}
+    .syntax .com{color:#7f8db8;font-style:italic}
+    .syntax .ann{color:#ffb0d9}
+    .syntax .soql{color:#9b87f5;font-weight:700}
+    .syntax .pun{color:#b8c6ef}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+    .stat .k{font-size:12px;color:var(--muted)}
+    .stat .v{font-size:22px;font-weight:800;margin-top:4px}
+    .notes{display:grid;gap:10px;margin-top:12px}
+    .note{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 13px}
+    .note strong{display:block;margin-bottom:4px}
+    .hidden{display:none!important}
+    .tiny{font-size:12px;color:var(--muted)}
+    footer{border-top:1px solid var(--site-border);padding:2rem;text-align:center;font-size:.8rem;color:var(--site-muted);font-family:'Courier New',monospace}
+    footer a{color:var(--site-accent);text-decoration:none}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    @media (max-width:760px){nav{padding:1rem 1.2rem}nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}.wrap{padding:92px 14px 24px}.hero-title{align-items:flex-start}.hero h1,.hero-copy{white-space:normal}}
+    @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <nav>
+    <a class="nav-brand" href="/">Pulsagi</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#articles">Articles</a></li>
+      <li><a href="/tools/" class="nav-pill">Tools</a></li>
+      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-title">
+        <h1>Apex and SOQL Formatter</h1>
+        <p class="hero-copy">Paste Apex classes, triggers, anonymous Apex, or SOQL queries to clean up indentation, line breaks, and readability in one browser-based formatter built for Salesforce workflows.</p>
+        <div class="hero-tag">Pulsagi Developer Toolbox</div>
+      </div>
+      <div class="badge-row">
+        <span class="badge">Apex formatting</span>
+        <span class="badge">SOQL formatting</span>
+        <span class="badge">Syntax highlighting</span>
+        <span class="badge">Upload .cls / .trigger / .apex / .soql</span>
+        <span class="badge">Browser-based</span>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div><h2>Input</h2><div class="sub">Paste code, drop a file, or try a sample.</div></div>
+          <div class="controls">
+            <select id="mode" class="select"><option value="auto">Auto detect</option><option value="apex">Apex</option><option value="soql">SOQL</option></select>
+            <button class="btn" id="sampleBtn" type="button">Load sample</button>
+            <label class="file-label" for="fileInput">Upload file</label>
+            <input id="fileInput" type="file" class="hidden" accept=".cls,.trigger,.apex,.txt,.soql,.sql" />
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="dropzone" class="dropzone">Drag and drop an Apex or SOQL file here</div>
+          <div class="toolbar" style="margin-bottom:12px">
+            <button class="btn primary" id="formatBtn" type="button">Format code</button>
+            <button class="btn" id="copyInputBtn" type="button">Copy input</button>
+            <button class="btn" id="clearBtn" type="button">Clear</button>
+            <span class="spacer"></span><span class="tiny" id="detectedLabel">Detected: -</span>
+          </div>
+          <textarea id="input" spellcheck="false" placeholder="Paste Apex or SOQL here..."></textarea>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div><h2>Formatted Output</h2><div class="sub">Color coded, readable, and ready to copy.</div></div>
+          <div class="controls"><button class="btn good" id="copyOutputBtn" type="button">Copy output</button><button class="btn" id="downloadBtn" type="button">Download</button></div>
+        </div>
+        <div class="card-body">
+          <div class="output"><pre id="output" class="syntax muted">Formatted code will appear here.</pre></div>
+          <div class="stats">
+            <div class="stat"><div class="k">Mode</div><div class="v" id="statMode">-</div></div>
+            <div class="stat"><div class="k">Input lines</div><div class="v" id="statInputLines">0</div></div>
+            <div class="stat"><div class="k">Output lines</div><div class="v" id="statOutputLines">0</div></div>
+            <div class="stat"><div class="k">Characters</div><div class="v" id="statChars">0</div></div>
+          </div>
+          <div class="notes">
+            <div class="note"><strong>What this formatter does</strong>Normalizes indentation, spacing, braces, keywords, and line breaks for common Apex and SOQL patterns.</div>
+            <div class="note"><strong>Important note</strong>This is a smart browser formatter, not a full Salesforce parser. Extremely unusual or malformed code can still need manual review.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  </footer>
+  <script>
+    const inputEl = document.getElementById('input');
+    const outputEl = document.getElementById('output');
+    const modeEl = document.getElementById('mode');
+    const detectedLabel = document.getElementById('detectedLabel');
+    const fileInput = document.getElementById('fileInput');
+    const dropzone = document.getElementById('dropzone');
+    const apexKeywords = ['public','private','protected','global','with','without','sharing','class','interface','enum','virtual','override','static','final','abstract','extends','implements','new','return','if','else','for','while','do','switch','when','break','continue','try','catch','finally','throw','throws','null','true','false','this','super','insert','update','upsert','delete','undelete','merge','database','system','testmethod','webservice','transient','trigger','on','before','after','inherited','as','instanceof'];
+    const apexTypes = ['String','Integer','Long','Double','Decimal','Boolean','Date','Datetime','Time','Id','Object','Blob','List','Set','Map','SObject','Account','Contact','Opportunity','Lead','Case','Task','Event','User'];
+    const soqlSingles = ['SELECT','FROM','WHERE','AND','OR','NOT','IN','LIKE','LIMIT','OFFSET','HAVING','WITH','ASC','DESC'];
+
+    function escapeHtml(str){ return String(str).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s])); }
+    function detectMode(text){
+      const t = (text || '').trim();
+      if(!t) return '-';
+      if(/^\s*SELECT\b/i.test(t)) return 'SOQL';
+      if(/\b(class|trigger)\b|@AuraEnabled|\bpublic\b|\bprivate\b|\bglobal\b|Database\./i.test(t)) return 'Apex';
+      if(/\bSELECT\b/i.test(t) && /\bFROM\b/i.test(t)) return 'SOQL';
+      return 'Apex';
+    }
+    function splitLines(text){ return text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n'); }
+    function findInlineCommentStart(line){
+      let quote = '';
+      let escapeNext = false;
+      for(let i = 0; i < line.length - 1; i += 1){
+        const ch = line[i];
+        const next = line[i + 1];
+        if(quote){
+          if(escapeNext){
+            escapeNext = false;
+          } else if(ch === '\\'){
+            escapeNext = true;
+          } else if(ch === quote){
+            quote = '';
+          }
+          continue;
+        }
+        if(ch === '\'' || ch === '"'){
+          quote = ch;
+          continue;
+        }
+        if(ch === '/' && next === '/') return i;
+      }
+      return -1;
+    }
+    function normalizeSpacing(line){
+      if(!line) return '';
+      if(/^(\/\/|\/\*|\*\/|\*)/.test(line.trim())) return line.trim();
+      let code = line;
+      let comment = '';
+      const commentIndex = findInlineCommentStart(line);
+      if(commentIndex > -1){
+        code = line.slice(0, commentIndex);
+        comment = line.slice(commentIndex).trim();
+      }
+      code = code
+        .replace(/\s*,\s*/g,', ')
+        .replace(/\s*;\s*$/,';')
+        .replace(/\)\s*\{/g,') {')
+        .replace(/\bif\s*\(/g,'if (')
+        .replace(/\bfor\s*\(/g,'for (')
+        .replace(/\bwhile\s*\(/g,'while (')
+        .replace(/\bcatch\s*\(/g,'catch (')
+        .replace(/\bswitch\s*\(/g,'switch (')
+        .replace(/\belse\s+if\s*\(/g,'else if (')
+        .replace(/\s+\./g,'.')
+        .replace(/\.\s+/g,'.')
+        .replace(/\(\s+/g,'(')
+        .replace(/\s+\)/g,')')
+        .replace(/[ \t]+/g,' ')
+        .trim();
+      if(comment) return code ? code + ' ' + comment : comment;
+      return code;
+    }
+    function splitApexStatements(text){
+      const src = (text || '').replace(/\t/g,'    ').replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+      let out = '';
+      let parenDepth = 0;
+      let stringQuote = '';
+      let inLineComment = false;
+      let inBlockComment = false;
+      let escapeNext = false;
+
+      for(let i = 0; i < src.length; i += 1){
+        const ch = src[i];
+        const next = src[i + 1] || '';
+
+        if(inLineComment){
+          out += ch;
+          if(ch === '\n') inLineComment = false;
+          continue;
+        }
+
+        if(inBlockComment){
+          out += ch;
+          if(ch === '*' && next === '/'){
+            out += next;
+            i += 1;
+            inBlockComment = false;
+          }
+          continue;
+        }
+
+        if(stringQuote){
+          out += ch;
+          if(escapeNext){
+            escapeNext = false;
+          } else if(ch === '\\'){
+            escapeNext = true;
+          } else if(ch === stringQuote){
+            stringQuote = '';
+          }
+          continue;
+        }
+
+        if(ch === '/' && next === '/'){
+          out += ch + next;
+          i += 1;
+          inLineComment = true;
+          continue;
+        }
+
+        if(ch === '/' && next === '*'){
+          out += ch + next;
+          i += 1;
+          inBlockComment = true;
+          continue;
+        }
+
+        if(ch === '\'' || ch === '"'){
+          stringQuote = ch;
+          out += ch;
+          continue;
+        }
+
+        if(ch === '('){
+          parenDepth += 1;
+          out += ch;
+          continue;
+        }
+
+        if(ch === ')'){
+          parenDepth = Math.max(0, parenDepth - 1);
+          out += ch;
+          continue;
+        }
+
+        if(ch === '{'){
+          out = out.replace(/[ \t]*$/,'');
+          if(out && !out.endsWith('\n')) out += ' ';
+          out += '{\n';
+          while(/\s/.test(src[i + 1] || '')) i += 1;
+          continue;
+        }
+
+        if(ch === '}'){
+          out = out.replace(/[ \t]*$/,'');
+          if(out && !out.endsWith('\n')) out += '\n';
+          out += '}\n';
+          while(/[ \t]/.test(src[i + 1] || '')) i += 1;
+          continue;
+        }
+
+        if(ch === ';' && parenDepth === 0){
+          out += ';\n';
+          while(/\s/.test(src[i + 1] || '')) i += 1;
+          continue;
+        }
+
+        if(ch === '\n'){
+          if(!out.endsWith('\n')) out += '\n';
+          continue;
+        }
+
+        out += ch;
+      }
+
+      return out;
+    }
+    function formatApex(text){
+      const rawLines = splitLines(splitApexStatements(text));
+      const lines = [];
+      for(const rawLine of rawLines){
+        const trimmed = rawLine.trim();
+        if(!trimmed){
+          if(lines[lines.length - 1] !== '') lines.push('');
+          continue;
+        }
+        const shouldMerge = /^(else\b|catch\b|finally\b)/.test(trimmed) || (/^while\b/.test(trimmed) && /^\}/.test(lines[lines.length - 1] || ''));
+        if(shouldMerge && lines.length){
+          lines[lines.length - 1] = lines[lines.length - 1].replace(/\s+$/,'') + ' ' + normalizeSpacing(trimmed);
+        } else {
+          lines.push(normalizeSpacing(trimmed));
+        }
+      }
+
+      const out = [];
+      let indent = 0;
+      for(let line of lines){
+        if(!line){
+          if(out[out.length - 1] !== '') out.push('');
+          continue;
+        }
+        if(/^}/.test(line)) indent = Math.max(0, indent - 1);
+        out.push('    '.repeat(indent) + line);
+        const leadingClosers = (/^}/.test(line) ? 1 : 0);
+        const openCount = (line.match(/\{/g) || []).length;
+        const closeCount = (line.match(/\}/g) || []).length;
+        indent += openCount - Math.max(0, closeCount - leadingClosers);
+        if(indent < 0) indent = 0;
+      }
+      return out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+    }
+    function normalizeSOQLWhitespace(query){
+      let out = '';
+      let quote = '';
+      let escapeNext = false;
+      let lastWasSpace = false;
+      const src = (query || '').replace(/\r\n/g,' ').replace(/\r/g,' ').trim();
+      for(let i = 0; i < src.length; i += 1){
+        const ch = src[i];
+        if(quote){
+          out += ch;
+          if(escapeNext){
+            escapeNext = false;
+          } else if(ch === '\\'){
+            escapeNext = true;
+          } else if(ch === quote){
+            quote = '';
+          }
+          continue;
+        }
+        if(ch === '\'' || ch === '"'){
+          quote = ch;
+          out += ch;
+          lastWasSpace = false;
+          continue;
+        }
+        if(/\s/.test(ch)){
+          if(!lastWasSpace && out){
+            out += ' ';
+            lastWasSpace = true;
+          }
+          continue;
+        }
+        out += ch;
+        lastWasSpace = false;
+      }
+      return out.trim();
+    }
+    function normalizeSOQLOperators(query){
+      return query
+        .replace(/\s*(<=)\s*/g,' __LE__ ')
+        .replace(/\s*(>=)\s*/g,' __GE__ ')
+        .replace(/\s*(!=)\s*/g,' __NE__ ')
+        .replace(/\s*(<>)\s*/g,' __NE2__ ')
+        .replace(/\s*=\s*/g,' = ')
+        .replace(/\s*<\s*/g,' < ')
+        .replace(/\s*>\s*/g,' > ')
+        .replace(/\s*,\s*/g,', ')
+        .replace(/\s*\(\s*/g,'(')
+        .replace(/\s*\)\s*/g,') ')
+        .replace(/\s+/g,' ')
+        .replace(/__LE__/g,'<=')
+        .replace(/__GE__/g,'>=')
+        .replace(/__NE__/g,'!=')
+        .replace(/__NE2__/g,'<>')
+        .trim();
+    }
+    function matchSOQLKeyword(source, index, keywords){
+      const prev = index > 0 ? source[index - 1] : '';
+      if(/[A-Za-z0-9_]/.test(prev)) return null;
+      for(const keyword of keywords){
+        const pattern = keyword.replace(/ /g,'\\s+');
+        const match = source.slice(index).match(new RegExp('^' + pattern + '(?![A-Za-z_])','i'));
+        if(match) return { keyword, length: match[0].length };
+      }
+      return null;
+    }
+    function formatSOQL(query){
+      const rawQuery = (query || '').trim();
+      const hasBracketWrapper = rawQuery.startsWith('[') && rawQuery.endsWith(']');
+      const clauseKeywords = ['GROUP BY','ORDER BY','FOR VIEW','FOR REFERENCE','ALL ROWS','SELECT','FROM','WHERE','HAVING','LIMIT','OFFSET','WITH'];
+      const logicKeywords = ['AND','OR'];
+      const queryBody = hasBracketWrapper ? rawQuery.slice(1, -1).trim() : rawQuery;
+      const normalized = normalizeSOQLWhitespace(normalizeSOQLOperators(queryBody));
+      let q = normalized;
+      ['GROUP BY','ORDER BY','NULLS FIRST','NULLS LAST','ALL ROWS','FOR VIEW','FOR REFERENCE'].forEach(kw => { q = q.replace(new RegExp('\\b' + kw.replace(/ /g,'\\s+') + '\\b','ig'), kw); });
+      soqlSingles.forEach(kw => { q = q.replace(new RegExp('\\b' + kw + '\\b','ig'), kw); });
+
+      const lines = [];
+      let current = '';
+      let depth = 0;
+      let currentDepth = 0;
+      let quote = '';
+      let escapeNext = false;
+      let currentClause = '';
+
+      function pushCurrent(){
+        const text = current.trim();
+        if(text){
+          lines.push({ text, depth: currentDepth, clause: currentClause });
+        }
+        current = '';
+      }
+
+      for(let i = 0; i < q.length; i += 1){
+        const ch = q[i];
+
+        if(quote){
+          current += ch;
+          if(escapeNext){
+            escapeNext = false;
+          } else if(ch === '\\'){
+            escapeNext = true;
+          } else if(ch === quote){
+            quote = '';
+          }
+          continue;
+        }
+
+        if(ch === '\'' || ch === '"'){
+          if(!current) currentDepth = depth;
+          quote = ch;
+          current += ch;
+          continue;
+        }
+
+        if(ch === '('){
+          if(!current) currentDepth = depth;
+          current += ch;
+          depth += 1;
+          continue;
+        }
+
+        if(ch === ')'){
+          if(!current) currentDepth = Math.max(0, depth - 1);
+          current += ch;
+          depth = Math.max(0, depth - 1);
+          continue;
+        }
+
+        const clauseMatch = matchSOQLKeyword(q, i, clauseKeywords);
+        if(clauseMatch){
+          const token = clauseMatch.keyword;
+          const currentTrimmed = current.trim();
+          if(currentTrimmed && currentTrimmed !== '('){
+            pushCurrent();
+          }
+          currentClause = token;
+          if(currentTrimmed === '('){
+            current = '(SELECT';
+          } else {
+            currentDepth = depth;
+            current = token;
+          }
+          i += clauseMatch.length - 1;
+          continue;
+        }
+
+        const logicMatch = matchSOQLKeyword(q, i, logicKeywords);
+        if(logicMatch && /^(WHERE|HAVING)$/.test(currentClause)){
+          pushCurrent();
+          currentDepth = depth;
+          current = logicMatch.keyword;
+          i += logicMatch.length - 1;
+          continue;
+        }
+
+        if(ch === ',' && /^(SELECT|ORDER BY)$/.test(currentClause)){
+          current += ',';
+          pushCurrent();
+          continue;
+        }
+
+        if(!current) currentDepth = depth;
+        current += ch;
+      }
+      pushCurrent();
+
+      const formatted = lines.map((line, index) => {
+        const text = line.text.replace(/\s+/g,' ').trim();
+        const baseIndent = hasBracketWrapper ? 1 : 0;
+        const indentLevel = (() => {
+          if(index === 0) return baseIndent;
+          if(/^\(SELECT\b/.test(text)) return baseIndent + line.depth + 1;
+          if(/^(SELECT|FROM|WHERE|GROUP BY|HAVING|ORDER BY|LIMIT|OFFSET|WITH|ALL ROWS|FOR VIEW|FOR REFERENCE)\b/.test(text)) return baseIndent + line.depth;
+          if(/^(AND|OR)\b/.test(text)) return baseIndent + line.depth + 1;
+          return baseIndent + line.depth + 1;
+        })();
+        return '    '.repeat(Math.max(0, indentLevel)) + text;
+      }).join('\n').trimEnd();
+
+      if(hasBracketWrapper){
+        return '[\n' + formatted + '\n]';
+      }
+      return formatted;
+    }
+    function syntaxHighlight(code, mode){
+      let html = escapeHtml(code);
+      const placeholders = [];
+      const hold = (value) => `§§H${placeholders.push(value) - 1}§§`;
+      const restore = (value) => value.replace(/§§H(\d+)§§/g, (_, index) => placeholders[Number(index)]);
+
+      html = html.replace(/&(?:[a-z]+|#\d+);/gi, match => hold(match));
+      html = html.replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*)/g, match => hold(`<span class="com">${match}</span>`));
+      html = html.replace(/(@[A-Za-z_]\w*)/g, match => hold(`<span class="ann">${match}</span>`));
+      html = html.replace(/("(?:\\.|[^"])*"|'(?:\\.|[^'])*')/g, match => hold(`<span class="str">${match}</span>`));
+      html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, match => hold(`<span class="num">${match}</span>`));
+      if(mode === 'SOQL'){
+        html = html.replace(/\b(SELECT|FROM|WHERE|AND|OR|NOT|IN|LIKE|LIMIT|OFFSET|HAVING|WITH|GROUP BY|ORDER BY|ASC|DESC|ALL ROWS|FOR VIEW|FOR REFERENCE)\b/g,'<span class="soql">$1</span>');
+      } else {
+        html = html.replace(new RegExp('\\b(' + apexKeywords.join('|') + ')\\b','g'), '<span class="kw">$1</span>');
+        html = html.replace(new RegExp('\\b(' + apexTypes.join('|') + ')\\b','g'), '<span class="type">$1</span>');
+        html = html.replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|LIMIT|OFFSET|HAVING|AND|OR|NOT|IN|LIKE|WITH|ASC|DESC)\b/g,'<span class="soql">$1</span>');
+      }
+      html = html.replace(/([{}()[\],.;])/g,'<span class="pun">$1</span>');
+      return restore(html);
+    }
+    function updateStats(mode, formatted, raw){
+      document.getElementById('statMode').textContent = mode || '-';
+      document.getElementById('statInputLines').textContent = String(raw ? raw.replace(/\r\n/g,'\n').split('\n').length : 0);
+      document.getElementById('statOutputLines').textContent = String(formatted ? formatted.replace(/\r\n/g,'\n').split('\n').length : 0);
+      document.getElementById('statChars').textContent = String((formatted || '').length);
+    }
+    function doFormat(){
+      const raw = inputEl.value || '';
+      const selected = modeEl.value;
+      const detected = detectMode(raw);
+      detectedLabel.textContent = 'Detected: ' + detected;
+      const finalMode = selected === 'auto' ? detected : (selected === 'soql' ? 'SOQL' : 'Apex');
+      if(!raw.trim()){
+        outputEl.classList.add('muted');
+        outputEl.textContent = 'Formatted code will appear here.';
+        updateStats(finalMode,'',raw);
+        window.__formattedOutput = '';
+        window.__formattedMode = finalMode;
+        return;
+      }
+      let formatted = raw;
+      try { formatted = finalMode === 'SOQL' ? formatSOQL(raw) : formatApex(raw); } catch(e) { formatted = raw; }
+      outputEl.classList.remove('muted');
+      outputEl.innerHTML = syntaxHighlight(formatted, finalMode);
+      updateStats(finalMode, formatted, raw);
+      window.__formattedOutput = formatted;
+      window.__formattedMode = finalMode;
+    }
+    async function copyText(text){ try { await navigator.clipboard.writeText(text || ''); } catch(e) {} }
+    function downloadText(filename, content){ const blob = new Blob([content], {type:'text/plain;charset=utf-8'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1500); }
+    document.getElementById('formatBtn').addEventListener('click', doFormat);
+    document.getElementById('copyInputBtn').addEventListener('click', () => copyText(inputEl.value));
+    document.getElementById('copyOutputBtn').addEventListener('click', () => copyText(window.__formattedOutput || ''));
+    document.getElementById('clearBtn').addEventListener('click', () => { inputEl.value=''; outputEl.classList.add('muted'); outputEl.textContent='Formatted code will appear here.'; detectedLabel.textContent='Detected: -'; updateStats('-','',''); window.__formattedOutput=''; window.__formattedMode='-'; });
+    document.getElementById('downloadBtn').addEventListener('click', () => { const ext = window.__formattedMode === 'SOQL' ? 'soql' : 'cls'; downloadText('formatted-code.' + ext, window.__formattedOutput || ''); });
+    document.getElementById('sampleBtn').addEventListener('click', () => { inputEl.value = "public with sharing class ContactService{@AuraEnabled(cacheable=true) public static List<Contact> searchContacts(String searchText){if(String.isBlank(searchText)){return new List<Contact>();}String likeValue='%'+searchText+'%';List<Contact> records=[SELECT Id,FirstName,LastName,Email,Account.Name FROM Contact WHERE FirstName LIKE :likeValue OR LastName LIKE :likeValue ORDER BY LastName ASC, FirstName ASC LIMIT 50];return records;}}"; modeEl.value='auto'; doFormat(); });
+    modeEl.addEventListener('change', () => { detectedLabel.textContent = 'Detected: ' + detectMode(inputEl.value || ''); });
+    inputEl.addEventListener('input', () => { detectedLabel.textContent = 'Detected: ' + detectMode(inputEl.value || ''); updateStats(window.__formattedMode || '-', window.__formattedOutput || '', inputEl.value || ''); });
+    fileInput.addEventListener('change', async (e) => { const file = e.target.files && e.target.files[0]; if(!file) return; inputEl.value = await file.text(); if(/\.(soql|sql)$/i.test(file.name)) modeEl.value='soql'; else if(/\.(cls|trigger|apex)$/i.test(file.name)) modeEl.value='apex'; else modeEl.value='auto'; doFormat(); });
+    ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); }));
+    dropzone.addEventListener('drop', async e => { const file = e.dataTransfer.files && e.dataTransfer.files[0]; if(!file) return; inputEl.value = await file.text(); if(/\.(soql|sql)$/i.test(file.name)) modeEl.value='soql'; else if(/\.(cls|trigger|apex)$/i.test(file.name)) modeEl.value='apex'; else modeEl.value='auto'; doFormat(); });
+    window.__formattedOutput = '';
+    window.__formattedMode = '-';
+  </script>
+</body>
+</html>
