@@ -9,6 +9,7 @@
   <meta name="keywords" content="AI infrastructure, Pulsagi, Shivam Gupta, developer tools, JSON Viewer, Salesforce Governor Limit Analyzer, Apex analyzer, stock market analysis, Indian stocks, fundamental analysis, NSE" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="theme-color" content="#09090b" />
   <link rel="canonical" href="https://pulsagi.com/" />
 
@@ -17,10 +18,12 @@
   <meta property="og:url" content="https://pulsagi.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Pulsagi — AI Infrastructure, Market Insights & Developer Tools" />
   <meta name="twitter:description" content="Fast AI infrastructure, lightweight browser tools, and stock market fundamental analysis." />
+  <meta name="twitter:url" content="https://pulsagi.com/" />
 
   <script type="application/ld+json">
   {
@@ -50,6 +53,40 @@
     "publisher": {
       "@type": "Organization",
       "name": "Pulsagi"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Pulsagi Developer Tools",
+    "url": "https://pulsagi.com/tools/",
+    "description": "A collection of free browser-based developer tools from Pulsagi, including a JSON Viewer and a Salesforce Governor Limit Analyzer.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Pulsagi",
+      "url": "https://pulsagi.com/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Pulsagi Developer Tools",
+      "itemListElement": [
+        {
+          "@type": "SoftwareApplication",
+          "position": 1,
+          "name": "JSON Viewer and Flow Visualizer",
+          "url": "https://pulsagi.com/tools/json-viewer.html",
+          "applicationCategory": "DeveloperApplication"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "position": 2,
+          "name": "Salesforce Governor Limit Analyzer",
+          "url": "https://pulsagi.com/tools/salesforce-governor-limit-analyzer.html",
+          "applicationCategory": "DeveloperApplication"
+        }
+      ]
     }
   }
   </script>
@@ -132,6 +169,9 @@
     .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
     .tools-sec { padding: 0 2rem 5rem; max-width: 900px; margin: 0 auto; }
+    .section-copy { color: var(--muted); max-width: 720px; margin: -2rem 0 2rem; font-size: 0.95rem; line-height: 1.8; }
+    .section-copy a { color: var(--accent); text-decoration: none; }
+    .section-copy a:hover { text-decoration: underline; }
     .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .tool-card {
       display: block; text-decoration: none; color: inherit;
@@ -238,7 +278,7 @@
     <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
     <li><a href="#about" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),50);return false;">About</a></li>
     <li><a href="#articles" class="nav-pill" onclick="showPage('articles');return false;">Articles</a></li>
-    <li><a href="#tools" class="nav-pill" onclick="showPage('tools');return false;">Tools</a></li>
+    <li><a href="/tools/" class="nav-pill">Tools</a></li>
     <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
   </ul>
 </nav>
@@ -252,7 +292,7 @@
     <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
     <div class="cta-group">
       <a href="#articles" class="btn btn-primary" onclick="showPage('articles');return false;">Read Articles</a>
-      <a href="#tools" class="btn btn-ghost" onclick="showPage('tools');return false;">Explore Tools</a>
+      <a href="/tools/" class="btn btn-ghost">Explore Tools</a>
       <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
     </div>
   </section>
@@ -282,6 +322,7 @@
   <section class="tools-sec" id="tools-preview">
     <div class="sec-label">Developer Tools</div>
     <h2>Small utilities that save real time.</h2>
+    <p class="section-copy">Browse the full <a href="/tools/">Pulsagi developer tools directory</a> to find browser-based utilities for JSON inspection, Salesforce Apex review, and other day-to-day developer workflows. Each tool has its own indexable landing page and works without signup or server setup.</p>
     <div class="tools-grid">
       <a class="tool-card" href="tools/json-viewer.html">
         <div class="tool-card-top">
@@ -336,7 +377,7 @@
     <div class="tool-header">
       <div class="sec-label">Pulsagi Tools</div>
       <h2>Utility-first products for builders</h2>
-      <p>Lightweight browser tools for inspecting data, speeding up analysis, and handling day-to-day developer tasks.</p>
+      <p>Lightweight browser tools for inspecting data, speeding up analysis, and handling day-to-day developer tasks. You can also browse the dedicated <a href="/tools/" style="color:var(--accent);text-decoration:none;">tools directory</a> for clean crawlable URLs.</p>
     </div>
     <div class="tools-grid">
       <a class="tool-card" href="tools/json-viewer.html">
