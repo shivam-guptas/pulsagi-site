@@ -112,7 +112,7 @@
       background:linear-gradient(135deg,#fafafa 0%,#c2f7e3 55%,#93c5fd 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
-    .lead, .section-copy, .hero-note, .small, .summary, .section-head p, .flag p, .tip p, .feature p, .faq-item p, .category-card p, .domain-card p, .meta-card span {
+    .lead, .section-copy, .hero-note, .small, .summary, .section-head p, .flag p, .tip p, .feature p, .faq-item p, .domain-card p, .meta-card span, .mode-card p, .mode-note {
       color:var(--muted);
     }
     .bullet-row, .helper-row, .button-row, .report-actions { display:flex; flex-wrap:wrap; gap:.7rem; }
@@ -122,16 +122,32 @@
       border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.04); color:#e7f8f1; font-size:.86rem;
     }
     .helper-chip { appearance:none; cursor:pointer; }
-    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .category-card, .flag, .tip, .domain-card, .meta-card {
+    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .flag, .tip, .domain-card, .meta-card, .mode-card {
       border:1px solid var(--border); border-radius:18px; background:rgba(255,255,255,.04);
     }
-    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .category-card, .flag, .tip, .domain-card, .meta-card { padding:1rem; }
-    .field-grid, .meta-grid, .feature-grid, .faq-grid, .category-grid, .flag-list, .tip-list, .domain-grid { display:grid; gap:.9rem; }
+    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .flag, .tip, .domain-card, .meta-card, .mode-card { padding:1rem; }
+    .field-grid, .meta-grid, .feature-grid, .faq-grid, .flag-list, .tip-list, .domain-grid, .mode-grid { display:grid; gap:.9rem; }
     .field-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
     .meta-grid { grid-template-columns:repeat(3, minmax(0,1fr)); margin:1rem 0; }
-    .feature-grid, .category-grid { grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); }
+    .feature-grid, .mode-grid { grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); }
     .faq-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
     .domain-grid { grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); }
+    .mode-picker { display:grid; gap:.8rem; }
+    .mode-note { margin:0; font-size:.9rem; }
+    .mode-card {
+      appearance:none; width:100%; text-align:left; cursor:pointer; transition:transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+    .mode-card:hover { transform:translateY(-1px); border-color:rgba(110,231,183,.28); }
+    .mode-card.active {
+      border-color:rgba(110,231,183,.42);
+      background:linear-gradient(180deg, rgba(110,231,183,.12), rgba(255,255,255,.04));
+      box-shadow:0 14px 28px rgba(0,0,0,.22);
+    }
+    .mode-card strong { display:block; margin-bottom:.3rem; color:var(--text); }
+    .mode-kicker {
+      display:inline-flex; margin-bottom:.55rem; padding:.24rem .58rem; border-radius:999px; font:700 .66rem var(--mono);
+      letter-spacing:.06em; text-transform:uppercase; color:var(--accent); background:rgba(110,231,183,.1); border:1px solid rgba(110,231,183,.16);
+    }
     .field { display:grid; gap:.45rem; }
     .field label { font-size:.88rem; font-weight:700; color:#eef8f3; }
     .input, .select, .textarea {
@@ -223,9 +239,9 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/tools/" class="nav-pill">Tools</a></li>
-      <li><a href="/tools/fake-job-scam-checker.html">Fake Job</a></li>
-      <li><a href="/tools/phishing-link-checker.html">Phishing</a></li>
-      <li><a href="/tools/upi-scam-checker.html">UPI</a></li>
+      <li><a href="#checker">Checker</a></li>
+      <li><a href="#smart-modes">Modes</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
   </nav>
 
@@ -256,10 +272,39 @@
         </div>
       </div>
 
-      <div class="panel checker">
+      <div class="panel checker" id="checker">
         <div>
           <h2 style="margin:0;">Run a scam check</h2>
           <p class="section-copy">Add as much context as you have. The more exact the wording, URL, and payment ask, the stronger the result.</p>
+        </div>
+
+        <div class="mode-picker" id="smart-modes">
+          <div>
+            <strong>Smart modes</strong>
+            <p class="mode-note" id="modeStatus">One checker, multiple presets. Switch focus without leaving this page.</p>
+          </div>
+          <div class="mode-grid">
+            <button class="mode-card active" type="button" data-mode="">
+              <span class="mode-kicker">General</span>
+              <strong>General scam check</strong>
+              <p>Best for mixed messages, courier texts, random chats, and suspicious offers that do not fit one bucket yet.</p>
+            </button>
+            <button class="mode-card" type="button" data-mode="fake-job">
+              <span class="mode-kicker">Preset</span>
+              <strong>Fake job focus</strong>
+              <p>Tunes the checker for recruiters, joining fees, no-interview offers, and work-from-home payout traps.</p>
+            </button>
+            <button class="mode-card" type="button" data-mode="phishing">
+              <span class="mode-kicker">Preset</span>
+              <strong>Phishing link focus</strong>
+              <p>Prioritizes suspicious domains, login pressure language, verification prompts, and fake account alerts.</p>
+            </button>
+            <button class="mode-card" type="button" data-mode="upi">
+              <span class="mode-kicker">Preset</span>
+              <strong>UPI payment focus</strong>
+              <p>Highlights collect requests, refund traps, QR-code scams, and “enter PIN to receive money” flows.</p>
+            </button>
+          </div>
         </div>
 
         <div class="field-grid">
@@ -414,17 +459,17 @@
 
     <section class="section">
       <div class="section-head">
-        <h2>Scam category pages</h2>
-        <p>These landing pages target common scam searches and send people into the main checker with the right preset.</p>
+        <h2>One tool, smarter presets</h2>
+        <p>The fake-job, phishing, and UPI variants all use the same analyzer. Presets simply tune the page copy, defaults, and rule emphasis so you can stay in one flow.</p>
       </div>
-      <div class="category-grid">
-        <div class="category-card"><strong>Fake Job Scam Checker</strong><p>For remote job offers, interview scams, joining fees, fake recruiters, and WhatsApp-only hiring flows.</p><a href="/tools/fake-job-scam-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
-        <div class="category-card"><strong>Phishing Link Checker</strong><p>For suspicious domains, login pages, verification emails, password reset prompts, and cloned brand sites.</p><a href="/tools/phishing-link-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
-        <div class="category-card"><strong>UPI Scam Checker</strong><p>For collect requests, fake refunds, QR-code payment traps, and merchant or buyer payment scams.</p><a href="/tools/upi-scam-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
+      <div class="feature-grid">
+        <div class="feature"><strong>No duplicate tools</strong><p>You stay on one checker screen instead of bouncing between near-identical pages for each scam type.</p></div>
+        <div class="feature"><strong>Mode-aware defaults</strong><p>Switching focus updates the source type, money sensitivity, and guidance without forcing you to re-learn a new UI.</p></div>
+        <div class="feature"><strong>Cleaner report sharing</strong><p>Share links stay consistent because every scam type now produces reports from the same underlying tool and format.</p></div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="faq">
       <div class="section-head">
         <h2>FAQ</h2>
         <p>Quick answers for the most common questions before you rely on the result.</p>
@@ -519,6 +564,8 @@
     const presetTitle = document.getElementById("presetTitle");
     const presetDescription = document.getElementById("presetDescription");
     const eyebrowText = document.getElementById("eyebrowText");
+    const modeStatus = document.getElementById("modeStatus");
+    const modeButtons = Array.from(document.querySelectorAll("[data-mode]"));
 
     let selectedImageDataUrl = "";
     let currentState = null;
@@ -528,11 +575,18 @@
       button.addEventListener("click", () => {
         const key = button.getAttribute("data-fill");
         contentInput.value = sampleTexts[key] || "";
-        if (key === "job") sourceType.value = "job";
-        if (key === "phishing") sourceType.value = "link";
-        if (key === "upi") sourceType.value = "payment";
+        if (key === "job") setCategoryMode("fake-job", { silent: true });
+        else if (key === "phishing") setCategoryMode("phishing", { silent: true });
+        else if (key === "upi") setCategoryMode("upi", { silent: true });
+        else setCategoryMode("", { silent: true });
         saveDraft();
         contentInput.focus();
+      });
+    });
+
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setCategoryMode(button.getAttribute("data-mode") || "", { focusInput: true });
       });
     });
 
@@ -1104,12 +1158,45 @@
       try {
         const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
         if (!stored) return;
-        sourceType.value = stored.sourceType || sourceType.value;
+        if (!getCategoryFromUrl()) sourceType.value = stored.sourceType || sourceType.value;
         senderKnown.value = stored.senderKnown || senderKnown.value;
-        moneyAsked.value = stored.moneyAsked || moneyAsked.value;
+        if (!getCategoryFromUrl()) moneyAsked.value = stored.moneyAsked || moneyAsked.value;
         urlInput.value = stored.manualUrl || "";
         contentInput.value = stored.text || "";
       } catch (error) {}
+    }
+
+    function setCategoryMode(category, options = {}) {
+      const normalized = category && categoryConfig[category] ? category : "";
+      updateCategoryUrl(normalized, options.keepReport === true);
+      applyCategoryPreset(normalized);
+
+      currentState = null;
+      resultsWrap.classList.remove("show");
+      copyLinkBtn.disabled = true;
+      shareBtn.disabled = true;
+
+      if (!options.silent) {
+        setShareStatus((normalized ? formatCategoryLabel(normalized) : "General") + " mode active. Review the defaults and run a fresh analysis.", "success");
+      }
+
+      saveDraft();
+      if (options.focusInput) contentInput.focus();
+    }
+
+    function updateCategoryUrl(category, keepReport) {
+      const url = new URL(window.location.href);
+      if (category) url.searchParams.set("category", category);
+      else url.searchParams.delete("category");
+      if (!keepReport) url.searchParams.delete(REPORT_PARAM);
+      window.history.replaceState({}, "", url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : ""));
+    }
+
+    function updateModeButtons(category) {
+      modeButtons.forEach((button) => {
+        const buttonMode = button.getAttribute("data-mode") || "";
+        button.classList.toggle("active", buttonMode === category);
+      });
     }
 
     function applyCategoryPreset(category) {
@@ -1120,6 +1207,8 @@
         heroLead.textContent = "Paste suspicious text, add a risky URL, or upload a screenshot for OCR. The checker looks for phishing, fake job, impersonation, payment, and UPI scam patterns, then adds live domain reputation data when the backend API is available.";
         presetTitle.textContent = "How this report works";
         presetDescription.textContent = "Analysis runs locally in the browser first. If the text contains a domain or URL, the page can ask the backend API for a reputation signal and merge that into the report.";
+        modeStatus.textContent = "General mode is active. Switch presets here without leaving the page.";
+        updateModeButtons("");
         return;
       }
 
@@ -1128,6 +1217,8 @@
       heroLead.textContent = preset.lead;
       presetTitle.textContent = preset.noteTitle;
       presetDescription.textContent = preset.noteText;
+      modeStatus.textContent = formatCategoryLabel(category) + " mode is active. The same checker now tunes defaults and guidance for this scam type.";
+      updateModeButtons(category);
       sourceType.value = preset.sourceType;
       moneyAsked.value = preset.moneyAsked;
     }
@@ -1165,6 +1256,15 @@
 
     function buildShareMessage() {
       return currentState ? currentState.finalResult.verdict + " scam report from Pulsagi" : "Scam check report";
+    }
+
+    function formatCategoryLabel(category) {
+      const labels = {
+        "fake-job": "Fake job",
+        phishing: "Phishing",
+        upi: "UPI"
+      };
+      return labels[category] || "General";
     }
 
     function formatSourceLabel(value) {

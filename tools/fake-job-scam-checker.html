@@ -3,28 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fake Job Scam Checker | Check Recruiter Messages and Remote Job Offers</title>
-  <meta name="description" content="Check suspicious recruiter emails, WhatsApp jobs, joining-fee offers, and remote-work scams. Review job scam red flags and launch the Pulsagi scam checker preset." />
+  <title>Fake Job Scam Checker | Check Suspicious Recruiter Messages</title>
+  <meta name="description" content="Check suspicious recruiter emails, WhatsApp jobs, joining-fee offers, and remote-work scams. Launch the fake-job preset of the Pulsagi scam checker." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://pulsagi.com/tools/fake-job-scam-checker.html" />
   <meta property="og:title" content="Fake Job Scam Checker | Pulsagi" />
-  <meta property="og:description" content="Review suspicious job offers, fake recruiters, and joining-fee scams before you reply or pay." />
+  <meta property="og:description" content="Review suspicious job offers, recruiter messages, and joining-fee scams with the Pulsagi scam checker preset." />
   <meta property="og:url" content="https://pulsagi.com/tools/fake-job-scam-checker.html" />
   <meta property="og:type" content="website" />
   <style>
-    :root { --bg:#09090b; --surface:#111113; --border:#23232a; --text:#fafafa; --muted:#a1a1aa; --accent:#6ee7b7; --accent2:#93c5fd; --mono:"Courier New", monospace; }
-    * { box-sizing:border-box; } body { margin:0; color:var(--text); font-family:Georgia,serif; line-height:1.65; background:radial-gradient(circle at top left, rgba(110,231,183,.08), transparent 25%), linear-gradient(180deg,#09090b,#0f1117 68%,#09090b); }
-    a { color:inherit; text-decoration:none; } nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; border-bottom:1px solid var(--border); background:rgba(9,9,11,.92); }
-    nav ul { list-style:none; display:flex; gap:1rem; margin:0; padding:0; font:.82rem var(--mono); } .brand { color:var(--accent); font-weight:700; letter-spacing:.05em; }
-    .wrap { width:min(1040px, calc(100% - 28px)); margin:0 auto; padding:2rem 0 4rem; } .hero, .grid { display:grid; gap:1rem; }
-    .hero { grid-template-columns:1.1fr .9fr; align-items:stretch; } .card { background:rgba(17,17,19,.98); border:1px solid var(--border); border-radius:24px; padding:1.4rem; }
-    .eyebrow { display:inline-flex; padding:.4rem .9rem; border-radius:999px; border:1px solid rgba(110,231,183,.24); background:rgba(110,231,183,.08); color:var(--accent); font:700 .72rem var(--mono); text-transform:uppercase; letter-spacing:.08em; }
-    h1 { margin:1rem 0 .8rem; font-size:clamp(2.4rem,6vw,4rem); line-height:1.03; letter-spacing:-.03em; } p { color:var(--muted); }
-    .btn { display:inline-block; margin-top:1rem; padding:.85rem 1.2rem; border-radius:14px; background:var(--accent); color:#09110e; font:700 .82rem var(--mono); }
-    .grid { grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); margin-top:1.6rem; } .tile { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:18px; padding:1rem; }
-    .faq { margin-top:1.8rem; } .faq .tile strong, .grid strong { display:block; margin-bottom:.35rem; }
-    footer { border-top:1px solid var(--border); padding:2rem 1rem 3rem; text-align:center; color:#71717a; font:.8rem var(--mono); }
-    @media (max-width:860px) { .hero { grid-template-columns:1fr; } nav { padding:1rem; } nav ul { flex-wrap:wrap; justify-content:flex-end; } }
+    :root {
+      --bg: #0a0b0d;
+      --surface: #13151a;
+      --surface-soft: rgba(255,255,255,0.04);
+      --border: #282b32;
+      --text: #f6f7fb;
+      --muted: #a5acba;
+      --accent: #78efba;
+      --accent-soft: rgba(120,239,186,0.12);
+      --mono: "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(120,239,186,0.08), transparent 24%),
+        linear-gradient(180deg, #0a0b0d, #10131a 68%, #0a0b0d);
+    }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,11,13,0.92);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      font: 0.8rem var(--mono);
+    }
+    .brand { color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+    .wrap { width: min(920px, calc(100% - 24px)); margin: 0 auto; padding: 2.2rem 0 4rem; }
+    .hero, .section {
+      background: rgba(19,21,26,0.96);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.4rem;
+    }
+    .section { margin-top: 1rem; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(120,239,186,0.24);
+      color: var(--accent);
+      font: 700 0.72rem var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 1rem 0 0.7rem;
+      font-size: clamp(2.3rem, 6vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+    h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.35rem;
+    }
+    p { margin: 0; color: var(--muted); }
+    .cta-row, .chips, .grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .cta-row { margin-top: 1.15rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.86rem 1.15rem;
+      border-radius: 14px;
+      font: 700 0.82rem var(--mono);
+    }
+    .btn-primary { background: var(--accent); color: #08110c; }
+    .btn-secondary { border: 1px solid var(--border); background: var(--surface-soft); }
+    .chips { margin-top: 1rem; }
+    .chip {
+      padding: 0.48rem 0.78rem;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .note {
+      margin-top: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .note strong { display: block; margin-bottom: 0.25rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin-top: 0.9rem;
+    }
+    .card {
+      padding: 1rem;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .card strong { display: block; margin-bottom: 0.3rem; }
+    footer {
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: #7d8492;
+      font: 0.78rem var(--mono);
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -47,28 +152,43 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="card">
-        <div class="eyebrow">Fake Job Scam Checker</div>
-        <h1>Check suspicious recruiter messages before you pay, reply, or share documents.</h1>
-        <p>Use this page when a recruiter asks for a joining fee, document-verification payment, Telegram interview, or "easy remote work" payout. The main checker preset focuses on no-interview offers, salary promises, impersonation, and advance-fee red flags.</p>
-        <a class="btn" href="/tools/scam-checker.html?category=fake-job">Launch fake job preset</a>
+      <div class="eyebrow">Fake Job Preset</div>
+      <h1>Check suspicious recruiter messages before you pay or share documents.</h1>
+      <p>This page is only an entry point. The real tool is the main Pulsagi scam checker, already tuned here for job scams, recruiter impersonation, joining-fee asks, and no-interview offers.</p>
+
+      <div class="chips">
+        <span class="chip">Joining fee</span>
+        <span class="chip">WhatsApp recruiter</span>
+        <span class="chip">No interview</span>
+        <span class="chip">Offer letter rush</span>
       </div>
-      <div class="card">
-        <strong>High-risk fake job signals</strong>
-        <div class="grid">
-          <div class="tile"><strong>No interview</strong><p>Fast hiring with zero screening and unusually high pay is a common scam pattern.</p></div>
-          <div class="tile"><strong>Joining fee</strong><p>Legitimate employers do not ask candidates to pay to unlock the job.</p></div>
-          <div class="tile"><strong>WhatsApp only</strong><p>Hiring handled only on WhatsApp or Telegram is a major warning sign.</p></div>
-          <div class="tile"><strong>Document rush</strong><p>Pressure to send IDs, bank data, or signatures before verification can lead to identity misuse.</p></div>
-        </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/tools/scam-checker.html?category=fake-job">Open the main checker with fake-job mode</a>
+        <a class="btn btn-secondary" href="/tools/scam-checker.html">Open general checker</a>
+      </div>
+
+      <div class="note">
+        <strong>Same tool, different preset</strong>
+        The fake-job view does not use a different analyzer. It opens the same checker with job-specific defaults and guidance.
       </div>
     </section>
 
-    <section class="faq">
+    <section class="section">
+      <h2>What usually makes a job offer suspicious?</h2>
       <div class="grid">
-        <div class="tile"><strong>What should I paste into the checker?</strong><p>The full recruiter message, job post text, email domain, fee request, and any payment instructions.</p></div>
-        <div class="tile"><strong>What if I only have a screenshot?</strong><p>Open the main tool and upload the screenshot to run OCR before analysis.</p></div>
-        <div class="tile"><strong>Can the tool check recruiter domains too?</strong><p>Yes. If the message includes a domain or link, the report can request backend reputation data.</p></div>
+        <div class="card">
+          <strong>Upfront payment</strong>
+          <p>Legitimate employers do not ask candidates to pay registration, joining, or verification fees.</p>
+        </div>
+        <div class="card">
+          <strong>Messaging-app hiring</strong>
+          <p>WhatsApp-only or Telegram-only hiring flows often skip normal screening and verification.</p>
+        </div>
+        <div class="card">
+          <strong>High pay, low effort</strong>
+          <p>Easy remote work with unusually high income and zero interview is a classic bait pattern.</p>
+        </div>
       </div>
     </section>
   </main>
