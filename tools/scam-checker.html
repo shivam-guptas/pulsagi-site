@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scam Checker | Check Suspicious Links, Jobs, Messages and UPI Requests</title>
+  <meta
+    name="description"
+    content="Analyze suspicious messages, phishing links, fake job offers, and UPI payment requests. Upload screenshots for OCR, check risky domains, and share a report link."
+  />
+  <meta
+    name="keywords"
+    content="scam checker, phishing link checker, fake job scam checker, upi scam checker, suspicious link analyzer"
+  />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="canonical" href="https://pulsagi.com/tools/scam-checker.html" />
+
+  <meta property="og:title" content="Scam Checker | Pulsagi" />
+  <meta
+    property="og:description"
+    content="Check suspicious messages, links, fake jobs, and UPI requests with OCR upload, red-flag scoring, and shareable reports."
+  />
+  <meta property="og:url" content="https://pulsagi.com/tools/scam-checker.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scam Checker | Pulsagi" />
+  <meta
+    name="twitter:description"
+    content="Analyze scam risk, run OCR on screenshots, check suspicious domains, and share a report link."
+  />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Pulsagi Scam Checker",
+    "url":"https://pulsagi.com/tools/scam-checker.html",
+    "applicationCategory":"SecurityApplication",
+    "operatingSystem":"Web",
+    "description":"A browser-based scam checker for suspicious messages, emails, links, fake job offers, and UPI payment requests."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Can this checker confirm with 100 percent certainty that something is a scam?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. It highlights common scam signals, domain reputation warnings, and practical next steps, but you should still verify through official channels."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can I upload a screenshot or image instead of pasting text?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. You can upload a screenshot, run OCR in the browser, and then analyze the extracted text."}
+      },
+      {
+        "@type":"Question",
+        "name":"Does the checker support phishing links, fake jobs, and UPI payment scams?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. The tool supports phishing link checks, fake job offer analysis, UPI payment request reviews, suspicious calls, and general scam patterns."}
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg:#09090b; --surface:#111113; --surface-2:#17171c; --border:#23232a;
+      --text:#fafafa; --muted:#a1a1aa; --accent:#6ee7b7; --accent2:#93c5fd;
+      --safe:#4ade80; --warn:#fbbf24; --danger:#f87171; --mono:"Courier New", monospace;
+      --shadow:0 22px 44px rgba(0,0,0,.35);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--text); font-family:Georgia, serif; line-height:1.65;
+      background:
+        radial-gradient(circle at top left, rgba(110,231,183,.08), transparent 25%),
+        radial-gradient(circle at top right, rgba(147,197,253,.08), transparent 22%),
+        linear-gradient(180deg,#09090b,#0f1117 68%,#09090b);
+    }
+    a { color:inherit; text-decoration:none; }
+    nav {
+      position:sticky; top:0; z-index:40; display:flex; justify-content:space-between; align-items:center; gap:1rem;
+      padding:1rem 2rem; background:rgba(9,9,11,.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border);
+    }
+    .nav-brand { color:var(--accent); font-weight:700; letter-spacing:.05em; }
+    nav ul { list-style:none; display:flex; gap:1rem; margin:0; padding:0; font: .82rem var(--mono); }
+    nav a { color:#8d8d97; }
+    nav a:hover { color:var(--text); }
+    .nav-pill { color:var(--accent)!important; padding:.35rem .9rem; border-radius:999px; background:rgba(110,231,183,.1); border:1px solid rgba(110,231,183,.2); }
+    .wrap { width:min(1160px, calc(100% - 28px)); margin:0 auto; padding:2rem 0 4rem; }
+    .hero, .results { display:grid; grid-template-columns:1.02fr .98fr; gap:1.25rem; }
+    .panel {
+      background:linear-gradient(180deg, rgba(17,17,19,.98), rgba(11,11,14,.98));
+      border:1px solid var(--border); border-radius:24px; box-shadow:var(--shadow);
+    }
+    .hero-copy, .checker, .result-panel, .next-panel { padding:1.4rem; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .9rem; border-radius:999px;
+      border:1px solid rgba(110,231,183,.24); background:rgba(110,231,183,.08); color:var(--accent);
+      font:700 .72rem var(--mono); letter-spacing:.08em; text-transform:uppercase;
+    }
+    h1 {
+      margin:1rem 0 .9rem; font-size:clamp(2.5rem,6vw,4.3rem); line-height:1.02; letter-spacing:-.03em;
+      background:linear-gradient(135deg,#fafafa 0%,#c2f7e3 55%,#93c5fd 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .lead, .section-copy, .hero-note, .small, .summary, .section-head p, .flag p, .tip p, .feature p, .faq-item p, .category-card p, .domain-card p, .meta-card span {
+      color:var(--muted);
+    }
+    .bullet-row, .helper-row, .button-row, .report-actions { display:flex; flex-wrap:wrap; gap:.7rem; }
+    .bullet-row { margin:1.3rem 0 1rem; }
+    .pill, .helper-chip {
+      display:inline-flex; align-items:center; padding:.5rem .8rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.04); color:#e7f8f1; font-size:.86rem;
+    }
+    .helper-chip { appearance:none; cursor:pointer; }
+    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .category-card, .flag, .tip, .domain-card, .meta-card {
+      border:1px solid var(--border); border-radius:18px; background:rgba(255,255,255,.04);
+    }
+    .hero-note, .status-box, .share-note, .disclaimer, .feature, .faq-item, .category-card, .flag, .tip, .domain-card, .meta-card { padding:1rem; }
+    .field-grid, .meta-grid, .feature-grid, .faq-grid, .category-grid, .flag-list, .tip-list, .domain-grid { display:grid; gap:.9rem; }
+    .field-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .meta-grid { grid-template-columns:repeat(3, minmax(0,1fr)); margin:1rem 0; }
+    .feature-grid, .category-grid { grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); }
+    .faq-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .domain-grid { grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); }
+    .field { display:grid; gap:.45rem; }
+    .field label { font-size:.88rem; font-weight:700; color:#eef8f3; }
+    .input, .select, .textarea {
+      width:100%; padding:.92rem 1rem; border-radius:16px; outline:none; color:var(--text);
+      background:rgba(255,255,255,.05); border:1px solid #2e2e37;
+    }
+    .textarea { min-height:210px; resize:vertical; }
+    .input:focus, .select:focus, .textarea:focus { border-color:rgba(110,231,183,.5); box-shadow:0 0 0 4px rgba(110,231,183,.1); }
+    .upload-card {
+      display:grid; gap:.8rem; padding:1rem; border-radius:18px; border:1px dashed rgba(110,231,183,.25);
+      background:rgba(110,231,183,.04);
+    }
+    .dropzone-meta { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center; }
+    .preview {
+      min-height:160px; display:grid; place-items:center; border-radius:16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    }
+    .preview img { width:100%; height:100%; object-fit:contain; display:block; }
+    .preview-placeholder { color:var(--muted); text-align:center; font-size:.9rem; padding:1rem; }
+    .btn {
+      appearance:none; border:1px solid transparent; border-radius:14px; padding:.82rem 1.1rem; cursor:pointer;
+      font:700 .82rem var(--mono); transition:transform .16s ease, opacity .16s ease, border-color .16s ease;
+    }
+    .btn:hover { transform:translateY(-1px); }
+    .btn:disabled { opacity:.65; cursor:wait; transform:none; }
+    .btn-primary { background:var(--accent); color:#09110e; }
+    .btn-secondary { background:rgba(255,255,255,.03); color:var(--text); border-color:var(--border); }
+    .btn-danger { background:rgba(248,113,113,.1); color:#fecaca; border-color:rgba(248,113,113,.22); }
+    .status-box.success { border-color:rgba(74,222,128,.22); background:rgba(74,222,128,.08); color:#d9fde8; }
+    .status-box.warning { border-color:rgba(251,191,36,.22); background:rgba(251,191,36,.08); color:#fdeab4; }
+    .status-box.error { border-color:rgba(248,113,113,.22); background:rgba(248,113,113,.08); color:#fecaca; }
+    .results { display:none; margin-top:1.15rem; }
+    .results.show { display:grid; }
+    .score-row { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+    .score-ring {
+      width:112px; height:112px; border-radius:50%; display:grid; place-items:center; position:relative; flex-shrink:0;
+      background:conic-gradient(var(--warn) 180deg, rgba(255,255,255,.08) 180deg);
+    }
+    .score-ring::after { content:""; position:absolute; inset:10px; border-radius:50%; background:#0b0d10; border:1px solid rgba(255,255,255,.06); }
+    .score-ring span { position:relative; z-index:1; font-size:1.45rem; font-weight:700; }
+    .verdict {
+      display:inline-flex; align-items:center; gap:.45rem; margin-bottom:.65rem; padding:.45rem .8rem; border-radius:999px;
+      font:700 .78rem var(--mono); text-transform:uppercase; letter-spacing:.05em;
+    }
+    .verdict.safe { color:#c5f9d5; background:rgba(74,222,128,.1); border:1px solid rgba(74,222,128,.22); }
+    .verdict.caution { color:#fde68a; background:rgba(251,191,36,.1); border:1px solid rgba(251,191,36,.22); }
+    .verdict.danger { color:#fecaca; background:rgba(248,113,113,.1); border:1px solid rgba(248,113,113,.22); }
+    .section { margin-top:2.2rem; }
+    .section-head { margin-bottom:1rem; }
+    .section-head h2 { margin:0 0 .35rem; font-size:2rem; }
+    .domain-status {
+      display:inline-flex; margin-bottom:.55rem; padding:.3rem .62rem; border-radius:999px; font:700 .68rem var(--mono);
+      letter-spacing:.05em; text-transform:uppercase;
+    }
+    .domain-status.clean { color:#d9fde8; background:rgba(74,222,128,.1); }
+    .domain-status.review { color:#fde68a; background:rgba(251,191,36,.1); }
+    .domain-status.malicious { color:#fecaca; background:rgba(248,113,113,.1); }
+    .domain-status.unknown { color:#d4d4d8; background:rgba(255,255,255,.08); }
+    .hidden { display:none !important; }
+    footer { border-top:1px solid var(--border); padding:2rem 1rem 3rem; text-align:center; color:#71717a; font:.8rem var(--mono); }
+    footer a { color:var(--accent); }
+    @media (max-width:980px) { .hero, .results, .faq-grid { grid-template-columns:1fr; } }
+    @media (max-width:760px) {
+      nav { padding:.95rem 1rem; }
+      nav ul { gap:.85rem; flex-wrap:wrap; justify-content:flex-end; }
+      .wrap { width:min(100% - 18px, 1160px); }
+      .field-grid, .meta-grid { grid-template-columns:1fr; }
+      .hero-copy, .checker, .result-panel, .next-panel { padding:1.1rem; }
+    }
+  </style>
+
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-NFJXRZSV");
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-S55MNPYJF8");
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <nav>
+    <a class="nav-brand" href="/">Pulsagi</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/" class="nav-pill">Tools</a></li>
+      <li><a href="/tools/fake-job-scam-checker.html">Fake Job</a></li>
+      <li><a href="/tools/phishing-link-checker.html">Phishing</a></li>
+      <li><a href="/tools/upi-scam-checker.html">UPI</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel hero-copy">
+        <div class="eyebrow" id="eyebrowText">Scam analysis and shareable reports</div>
+        <h1 id="heroTitle">Check suspicious messages, links, and payment requests before you act.</h1>
+        <p class="lead" id="heroLead">
+          Paste suspicious text, add a risky URL, or upload a screenshot for OCR. The checker looks for phishing,
+          fake job, impersonation, payment, and UPI scam patterns, then adds live domain reputation data when the
+          backend API is available.
+        </p>
+
+        <div class="bullet-row">
+          <span class="pill">OCR screenshot upload</span>
+          <span class="pill">Domain reputation checks</span>
+          <span class="pill">Red-flag scoring</span>
+          <span class="pill">Copy result link</span>
+        </div>
+
+        <div class="hero-note">
+          <strong id="presetTitle">How this report works</strong><br />
+          <span id="presetDescription">
+            Analysis runs locally in the browser first. If the text contains a domain or URL, the page can ask the
+            backend API for a reputation signal and merge that into the report.
+          </span>
+        </div>
+      </div>
+
+      <div class="panel checker">
+        <div>
+          <h2 style="margin:0;">Run a scam check</h2>
+          <p class="section-copy">Add as much context as you have. The more exact the wording, URL, and payment ask, the stronger the result.</p>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="sourceType">What are you checking?</label>
+            <select id="sourceType" class="select">
+              <option value="general">General message or offer</option>
+              <option value="email">Email</option>
+              <option value="sms">SMS or WhatsApp</option>
+              <option value="job">Job offer</option>
+              <option value="payment">Payment request</option>
+              <option value="marketplace">Marketplace chat</option>
+              <option value="call">Phone call transcript</option>
+              <option value="link">Link or website text</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="urlInput">URL or domain to inspect</label>
+            <input id="urlInput" class="input" type="text" placeholder="example.com or https://example.com/login" inputmode="url" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="senderKnown">Do you know the sender?</label>
+            <select id="senderKnown" class="select">
+              <option value="unknown">Unknown or not sure</option>
+              <option value="known">Known person or business</option>
+              <option value="pretending">Looks like impersonation</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="moneyAsked">Any money or sensitive-data ask?</label>
+            <select id="moneyAsked" class="select">
+              <option value="none">No</option>
+              <option value="yes">Asked for money or transfer</option>
+              <option value="credentials">Asked for OTP, password, bank or card data</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="contentInput">Paste the suspicious content</label>
+          <textarea id="contentInput" class="textarea" placeholder="Paste a message, email, payment request, fake job offer, suspicious website text, or a caller transcript."></textarea>
+          <div class="helper-row">
+            <button class="helper-chip" type="button" data-fill="delivery">Delivery text</button>
+            <button class="helper-chip" type="button" data-fill="job">Fake job offer</button>
+            <button class="helper-chip" type="button" data-fill="phishing">Phishing email</button>
+            <button class="helper-chip" type="button" data-fill="upi">UPI payment request</button>
+          </div>
+        </div>
+
+        <div class="upload-card">
+          <div class="dropzone-meta">
+            <div>
+              <strong>Screenshot or image OCR</strong>
+              <p class="small">Upload a screenshot of the message or website. OCR runs in the browser.</p>
+            </div>
+            <input id="imageInput" type="file" accept="image/*" />
+          </div>
+          <div class="preview" id="imagePreview"><div class="preview-placeholder">No image selected yet.</div></div>
+          <div class="button-row">
+            <button class="btn btn-secondary" type="button" id="ocrBtn">Extract text from image</button>
+            <button class="btn btn-secondary" type="button" id="removeImageBtn">Remove image</button>
+          </div>
+          <div class="status-box hidden" id="ocrStatusBox"></div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn btn-primary" type="button" id="analyzeBtn">Analyze scam risk</button>
+          <button class="btn btn-secondary" type="button" id="copyLinkBtn" disabled>Copy result link</button>
+          <button class="btn btn-secondary" type="button" id="shareBtn" disabled>Share report</button>
+          <button class="btn btn-danger" type="button" id="clearBtn">Clear</button>
+        </div>
+
+        <div class="share-note status-box success" id="shareStatusBox">
+          <strong>Status</strong><br />
+          Reports store a sanitized summary and short excerpt in the share link. Avoid pasting passwords, OTPs, full account numbers, or private secrets.
+        </div>
+      </div>
+    </section>
+
+    <section class="results" id="resultsWrap" aria-live="polite">
+      <div class="panel result-panel">
+        <div class="score-row">
+          <div class="score-ring" id="scoreRing" aria-label="Risk score"><span id="scoreValue">0</span></div>
+          <div>
+            <div class="verdict caution" id="verdictBadge">Needs review</div>
+            <h2 style="margin:0 0 .35rem;" id="resultTitle">Scam risk report</h2>
+            <p class="summary" id="resultSummary">Run an analysis to see scam signals, domain warnings, and the safest next steps.</p>
+          </div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-card"><strong>Source type</strong><span id="metaSource">-</span></div>
+          <div class="meta-card"><strong>Domains detected</strong><span id="metaDomains">0</span></div>
+          <div class="meta-card"><strong>Analyzed at</strong><span id="metaDate">-</span></div>
+        </div>
+
+        <div>
+          <strong>Detected red flags</strong>
+          <div class="flag-list" id="flagsList"></div>
+        </div>
+
+        <div class="section hidden" id="domainSection">
+          <div class="section-head">
+            <h2 style="font-size:1.4rem;margin-bottom:.25rem;">Domain reputation checks</h2>
+            <p>Extracted domains are enriched with backend reputation data when the API is available.</p>
+          </div>
+          <div class="domain-grid" id="domainGrid"></div>
+        </div>
+
+        <div class="report-actions">
+          <button class="btn btn-secondary" type="button" id="copySummaryBtn">Copy report summary</button>
+        </div>
+
+        <div class="disclaimer">
+          <strong>Reminder</strong><br />
+          This is a risk estimate, not a guarantee. Always verify through official websites, apps, or phone numbers you locate yourself.
+        </div>
+      </div>
+
+      <div class="panel next-panel">
+        <div class="section-head">
+          <h2 style="font-size:1.4rem;margin-bottom:.25rem;">Recommended next steps</h2>
+          <p>Use these actions before replying, clicking, paying, downloading, or sharing any code or account details.</p>
+        </div>
+        <div class="tip-list" id="tipsList"></div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2 style="font-size:1.4rem;margin-bottom:.25rem;">Report snapshot</h2>
+            <p id="reportSnapshot">No shared report created yet.</p>
+          </div>
+          <div class="share-note" id="shareReportBox">
+            <strong>Shareable report</strong><br />
+            Use Copy result link to share this analysis with a teammate, friend, or family member for a second opinion.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>What this checker covers</h2>
+        <p>The detector focuses on phishing links, fake jobs, payment and refund scams, courier messages, UPI collect requests, OTP theft, impersonation, and marketplace scams.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><strong>URL and domain checks</strong><p>Extracts domains from pasted text and can ask a backend API for reputation signals before merging them into the score.</p></div>
+        <div class="feature"><strong>OCR from screenshots</strong><p>Uploads a screenshot of a text, website, or payment request and runs OCR in the browser so you can analyze the extracted words.</p></div>
+        <div class="feature"><strong>Shareable report links</strong><p>Creates a compact result link with score, verdict, domains, and a short excerpt so someone else can review the same report.</p></div>
+        <div class="feature"><strong>India and US scam patterns</strong><p>Includes fake bank alerts, KYC and courier messages, UPI scams, remote job fraud, and phishing account-verification flows.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Scam category pages</h2>
+        <p>These landing pages target common scam searches and send people into the main checker with the right preset.</p>
+      </div>
+      <div class="category-grid">
+        <div class="category-card"><strong>Fake Job Scam Checker</strong><p>For remote job offers, interview scams, joining fees, fake recruiters, and WhatsApp-only hiring flows.</p><a href="/tools/fake-job-scam-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
+        <div class="category-card"><strong>Phishing Link Checker</strong><p>For suspicious domains, login pages, verification emails, password reset prompts, and cloned brand sites.</p><a href="/tools/phishing-link-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
+        <div class="category-card"><strong>UPI Scam Checker</strong><p>For collect requests, fake refunds, QR-code payment traps, and merchant or buyer payment scams.</p><a href="/tools/upi-scam-checker.html" style="color:var(--accent);font: .78rem var(--mono);">Open landing page -&gt;</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p>Quick answers for the most common questions before you rely on the result.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item"><strong>Will a clean result mean the message is safe?</strong><p>No. A clean result only means the checker did not find strong signals. Scammers can still use polished wording and real-looking logos.</p></div>
+        <div class="faq-item"><strong>What if the domain API is unavailable?</strong><p>The page still runs local analysis and falls back to structural domain hints like punycode, too many subdomains, or suspicious formatting.</p></div>
+        <div class="faq-item"><strong>Can I share the report without exposing the full original message?</strong><p>Yes. The share link stores a compact summary and short sanitized excerpt rather than the full raw text.</p></div>
+        <div class="faq-item"><strong>Can this help with fake UPI and job scam messages?</strong><p>Yes. The rules include UPI collect requests, payout traps, joining fees, no-interview jobs, and recruiter impersonation patterns.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Pulsagi | Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = "pulsagi-scam-checker-draft";
+    const REPORT_PARAM = "report";
+    const OCR_SCRIPT_SRC = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+
+    const categoryConfig = {
+      "fake-job": {
+        eyebrow: "Fake job scam checker",
+        title: "Review suspicious job offers before you pay, reply, or share documents.",
+        lead: "Use this preset for work-from-home offers, recruiter DMs, joining fees, fake HR emails, and Telegram or WhatsApp interview scams.",
+        noteTitle: "Fake job focus",
+        noteText: "This preset boosts attention on recruiter impersonation, no-interview offers, salary promises, document theft, and advance-fee red flags.",
+        sourceType: "job",
+        moneyAsked: "yes"
+      },
+      phishing: {
+        eyebrow: "Phishing link checker",
+        title: "Check suspicious links, login pages, and verification messages for phishing risk.",
+        lead: "Use this preset for password reset emails, account verification prompts, cloned brand pages, and suspicious login links.",
+        noteTitle: "Phishing focus",
+        noteText: "This preset prioritizes URL detection, login pressure language, fake security alerts, and suspicious domain reputation signals.",
+        sourceType: "link",
+        moneyAsked: "credentials"
+      },
+      upi: {
+        eyebrow: "UPI scam checker",
+        title: "Review UPI collect requests, refund claims, QR-code traps, and fake buyer payments.",
+        lead: "Use this preset for UPI collect requests, merchant settlement scams, fake refunds, payout links, and card-entry traps.",
+        noteTitle: "UPI and payment focus",
+        noteText: "This preset prioritizes collect requests, QR-code traps, refund language, card-detail asks, and payment-release scams.",
+        sourceType: "payment",
+        moneyAsked: "yes"
+      }
+    };
+
+    const sampleTexts = {
+      delivery: "Your parcel is on hold due to an address issue. Pay Rs 29 today to avoid return to sender: https://delivery-track-help.example/confirm",
+      job: "Congratulations. You have been selected for a remote data-entry job with weekly salary payout. No interview is needed. Pay a joining fee today on WhatsApp to secure your seat.",
+      phishing: "Your mailbox storage is full. Verify your account immediately to avoid suspension: https://account-security-login.example/login. Enter your password to continue.",
+      upi: "I am the buyer. I already sent payment. Tap this collect link and enter your UPI PIN to receive money. If it fails, scan this QR code instead."
+    };
+
+    const sourceType = document.getElementById("sourceType");
+    const senderKnown = document.getElementById("senderKnown");
+    const moneyAsked = document.getElementById("moneyAsked");
+    const urlInput = document.getElementById("urlInput");
+    const contentInput = document.getElementById("contentInput");
+    const imageInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const ocrBtn = document.getElementById("ocrBtn");
+    const removeImageBtn = document.getElementById("removeImageBtn");
+    const ocrStatusBox = document.getElementById("ocrStatusBox");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const copySummaryBtn = document.getElementById("copySummaryBtn");
+    const shareStatusBox = document.getElementById("shareStatusBox");
+    const resultsWrap = document.getElementById("resultsWrap");
+    const scoreRing = document.getElementById("scoreRing");
+    const scoreValue = document.getElementById("scoreValue");
+    const verdictBadge = document.getElementById("verdictBadge");
+    const resultSummary = document.getElementById("resultSummary");
+    const flagsList = document.getElementById("flagsList");
+    const tipsList = document.getElementById("tipsList");
+    const domainGrid = document.getElementById("domainGrid");
+    const domainSection = document.getElementById("domainSection");
+    const metaSource = document.getElementById("metaSource");
+    const metaDomains = document.getElementById("metaDomains");
+    const metaDate = document.getElementById("metaDate");
+    const reportSnapshot = document.getElementById("reportSnapshot");
+    const shareReportBox = document.getElementById("shareReportBox");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroLead = document.getElementById("heroLead");
+    const presetTitle = document.getElementById("presetTitle");
+    const presetDescription = document.getElementById("presetDescription");
+    const eyebrowText = document.getElementById("eyebrowText");
+
+    let selectedImageDataUrl = "";
+    let currentState = null;
+    let tesseractLoader = null;
+
+    document.querySelectorAll("[data-fill]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-fill");
+        contentInput.value = sampleTexts[key] || "";
+        if (key === "job") sourceType.value = "job";
+        if (key === "phishing") sourceType.value = "link";
+        if (key === "upi") sourceType.value = "payment";
+        saveDraft();
+        contentInput.focus();
+      });
+    });
+
+    [sourceType, senderKnown, moneyAsked, urlInput, contentInput].forEach((element) => {
+      element.addEventListener("input", saveDraft);
+      element.addEventListener("change", saveDraft);
+    });
+
+    imageInput.addEventListener("change", handleImageSelection);
+    ocrBtn.addEventListener("click", handleOcr);
+    removeImageBtn.addEventListener("click", resetImage);
+    analyzeBtn.addEventListener("click", handleAnalyze);
+    clearBtn.addEventListener("click", clearAll);
+    copyLinkBtn.addEventListener("click", handleCopyLink);
+    shareBtn.addEventListener("click", handleShareReport);
+    copySummaryBtn.addEventListener("click", handleCopySummary);
+
+    applyCategoryPreset(getCategoryFromUrl());
+    restoreDraft();
+    hydrateSharedReport();
+
+    async function handleAnalyze() {
+      const text = contentInput.value.trim();
+      const manualUrl = urlInput.value.trim();
+
+      if (!text && !manualUrl) {
+        window.alert("Paste suspicious text, add a URL or domain, or upload a screenshot before analyzing.");
+        return;
+      }
+
+      const input = {
+        sourceType: sourceType.value,
+        senderKnown: senderKnown.value,
+        moneyAsked: moneyAsked.value,
+        text,
+        manualUrl,
+        category: getCategoryFromUrl(),
+        imageAttached: Boolean(selectedImageDataUrl)
+      };
+
+      const domains = extractDomains([manualUrl, text].filter(Boolean).join("\n"));
+      const baseResult = analyzeScam([text, manualUrl].filter(Boolean).join("\n"), input, domains);
+      currentState = {
+        input,
+        analyzedAt: new Date().toISOString(),
+        domains,
+        baseResult,
+        finalResult: baseResult,
+        reportMode: "live"
+      };
+
+      renderResult(baseResult, currentState);
+      resultsWrap.classList.add("show");
+      updateShareControls();
+      updateAddressBar();
+      setShareStatus("Report ready. Copy the result link to share a compact snapshot.", "success");
+      resultsWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      if (!domains.length) {
+        renderDomainResults([]);
+        return;
+      }
+
+      renderDomainResults(domains.map((domain) => ({
+        domain,
+        status: "unknown",
+        provider: "Pending",
+        summary: "Checking backend reputation data...",
+        reasons: []
+      })));
+
+      analyzeBtn.disabled = true;
+
+      try {
+        const liveResults = await fetchDomainReputation(domains);
+        currentState.finalResult = mergeDomainSignals(baseResult, liveResults);
+        renderResult(currentState.finalResult, currentState);
+        setShareStatus("Report updated with backend domain reputation data.", "success");
+      } catch (error) {
+        const fallbackResults = domains.map(buildFallbackDomainSignal);
+        currentState.finalResult = mergeDomainSignals(baseResult, fallbackResults);
+        renderResult(currentState.finalResult, currentState);
+        setShareStatus("Domain API unavailable. The report uses local domain-structure hints instead.", "warning");
+      } finally {
+        analyzeBtn.disabled = false;
+        updateShareControls();
+        updateAddressBar();
+      }
+    }
+
+    function analyzeScam(rawText, context, domains) {
+      const normalized = String(rawText || "").toLowerCase();
+      const flags = [];
+      const tips = new Set();
+      let score = 0;
+
+      function addFlag(points, title, detail, tip) {
+        score += points;
+        flags.push({ points, title, detail });
+        if (tip) tips.add(tip);
+      }
+
+      const rules = [
+        { points: 18, title: "Urgency or pressure language", detail: "The message uses pressure words like urgent, immediately, today, final notice, or account blocked.", patterns: [/urgent/, /immediately/, /act now/, /today only/, /last warning/, /final notice/, /blocked/, /suspended/, /avoid penalty/], tip: "Slow down. Real companies usually leave room to verify through official support." },
+        { points: 25, title: "OTP, password, or banking credential request", detail: "Requests for OTPs, passwords, UPI PINs, recovery codes, CVV, bank login details, or card numbers are high risk.", patterns: [/\botp\b/, /password/, /verification code/, /recovery code/, /\bcvv\b/, /upi pin/, /card details/, /bank login/, /net banking/], tip: "Never share OTPs, passwords, card details, or UPI PINs with anyone." },
+        { points: 22, title: "Advance fee or upfront payment ask", detail: "The sender wants a fee, deposit, joining charge, verification payment, shipping payment, or processing amount upfront.", patterns: [/joining fee/, /registration fee/, /processing fee/, /small payment/, /security deposit/, /pay .* fee/, /advance payment/, /release fee/, /shipping fee/], tip: "Do not pay to unlock jobs, deliveries, prizes, or refunds before verifying independently." },
+        { points: 18, title: "Suspicious link or login prompt", detail: "The text contains a URL or asks you to click through to a login or payment page.", patterns: [/https?:\/\//, /www\./, /click here/, /sign in/, /login/, /verify your account/, /update payment/], tip: "Open the official site yourself instead of clicking the provided link." },
+        { points: 16, title: "Too-good-to-be-true offer", detail: "The message promises unrealistic earnings, instant approval, high returns, or easy money.", patterns: [/earn .*\bday\b/, /easy income/, /guaranteed return/, /double your money/, /selected winner/, /instant approval/, /no interview/, /work from home/], tip: "Unusually high reward with little effort is one of the oldest scam patterns." },
+        { points: 15, title: "Impersonation language", detail: "The sender claims to be from a bank, courier, employer, government office, or major platform without strong proof.", patterns: [/bank/, /courier/, /delivery/, /government/, /hr team/, /recruiter/, /amazon/, /dhl/, /fedex/, /income tax/, /customer care/, /support team/], tip: "Verify using a phone number or website you find yourself." },
+        { points: 14, title: "Secrecy or isolation tactic", detail: "The message tells you not to tell anyone, to act privately, or to avoid contacting the official company.", patterns: [/keep this secret/, /do not tell anyone/, /confidential/, /privately/, /do not call/, /avoid contacting/], tip: "Talk to a trusted person before acting." },
+        { points: 14, title: "Remote access or screen-sharing request", detail: "The sender wants you to install a remote-access app or share your screen to complete payment or support.", patterns: [/anydesk/, /teamviewer/, /quicksupport/, /share your screen/, /remote access/, /screen share/], tip: "Do not install remote-access tools at someone else's request." },
+        { points: 16, title: "UPI collect or QR-code payment trap", detail: "The wording looks like a UPI collect request, QR-code trap, or fake refund or buyer-payment flow.", patterns: [/\bupi\b/, /collect request/, /scan this qr/, /approve mandate/, /enter your upi pin/, /refund to receive/, /receive money/, /buyer has sent payment/], tip: "To receive money, you should not need to enter a UPI PIN, approve a collect request, or scan a QR code." },
+        { points: 15, title: "Fake job or recruiter pattern", detail: "The wording resembles common job scams with no interview, Telegram or WhatsApp process, and upfront fees.", patterns: [/whatsapp interview/, /telegram interview/, /selected for job/, /document verification fee/, /training fee/, /offer letter today/, /earn from home/], tip: "Check the company careers page and recruiter email domain before sending documents or money." }
+      ];
+
+      rules.forEach((rule) => {
+        if (rule.patterns.some((pattern) => pattern.test(normalized))) addFlag(rule.points, rule.title, rule.detail, rule.tip);
+      });
+
+      if (context.senderKnown === "unknown") addFlag(8, "Unknown sender", "You are not sure who sent the message or whether the sender is genuine.", "Unknown sender plus urgency or money pressure is a common scam mix.");
+      if (context.senderKnown === "pretending") addFlag(18, "Possible impersonation", "You already suspect the sender is pretending to be a trusted person or business.", "Contact the real person or company using official contact details.");
+      if (context.moneyAsked === "yes") addFlag(12, "Money request involved", "The message asks for payment, settlement, transfer, fee, or refund collection.", "Pause all payments until you verify through an official source.");
+      if (context.moneyAsked === "credentials") addFlag(24, "Sensitive data requested", "The sender wants credentials, OTPs, recovery codes, card data, or account access.", "Never provide credentials over chat, email, SMS, or phone.");
+      if (context.sourceType === "link" && !domains.length) addFlag(8, "No domain provided", "You selected a link check, but there is no extractable URL or domain in the input.", "Paste the full URL or domain if you have it.");
+      if (normalized.length < 24 && !domains.length) addFlag(4, "Very limited context", "There is not much text to analyze, so the confidence is lower than usual.", "Add the full wording, sender name, domain, and payment instructions for a better result.");
+
+      if (!flags.length) {
+        flags.push({ points: 0, title: "No strong keyword match", detail: "No major text rule matched. That does not guarantee safety, especially if the message looks polished." });
+        tips.add("Verify the sender using an official website, app, or phone number you find yourself.");
+      }
+
+      ["Do not click links or download attachments until verified.", "Do not share OTPs, passwords, UPI PINs, recovery codes, or card numbers.", "Search the exact message text with words like scam, fraud, phishing, review, or fake.", "If money was already sent, contact your bank or payment provider immediately.", "If documents were shared, monitor identity misuse and change exposed passwords."].forEach((tip) => tips.add(tip));
+
+      const verdict = deriveVerdict(Math.min(100, score));
+      return { score: verdict.score, verdict: verdict.label, verdictClass: verdict.className, summary: verdict.summary, flags: flags.sort((a, b) => b.points - a.points), tips: Array.from(tips).slice(0, 7), domainChecks: [], domains };
+    }
+
+    function deriveVerdict(score) {
+      if (score >= 72) return { score, label: "High risk", className: "danger", summary: "This content shows multiple strong scam patterns. Do not click, pay, install anything, or share sensitive data until you verify independently." };
+      if (score >= 40) return { score, label: "Medium risk", className: "caution", summary: "There are several warning signs. Verify through official channels before taking any action." };
+      return { score, label: "Lower risk", className: "safe", summary: "The checker found fewer strong scam signals, but you should still verify before clicking, paying, or replying." };
+    }
+
+    async function fetchDomainReputation(domains) {
+      const response = await fetch("/api/domain-reputation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domains })
+      });
+      if (!response.ok) throw new Error("Domain reputation API failed.");
+      const payload = await response.json();
+      if (!payload || !Array.isArray(payload.results)) throw new Error("Unexpected API response.");
+      return payload.results.map((item) => ({
+        domain: item.domain,
+        status: normalizeDomainStatus(item.status),
+        provider: item.provider || "API",
+        summary: item.summary || "No provider summary returned.",
+        reasons: Array.isArray(item.reasons) ? item.reasons : []
+      }));
+    }
+
+    function mergeDomainSignals(baseResult, domainChecks) {
+      const merged = {
+        score: baseResult.score,
+        verdict: baseResult.verdict,
+        verdictClass: baseResult.verdictClass,
+        summary: baseResult.summary,
+        flags: baseResult.flags.slice(),
+        tips: baseResult.tips.slice(),
+        domains: baseResult.domains.slice(),
+        domainChecks: domainChecks.slice()
+      };
+
+      let bonus = 0;
+      domainChecks.forEach((check) => {
+        if (check.status === "malicious") {
+          bonus += 26;
+          merged.flags.unshift({ points: 26, title: "Malicious domain reputation", detail: check.domain + " was flagged by the reputation source. Treat the link as unsafe." });
+          merged.tips.unshift("Do not open or forward the flagged domain. Use the official site you find yourself.");
+        } else if (check.status === "review") {
+          bonus += 12;
+          merged.flags.unshift({ points: 12, title: "Suspicious domain needs review", detail: check.domain + " showed warning signals in the domain check. Verify the exact site before trusting it." });
+        } else if (check.status === "unknown" && check.reasons && check.reasons.length) {
+          bonus += 6;
+          merged.flags.unshift({ points: 6, title: "Domain structure looks unusual", detail: check.domain + " looks unusual even though no live reputation verdict was available." });
+        }
+      });
+
+      const verdict = deriveVerdict(Math.min(100, merged.score + bonus));
+      merged.score = verdict.score;
+      merged.verdict = verdict.label;
+      merged.verdictClass = verdict.className;
+      merged.summary = verdict.summary;
+      merged.flags = merged.flags.sort((a, b) => b.points - a.points).slice(0, 9);
+      merged.tips = Array.from(new Set(merged.tips)).slice(0, 7);
+      return merged;
+    }
+
+    function renderResult(result, state) {
+      scoreValue.textContent = String(result.score);
+      scoreRing.style.background = buildScoreRing(result.score);
+      verdictBadge.textContent = result.verdict;
+      verdictBadge.className = "verdict " + result.verdictClass;
+      resultSummary.textContent = result.summary;
+      metaSource.textContent = formatSourceLabel(state.input.sourceType);
+      metaDomains.textContent = String(result.domains.length);
+      metaDate.textContent = formatDate(state.analyzedAt);
+      reportSnapshot.textContent = buildSnapshotText(result, state);
+
+      flagsList.innerHTML = result.flags.map((flag) => (
+        "<div class=\"flag\"><strong>" + escapeHtml(flag.title) + "</strong><p>" + escapeHtml(flag.detail) + "</p></div>"
+      )).join("");
+
+      tipsList.innerHTML = result.tips.map((tip) => (
+        "<div class=\"tip\"><strong>Recommended action</strong><p>" + escapeHtml(tip) + "</p></div>"
+      )).join("");
+
+      renderDomainResults(result.domainChecks || []);
+      shareReportBox.innerHTML = "<strong>Shareable report</strong><br />" + escapeHtml(buildSnapshotText(result, state));
+    }
+
+    function renderDomainResults(domainChecks) {
+      if (!domainChecks.length) {
+        domainSection.classList.add("hidden");
+        domainGrid.innerHTML = "";
+        return;
+      }
+
+      domainSection.classList.remove("hidden");
+      domainGrid.innerHTML = domainChecks.map((item) => {
+        const statusClass = normalizeDomainStatus(item.status);
+        const reasonText = item.reasons && item.reasons.length ? item.reasons.join(" | ") : item.summary;
+        return [
+          "<div class=\"domain-card\">",
+          "<div class=\"domain-status " + statusClass + "\">" + escapeHtml(statusLabel(statusClass)) + "</div>",
+          "<strong>" + escapeHtml(item.domain) + "</strong>",
+          "<p>" + escapeHtml(item.summary || "No details available.") + "</p>",
+          "<p style=\"margin-top:.45rem;\"><span style=\"color:#fafafa;\">Source:</span> " + escapeHtml(item.provider || "Unknown") + "</p>",
+          reasonText ? "<p style=\"margin-top:.45rem;\">" + escapeHtml(reasonText) + "</p>" : "",
+          "</div>"
+        ].join("");
+      }).join("");
+    }
+
+    function buildScoreRing(score) {
+      let color = "var(--safe)";
+      if (score >= 72) color = "var(--danger)";
+      else if (score >= 40) color = "var(--warn)";
+      const degrees = Math.max(6, Math.round((score / 100) * 360));
+      return "conic-gradient(" + color + " " + degrees + "deg, rgba(255,255,255,0.08) " + degrees + "deg)";
+    }
+
+    function extractDomains(text) {
+      const raw = String(text || "");
+      const candidates = new Set();
+      const pattern = /\b((?:https?:\/\/|www\.)[^\s<>"']+|(?:[a-z0-9-]+\.)+[a-z]{2,})(?:\/[^\s<>"']*)?/gi;
+      let match;
+      while ((match = pattern.exec(raw)) !== null) {
+        const token = sanitizeUrlToken(match[0]);
+        const domain = normalizeDomain(token);
+        if (domain) candidates.add(domain);
+      }
+      return Array.from(candidates).slice(0, 6);
+    }
+
+    function sanitizeUrlToken(token) {
+      return String(token || "").trim().replace(/[),.;]+$/g, "");
+    }
+
+    function normalizeDomain(value) {
+      const input = String(value || "").trim().toLowerCase();
+      if (!input) return "";
+
+      let hostname = input;
+      try {
+        const url = new URL(/^[a-z]+:\/\//.test(input) ? input : "https://" + input);
+        hostname = url.hostname.toLowerCase();
+      } catch (error) {
+        hostname = input.replace(/^www\./, "");
+      }
+
+      hostname = hostname.replace(/^www\./, "");
+      if (!/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(hostname)) return "";
+      if (hostname.includes("..")) return "";
+      if (hostname.startsWith("-") || hostname.endsWith("-")) return "";
+      return hostname;
+    }
+
+    function buildFallbackDomainSignal(domain) {
+      const reasons = [];
+      const parts = domain.split(".");
+      const label = parts.slice(0, -1).join(".");
+
+      if (domain.includes("xn--")) reasons.push("Contains punycode characters, which can hide lookalike domains.");
+      if ((label.match(/-/g) || []).length >= 3) reasons.push("Uses multiple hyphens in the hostname.");
+      if (parts.length >= 4) reasons.push("Uses many nested subdomains.");
+      if (/\d/.test(label) && label.length > 8) reasons.push("Includes several numbers in the hostname.");
+      if (/(login|secure|verify|wallet|update|pay|refund|support)/.test(label)) reasons.push("Uses high-pressure words common in phishing domains.");
+
+      return {
+        domain,
+        status: reasons.length >= 2 ? "review" : "unknown",
+        provider: "Local heuristic fallback",
+        summary: reasons.length >= 2 ? "The domain structure looks suspicious and needs manual review." : "No live provider verdict was available.",
+        reasons
+      };
+    }
+
+    function normalizeDomainStatus(status) {
+      if (status === "malicious" || status === "clean" || status === "review" || status === "unknown") return status;
+      if (status === "suspicious") return "review";
+      if (status === "safe") return "clean";
+      return "unknown";
+    }
+
+    function statusLabel(status) {
+      if (status === "malicious") return "Malicious";
+      if (status === "review") return "Needs review";
+      if (status === "clean") return "No live warning";
+      return "Unknown";
+    }
+
+    async function handleImageSelection(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) {
+        resetImage();
+        return;
+      }
+
+      selectedImageDataUrl = await readFileAsDataUrl(file);
+      imagePreview.innerHTML = "<img src=\"" + selectedImageDataUrl + "\" alt=\"Uploaded screenshot preview\" />";
+      showStatus(ocrStatusBox, "Image ready. Click Extract text from image to run OCR locally.", "success");
+      saveDraft();
+    }
+
+    async function handleOcr() {
+      const file = imageInput.files && imageInput.files[0];
+      if (!file) {
+        window.alert("Select an image first.");
+        return;
+      }
+
+      ocrBtn.disabled = true;
+      showStatus(ocrStatusBox, "Loading OCR engine...", "warning");
+
+      try {
+        await loadTesseract();
+        const result = await window.Tesseract.recognize(file, "eng", {
+          logger(message) {
+            if (message && message.status) {
+              const progress = typeof message.progress === "number" ? " " + Math.round(message.progress * 100) + "%" : "";
+              showStatus(ocrStatusBox, "OCR: " + message.status + progress, "warning");
+            }
+          }
+        });
+
+        const extracted = normalizeWhitespace(result && result.data ? result.data.text : "");
+        if (!extracted) {
+          showStatus(ocrStatusBox, "OCR finished, but no readable text was extracted.", "warning");
+          return;
+        }
+
+        contentInput.value = contentInput.value.trim() ? contentInput.value.trim() + "\n\n" + extracted : extracted;
+        saveDraft();
+        showStatus(ocrStatusBox, "OCR complete. Extracted text was appended to the input box.", "success");
+      } catch (error) {
+        showStatus(ocrStatusBox, "OCR could not run. You can still paste the text manually.", "error");
+      } finally {
+        ocrBtn.disabled = false;
+      }
+    }
+
+    function resetImage() {
+      selectedImageDataUrl = "";
+      imageInput.value = "";
+      imagePreview.innerHTML = "<div class=\"preview-placeholder\">No image selected yet.</div>";
+      ocrStatusBox.className = "status-box hidden";
+    }
+
+    async function loadTesseract() {
+      if (window.Tesseract) return;
+      if (tesseractLoader) {
+        await tesseractLoader;
+        return;
+      }
+
+      tesseractLoader = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = OCR_SCRIPT_SRC;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+
+      await tesseractLoader;
+    }
+
+    async function handleCopyLink() {
+      const url = buildShareUrl();
+      if (!url) return;
+      await copyText(url);
+      setShareStatus("Result link copied. You can now share the report snapshot.", "success");
+    }
+
+    async function handleShareReport() {
+      const url = buildShareUrl();
+      if (!url) return;
+
+      const shareData = {
+        title: "Scam check report",
+        text: buildShareMessage(),
+        url
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          setShareStatus("Report shared successfully.", "success");
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+
+      await copyText(url);
+      setShareStatus("Share sheet unavailable here, so the result link was copied instead.", "warning");
+    }
+
+    async function handleCopySummary() {
+      if (!currentState) return;
+      await copyText(buildPlainTextSummary(currentState.finalResult, currentState));
+      setShareStatus("Report summary copied.", "success");
+    }
+
+    function buildShareUrl() {
+      if (!currentState) return "";
+      const url = new URL(window.location.href);
+      const payload = compactSharePayload(currentState);
+      url.searchParams.set(REPORT_PARAM, encodePayload(payload));
+      if (currentState.input.category) url.searchParams.set("category", currentState.input.category);
+      else url.searchParams.delete("category");
+      return url.toString();
+    }
+
+    function compactSharePayload(state) {
+      return {
+        v: 1,
+        sourceType: state.input.sourceType,
+        senderKnown: state.input.senderKnown,
+        moneyAsked: state.input.moneyAsked,
+        category: state.input.category || "",
+        analyzedAt: state.analyzedAt,
+        excerpt: truncate(normalizeWhitespace(state.input.text || state.input.manualUrl || ""), 320),
+        manualUrl: truncate(state.input.manualUrl || "", 180),
+        score: state.finalResult.score,
+        verdict: state.finalResult.verdict,
+        verdictClass: state.finalResult.verdictClass,
+        summary: truncate(state.finalResult.summary, 220),
+        flags: state.finalResult.flags.slice(0, 5).map((flag) => ({ title: truncate(flag.title, 80), detail: truncate(flag.detail, 120), points: flag.points })),
+        tips: state.finalResult.tips.slice(0, 5).map((tip) => truncate(tip, 120)),
+        domains: (state.finalResult.domainChecks || []).slice(0, 5).map((check) => ({
+          domain: check.domain,
+          status: normalizeDomainStatus(check.status),
+          provider: truncate(check.provider || "", 60),
+          summary: truncate(check.summary || "", 110),
+          reasons: (check.reasons || []).slice(0, 2).map((reason) => truncate(reason, 90))
+        }))
+      };
+    }
+
+    function hydrateSharedReport() {
+      const encoded = new URLSearchParams(window.location.search).get(REPORT_PARAM);
+      if (!encoded) return;
+
+      try {
+        const report = decodePayload(encoded);
+        if (!report || typeof report !== "object") return;
+
+        applyCategoryPreset(report.category || getCategoryFromUrl());
+        sourceType.value = report.sourceType || "general";
+        senderKnown.value = report.senderKnown || "unknown";
+        moneyAsked.value = report.moneyAsked || "none";
+        urlInput.value = report.manualUrl || "";
+        contentInput.value = report.excerpt || "";
+
+        currentState = {
+          input: {
+            sourceType: report.sourceType || "general",
+            senderKnown: report.senderKnown || "unknown",
+            moneyAsked: report.moneyAsked || "none",
+            text: report.excerpt || "",
+            manualUrl: report.manualUrl || "",
+            category: report.category || "",
+            imageAttached: false
+          },
+          analyzedAt: report.analyzedAt || new Date().toISOString(),
+          domains: Array.isArray(report.domains) ? report.domains.map((item) => item.domain).filter(Boolean) : [],
+          baseResult: null,
+          finalResult: {
+            score: Number(report.score) || 0,
+            verdict: report.verdict || "Needs review",
+            verdictClass: report.verdictClass || "caution",
+            summary: report.summary || "Shared report summary.",
+            flags: Array.isArray(report.flags) ? report.flags : [],
+            tips: Array.isArray(report.tips) ? report.tips : [],
+            domainChecks: Array.isArray(report.domains) ? report.domains : [],
+            domains: Array.isArray(report.domains) ? report.domains.map((item) => item.domain).filter(Boolean) : []
+          },
+          reportMode: "shared"
+        };
+
+        renderResult(currentState.finalResult, currentState);
+        resultsWrap.classList.add("show");
+        updateShareControls();
+        setShareStatus("Showing a shared report snapshot. You can edit the input and run a fresh check.", "warning");
+      } catch (error) {
+        setShareStatus("The shared report link could not be decoded. Run a fresh analysis instead.", "error");
+      }
+    }
+
+    function updateShareControls() {
+      const enabled = Boolean(currentState);
+      copyLinkBtn.disabled = !enabled;
+      shareBtn.disabled = !enabled;
+    }
+
+    function updateAddressBar() {
+      const url = buildShareUrl();
+      if (!url) return;
+      window.history.replaceState({}, "", url);
+    }
+
+    function clearAll() {
+      contentInput.value = "";
+      urlInput.value = "";
+      sourceType.value = "general";
+      senderKnown.value = "unknown";
+      moneyAsked.value = "none";
+      currentState = null;
+      resultsWrap.classList.remove("show");
+      resetImage();
+      copyLinkBtn.disabled = true;
+      shareBtn.disabled = true;
+      saveDraft();
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete(REPORT_PARAM);
+      window.history.replaceState({}, "", url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : ""));
+      applyCategoryPreset(getCategoryFromUrl());
+      setShareStatus("Inputs cleared. Add a new message, URL, or screenshot to analyze.", "success");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function saveDraft() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          sourceType: sourceType.value,
+          senderKnown: senderKnown.value,
+          moneyAsked: moneyAsked.value,
+          manualUrl: urlInput.value,
+          text: contentInput.value
+        }));
+      } catch (error) {}
+    }
+
+    function restoreDraft() {
+      if (new URLSearchParams(window.location.search).has(REPORT_PARAM)) return;
+      try {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (!stored) return;
+        sourceType.value = stored.sourceType || sourceType.value;
+        senderKnown.value = stored.senderKnown || senderKnown.value;
+        moneyAsked.value = stored.moneyAsked || moneyAsked.value;
+        urlInput.value = stored.manualUrl || "";
+        contentInput.value = stored.text || "";
+      } catch (error) {}
+    }
+
+    function applyCategoryPreset(category) {
+      const preset = category && categoryConfig[category] ? categoryConfig[category] : null;
+      if (!preset) {
+        eyebrowText.textContent = "Scam analysis and shareable reports";
+        heroTitle.textContent = "Check suspicious messages, links, and payment requests before you act.";
+        heroLead.textContent = "Paste suspicious text, add a risky URL, or upload a screenshot for OCR. The checker looks for phishing, fake job, impersonation, payment, and UPI scam patterns, then adds live domain reputation data when the backend API is available.";
+        presetTitle.textContent = "How this report works";
+        presetDescription.textContent = "Analysis runs locally in the browser first. If the text contains a domain or URL, the page can ask the backend API for a reputation signal and merge that into the report.";
+        return;
+      }
+
+      eyebrowText.textContent = preset.eyebrow;
+      heroTitle.textContent = preset.title;
+      heroLead.textContent = preset.lead;
+      presetTitle.textContent = preset.noteTitle;
+      presetDescription.textContent = preset.noteText;
+      sourceType.value = preset.sourceType;
+      moneyAsked.value = preset.moneyAsked;
+    }
+
+    function getCategoryFromUrl() {
+      const category = new URLSearchParams(window.location.search).get("category");
+      return category && categoryConfig[category] ? category : "";
+    }
+
+    function buildSnapshotText(result, state) {
+      const domainsText = result.domainChecks && result.domainChecks.length
+        ? result.domainChecks.map((item) => item.domain + " (" + statusLabel(normalizeDomainStatus(item.status)) + ")").join(", ")
+        : "No domain checks";
+      return result.verdict + " | score " + result.score + " | " + formatSourceLabel(state.input.sourceType) + " | domains: " + domainsText + " | analyzed " + formatDate(state.analyzedAt);
+    }
+
+    function buildPlainTextSummary(result, state) {
+      const lines = [
+        "Scam check report",
+        "Verdict: " + result.verdict,
+        "Score: " + result.score + "/100",
+        "Source type: " + formatSourceLabel(state.input.sourceType),
+        "Analyzed at: " + formatDate(state.analyzedAt),
+        "Summary: " + result.summary,
+        "Flags: " + result.flags.map((flag) => flag.title).join("; "),
+        "Next steps: " + result.tips.join("; ")
+      ];
+
+      if (result.domainChecks && result.domainChecks.length) {
+        lines.push("Domains: " + result.domainChecks.map((item) => item.domain + " [" + statusLabel(normalizeDomainStatus(item.status)) + "]").join("; "));
+      }
+
+      return lines.join("\n");
+    }
+
+    function buildShareMessage() {
+      return currentState ? currentState.finalResult.verdict + " scam report from Pulsagi" : "Scam check report";
+    }
+
+    function formatSourceLabel(value) {
+      const map = {
+        general: "General message",
+        email: "Email",
+        sms: "SMS or WhatsApp",
+        job: "Job offer",
+        payment: "Payment request",
+        marketplace: "Marketplace chat",
+        call: "Phone call transcript",
+        link: "Link or website text"
+      };
+      return map[value] || "General message";
+    }
+
+    function showStatus(element, message, tone) {
+      element.className = "status-box " + tone;
+      element.textContent = message;
+    }
+
+    function setShareStatus(message, tone) {
+      shareStatusBox.className = "share-note status-box " + tone;
+      shareStatusBox.innerHTML = "<strong>Status</strong><br />" + escapeHtml(message);
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    function truncate(value, maxLength) {
+      const text = String(value || "");
+      return text.length <= maxLength ? text : text.slice(0, maxLength - 1) + "...";
+    }
+
+    function normalizeWhitespace(value) {
+      return String(value || "").replace(/\r\n/g, "\n").replace(/\r/g, "\n").replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+    }
+
+    function encodePayload(payload) {
+      const bytes = new TextEncoder().encode(JSON.stringify(payload));
+      let binary = "";
+      bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+      return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+    }
+
+    function decodePayload(encoded) {
+      const normalized = String(encoded || "").replace(/-/g, "+").replace(/_/g, "/");
+      const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+      const binary = atob(padded);
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "readonly");
+      area.style.position = "absolute";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      document.body.removeChild(area);
+    }
+
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ""));
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+      if (Number.isNaN(date.getTime())) return "-";
+      return date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      });
+    }
+  </script>
+</body>
+</html>
