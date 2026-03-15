@@ -44,10 +44,10 @@
     .nav-pill:hover{background:rgba(110,231,183,.15)!important}
     .wrap{max-width:1300px;margin:0 auto;padding:96px 18px 36px}
     .hero{margin-bottom:18px}
-    .hero-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .hero-title{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;max-width:100%}
     .hero h1{margin:0;font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-.03em;white-space:nowrap;background:linear-gradient(135deg,#f4f7ff 0%,#a9c1ff 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-copy{margin:0;color:var(--muted);max-width:760px;font-size:14px;line-height:1.65;flex:1 1 620px}
-    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(122,162,255,.28);border-radius:999px;background:linear-gradient(180deg,rgba(122,162,255,.12),rgba(155,135,245,.08));color:#dce7ff;font-size:12px;white-space:nowrap;flex:0 0 auto;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+    .hero-copy{margin:12px 0 0;color:var(--muted);max-width:none;font-size:14px;line-height:1.5;white-space:nowrap}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(122,162,255,.28);border-radius:999px;background:linear-gradient(180deg,rgba(122,162,255,.12),rgba(155,135,245,.08));color:#dce7ff;font-size:12px;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);flex:0 0 auto;margin-left:auto}
     .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;margin-bottom:18px}
     .badge{background:rgba(122,162,255,.12);border:1px solid rgba(122,162,255,.28);color:#dce7ff;border-radius:999px;padding:8px 12px;font-size:12px}
     .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
@@ -89,7 +89,8 @@
     footer{border-top:1px solid var(--site-border);padding:2rem;text-align:center;font-size:.8rem;color:var(--site-muted);font-family:'Courier New',monospace}
     footer a{color:var(--site-accent);text-decoration:none}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    @media (max-width:760px){nav{padding:1rem 1.2rem}nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}.wrap{padding:92px 14px 24px}.hero-title{align-items:flex-start}.hero h1,.hero-copy{white-space:normal}}
+    @media (max-width:900px){.hero-title{flex-wrap:wrap}.hero-tag{margin-left:0}.hero-copy{white-space:normal}}
+    @media (max-width:760px){nav{padding:1rem 1.2rem}nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}.wrap{padding:92px 14px 24px}.hero-title{align-items:flex-start}.hero h1{white-space:normal}}
     @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
   </style>
   <!-- Google Tag Manager -->
@@ -116,9 +117,9 @@
     <section class="hero">
       <div class="hero-title">
         <h1>Apex and SOQL Formatter</h1>
-        <p class="hero-copy">Paste Apex classes, triggers, anonymous Apex, or SOQL queries to clean up indentation, line breaks, and readability in one browser-based formatter built for Salesforce workflows.</p>
         <div class="hero-tag">Pulsagi Developer Toolbox</div>
       </div>
+      <p class="hero-copy">Paste Apex classes, triggers, anonymous Apex, or SOQL queries to clean up indentation, line breaks, and readability in one browser-based formatter built for Salesforce workflows.</p>
       <div class="badge-row">
         <span class="badge">Apex formatting</span>
         <span class="badge">SOQL formatting</span>
