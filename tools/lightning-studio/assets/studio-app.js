@@ -1,8 +1,7 @@
 (function () {
   if (document.body.dataset.page !== "home") return;
 
-  const siteConfig = window.LightningStudioData.siteConfig || {};
-  const salesforceConfig = siteConfig.salesforce || {};
+  const salesforceConfig = window.LightningStudioSalesforceConfig || {};
   const { copyText, downloadText, escapeHtml, readStorage, writeStorage } =
     window.LightningStudioUtils;
 
@@ -108,8 +107,7 @@
   }
 
   function hasConfiguredClientId() {
-    const clientId = configuredClientId();
-    return !!clientId && !/^REPLACE_WITH_/i.test(clientId);
+    return !!configuredClientId();
   }
 
   function nowLabel(value) {
@@ -188,6 +186,19 @@
         </div>
       </div>
     `;
+  }
+
+  function normalizeSalesforceError(message) {
+    const raw = String(message || "");
+    if (
+      /not approved|approve this consumer|remote access application|admin approved users are pre-authorized/i.test(
+        raw
+      )
+    ) {
+      return `${raw} Ask a Salesforce admin to pre-approve the Lightning Studio Connected App for this org.`;
+    }
+
+    return raw;
   }
 
   function updateOauthAvailability() {
@@ -697,7 +708,9 @@
       if (config.autoDownload) downloadSnapshot(true);
     } catch (error) {
       state.syncState = "error";
-      state.syncMessage = error.message || "Unable to sync from Salesforce.";
+      state.syncMessage = normalizeSalesforceError(
+        error.message || "Unable to sync from Salesforce."
+      );
       addLog(
         "error",
         "Sync failed",
@@ -731,7 +744,9 @@
       state.pendingAuthMessage = {
         type: "error",
         title: "Salesforce authentication failed",
-        message: params.get("error_description") || params.get("error")
+        message: normalizeSalesforceError(
+          params.get("error_description") || params.get("error")
+        )
       };
       history.replaceState({}, document.title, window.location.pathname + window.location.search);
       return;
@@ -841,7 +856,7 @@
       feedback(
         "error",
         "Unable to validate token",
-        `${error.message} If this is a browser CORS issue, add your site origin in Salesforce Setup > CORS.`
+        `${normalizeSalesforceError(error.message)} If this is a browser CORS issue, add your site origin in Salesforce Setup > CORS.`
       );
     }
   }
@@ -906,8 +921,8 @@
       render();
     } catch (error) {
       state.syncState = "error";
-      state.syncMessage = error.message;
-      addLog("error", "Retrieve failed", error.message);
+      state.syncMessage = normalizeSalesforceError(error.message);
+      addLog("error", "Retrieve failed", state.syncMessage);
       render();
     }
   }
@@ -954,8 +969,8 @@
       render();
     } catch (error) {
       state.syncState = "error";
-      state.syncMessage = error.message;
-      addLog("error", "Deploy failed", error.message);
+      state.syncMessage = normalizeSalesforceError(error.message);
+      addLog("error", "Deploy failed", state.syncMessage);
       render();
     }
   }
@@ -1077,7 +1092,7 @@
       feedback(
         "error",
         "One-click Salesforce sign-in is not configured yet",
-        "Replace the placeholder consumer key in Lightning Studio with your Salesforce Connected App client ID to enable the Connect with Salesforce button."
+        "Add your Salesforce Connected App consumer key to assets/salesforce-config.js to enable the Connect with Salesforce button."
       );
     } else {
       feedback(
