@@ -4,6 +4,7 @@
   const lightningStudioData = window.LightningStudioData || {};
   const siteConfig = lightningStudioData.siteConfig || {};
   const salesforceConfig = window.LightningStudioSalesforceConfig || {};
+  const SOAP_API_VERSION = salesforceConfig.soapApiVersion || "64.0";
   const {
     copyText,
     downloadText,
@@ -20,6 +21,7 @@
     auth: "ls-static-salesforce-auth",
     drafts: "ls-static-salesforce-drafts",
     tree: "ls-static-salesforce-tree",
+    standardForm: "ls-static-salesforce-standard-form",
     oauthForm: "ls-static-salesforce-oauth-form",
     manualForm: "ls-static-salesforce-manual-form",
     pending: "ls-static-salesforce-oauth-pending"
@@ -46,6 +48,9 @@
     oauthCustomDomainField: document.querySelector("[data-oauth-custom-domain-field]"),
     oauthCustomDomain: document.querySelector("[data-oauth-custom-domain]"),
     oauthRedirectUri: document.querySelector("[data-oauth-redirect-uri]"),
+    standardUsername: document.querySelector("[data-standard-username]"),
+    standardPassword: document.querySelector("[data-standard-password]"),
+    standardSecurityToken: document.querySelector("[data-standard-security-token]"),
     manualInstanceUrl: document.querySelector("[data-manual-instance-url]"),
     manualAccessToken: document.querySelector("[data-manual-access-token]"),
     sidebarSearch: document.querySelector("[data-sidebar-search]"),
@@ -79,6 +84,7 @@
     copySelectedButton: document.querySelector("[data-copy-selected]"),
     downloadSelectedButton: document.querySelector("[data-download-selected]"),
     deploySelectedButton: document.querySelector("[data-deploy-selected]"),
+    startStandardLoginButton: document.querySelector("[data-start-standard-login]"),
     startOauthButton: document.querySelector("[data-start-oauth]"),
     saveManualAuthButton: document.querySelector("[data-save-manual-auth]")
   };
@@ -99,7 +105,7 @@
         type: "info",
         title: "Workspace ready",
         message:
-          "Add your GitHub Pages origin to Salesforce CORS and use this page URL as an allowed callback in your Connected App."
+          "Add your site origin to Salesforce CORS for direct browser API access. Connected App callback setup is only needed for optional OAuth login."
       }
     ]
   };
@@ -124,6 +130,12 @@
 
   function hasConfiguredClientId() {
     return !!configuredClientId();
+  }
+
+  function selectedLoginDomain() {
+    return dom.oauthLoginDomain.value === "custom"
+      ? cleanUrl(dom.oauthCustomDomain.value)
+      : cleanUrl(dom.oauthLoginDomain.value);
   }
 
   function nowLabel(value) {
@@ -301,7 +313,13 @@
       </article>
       <article class="org-meta-item">
         <span>Auth mode</span>
-        <strong>${escapeHtml(state.auth.authType === "manual" ? "Manual session token" : "OAuth browser flow")}</strong>
+        <strong>${escapeHtml(
+          state.auth.authType === "manual"
+            ? "Manual session token"
+            : state.auth.authType === "standard"
+              ? "Standard login"
+              : "OAuth browser flow"
+        )}</strong>
       </article>
       <article class="org-meta-item">
         <span>API version</span>
@@ -721,7 +739,7 @@
       addLog(
         "error",
         "Sync failed",
-        `${state.syncMessage} Check token validity, Connected App setup, and Salesforce CORS.`
+        `${state.syncMessage} Check session validity and Salesforce CORS. If you are using OAuth, also verify the Connected App setup.`
       );
       if (/INVALID_SESSION_ID|401/.test(state.syncMessage)) {
         clearAuth();
@@ -742,6 +760,27 @@
     });
     const version = [...data].sort((a, b) => Number(b.version) - Number(a.version))[0]?.version;
     return `v${version}`;
+  }
+
+  function soapValue(documentNode, localName) {
+    return documentNode.getElementsByTagNameNS("*", localName)?.[0]?.textContent?.trim() || "";
+  }
+
+  function soapFault(documentNode) {
+    return (
+      soapValue(documentNode, "exceptionMessage") ||
+      soapValue(documentNode, "faultstring") ||
+      soapValue(documentNode, "faultcode")
+    );
+  }
+
+  function escapeXml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&apos;");
   }
 
   function consumeOauthHash() {
@@ -781,10 +820,7 @@
 
   function startOauthFlow() {
     const form = {
-      loginDomain:
-        dom.oauthLoginDomain.value === "custom"
-          ? cleanUrl(dom.oauthCustomDomain.value)
-          : cleanUrl(dom.oauthLoginDomain.value),
+      loginDomain: selectedLoginDomain(),
       clientId: configuredClientId()
     };
     writeSessionStorage(KEYS.oauthForm, form);
@@ -835,6 +871,105 @@
     );
     loginUrl.searchParams.set("display", "popup");
     window.location.assign(loginUrl.toString());
+  }
+
+  async function connectStandardLogin() {
+    const form = {
+      loginDomain: selectedLoginDomain(),
+      username: dom.standardUsername.value.trim(),
+      password: dom.standardPassword.value,
+      securityToken: dom.standardSecurityToken.value.trim()
+    };
+    writeSessionStorage(KEYS.standardForm, {
+      loginDomain: form.loginDomain,
+      username: form.username
+    });
+    if (!form.loginDomain) {
+      feedback("error", "Missing login domain", "Choose a Salesforce login domain before signing in.");
+      return;
+    }
+    if (!form.username || !form.password) {
+      feedback(
+        "error",
+        "Missing credentials",
+        "Enter your Salesforce username and password before starting standard sign-in."
+      );
+      return;
+    }
+    state.syncState = "syncing";
+    state.syncMessage = "Signing in to Salesforce and creating a browser session.";
+    render();
+
+    const loginUrl = `${form.loginDomain}/services/Soap/u/${SOAP_API_VERSION}`;
+    const envelope = `<?xml version="1.0" encoding="utf-8"?>
+<env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Body>
+    <n1:login xmlns:n1="urn:partner.soap.sforce.com">
+      <n1:username>${escapeXml(form.username)}</n1:username>
+      <n1:password>${escapeXml(form.password + form.securityToken)}</n1:password>
+    </n1:login>
+  </env:Body>
+</env:Envelope>`;
+
+    try {
+      const response = await fetch(loginUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/xml; charset=UTF-8",
+          SOAPAction: "login"
+        },
+        body: envelope
+      });
+      const text = await response.text();
+      const xml = new DOMParser().parseFromString(text, "text/xml");
+      const parserError = xml.querySelector("parsererror");
+      if (parserError) {
+        throw new Error(parserError.textContent.trim() || "Salesforce returned malformed XML.");
+      }
+      const fault = soapFault(xml);
+      if (!response.ok || fault) {
+        throw new Error(fault || `Salesforce sign-in failed with HTTP ${response.status}.`);
+      }
+
+      const sessionId = soapValue(xml, "sessionId");
+      const serverUrl = soapValue(xml, "serverUrl");
+      if (!sessionId || !serverUrl) {
+        throw new Error("Salesforce did not return a valid session ID and server URL.");
+      }
+
+      const instanceUrl = new URL(serverUrl).origin;
+      const auth = {
+        authType: "standard",
+        accessToken: sessionId,
+        instanceUrl,
+        loginDomain: form.loginDomain,
+        username: form.username,
+        apiVersion: null,
+        lastSyncedAt: null
+      };
+      auth.apiVersion = await testConnection(auth);
+      setAuth(auth);
+      state.pendingAuthMessage = {
+        type: "success",
+        title: "Salesforce session created",
+        message: "Standard login succeeded and the session token is now available only in this browser session."
+      };
+      dom.standardPassword.value = "";
+      render();
+      feedback("success", state.pendingAuthMessage.title, state.pendingAuthMessage.message);
+      dom.authModal.hidden = true;
+      await syncOrg({ autoDownload: true });
+    } catch (error) {
+      state.syncState = "error";
+      state.syncMessage = normalizeSalesforceError(error.message || "Salesforce sign-in failed.");
+      addLog("error", "Standard login failed", state.syncMessage);
+      feedback(
+        "error",
+        "Unable to create Salesforce session",
+        `${state.syncMessage} Add your site origin in Salesforce CORS if the browser blocks the request.`
+      );
+      render();
+    }
   }
 
   async function connectManualToken() {
@@ -997,6 +1132,10 @@
   }
 
   function hydrateForms() {
+    const standardForm = readSessionStorage(KEYS.standardForm, {
+      loginDomain: "https://login.salesforce.com",
+      username: ""
+    });
     const oauthForm = readSessionStorage(KEYS.oauthForm, {
       loginDomain: "https://login.salesforce.com"
     });
@@ -1004,13 +1143,17 @@
       instanceUrl: "",
       accessToken: ""
     });
+    const preferredDomain = standardForm.loginDomain || oauthForm.loginDomain;
     const custom =
-      oauthForm.loginDomain !== "https://login.salesforce.com" &&
-      oauthForm.loginDomain !== "https://test.salesforce.com";
-    dom.oauthLoginDomain.value = custom ? "custom" : oauthForm.loginDomain;
-    dom.oauthCustomDomain.value = custom ? oauthForm.loginDomain : "";
+      preferredDomain !== "https://login.salesforce.com" &&
+      preferredDomain !== "https://test.salesforce.com";
+    dom.oauthLoginDomain.value = custom ? "custom" : preferredDomain;
+    dom.oauthCustomDomain.value = custom ? preferredDomain : "";
     dom.oauthCustomDomainField.hidden = !custom;
     dom.oauthRedirectUri.value = redirectUri();
+    dom.standardUsername.value = standardForm.username || "";
+    dom.standardPassword.value = "";
+    dom.standardSecurityToken.value = "";
     dom.manualInstanceUrl.value = manualForm.instanceUrl || "";
     dom.manualAccessToken.value = manualForm.accessToken || "";
     updateOauthAvailability();
@@ -1061,6 +1204,7 @@
     dom.oauthLoginDomain.addEventListener("change", () => {
       dom.oauthCustomDomainField.hidden = dom.oauthLoginDomain.value !== "custom";
     });
+    dom.startStandardLoginButton.addEventListener("click", connectStandardLogin);
     dom.startOauthButton.addEventListener("click", startOauthFlow);
     dom.saveManualAuthButton.addEventListener("click", connectManualToken);
     dom.sidebarSearch.addEventListener("input", () => {
@@ -1105,15 +1249,15 @@
       );
     } else if (!hasConfiguredClientId()) {
       feedback(
-        "error",
-        "One-click Salesforce sign-in is not configured yet",
-        "Add your Salesforce Connected App consumer key to assets/salesforce-config.js to enable the Login with Salesforce button."
+        "info",
+        "Standard login is ready",
+        "Use username and password to create a Salesforce session directly, or configure a Connected App later if you also want OAuth redirect sign-in."
       );
     } else {
       feedback(
         "info",
         "Before you start",
-        "Add this site origin to Salesforce CORS and register this page URL as an allowed callback in your Connected App."
+        "Use standard login for a direct Salesforce session, or use OAuth if your Connected App callback and CORS settings are already configured."
       );
     }
     render();

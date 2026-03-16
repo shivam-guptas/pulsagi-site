@@ -236,7 +236,7 @@
           <div>
             <strong>Before you start</strong>
             <p class="muted">
-              Add this site origin to Salesforce CORS and register this page URL as an allowed callback in your Connected App.
+              Add this site origin to Salesforce CORS. You only need a Connected App callback if you plan to use the optional OAuth login path.
             </p>
           </div>
         </div>
@@ -263,35 +263,80 @@
           </div>
           <div class="callout info">
             <div>
-              <strong>How sign-in works</strong>
+              <strong>Standard sign-in</strong>
               <p class="muted">
-                Lightning Studio sends you to Salesforce's own login page first, then Salesforce returns a browser session token to Lightning Studio after sign-in.
+                Enter Salesforce credentials here only to create a session with Salesforce directly. Lightning Studio keeps the returned session token only in this browser session.
               </p>
             </div>
           </div>
           <div class="field">
-            <label for="oauth-redirect-uri">Redirect URI</label>
-            <input class="input" id="oauth-redirect-uri" data-oauth-redirect-uri readonly />
+            <label for="standard-username">Username</label>
+            <input
+              class="input"
+              id="standard-username"
+              data-standard-username
+              autocomplete="username"
+              placeholder="you@example.com"
+            />
           </div>
-          <div class="callout warning">
-            <div>
-              <strong>Org admin approval</strong>
-              <p class="muted">
-                Some Salesforce orgs require an admin to pre-approve external Connected Apps before users can authorize Lightning Studio.
-              </p>
-            </div>
+          <div class="field">
+            <label for="standard-password">Password</label>
+            <input
+              class="input"
+              id="standard-password"
+              data-standard-password
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter Salesforce password"
+            />
           </div>
-          <button class="button" type="button" data-start-oauth>Login with Salesforce</button>
+          <div class="field">
+            <label for="standard-security-token">Security token</label>
+            <input
+              class="input"
+              id="standard-security-token"
+              data-standard-security-token
+              placeholder="Optional, append when your org requires it"
+            />
+          </div>
+          <button class="button" type="button" data-start-standard-login>Login and create session</button>
         </section>
 
         <details class="auth-advanced">
-          <summary>Advanced connection options</summary>
+          <summary>OAuth login</summary>
+          <div class="auth-advanced-body">
+            <div class="callout info">
+              <div>
+                <strong>Salesforce-hosted login</strong>
+                <p class="muted">
+                  Use Salesforce's own login page and a Connected App callback if you prefer the redirect-based OAuth flow.
+                </p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="oauth-redirect-uri">Redirect URI</label>
+              <input class="input" id="oauth-redirect-uri" data-oauth-redirect-uri readonly />
+            </div>
+            <div class="callout warning">
+              <div>
+                <strong>Org admin approval</strong>
+                <p class="muted">
+                  Some Salesforce orgs require an admin to pre-approve external Connected Apps before users can authorize Lightning Studio.
+                </p>
+              </div>
+            </div>
+            <button class="button secondary" type="button" data-start-oauth>Login with Salesforce OAuth</button>
+          </div>
+        </details>
+
+        <details class="auth-advanced">
+          <summary>Session ID / access token</summary>
           <div class="auth-advanced-body">
             <div class="callout info">
               <div>
                 <strong>Manual fallback</strong>
                 <p class="muted">
-                  Use this only if you already have a valid Salesforce session ID or OAuth token and want to bypass the browser login redirect.
+                  Use this only if you already have a valid Salesforce session ID or OAuth token and want to bypass both standard login and OAuth redirect.
                 </p>
               </div>
             </div>
@@ -320,12 +365,12 @@
     </div>
   </div>
 
-  <script defer src="./assets/salesforce-config.js?v=20260316-5"></script>
-  <script defer src="./assets/tool-registry.js?v=20260316-5"></script>
-  <script defer src="./assets/utils.js?v=20260316-5"></script>
-  <script defer src="./assets/generators.js?v=20260316-5"></script>
-  <script defer src="./assets/analysis.js?v=20260316-5"></script>
-  <script defer src="./assets/site.js?v=20260316-5"></script>
-  <script defer src="./assets/studio-app.js?v=20260316-5"></script>
+  <script defer src="./assets/salesforce-config.js?v=20260316-6"></script>
+  <script defer src="./assets/tool-registry.js?v=20260316-6"></script>
+  <script defer src="./assets/utils.js?v=20260316-6"></script>
+  <script defer src="./assets/generators.js?v=20260316-6"></script>
+  <script defer src="./assets/analysis.js?v=20260316-6"></script>
+  <script defer src="./assets/site.js?v=20260316-6"></script>
+  <script defer src="./assets/studio-app.js?v=20260316-6"></script>
 </body>
 </html>
