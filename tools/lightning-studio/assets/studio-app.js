@@ -197,6 +197,9 @@
 
   function normalizeSalesforceError(message) {
     const raw = String(message || "");
+    if (/redirect_uri.*must match configuration/i.test(raw)) {
+      return `${raw} Allowed Callback URL in Salesforce must exactly equal: ${redirectUri()}`;
+    }
     if (
       /not approved|approve this consumer|remote access application|admin approved users are pre-authorized/i.test(
         raw
