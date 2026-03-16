@@ -814,19 +814,27 @@
     }
     const oauthState = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
     writeSessionStorage(KEYS.pending, { ...form, state: oauthState });
-    const url = new URL(`${form.loginDomain}/services/oauth2/authorize`);
-    url.searchParams.set("response_type", "token");
-    url.searchParams.set("client_id", form.clientId);
-    url.searchParams.set("redirect_uri", redirectUri());
-    url.searchParams.set(
+    const authorizePath = new URL("/services/oauth2/authorize", form.loginDomain);
+    authorizePath.searchParams.set("response_type", "token");
+    authorizePath.searchParams.set("client_id", form.clientId);
+    authorizePath.searchParams.set("redirect_uri", redirectUri());
+    authorizePath.searchParams.set(
       "scope",
       Array.isArray(salesforceConfig.scopes) && salesforceConfig.scopes.length
         ? salesforceConfig.scopes.join(" ")
         : "api"
     );
-    url.searchParams.set("state", oauthState);
-    url.searchParams.set("prompt", "login");
-    window.location.assign(url.toString());
+    authorizePath.searchParams.set("state", oauthState);
+    authorizePath.searchParams.set("display", "popup");
+
+    const loginUrl = new URL(form.loginDomain);
+    loginUrl.searchParams.set("ec", "302");
+    loginUrl.searchParams.set(
+      "startURL",
+      `${authorizePath.pathname}${authorizePath.search}`
+    );
+    loginUrl.searchParams.set("display", "popup");
+    window.location.assign(loginUrl.toString());
   }
 
   async function connectManualToken() {
