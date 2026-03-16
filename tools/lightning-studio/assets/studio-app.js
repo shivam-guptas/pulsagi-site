@@ -97,7 +97,7 @@
 
   function redirectUri() {
     if (salesforceConfig.redirectUri) {
-      return String(salesforceConfig.redirectUri).trim().replace(/\/+$/, "");
+      return String(salesforceConfig.redirectUri).trim();
     }
 
     if (siteConfig.baseUrl) {
