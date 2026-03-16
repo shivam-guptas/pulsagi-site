@@ -6,7 +6,7 @@
       "A premium browser-based Salesforce developer toolkit with formatters, generators, analyzers, explorers, and reusable productivity workflows.",
     baseUrl: "https://pulsagi.com/tools/lightning-studio",
     salesforce: {
-      clientId: "REPLACE_WITH_CONNECTED_APP_CLIENT_ID",
+      clientId: "3MVG9rZjd7MXFdLjjpxp09DfArjPTkAw.U2nOk4.MA4BoBppjhRcgviwmxu3_jZeiXgIs_APdy0gxzeADeiSN",
       scopes: ["api"]
     }
   };
