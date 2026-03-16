@@ -1,6 +1,8 @@
 (function () {
   if (document.body.dataset.page !== "home") return;
 
+  const lightningStudioData = window.LightningStudioData || {};
+  const siteConfig = lightningStudioData.siteConfig || {};
   const salesforceConfig = window.LightningStudioSalesforceConfig || {};
   const { copyText, downloadText, escapeHtml, readStorage, writeStorage } =
     window.LightningStudioUtils;
@@ -94,7 +96,15 @@
   };
 
   function redirectUri() {
-    return `${window.location.origin}${window.location.pathname}`;
+    if (salesforceConfig.redirectUri) {
+      return String(salesforceConfig.redirectUri).trim().replace(/\/+$/, "");
+    }
+
+    if (siteConfig.baseUrl) {
+      return String(siteConfig.baseUrl).trim().replace(/\/+$/, "");
+    }
+
+    return `${window.location.origin}${window.location.pathname}`.replace(/\/+$/, "");
   }
 
   function configuredClientId() {
@@ -795,7 +805,12 @@
     url.searchParams.set("response_type", "token");
     url.searchParams.set("client_id", form.clientId);
     url.searchParams.set("redirect_uri", redirectUri());
-    url.searchParams.set("scope", "api");
+    url.searchParams.set(
+      "scope",
+      Array.isArray(salesforceConfig.scopes) && salesforceConfig.scopes.length
+        ? salesforceConfig.scopes.join(" ")
+        : "api"
+    );
     url.searchParams.set("state", oauthState);
     url.searchParams.set("prompt", "login");
     window.location.assign(url.toString());
