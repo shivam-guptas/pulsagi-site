@@ -39,7 +39,7 @@
         <p>
           Authenticate with Salesforce to load org metadata, browse source files, and deploy edits from the browser.
         </p>
-        <button class="button secondary" type="button" data-open-connect>Connect org</button>
+        <button class="button secondary" type="button" data-open-connect>Login with Salesforce</button>
       </div>
       <div class="folder-tree" data-sidebar-list hidden></div>
     </aside>
@@ -70,7 +70,7 @@
               </p>
             </div>
             <div class="top-actions">
-              <button class="button secondary" type="button" data-open-connect>Connect org</button>
+              <button class="button secondary" type="button" data-open-connect>Login with Salesforce</button>
               <button class="button ghost" type="button" data-sync-org disabled>Sync now</button>
               <button class="button ghost" type="button" data-download-snapshot disabled>Download snapshot</button>
               <button class="button ghost" type="button" data-disconnect-org disabled>Disconnect</button>
@@ -218,7 +218,7 @@
           <p class="status-kicker">Salesforce connection</p>
           <h2 id="lightning-studio-auth-title">Connect your org</h2>
           <p class="auth-copy">
-            Sign in on Salesforce's own login page and Lightning Studio will receive the access token automatically when Salesforce redirects back here. Manual token entry is available as an advanced fallback.
+            Use your own Salesforce org credentials. Lightning Studio redirects you to Salesforce, then stores the returned access token locally when you come back.
           </p>
         </div>
         <button
@@ -229,11 +229,6 @@
         >
           &times;
         </button>
-      </div>
-
-      <div class="auth-tabs">
-        <button class="button secondary" type="button" data-auth-tab="oauth">Connect with Salesforce</button>
-        <button class="button ghost" type="button" data-auth-tab="manual">Advanced token</button>
       </div>
 
       <div class="auth-feedback" data-auth-feedback>
@@ -248,13 +243,13 @@
       </div>
 
       <div class="auth-panels">
-        <section class="auth-panel" data-auth-panel="oauth">
+        <section class="auth-panel auth-panel-primary">
           <div class="field">
-            <label for="oauth-login-domain">Login domain</label>
+            <label for="oauth-login-domain">Environment</label>
             <select class="select" id="oauth-login-domain" data-oauth-login-domain>
               <option value="https://login.salesforce.com">Production / Developer Edition</option>
               <option value="https://test.salesforce.com">Sandbox</option>
-              <option value="custom">Custom domain</option>
+              <option value="custom">Custom Domain</option>
             </select>
           </div>
           <div class="field" data-oauth-custom-domain-field hidden>
@@ -268,9 +263,9 @@
           </div>
           <div class="callout info">
             <div>
-              <strong>One-click sign-in</strong>
+              <strong>How sign-in works</strong>
               <p class="muted">
-                Lightning Studio uses Pulsagi's Salesforce Connected App, so users do not need to find or paste a client ID.
+                Lightning Studio uses Pulsagi's Connected App, but users always sign in to their own Salesforce orgs.
               </p>
             </div>
           </div>
@@ -280,44 +275,47 @@
           </div>
           <div class="callout warning">
             <div>
-              <strong>Scope guidance</strong>
-              <p class="muted">
-                Configure your Connected App to allow at least the <code>api</code> scope and register this page as an allowed callback URL.
-              </p>
-            </div>
-          </div>
-          <div class="callout info">
-            <div>
               <strong>Org admin approval</strong>
               <p class="muted">
                 Some Salesforce orgs require an admin to pre-approve external Connected Apps before users can authorize Lightning Studio.
               </p>
             </div>
           </div>
-          <button class="button" type="button" data-start-oauth>Connect with Salesforce</button>
+          <button class="button" type="button" data-start-oauth>Login with Salesforce</button>
         </section>
 
-        <section class="auth-panel" data-auth-panel="manual" hidden>
-          <div class="field">
-            <label for="manual-instance-url">Instance URL</label>
-            <input
-              class="input"
-              id="manual-instance-url"
-              data-manual-instance-url
-              placeholder="https://your-org.my.salesforce.com"
-            />
+        <details class="auth-advanced">
+          <summary>Advanced connection options</summary>
+          <div class="auth-advanced-body">
+            <div class="callout info">
+              <div>
+                <strong>Manual fallback</strong>
+                <p class="muted">
+                  Use this only if you already have a valid Salesforce session or OAuth token and want to bypass the browser login redirect.
+                </p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="manual-instance-url">Instance URL</label>
+              <input
+                class="input"
+                id="manual-instance-url"
+                data-manual-instance-url
+                placeholder="https://your-org.my.salesforce.com"
+              />
+            </div>
+            <div class="field">
+              <label for="manual-access-token">Session / access token</label>
+              <textarea
+                class="textarea"
+                id="manual-access-token"
+                data-manual-access-token
+                placeholder="Paste a valid Salesforce session or OAuth access token"
+              ></textarea>
+            </div>
+            <button class="button secondary" type="button" data-save-manual-auth>Use token and connect</button>
           </div>
-          <div class="field">
-            <label for="manual-access-token">Session / access token</label>
-            <textarea
-              class="textarea"
-              id="manual-access-token"
-              data-manual-access-token
-              placeholder="Paste a valid Salesforce session or OAuth access token"
-            ></textarea>
-          </div>
-          <button class="button" type="button" data-save-manual-auth>Use token and connect</button>
-        </section>
+        </details>
       </div>
     </div>
   </div>

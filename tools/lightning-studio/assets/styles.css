@@ -968,6 +968,50 @@ textarea {
   margin-top: 18px;
 }
 
+.auth-panel-primary {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-advanced {
+  margin-top: 6px;
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.auth-advanced summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 18px 20px;
+  color: var(--dark-text);
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.auth-advanced summary::-webkit-details-marker {
+  display: none;
+}
+
+.auth-advanced summary::after {
+  content: "\25BE";
+  float: right;
+  color: var(--dark-muted);
+}
+
+.auth-advanced[open] summary {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.auth-advanced-body {
+  display: grid;
+  gap: 16px;
+  padding: 18px 20px 20px;
+}
+
 .site-footer {
   background: #0a1120;
   color: var(--dark-muted);

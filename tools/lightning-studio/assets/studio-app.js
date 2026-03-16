@@ -31,8 +31,6 @@
   const dom = {
     authModal: document.querySelector("[data-auth-modal]"),
     authFeedback: document.querySelector("[data-auth-feedback]"),
-    authPanels: document.querySelectorAll("[data-auth-panel]"),
-    authTabs: document.querySelectorAll("[data-auth-tab]"),
     oauthLoginDomain: document.querySelector("[data-oauth-login-domain]"),
     oauthCustomDomainField: document.querySelector("[data-oauth-custom-domain-field]"),
     oauthCustomDomain: document.querySelector("[data-oauth-custom-domain]"),
@@ -81,7 +79,6 @@
     files: [],
     selectedFileId: null,
     search: "",
-    authTab: "oauth",
     syncState: "idle",
     syncMessage: "",
     orgInfo: null,
@@ -206,8 +203,8 @@
     const ready = hasConfiguredClientId();
     dom.startOauthButton.disabled = !ready;
     dom.startOauthButton.textContent = ready
-      ? "Connect with Salesforce"
-      : "Connect with Salesforce (Owner setup required)";
+      ? "Login with Salesforce"
+      : "Login with Salesforce (Owner setup required)";
   }
 
   function renderLog() {
@@ -479,17 +476,6 @@
     dom.deploySelectedButton.disabled = !file || state.syncState === "syncing";
   }
 
-  function renderTabs() {
-    dom.authTabs.forEach((button) => {
-      button.className = `button ${
-        button.dataset.authTab === state.authTab ? "secondary" : "ghost"
-      }`;
-    });
-    dom.authPanels.forEach((panel) => {
-      panel.hidden = panel.dataset.authPanel !== state.authTab;
-    });
-  }
-
   function render() {
     renderMetrics();
     renderSummary();
@@ -497,7 +483,6 @@
     renderSidebar();
     renderEditor();
     renderActions();
-    renderTabs();
   }
 
   async function fetchJson(url, init) {
@@ -1037,12 +1022,6 @@
       addLog("success", "File downloaded", `${file.fileName} was downloaded locally.`);
     });
     dom.deploySelectedButton.addEventListener("click", deploySelected);
-    dom.authTabs.forEach((button) =>
-      button.addEventListener("click", () => {
-        state.authTab = button.dataset.authTab;
-        renderTabs();
-      })
-    );
     dom.oauthLoginDomain.addEventListener("change", () => {
       dom.oauthCustomDomainField.hidden = dom.oauthLoginDomain.value !== "custom";
     });
@@ -1092,7 +1071,7 @@
       feedback(
         "error",
         "One-click Salesforce sign-in is not configured yet",
-        "Add your Salesforce Connected App consumer key to assets/salesforce-config.js to enable the Connect with Salesforce button."
+        "Add your Salesforce Connected App consumer key to assets/salesforce-config.js to enable the Login with Salesforce button."
       );
     } else {
       feedback(
