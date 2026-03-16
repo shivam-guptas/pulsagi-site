@@ -4,7 +4,16 @@
   const lightningStudioData = window.LightningStudioData || {};
   const siteConfig = lightningStudioData.siteConfig || {};
   const salesforceConfig = window.LightningStudioSalesforceConfig || {};
-  const { copyText, downloadText, escapeHtml, readStorage, writeStorage } =
+  const {
+    copyText,
+    downloadText,
+    escapeHtml,
+    readStorage,
+    writeStorage,
+    readSessionStorage,
+    writeSessionStorage,
+    removeSessionStorage
+  } =
     window.LightningStudioUtils;
 
   const KEYS = {
@@ -75,7 +84,7 @@
   };
 
   const state = {
-    auth: readStorage(KEYS.auth, null),
+    auth: readSessionStorage(KEYS.auth, null),
     drafts: readStorage(KEYS.drafts, {}),
     tree: readStorage(KEYS.tree, { expanded: {} }),
     files: [],
@@ -141,12 +150,12 @@
 
   function setAuth(auth) {
     state.auth = auth;
-    writeStorage(KEYS.auth, auth);
+    writeSessionStorage(KEYS.auth, auth);
   }
 
   function clearAuth() {
     state.auth = null;
-    localStorage.removeItem(KEYS.auth);
+    removeSessionStorage(KEYS.auth);
   }
 
   function setDraft(fileId, value) {
@@ -256,7 +265,7 @@
       dom.orgStatusCallout.innerHTML = `
         <div>
           <strong>Waiting for authentication</strong>
-          <p class="muted">Sign in with Salesforce or use the advanced manual token option to begin.</p>
+          <p class="muted">Sign in with Salesforce or use the advanced manual session/token option to begin.</p>
         </div>
       `;
       dom.orgMeta.innerHTML = `
@@ -750,7 +759,7 @@
       return;
     }
     if (!params.get("access_token") || !params.get("instance_url")) return;
-    const pending = readStorage(KEYS.pending, null);
+    const pending = readSessionStorage(KEYS.pending, null);
     setAuth({
       authType: "oauth",
       accessToken: params.get("access_token"),
@@ -760,11 +769,12 @@
       apiVersion: state.auth?.apiVersion || null,
       lastSyncedAt: null
     });
-    localStorage.removeItem(KEYS.pending);
+    removeSessionStorage(KEYS.pending);
     state.pendingAuthMessage = {
       type: "success",
       title: "Authentication complete",
-      message: "Salesforce returned a browser access token. Lightning Studio can sync your metadata now."
+      message:
+        "Salesforce returned a browser access token. Lightning Studio can sync your metadata now for this session."
     };
     history.replaceState({}, document.title, window.location.pathname + window.location.search);
   }
@@ -777,7 +787,7 @@
           : cleanUrl(dom.oauthLoginDomain.value),
       clientId: configuredClientId()
     };
-    writeStorage(KEYS.oauthForm, form);
+    writeSessionStorage(KEYS.oauthForm, form);
     if (!hasConfiguredClientId()) {
       feedback(
         "error",
@@ -803,7 +813,7 @@
       return;
     }
     const oauthState = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-    writeStorage(KEYS.pending, { ...form, state: oauthState });
+    writeSessionStorage(KEYS.pending, { ...form, state: oauthState });
     const url = new URL(`${form.loginDomain}/services/oauth2/authorize`);
     url.searchParams.set("response_type", "token");
     url.searchParams.set("client_id", form.clientId);
@@ -824,7 +834,7 @@
       instanceUrl: cleanUrl(dom.manualInstanceUrl.value),
       accessToken: dom.manualAccessToken.value.trim()
     };
-    writeStorage(KEYS.manualForm, form);
+    writeSessionStorage(KEYS.manualForm, form);
     if (!form.instanceUrl || !form.accessToken) {
       feedback(
         "error",
@@ -979,10 +989,10 @@
   }
 
   function hydrateForms() {
-    const oauthForm = readStorage(KEYS.oauthForm, {
+    const oauthForm = readSessionStorage(KEYS.oauthForm, {
       loginDomain: "https://login.salesforce.com"
     });
-    const manualForm = readStorage(KEYS.manualForm, {
+    const manualForm = readSessionStorage(KEYS.manualForm, {
       instanceUrl: "",
       accessToken: ""
     });

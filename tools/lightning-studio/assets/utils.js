@@ -1,18 +1,42 @@
 (function () {
-  function readStorage(key, fallback) {
+  function fromStorage(storage, key, fallback) {
     try {
-      const raw = localStorage.getItem(key);
+      const raw = storage.getItem(key);
       return raw ? JSON.parse(raw) : fallback;
     } catch (error) {
       return fallback;
     }
   }
 
-  function writeStorage(key, value) {
+  function toStorage(storage, key, value, label) {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
+      storage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      console.warn("Unable to write local storage", error);
+      console.warn(`Unable to write ${label}`, error);
+    }
+  }
+
+  function readStorage(key, fallback) {
+    return fromStorage(localStorage, key, fallback);
+  }
+
+  function writeStorage(key, value) {
+    toStorage(localStorage, key, value, "local storage");
+  }
+
+  function readSessionStorage(key, fallback) {
+    return fromStorage(sessionStorage, key, fallback);
+  }
+
+  function writeSessionStorage(key, value) {
+    toStorage(sessionStorage, key, value, "session storage");
+  }
+
+  function removeSessionStorage(key) {
+    try {
+      sessionStorage.removeItem(key);
+    } catch (error) {
+      console.warn("Unable to remove session storage", error);
     }
   }
 
@@ -261,6 +285,9 @@
   window.LightningStudioUtils = {
     readStorage,
     writeStorage,
+    readSessionStorage,
+    writeSessionStorage,
+    removeSessionStorage,
     copyText,
     downloadText,
     escapeHtml,
