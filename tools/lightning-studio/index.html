@@ -66,7 +66,7 @@
               <p class="status-kicker">Workspace</p>
               <h2 class="status-title" data-workspace-heading>Connect a Salesforce org</h2>
               <p class="status-copy" data-workspace-copy>
-                Authenticate with a Connected App or paste an access token. Lightning Studio then retrieves Apex, Aura, and LWC by default.
+                Sign in with Salesforce and Lightning Studio will retrieve Apex, Aura, and LWC by default.
               </p>
             </div>
             <div class="top-actions">
@@ -114,7 +114,7 @@
                   <div>
                     <strong>Waiting for authentication</strong>
                     <p class="muted">
-                      Configure a Salesforce Connected App or paste an existing access token to begin.
+                      Sign in with Salesforce or use the advanced manual token option to begin.
                     </p>
                   </div>
                 </div>
@@ -218,7 +218,7 @@
           <p class="status-kicker">Salesforce connection</p>
           <h2 id="lightning-studio-auth-title">Connect your org</h2>
           <p class="auth-copy">
-            Use a Salesforce Connected App browser flow or paste an existing session/access token. This app runs on GitHub-hosted static files, so browser CORS setup is required in your org.
+            Sign in on Salesforce's own login page and Lightning Studio will receive the access token automatically when Salesforce redirects back here. Manual token entry is available as an advanced fallback.
           </p>
         </div>
         <button
@@ -232,8 +232,8 @@
       </div>
 
       <div class="auth-tabs">
-        <button class="button secondary" type="button" data-auth-tab="oauth">OAuth browser flow</button>
-        <button class="button ghost" type="button" data-auth-tab="manual">Manual token</button>
+        <button class="button secondary" type="button" data-auth-tab="oauth">Connect with Salesforce</button>
+        <button class="button ghost" type="button" data-auth-tab="manual">Advanced token</button>
       </div>
 
       <div class="auth-feedback" data-auth-feedback>
@@ -266,14 +266,13 @@
               placeholder="https://yourdomain.my.salesforce.com"
             />
           </div>
-          <div class="field">
-            <label for="oauth-client-id">Connected App client ID</label>
-            <input
-              class="input"
-              id="oauth-client-id"
-              data-oauth-client-id
-              placeholder="Paste your Salesforce consumer key"
-            />
+          <div class="callout info">
+            <div>
+              <strong>One-click sign-in</strong>
+              <p class="muted">
+                Lightning Studio uses Pulsagi's Salesforce Connected App, so users do not need to find or paste a client ID.
+              </p>
+            </div>
           </div>
           <div class="field">
             <label for="oauth-redirect-uri">Redirect URI</label>
@@ -283,11 +282,11 @@
             <div>
               <strong>Scope guidance</strong>
               <p class="muted">
-                Your Connected App should allow at least the <code>api</code> scope. Use a browser-compatible callback URL that points back to this page.
+                Configure your Connected App to allow at least the <code>api</code> scope and register this page as an allowed callback URL.
               </p>
             </div>
           </div>
-          <button class="button" type="button" data-start-oauth>Authenticate with Salesforce</button>
+          <button class="button" type="button" data-start-oauth>Connect with Salesforce</button>
         </section>
 
         <section class="auth-panel" data-auth-panel="manual" hidden>

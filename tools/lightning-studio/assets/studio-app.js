@@ -1,6 +1,8 @@
 (function () {
   if (document.body.dataset.page !== "home") return;
 
+  const siteConfig = window.LightningStudioData.siteConfig || {};
+  const salesforceConfig = siteConfig.salesforce || {};
   const { copyText, downloadText, escapeHtml, readStorage, writeStorage } =
     window.LightningStudioUtils;
 
@@ -35,7 +37,6 @@
     oauthLoginDomain: document.querySelector("[data-oauth-login-domain]"),
     oauthCustomDomainField: document.querySelector("[data-oauth-custom-domain-field]"),
     oauthCustomDomain: document.querySelector("[data-oauth-custom-domain]"),
-    oauthClientId: document.querySelector("[data-oauth-client-id]"),
     oauthRedirectUri: document.querySelector("[data-oauth-redirect-uri]"),
     manualInstanceUrl: document.querySelector("[data-manual-instance-url]"),
     manualAccessToken: document.querySelector("[data-manual-access-token]"),
@@ -98,6 +99,17 @@
 
   function redirectUri() {
     return `${window.location.origin}${window.location.pathname}`;
+  }
+
+  function configuredClientId() {
+    const configured =
+      window.LIGHTNING_STUDIO_SALESFORCE_CLIENT_ID || salesforceConfig.clientId || "";
+    return configured.trim();
+  }
+
+  function hasConfiguredClientId() {
+    const clientId = configuredClientId();
+    return !!clientId && !/^REPLACE_WITH_/i.test(clientId);
   }
 
   function nowLabel(value) {
@@ -178,6 +190,15 @@
     `;
   }
 
+  function updateOauthAvailability() {
+    if (!dom.startOauthButton) return;
+    const ready = hasConfiguredClientId();
+    dom.startOauthButton.disabled = !ready;
+    dom.startOauthButton.textContent = ready
+      ? "Connect with Salesforce"
+      : "Connect with Salesforce (Owner setup required)";
+  }
+
   function renderLog() {
     dom.syncLog.innerHTML = state.log
       .map(
@@ -207,14 +228,14 @@
     if (!state.auth) {
       dom.workspaceHeading.textContent = "Connect a Salesforce org";
       dom.workspaceCopy.textContent =
-        "Authenticate with a Connected App or paste an access token. Lightning Studio then retrieves Apex, Aura, and LWC by default.";
+        "Sign in with Salesforce and Lightning Studio will retrieve Apex, Aura, and LWC by default.";
       dom.sidebarCaption.textContent =
         "Connect a Salesforce org to retrieve Apex classes, Aura bundles, and Lightning Web Components.";
       dom.orgStatusCallout.className = "callout info";
       dom.orgStatusCallout.innerHTML = `
         <div>
           <strong>Waiting for authentication</strong>
-          <p class="muted">Configure a Connected App or paste an existing session/access token to begin.</p>
+          <p class="muted">Sign in with Salesforce or use the advanced manual token option to begin.</p>
         </div>
       `;
       dom.orgMeta.innerHTML = `
@@ -741,14 +762,22 @@
         dom.oauthLoginDomain.value === "custom"
           ? cleanUrl(dom.oauthCustomDomain.value)
           : cleanUrl(dom.oauthLoginDomain.value),
-      clientId: dom.oauthClientId.value.trim()
+      clientId: configuredClientId()
     };
     writeStorage(KEYS.oauthForm, form);
-    if (!form.loginDomain || !form.clientId) {
+    if (!hasConfiguredClientId()) {
       feedback(
         "error",
-        "Missing Connected App details",
-        "Enter a Salesforce login domain and Connected App client ID before starting the browser flow."
+        "Lightning Studio is not configured yet",
+        "Add your Salesforce Connected App consumer key to Lightning Studio before enabling one-click Salesforce sign-in."
+      );
+      return;
+    }
+    if (!form.loginDomain) {
+      feedback(
+        "error",
+        "Missing login domain",
+        "Choose a Salesforce login domain before starting the browser flow."
       );
       return;
     }
@@ -933,8 +962,7 @@
 
   function hydrateForms() {
     const oauthForm = readStorage(KEYS.oauthForm, {
-      loginDomain: "https://login.salesforce.com",
-      clientId: ""
+      loginDomain: "https://login.salesforce.com"
     });
     const manualForm = readStorage(KEYS.manualForm, {
       instanceUrl: "",
@@ -946,10 +974,10 @@
     dom.oauthLoginDomain.value = custom ? "custom" : oauthForm.loginDomain;
     dom.oauthCustomDomain.value = custom ? oauthForm.loginDomain : "";
     dom.oauthCustomDomainField.hidden = !custom;
-    dom.oauthClientId.value = oauthForm.clientId || "";
     dom.oauthRedirectUri.value = redirectUri();
     dom.manualInstanceUrl.value = manualForm.instanceUrl || "";
     dom.manualAccessToken.value = manualForm.accessToken || "";
+    updateOauthAvailability();
   }
 
   function bind() {
@@ -1039,12 +1067,25 @@
     consumeOauthHash();
     hydrateForms();
     bind();
-    feedback(
-      state.pendingAuthMessage?.type || "info",
-      state.pendingAuthMessage?.title || "Before you start",
-      state.pendingAuthMessage?.message ||
+    if (state.pendingAuthMessage) {
+      feedback(
+        state.pendingAuthMessage.type,
+        state.pendingAuthMessage.title,
+        state.pendingAuthMessage.message
+      );
+    } else if (!hasConfiguredClientId()) {
+      feedback(
+        "error",
+        "One-click Salesforce sign-in is not configured yet",
+        "Replace the placeholder consumer key in Lightning Studio with your Salesforce Connected App client ID to enable the Connect with Salesforce button."
+      );
+    } else {
+      feedback(
+        "info",
+        "Before you start",
         "Add this site origin to Salesforce CORS and register this page URL as an allowed callback in your Connected App."
-    );
+      );
+    }
     render();
     if (!state.auth) {
       dom.authModal.hidden = false;

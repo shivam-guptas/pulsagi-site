@@ -4,7 +4,11 @@
     tagline: "Build Salesforce development easy and fastest.",
     description:
       "A premium browser-based Salesforce developer toolkit with formatters, generators, analyzers, explorers, and reusable productivity workflows.",
-    baseUrl: "https://pulsagi.com/tools/lightning-studio"
+    baseUrl: "https://pulsagi.com/tools/lightning-studio",
+    salesforce: {
+      clientId: "REPLACE_WITH_CONNECTED_APP_CLIENT_ID",
+      scopes: ["api"]
+    }
   };
 
   const featureCards = [
