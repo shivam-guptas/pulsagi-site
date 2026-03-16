@@ -4,14 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LIGHTNING STUDIO | Salesforce Developer Toolkit</title>
-  <meta name="description" content="LIGHTNING STUDIO is a premium browser-based Salesforce developer toolkit with formatters, generators, analyzers, explorers, and productivity workflows." />
+  <meta
+    name="description"
+    content="LIGHTNING STUDIO is a premium browser-based Salesforce developer toolkit with formatters, generators, analyzers, explorers, and productivity workflows."
+  />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#04091d" />
   <link rel="canonical" href="https://pulsagi.com/tools/lightning-studio/" />
   <link rel="stylesheet" href="./assets/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body data-page="home" data-root=".">
   <div data-site-header></div>
@@ -20,9 +26,22 @@
     <aside class="sidebar-panel">
       <div class="sidebar-search">
         <input data-sidebar-search placeholder="Search Component..." />
-        <span>⌕</span>
+        <span>&#8981;</span>
       </div>
-      <div class="folder-list" data-sidebar-list></div>
+      <div class="sidebar-meta">
+        <span class="sidebar-kicker">Org explorer</span>
+        <p data-sidebar-caption>
+          Connect a Salesforce org to retrieve Apex classes, Aura bundles, and Lightning Web Components.
+        </p>
+      </div>
+      <div class="sidebar-empty" data-sidebar-empty>
+        <h3>No org connected</h3>
+        <p>
+          Authenticate with Salesforce to load org metadata, browse source files, and deploy edits from the browser.
+        </p>
+        <button class="button secondary" type="button" data-open-connect>Connect org</button>
+      </div>
+      <div class="folder-tree" data-sidebar-list hidden></div>
     </aside>
 
     <section class="canvas-panel">
@@ -40,6 +59,129 @@
             <a class="chip" href="./tools/metadata-diff/">METADATA</a>
           </div>
         </div>
+
+        <section class="studio-workbench">
+          <div class="studio-status-bar">
+            <div>
+              <p class="status-kicker">Workspace</p>
+              <h2 class="status-title" data-workspace-heading>Connect a Salesforce org</h2>
+              <p class="status-copy" data-workspace-copy>
+                Authenticate with a Connected App or paste an access token. Lightning Studio then retrieves Apex, Aura, and LWC by default.
+              </p>
+            </div>
+            <div class="top-actions">
+              <button class="button secondary" type="button" data-open-connect>Connect org</button>
+              <button class="button ghost" type="button" data-sync-org disabled>Sync now</button>
+              <button class="button ghost" type="button" data-download-snapshot disabled>Download snapshot</button>
+              <button class="button ghost" type="button" data-disconnect-org disabled>Disconnect</button>
+            </div>
+          </div>
+
+          <div class="studio-overview-grid">
+            <article class="metric">
+              <span class="muted">Connection</span>
+              <strong data-metric-connection>Offline</strong>
+            </article>
+            <article class="metric">
+              <span class="muted">Apex</span>
+              <strong data-metric-apex>0</strong>
+            </article>
+            <article class="metric">
+              <span class="muted">Aura</span>
+              <strong data-metric-aura>0</strong>
+            </article>
+            <article class="metric">
+              <span class="muted">LWC</span>
+              <strong data-metric-lwc>0</strong>
+            </article>
+          </div>
+
+          <div class="workspace-grid studio-workspace-grid">
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Org activity</h3>
+                  <p class="panel-copy">
+                    Use browser-side Salesforce API access to retrieve, inspect, and download your source safely.
+                  </p>
+                </div>
+                <div class="inline-actions">
+                  <button class="button ghost" type="button" data-retry-auth>Reconnect</button>
+                </div>
+              </div>
+              <div class="panel-body stack">
+                <div class="callout info" data-org-status-callout>
+                  <div>
+                    <strong>Waiting for authentication</strong>
+                    <p class="muted">
+                      Configure a Salesforce Connected App or paste an existing access token to begin.
+                    </p>
+                  </div>
+                </div>
+                <div class="studio-org-meta" data-org-meta>
+                  <div class="studio-org-meta-empty">
+                    <p>No active Salesforce org is connected yet.</p>
+                  </div>
+                </div>
+                <div class="panel studio-subpanel">
+                  <div class="panel-header">
+                    <h3>Sync log</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="sync-log" data-sync-log>
+                      <div class="sync-log-item">
+                        <strong>Workspace ready</strong>
+                        <p>Add your GitHub Pages origin to Salesforce CORS and use a Connected App callback URL that points to this page.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel studio-editor-panel">
+              <div class="panel-header">
+                <div>
+                  <h3 data-editor-title>Workspace editor</h3>
+                  <p class="panel-copy" data-editor-subtitle>
+                    Select a file from the left explorer after connecting your org.
+                  </p>
+                </div>
+                <div class="inline-actions">
+                  <button class="button ghost" type="button" data-retrieve-selected disabled>Retrieve latest</button>
+                  <button class="button ghost" type="button" data-save-draft disabled>Save draft</button>
+                  <button class="button ghost" type="button" data-copy-selected disabled>Copy</button>
+                  <button class="button ghost" type="button" data-download-selected disabled>Download</button>
+                  <button class="button" type="button" data-deploy-selected disabled>Deploy</button>
+                </div>
+              </div>
+              <div class="panel-body stack">
+                <div class="editor-empty" data-editor-empty>
+                  <h3>No file selected</h3>
+                  <p>
+                    After authentication, Lightning Studio will sync Apex, Aura, and LWC into the explorer and let you edit or deploy individual files.
+                  </p>
+                </div>
+                <div class="editor-shell" data-editor-shell hidden>
+                  <div class="chip-row" data-editor-tags></div>
+                  <textarea
+                    class="code-editor tall studio-source-editor"
+                    data-source-editor
+                    spellcheck="false"
+                  ></textarea>
+                  <div class="callout info" data-editor-status>
+                    <div>
+                      <strong>Draft ready</strong>
+                      <p class="muted">
+                        Edits stay local until you deploy them back to Salesforce.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div class="studio-card-grid" data-feature-cards></div>
 
@@ -63,10 +205,121 @@
 
   <div data-site-footer></div>
 
+  <div class="auth-modal" data-auth-modal hidden>
+    <div class="auth-backdrop" data-close-auth></div>
+    <div
+      class="auth-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightning-studio-auth-title"
+    >
+      <div class="auth-header">
+        <div>
+          <p class="status-kicker">Salesforce connection</p>
+          <h2 id="lightning-studio-auth-title">Connect your org</h2>
+          <p class="auth-copy">
+            Use a Salesforce Connected App browser flow or paste an existing session/access token. This app runs on GitHub-hosted static files, so browser CORS setup is required in your org.
+          </p>
+        </div>
+        <button
+          class="icon-button"
+          type="button"
+          data-close-auth
+          aria-label="Close connection dialog"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="button secondary" type="button" data-auth-tab="oauth">OAuth browser flow</button>
+        <button class="button ghost" type="button" data-auth-tab="manual">Manual token</button>
+      </div>
+
+      <div class="auth-feedback" data-auth-feedback>
+        <div class="callout info">
+          <div>
+            <strong>Before you start</strong>
+            <p class="muted">
+              Add this site origin to Salesforce CORS and register this page URL as an allowed callback in your Connected App.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-panels">
+        <section class="auth-panel" data-auth-panel="oauth">
+          <div class="field">
+            <label for="oauth-login-domain">Login domain</label>
+            <select class="select" id="oauth-login-domain" data-oauth-login-domain>
+              <option value="https://login.salesforce.com">Production / Developer Edition</option>
+              <option value="https://test.salesforce.com">Sandbox</option>
+              <option value="custom">Custom domain</option>
+            </select>
+          </div>
+          <div class="field" data-oauth-custom-domain-field hidden>
+            <label for="oauth-custom-domain">Custom login domain</label>
+            <input
+              class="input"
+              id="oauth-custom-domain"
+              data-oauth-custom-domain
+              placeholder="https://yourdomain.my.salesforce.com"
+            />
+          </div>
+          <div class="field">
+            <label for="oauth-client-id">Connected App client ID</label>
+            <input
+              class="input"
+              id="oauth-client-id"
+              data-oauth-client-id
+              placeholder="Paste your Salesforce consumer key"
+            />
+          </div>
+          <div class="field">
+            <label for="oauth-redirect-uri">Redirect URI</label>
+            <input class="input" id="oauth-redirect-uri" data-oauth-redirect-uri readonly />
+          </div>
+          <div class="callout warning">
+            <div>
+              <strong>Scope guidance</strong>
+              <p class="muted">
+                Your Connected App should allow at least the <code>api</code> scope. Use a browser-compatible callback URL that points back to this page.
+              </p>
+            </div>
+          </div>
+          <button class="button" type="button" data-start-oauth>Authenticate with Salesforce</button>
+        </section>
+
+        <section class="auth-panel" data-auth-panel="manual" hidden>
+          <div class="field">
+            <label for="manual-instance-url">Instance URL</label>
+            <input
+              class="input"
+              id="manual-instance-url"
+              data-manual-instance-url
+              placeholder="https://your-org.my.salesforce.com"
+            />
+          </div>
+          <div class="field">
+            <label for="manual-access-token">Session / access token</label>
+            <textarea
+              class="textarea"
+              id="manual-access-token"
+              data-manual-access-token
+              placeholder="Paste a valid Salesforce session or OAuth access token"
+            ></textarea>
+          </div>
+          <button class="button" type="button" data-save-manual-auth>Use token and connect</button>
+        </section>
+      </div>
+    </div>
+  </div>
+
   <script defer src="./assets/tool-registry.js"></script>
   <script defer src="./assets/utils.js"></script>
   <script defer src="./assets/generators.js"></script>
   <script defer src="./assets/analysis.js"></script>
   <script defer src="./assets/site.js"></script>
+  <script defer src="./assets/studio-app.js"></script>
 </body>
 </html>

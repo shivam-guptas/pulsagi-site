@@ -73,8 +73,6 @@
   function renderHome() {
     const featureTarget = document.querySelector("[data-feature-cards]");
     const faqTarget = document.querySelector("[data-home-faqs]");
-    const sidebarList = document.querySelector("[data-sidebar-list]");
-    const sidebarSearch = document.querySelector("[data-sidebar-search]");
 
     if (featureTarget) {
       featureTarget.innerHTML = featureCards
@@ -100,40 +98,6 @@
           `
         )
         .join("");
-    }
-
-    if (sidebarList) {
-      const sidebarItems = [
-        { label: "LIGHTNING WEB COMPONENTS", href: toolHref("lwc-generator") },
-        { label: "AURA COMPONENTS", href: toolHref("aura-generator") },
-        { label: "APEX CLASSES", href: toolHref("apex-class-generator") },
-        { label: "APEX TRIGGERS", href: toolHref("apex-trigger-generator") },
-        {
-          label: "LIGHTNING MESSAGE CHANNELS",
-          href: toolHref("lightning-message-channel-generator")
-        },
-        { label: "LIGHTNING TYPES", href: toolHref("salesforce-markup-builder") }
-      ];
-
-      function renderSidebar(filterText) {
-        const query = (filterText || "").trim().toLowerCase();
-        const visibleItems = sidebarItems.filter(
-          (item) => !query || item.label.toLowerCase().includes(query)
-        );
-        sidebarList.innerHTML = visibleItems
-          .map(
-            (item) => `
-              <a class="folder-link" href="${item.href}">
-                <span class="folder-icon"></span>
-                <span>${item.label}</span>
-              </a>
-            `
-          )
-          .join("");
-      }
-
-      renderSidebar("");
-      sidebarSearch?.addEventListener("input", () => renderSidebar(sidebarSearch.value));
     }
   }
 
