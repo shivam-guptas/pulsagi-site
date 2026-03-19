@@ -21,6 +21,9 @@
       --muted: #a5acba;
       --accent: #78efba;
       --accent-soft: rgba(120,239,186,0.12);
+      --shell-border: #40505d;
+      --shell-text: #b6bfca;
+      --shell-accent: #76e0c0;
       --mono: "Courier New", monospace;
     }
     * { box-sizing: border-box; }
@@ -39,22 +42,26 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      padding: 1rem 1.4rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,11,13,0.92);
+      padding: 1.1rem 2rem;
+      border-bottom: 1px solid var(--shell-border);
+      background: rgba(27,36,43,0.78);
       position: sticky;
       top: 0;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(15px);
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1rem;
+      gap: 1.75rem;
       margin: 0;
       padding: 0;
-      font: 0.8rem var(--mono);
+      font: 0.85rem var(--mono);
+      align-items: center;
     }
-    .brand { color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+    .brand { color: var(--shell-accent); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; }
+    nav a { color: var(--shell-text); text-decoration: none; transition: color 0.2s, background 0.2s, border-color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-pill { color: var(--shell-accent) !important; padding: 0.35rem 0.9rem; border-radius: 999px; background: linear-gradient(180deg, rgba(118,224,192,0.14), rgba(118,224,192,0.08)); border: 1px solid rgba(118,224,192,0.22); }
     .wrap { width: min(920px, calc(100% - 24px)); margin: 0 auto; padding: 2.2rem 0 4rem; }
     .hero, .section {
       background: rgba(19,21,26,0.96);
@@ -124,9 +131,12 @@
     footer {
       padding: 2rem 1rem 3rem;
       text-align: center;
-      color: #7d8492;
-      font: 0.78rem var(--mono);
+      color: var(--shell-text);
+      font: 0.8rem var(--mono);
+      border-top: 1px solid var(--shell-border);
+      background: rgba(255,247,238,0.03);
     }
+    footer a { color: var(--shell-accent); text-decoration: none; }
   </style>
   <script type="application/ld+json">
   {
@@ -142,8 +152,10 @@
   <nav>
     <a class="brand" href="/">Pulsagi</a>
     <ul>
-      <li><a href="/tools/">Tools</a></li>
-      <li><a href="/tools/scam-checker.html?category=upi">Open Checker</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/tools/" class="nav-pill">Tools</a></li>
+      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
     </ul>
   </nav>
 
@@ -190,6 +202,6 @@
     </section>
   </main>
 
-  <footer>&copy; 2026 Pulsagi</footer>
+  <footer><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
 </body>
 </html>

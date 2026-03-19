@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -134,7 +134,7 @@
         linear-gradient(180deg, #1b242b 0%, #232d36 48%, #202a33 100%);
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -149,11 +149,11 @@
     .nav-pill { background: linear-gradient(180deg, rgba(118,224,192,0.14), rgba(118,224,192,0.08)); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid rgba(118,224,192,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
     .nav-pill:hover { background: rgba(118,224,192,0.18) !important; }
 
-    /* ── PAGES ── */
+    /* PAGES */
     .page { display: none; min-height: 100vh; padding-top: 64px; }
     .page.active { display: block; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: calc(100vh - 64px); display: flex;
       align-items: center; padding: 4rem 2rem; position: relative; overflow: hidden;
@@ -180,7 +180,7 @@
       background: rgba(118,224,192,0.10);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
-    .badge::before { content: '●'; font-size: 0.5rem; animation: blink 2s infinite; }
+    .badge::before { content: '*'; font-size: 0.5rem; animation: blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     h1 {
       font-size: clamp(3rem, 6.3vw, 5.35rem); font-weight: 700; letter-spacing: -0.03em;
@@ -229,7 +229,7 @@
     }
     .spotlight-link { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-sec { padding: 2rem 2rem 4rem; max-width: 1180px; margin: 0 auto; }
     .about-sec,
     .tools-sec {
@@ -354,7 +354,7 @@
   </ul>
 </nav>
 
-<!-- ════════ HOME PAGE ════════ -->
+<!-- HOME PAGE -->
 <div id="page-home" class="page active">
 
   <section class="hero" id="home" aria-label="Hero">
@@ -422,17 +422,17 @@
     <p class="about-copy">Pulsagi is becoming a focused hub for browser-based tools that solve real problems quickly. Instead of generic landing-page promises, the site now centers on utilities people can open, use, and share immediately.</p>
     <div class="pillars">
       <article class="pillar">
-        <div class="pillar-icon">⚡</div>
+        <div class="pillar-icon">Fast</div>
         <h3>Fast</h3>
         <p>Quick browser-based utilities for real tasks, with minimal friction between landing on the page and solving the problem.</p>
       </article>
       <article class="pillar">
-        <div class="pillar-icon">📐</div>
+        <div class="pillar-icon">Scale</div>
         <h3>Scalable</h3>
         <p>Every tool is designed to be crawlable, easy to share, and durable enough to support growing catalogs and repeat usage.</p>
       </article>
       <article class="pillar">
-        <div class="pillar-icon">🎯</div>
+        <div class="pillar-icon">Focus</div>
         <h3>Focused</h3>
         <p>Each utility tackles a clear workflow, from JSON compression and inspection to Salesforce review and scam analysis.</p>
       </article>
@@ -612,11 +612,11 @@
 </div>
 
 <footer>
-  <p>© 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
 </footer>
 
 <script>
-  /* ── Page switching ── */
+  /* Page switching */
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
@@ -636,3 +636,7 @@
 
 </body>
 </html>
+
+
+
+

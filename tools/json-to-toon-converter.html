@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -51,12 +51,12 @@
     a{color:inherit} button,input,textarea{font:inherit}
     nav{
       position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:1rem;
-      padding:1rem 2rem;background:rgba(255,250,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(128,100,68,.12);
+      padding:1.1rem 2rem;background:rgba(27,36,43,.78);backdrop-filter:blur(15px);border-bottom:1px solid #40505d;
     }
-    .nav-brand{color:var(--accent-strong);font-weight:700;letter-spacing:.05em;text-decoration:none}
-    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0;font:.82rem var(--mono)}
-    nav a{text-decoration:none;color:var(--muted-2)} nav a:hover{color:var(--ink)}
-    .nav-pill{color:var(--accent-strong)!important;padding:.35rem .9rem;border-radius:999px;background:rgba(8,181,94,.08);border:1px solid rgba(8,181,94,.18)}
+    .nav-brand{color:#76e0c0;font-size:1.1rem;font-weight:700;letter-spacing:.05em;text-decoration:none}
+    nav ul{list-style:none;display:flex;gap:1.75rem;margin:0;padding:0;font:.85rem var(--mono);align-items:center}
+    nav a{text-decoration:none;color:#b6bfca;transition:color .2s,background .2s,border-color .2s} nav a:hover{color:#f7f2e8}
+    .nav-pill{color:#76e0c0!important;padding:.35rem .9rem;border-radius:999px;background:linear-gradient(180deg,rgba(118,224,192,.14),rgba(118,224,192,.08));border:1px solid rgba(118,224,192,.22)}
     .wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:1.5rem 0 3.5rem}
     .hero{
       padding:1.1rem 0 1.5rem;
@@ -148,7 +148,12 @@
     summary{cursor:pointer;font-weight:700;list-style:none}
     summary::-webkit-details-marker{display:none}
     input[type=file]{display:none}
-    footer{border-top:1px solid rgba(128,100,68,.12);padding:2rem 1rem 3rem;text-align:center;color:var(--muted-2);font:.8rem var(--mono)}
+    footer{padding:1.5rem 0 3rem;background:transparent}
+    .footer-shell{
+      width:min(1240px,calc(100% - 28px));margin:0 auto;padding:1rem 1.2rem;text-align:center;
+      color:var(--muted-2);font:.8rem var(--mono);border:1px solid rgba(128,100,68,.12);border-radius:22px;
+      background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,250,244,.9));box-shadow:0 18px 36px rgba(66,41,18,.08);
+    }
     footer a{color:var(--accent-strong);text-decoration:none}
     @media (max-width:1080px){.workspace,.hero-grid{grid-template-columns:1fr}.helper-grid{grid-template-columns:1fr}}
     @media (max-width:760px){
@@ -179,9 +184,9 @@
     <a class="nav-brand" href="/">Pulsagi</a>
     <ul>
       <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
       <li><a href="/tools/" class="nav-pill">Tools</a></li>
-      <li><a href="#workspace">Converter</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
     </ul>
   </nav>
 
@@ -302,7 +307,9 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+    <div class="footer-shell">
+      <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+    </div>
   </footer>
   <script>
     const STORAGE_KEY = "pulsagi-json-to-toon-v1";
@@ -863,3 +870,4 @@
   </script>
 </body>
 </html>
+
