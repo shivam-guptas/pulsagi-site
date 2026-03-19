@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulsagi - AI Infrastructure & Developer Tools</title>
+  <title>Pulsagi - AI Tools & Developer Utilities</title>
 
-  <meta name="description" content="Pulsagi builds AI infrastructure and lightweight browser tools, including a scam checker, JSON Viewer, a JSON to TOON Converter, a JSON compressor for prompt token reduction, Apex and SOQL Formatter, and a Salesforce Governor Limit Analyzer." />
-  <meta name="keywords" content="AI infrastructure, Pulsagi, Shivam Gupta, scam checker, developer tools, JSON Viewer, JSON to TOON Converter, JSON compressor, prompt token reducer, LLM JSON optimizer, Apex and SOQL Formatter, Salesforce Governor Limit Analyzer" />
+  <meta name="description" content="Pulsagi publishes practical AI tools and browser-based developer utilities for JSON inspection, prompt token reduction, Salesforce code review, and scam analysis." />
+  <meta name="keywords" content="AI tools, developer utilities, Pulsagi, Shivam Gupta, scam checker, JSON Viewer, JSON to TOON Converter, JSON compressor, prompt token reducer, LLM JSON optimizer, Apex and SOQL Formatter, Salesforce Governor Limit Analyzer" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#24313a" />
   <link rel="canonical" href="https://pulsagi.com/" />
 
-  <meta property="og:title" content="Pulsagi - AI Infrastructure & Developer Tools" />
-  <meta property="og:description" content="AI infrastructure and lightweight browser tools for JSON inspection, JSON compression, prompt token reduction, TOON conversion, and everyday workflows." />
+  <meta property="og:title" content="Pulsagi - AI Tools & Developer Utilities" />
+  <meta property="og:description" content="Practical browser-based tools for JSON inspection, prompt token reduction, Salesforce code review, scam analysis, and AI-assisted workflows." />
   <meta property="og:url" content="https://pulsagi.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pulsagi - AI Infrastructure & Developer Tools" />
-  <meta name="twitter:description" content="Fast AI infrastructure and lightweight browser tools, including JSON compression and JSON to TOON conversion." />
+  <meta name="twitter:title" content="Pulsagi - AI Tools & Developer Utilities" />
+  <meta name="twitter:description" content="Practical browser-based tools for JSON inspection, prompt token reduction, Salesforce review, scam analysis, and AI workflows." />
   <meta name="twitter:url" content="https://pulsagi.com/" />
 
   <script type="application/ld+json">
@@ -31,7 +31,7 @@
     "@type": "Organization",
     "name": "Pulsagi",
     "url": "https://pulsagi.com",
-    "description": "AI infrastructure for the next generation — fast, modern, and built to scale.",
+    "description": "Practical AI tools and browser-based developer utilities built to solve real workflows.",
     "foundingDate": "2026",
     "founder": {
       "@type": "Person",
@@ -49,7 +49,7 @@
     "@type": "WebSite",
     "name": "Pulsagi",
     "url": "https://pulsagi.com/",
-    "description": "Pulsagi publishes AI infrastructure updates and lightweight developer tools.",
+    "description": "Pulsagi publishes practical AI tools and lightweight developer utilities.",
     "publisher": {
       "@type": "Organization",
       "name": "Pulsagi"
@@ -62,7 +62,7 @@
     "@type": "CollectionPage",
     "name": "Pulsagi Developer Tools",
     "url": "https://pulsagi.com/tools/",
-    "description": "A collection of free browser-based tools from Pulsagi, including a scam checker, JSON Viewer, Apex and SOQL Formatter, and a Salesforce Governor Limit Analyzer.",
+    "description": "A collection of free browser-based tools from Pulsagi, including a scam checker, JSON Viewer, JSON to TOON Converter, Apex and SOQL Formatter, and a Salesforce Governor Limit Analyzer.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Pulsagi",
@@ -116,31 +116,38 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #09090b; --surface: #111113; --border: #1f1f23;
-      --text: #fafafa; --muted: #71717a; --muted2: #a1a1aa;
-      --accent: #6ee7b7; --accent2: #34d399;
-      --accent-dim: rgba(110,231,183,0.1);
-      --red: #f87171; --green: #4ade80; --yellow: #fbbf24;
+      --bg: #1c242c; --surface: #28323c; --surface-2: #313c47; --border: #3d4956;
+      --text: #f6f1e7; --muted: #97a2ae; --muted2: #cad4df;
+      --accent: #76e0c0; --accent2: #4fd1a3; --warm: #f0c98e;
+      --accent-dim: rgba(118,224,192,0.16);
+      --red: #f28585; --green: #6fe39b; --yellow: #f4c86a;
       --mono: 'Courier New', monospace;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    body {
+      font-family: 'Georgia', serif; color: var(--text); line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(118,224,192,0.12), transparent 24%),
+        radial-gradient(circle at 78% 14%, rgba(240,201,142,0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(127,168,255,0.12), transparent 28%),
+        linear-gradient(180deg, #1b242b 0%, #232d36 48%, #202a33 100%);
+    }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 2rem;
-      background: rgba(9,9,11,0.92); backdrop-filter: blur(12px);
+      background: rgba(28,36,44,0.76); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     .nav-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); text-decoration: none; }
     nav ul { list-style: none; display: flex; gap: 1.75rem; align-items: center; }
-    nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-family: var(--mono); transition: color 0.2s; cursor: pointer; }
+    nav a { color: var(--muted2); text-decoration: none; font-size: 0.85rem; font-family: var(--mono); transition: color 0.2s, background 0.2s, border-color 0.2s; cursor: pointer; }
     nav a:hover { color: var(--text); }
-    .nav-pill { background: var(--accent-dim); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid rgba(110,231,183,0.2); }
-    .nav-pill:hover { background: rgba(110,231,183,0.15) !important; }
+    .nav-pill { background: linear-gradient(180deg, rgba(118,224,192,0.14), rgba(118,224,192,0.08)); color: var(--accent) !important; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid rgba(118,224,192,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); }
+    .nav-pill:hover { background: rgba(118,224,192,0.18) !important; }
 
     /* ── PAGES ── */
     .page { display: none; min-height: 100vh; padding-top: 64px; }
@@ -148,59 +155,128 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: calc(100vh - 64px); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 4rem 2rem; position: relative; overflow: hidden;
+      min-height: calc(100vh - 64px); display: flex;
+      align-items: center; padding: 4rem 2rem; position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(110,231,183,0.06) 0%, transparent 70%);
+      background:
+        radial-gradient(ellipse 80% 60% at 18% 26%, rgba(118,224,192,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 45% at 75% 18%, rgba(240,201,142,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 82% 34%, rgba(127,168,255,0.10) 0%, transparent 60%);
+    }
+    .hero-shell {
+      position: relative; z-index: 1; width: min(1180px, 100%); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 1.5rem; align-items: stretch;
+    }
+    .hero-main {
+      text-align: left; display: flex; flex-direction: column; justify-content: center; padding: 1rem 0;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.35rem 0.9rem; border: 1px solid rgba(110,231,183,0.3);
       border-radius: 999px; font-size: 0.75rem; font-family: var(--mono);
-      color: var(--accent); margin-bottom: 2rem; letter-spacing: 0.08em;
+      color: var(--accent); margin-bottom: 1.25rem; letter-spacing: 0.08em; width: fit-content;
+      background: rgba(118,224,192,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
     .badge::before { content: '●'; font-size: 0.5rem; animation: blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     h1 {
-      font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; letter-spacing: -0.02em;
-      line-height: 1.05; margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fafafa 0%, #71717a 100%);
+      font-size: clamp(3rem, 6.3vw, 5.35rem); font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.02; margin-bottom: 1.1rem;
+      background: linear-gradient(135deg, #fffdfa 0%, #f1e4cf 28%, #d7e0e8 62%, #9acdbf 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-sub { font-size: 1.125rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.7; }
-    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hero-sub { font-size: 1.08rem; color: #dbe3eb; max-width: 700px; margin-bottom: 1.5rem; line-height: 1.8; }
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-start; }
     .btn { padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-family: var(--mono); text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; display: inline-block; }
-    .btn-primary { background: var(--accent); color: #09090b; font-weight: 700; }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #9ee7cf); color: #132018; font-weight: 700; box-shadow: 0 10px 24px rgba(79,209,163,0.18); }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--accent2), #8de6c9); transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,245,230,0.05); color: var(--muted2); border: 1px solid rgba(202,212,223,0.18); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(240,201,142,0.28); background: rgba(255,245,230,0.08); }
+    .hero-kpis {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1.45rem; max-width: 760px;
+    }
+    .hero-kpi {
+      padding: 1rem 1.05rem; border: 1px solid var(--border); border-radius: 16px;
+      background: linear-gradient(180deg, rgba(47,58,70,0.94), rgba(35,44,54,0.98)); box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+    }
+    .hero-kpi strong { display: block; font-size: 1.35rem; margin-bottom: 0.25rem; color: var(--text); }
+    .hero-kpi span { color: var(--muted2); font-size: 0.82rem; font-family: var(--mono); }
+    .hero-rail { display: grid; gap: 1rem; align-content: center; }
+    .spotlight-card {
+      display: block; text-decoration: none; color: inherit; padding: 1.15rem; border: 1px solid var(--border); border-radius: 18px;
+      background:
+        radial-gradient(circle at top right, rgba(118,224,192,0.10), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(240,201,142,0.08), transparent 34%),
+        linear-gradient(180deg, rgba(44,54,66,0.98), rgba(33,41,50,0.98));
+      box-shadow: 0 16px 32px rgba(0,0,0,0.12); transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .spotlight-card:hover { border-color: rgba(118,224,192,0.35); transform: translateY(-2px); box-shadow: 0 18px 36px rgba(0,0,0,0.18); }
+    .spotlight-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.7rem; }
+    .spotlight-tag {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+      padding: 0.22rem 0.6rem; border-radius: 999px; color: var(--accent); background: rgba(110,231,183,0.1); border: 1px solid rgba(110,231,183,0.2);
+    }
+    .spotlight-state { font-family: var(--mono); font-size: 0.72rem; color: var(--muted2); }
+    .spotlight-card h3 { font-size: 1.08rem; margin-bottom: 0.35rem; }
+    .spotlight-card p { color: var(--muted2); font-size: 0.92rem; margin-bottom: 0.85rem; line-height: 1.65; }
+    .spotlight-meta { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
+    .spotlight-meta span {
+      font-family: var(--mono); font-size: 0.67rem; color: var(--muted);
+      background: rgba(255,247,238,0.08); padding: 0.24rem 0.55rem; border-radius: 999px; border: 1px solid rgba(202,212,223,0.08);
+    }
+    .spotlight-link { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
 
     /* ── ABOUT ── */
-    .about-sec { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .about-sec { padding: 2rem 2rem 4rem; max-width: 1180px; margin: 0 auto; }
+    .about-sec,
+    .tools-sec {
+      position: relative;
+    }
+    .about-sec::before,
+    .tools-sec::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,247,238,0.04), rgba(255,247,238,0.02));
+      border: 1px solid rgba(202,212,223,0.07);
+      pointer-events: none;
+    }
+    .about-sec > *,
+    .tools-sec > * {
+      position: relative;
+      z-index: 1;
+    }
     .sec-label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
-    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1.15rem; }
+    .about-copy { color: var(--muted2); max-width: 760px; margin-bottom: 2rem; font-size: 0.98rem; line-height: 1.8; }
     .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .pillar { padding: 1.75rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); transition: border-color 0.2s; }
-    .pillar:hover { border-color: rgba(110,231,183,0.3); }
+    .pillar { padding: 1.75rem; border: 1px solid var(--border); border-radius: 18px; background: linear-gradient(180deg, rgba(49,60,72,0.96), rgba(37,46,56,0.98)); transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 14px 30px rgba(0,0,0,0.10); }
+    .pillar:hover { border-color: rgba(118,224,192,0.3); transform: translateY(-2px); box-shadow: 0 18px 34px rgba(0,0,0,0.14); }
     .pillar-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
-    .tools-sec { padding: 0 2rem 5rem; max-width: 900px; margin: 0 auto; }
-    .section-copy { color: var(--muted); max-width: 720px; margin: -2rem 0 2rem; font-size: 0.95rem; line-height: 1.8; }
+    .tools-sec { padding: 2rem 2rem 5rem; max-width: 1180px; margin: 1.5rem auto 2rem; }
+    .section-head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
+    .section-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .section-copy { color: var(--muted); max-width: 760px; margin: 0 0 2rem; font-size: 0.95rem; line-height: 1.8; }
     .section-copy a { color: var(--accent); text-decoration: none; }
     .section-copy a:hover { text-decoration: underline; }
     .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .tool-card {
       display: block; text-decoration: none; color: inherit;
-      padding: 1.6rem; border: 1px solid var(--border); border-radius: 14px;
-      background: linear-gradient(180deg, rgba(17,17,19,0.98), rgba(12,12,14,0.98));
+      padding: 1.6rem; border: 1px solid var(--border); border-radius: 18px;
+      background:
+        radial-gradient(circle at top right, rgba(118,224,192,0.10), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(240,201,142,0.08), transparent 34%),
+        linear-gradient(180deg, rgba(47,58,70,0.98), rgba(35,44,54,0.98));
       transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .tool-card:hover { border-color: rgba(110,231,183,0.4); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.28); }
+    .tool-card:hover { border-color: rgba(118,224,192,0.4); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.20); }
     .tool-card-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.9rem; }
     .tool-badge {
       font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
@@ -213,7 +289,7 @@
     .tool-meta { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 1rem; }
     .tool-meta span {
       font-family: var(--mono); font-size: 0.67rem; color: var(--muted);
-      background: #18181b; padding: 0.25rem 0.55rem; border-radius: 999px;
+      background: rgba(255,247,238,0.08); padding: 0.25rem 0.55rem; border-radius: 999px; border: 1px solid rgba(202,212,223,0.08);
     }
     .tool-link { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
 
@@ -223,11 +299,19 @@
     .tool-header p { color: var(--muted); font-size: 0.95rem; }
 
     /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); font-family: var(--mono); }
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted2); font-family: var(--mono); background: rgba(255,247,238,0.03); }
     footer a { color: var(--accent); text-decoration: none; }
 
+    @media (max-width: 980px) {
+      .hero-shell { grid-template-columns: 1fr; }
+      .hero-main { text-align: center; align-items: center; }
+      .cta-group { justify-content: center; }
+      .hero-kpis { grid-template-columns: 1fr; max-width: 520px; width: 100%; }
+    }
     @media (max-width: 700px) {
       nav ul { gap: 1rem; }
+      .hero { padding: 3rem 1rem 2rem; }
+      h1 { font-size: clamp(2.5rem, 11vw, 3.8rem); }
     }
   </style>
   <!-- Google Tag Manager -->
@@ -274,41 +358,98 @@
 <div id="page-home" class="page active">
 
   <section class="hero" id="home" aria-label="Hero">
-    <div class="badge">AI Infrastructure • Launching Soon</div>
-    <h1>Pulsagi</h1>
-    <p class="hero-sub">AI infrastructure for the next generation — fast, modern, and built to scale.</p>
-    <div class="cta-group">
-      <a href="/tools/" class="btn btn-primary">Explore Tools</a>
-      <a href="/tools/scam-checker.html" class="btn btn-ghost">Open Scam Checker</a>
-      <a href="mailto:hello@pulsagi.com" class="btn btn-ghost">Contact</a>
+    <div class="hero-shell">
+      <div class="hero-main">
+        <div class="badge">Live Browser Tools</div>
+        <h1>AI and developer tools for real-world workflows.</h1>
+        <p class="hero-sub">Use practical browser-based utilities for JSON inspection, prompt token reduction, Salesforce review, scam analysis, and other day-to-day engineering tasks.</p>
+        <div class="cta-group">
+          <a href="/tools/" class="btn btn-primary">Explore Tools</a>
+          <a href="/tools/json-to-toon-converter.html" class="btn btn-ghost">Open JSON to TOON</a>
+          <a href="/tools/scam-checker.html" class="btn btn-ghost">Open Scam Checker</a>
+        </div>
+        <div class="hero-kpis">
+          <div class="hero-kpi">
+            <strong>5+</strong>
+            <span>live browser tools</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>0</strong>
+            <span>logins or installs needed</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>100%</strong>
+            <span>direct URLs for every tool</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-rail">
+        <a class="spotlight-card" href="/tools/json-to-toon-converter.html">
+          <div class="spotlight-top">
+            <span class="spotlight-tag">FEATURED</span>
+            <span class="spotlight-state">Prompt workflow</span>
+          </div>
+          <h3>JSON to TOON Converter</h3>
+          <p>Compress repeated JSON structures for lower LLM token usage, compare approximate cost savings, and reverse TOON back into JSON.</p>
+          <div class="spotlight-meta">
+            <span>Token savings</span>
+            <span>TOON</span>
+            <span>Round trip</span>
+          </div>
+          <div class="spotlight-link">Open converter -></div>
+        </a>
+        <a class="spotlight-card" href="/tools/scam-checker.html">
+          <div class="spotlight-top">
+            <span class="spotlight-tag">POPULAR</span>
+            <span class="spotlight-state">Safety workflow</span>
+          </div>
+          <h3>Scam Checker</h3>
+          <p>Analyze suspicious links, messages, fake jobs, and payment requests with OCR upload, domain checks, and shareable reports.</p>
+          <div class="spotlight-meta">
+            <span>OCR upload</span>
+            <span>Domain checks</span>
+            <span>Share links</span>
+          </div>
+          <div class="spotlight-link">Open checker -></div>
+        </a>
+      </div>
     </div>
   </section>
 
   <section class="about-sec" id="about">
-    <div class="sec-label">What Pulsagi stands for</div>
-    <h2>Built to last. Built to ship.</h2>
+    <div class="sec-label">What Pulsagi ships</div>
+    <h2>Practical tools, built to be useful on day one.</h2>
+    <p class="about-copy">Pulsagi is becoming a focused hub for browser-based tools that solve real problems quickly. Instead of generic landing-page promises, the site now centers on utilities people can open, use, and share immediately.</p>
     <div class="pillars">
       <article class="pillar">
         <div class="pillar-icon">⚡</div>
         <h3>Fast</h3>
-        <p>Built with speed, clarity, and modern AI-first thinking for real-world execution.</p>
+        <p>Quick browser-based utilities for real tasks, with minimal friction between landing on the page and solving the problem.</p>
       </article>
       <article class="pillar">
         <div class="pillar-icon">📐</div>
         <h3>Scalable</h3>
-        <p>Designed for ambitious products, durable systems, and long-term technical growth.</p>
+        <p>Every tool is designed to be crawlable, easy to share, and durable enough to support growing catalogs and repeat usage.</p>
       </article>
       <article class="pillar">
         <div class="pillar-icon">🎯</div>
         <h3>Focused</h3>
-        <p>One vision: useful infrastructure, strong foundations, and products that actually ship.</p>
+        <p>Each utility tackles a clear workflow, from JSON compression and inspection to Salesforce review and scam analysis.</p>
       </article>
     </div>
   </section>
 
   <section class="tools-sec" id="tools-preview">
-    <div class="sec-label">Developer Tools</div>
-    <h2>Small utilities that save real time.</h2>
+    <div class="section-head-row">
+      <div>
+        <div class="sec-label">Developer Tools</div>
+        <h2>Live tools you can use right now.</h2>
+      </div>
+      <div class="section-actions">
+        <a href="/tools/" class="btn btn-primary">Browse All Tools</a>
+        <a href="/tools/json-viewer.html" class="btn btn-ghost">Open JSON Viewer</a>
+      </div>
+    </div>
     <p class="section-copy">Browse the full <a href="/tools/">Pulsagi developer tools directory</a> to find browser-based utilities for JSON inspection, JSON to TOON conversion, JSON compression for prompt token reduction, Apex and SOQL formatting, Salesforce Apex review, and other day-to-day developer workflows. Each tool has its own indexable landing page and works without signup or server setup.</p>
     <div class="tools-grid">
       <a class="tool-card" href="tools/scam-checker.html">
