@@ -58,10 +58,32 @@
     nav a{text-decoration:none;color:var(--muted-2)} nav a:hover{color:var(--ink)}
     .nav-pill{color:var(--accent-strong)!important;padding:.35rem .9rem;border-radius:999px;background:rgba(8,181,94,.08);border:1px solid rgba(8,181,94,.18)}
     .wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:1.5rem 0 3.5rem}
-    .hero{padding:.4rem 0 1.2rem}
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;margin-top:1rem}
-    h1{margin:.1rem 0 .7rem;font-size:clamp(2.1rem,4.2vw,3.35rem);line-height:1.02;letter-spacing:-.04em}
-    .mode-switch{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .hero{
+      padding:1.1rem 0 1.5rem;
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      background:
+        linear-gradient(rgba(80,110,150,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,110,150,.08) 1px, transparent 1px),
+        linear-gradient(120deg, rgba(80,110,150,.06) 1px, transparent 1px),
+        linear-gradient(60deg, rgba(80,110,150,.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,251,245,.92));
+      background-size: 56px 56px,56px 56px,180px 180px,180px 180px,100% 100%;
+      border:1px solid rgba(128,100,68,.10);
+      box-shadow:var(--shadow);
+    }
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;margin-top:0}
+    .hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1rem 1.2rem .4rem}
+    h1{margin:0;font-size:clamp(2.7rem,5.2vw,4.55rem);line-height:1;letter-spacing:-.05em;max-width:1200px}
+    .hero-sub{
+      margin:1.2rem auto 0;
+      max-width:1050px;
+      color:#6f7887;
+      font-size:clamp(1rem,1.8vw,1.3rem);
+      line-height:1.55;
+    }
+    .mode-switch{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.35rem;justify-content:center}
     .mode-btn{
       appearance:none;border:1px solid var(--border);border-radius:999px;padding:.72rem 1rem;background:rgba(255,255,255,.7);
       color:var(--muted);font:700 .8rem var(--mono);cursor:pointer;transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease;
@@ -135,7 +157,8 @@
       .card-head,.status-row,.card-foot{padding-left:.9rem;padding-right:.9rem}
       textarea{width:calc(100% - 1.8rem);margin:0 .9rem;min-height:320px} .card-actions{justify-content:flex-start}
       .card-head-copy p{white-space:normal}
-      h1{font-size:clamp(1.9rem,7.4vw,2.5rem)}
+      h1{font-size:clamp(2.15rem,8vw,3rem)}
+      .hero-sub{font-size:clamp(.98rem,4.4vw,1.12rem)}
     }
   </style>
   <script>
@@ -166,7 +189,8 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1>Convert JSON into a leaner prompt format.</h1>
+          <h1>JSON to TOON Converter - Reduce<br />LLM API costs</h1>
+          <p class="hero-sub">Convert JSON to TOON serialization format and reduce LLM tokens by 30-60%. Lower GPT token costs and Claude API costs with our free browser-based converter.</p>
           <div class="mode-switch" role="tablist" aria-label="Conversion mode">
             <button class="mode-btn active" id="jsonToToonMode" type="button">JSON -> TOON</button>
             <button class="mode-btn" id="toonToJsonMode" type="button">TOON -> JSON</button>
