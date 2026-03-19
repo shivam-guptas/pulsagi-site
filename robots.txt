@@ -1,25 +1,62 @@
 User-agent: *
 Allow: /
 
+# Major OpenAI crawlers and fetchers
 User-agent: GPTBot
+Allow: /
+
+# ChatGPT search crawler
+User-agent: OAI-SearchBot
+Allow: /
+
+# User-triggered OpenAI fetcher
+User-agent: ChatGPT-User
+Allow: /
+
+# Major Anthropic crawlers and fetchers
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+# Major Perplexity crawlers and fetchers
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# Major Google crawlers and AI-related fetchers
 User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: AdsBot-Google
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: anthropic-ai
+# Other common AI-related fetchers
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
 Allow: /
 
 Sitemap: https://pulsagi.com/sitemap.xml

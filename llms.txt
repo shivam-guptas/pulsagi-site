@@ -29,5 +29,26 @@ Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Ar
 ## Links
 
 - Homepage: https://pulsagi.com
+- Tools directory: https://pulsagi.com/tools/
+- JSON to TOON Converter: https://pulsagi.com/tools/json-to-toon-converter.html
+- JSON Viewer and Flow Visualizer: https://pulsagi.com/tools/json-viewer.html
+- Scam Checker: https://pulsagi.com/tools/scam-checker.html
+- Apex and SOQL Formatter: https://pulsagi.com/tools/apex-soql-formatter.html
+- Salesforce Governor Limit Analyzer: https://pulsagi.com/tools/salesforce-governor-limit-analyzer.html
 - Founder profile: https://shivam.pulsagi.com
 - Contact: mailto:hello@pulsagi.com
+
+## Tools
+
+- **JSON to TOON Converter**: Browser-based JSON compressor and TOON converter for prompt token reduction, LLM JSON optimization, and TOON to JSON conversion.
+- **JSON Viewer and Flow Visualizer**: Format, inspect, search, analyze, and visualize generic JSON and Salesforce Flow JSON.
+- **Scam Checker**: Analyze suspicious messages, phishing links, fake jobs, UPI payment requests, and screenshots with OCR.
+- **Apex and SOQL Formatter**: Format Apex, SOQL, triggers, and anonymous Apex with browser-based output.
+- **Salesforce Governor Limit Analyzer**: Review Apex classes and triggers for bulkification issues, SOQL-in-loop patterns, DML risks, and governor-limit problems.
+
+## Crawl Guidance
+
+- All public tools live under: https://pulsagi.com/tools/
+- The tools directory links to every current public tool: https://pulsagi.com/tools/
+- The XML sitemap is available at: https://pulsagi.com/sitemap.xml
+- Public crawl access is allowed in `robots.txt` for compliant crawlers and AI agents.

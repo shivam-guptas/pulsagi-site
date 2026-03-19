@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON to TOON Converter, JSON Compressor & Prompt Token Reducer | Pulsagi Tools</title>
+  <meta name="description" content="Free JSON to TOON converter for compressing JSON, reducing prompt tokens, optimizing LLM input, and converting TOON back into JSON. Works with arrays of objects, API payloads, product data, logs, and prompt-ready JSON." />
+  <meta name="keywords" content="JSON to TOON, TOON converter, Token-Oriented Object Notation, JSON compressor, JSON compression tool, JSON token reducer, prompt token reducer, LLM JSON optimizer, JSON prompt optimizer, AI prompt optimization, JSON converter, compact JSON format, JSON array compressor, array of objects compressor, API payload compressor, prompt-ready JSON, JSON to compact text, JSON minifier alternative, TOON parser, TOON to JSON, browser JSON converter, Pulsagi tools" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="application-name" content="Pulsagi JSON to TOON Converter" />
+  <meta name="apple-mobile-web-app-title" content="JSON to TOON Converter" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta name="theme-color" content="#f4efe8" />
+  <link rel="canonical" href="https://pulsagi.com/tools/json-to-toon-converter.html" />
+  <meta property="og:title" content="JSON to TOON Converter, JSON Compressor & Prompt Token Reducer" />
+  <meta property="og:description" content="Compress JSON into TOON, reduce prompt tokens for LLMs, optimize arrays of objects, and convert TOON back into JSON in the browser." />
+  <meta property="og:url" content="https://pulsagi.com/tools/json-to-toon-converter.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JSON to TOON Converter, JSON Compressor & Prompt Token Reducer" />
+  <meta name="twitter:description" content="Browser-based JSON compressor for TOON conversion, prompt token reduction, LLM JSON optimization, and TOON to JSON round-tripping." />
+  <meta name="twitter:url" content="https://pulsagi.com/tools/json-to-toon-converter.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi JSON to TOON Converter","applicationCategory":"DeveloperApplication","applicationSubCategory":"JSON Compression and Prompt Optimization","operatingSystem":"Web","browserRequirements":"Requires JavaScript and a modern browser","url":"https://pulsagi.com/tools/json-to-toon-converter.html","description":"Browser-based JSON to TOON converter for compressing JSON, reducing prompt tokens, optimizing LLM payloads, and converting TOON back into JSON.","keywords":"JSON to TOON, TOON converter, JSON compressor, JSON token reducer, prompt token reducer, LLM JSON optimizer, TOON to JSON, API payload compressor","featureList":["Convert JSON to TOON","Convert TOON back to JSON","Estimate prompt token savings","Optimize arrays of flat objects","Upload JSON or TOON files","Copy and download converted output"],"creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"JSON to TOON Converter","url":"https://pulsagi.com/tools/json-to-toon-converter.html","description":"Free browser-based JSON compressor and JSON to TOON converter for prompt token reduction, LLM JSON optimization, and TOON to JSON conversion.","keywords":"JSON compressor, JSON to TOON, prompt token reducer, LLM prompt optimization, TOON to JSON","isPartOf":{"@type":"WebSite","name":"Pulsagi","url":"https://pulsagi.com/"},"about":[{"@type":"Thing","name":"JSON compression"},{"@type":"Thing","name":"Prompt optimization"},{"@type":"Thing","name":"Large language model token reduction"}],"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pulsagi","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pulsagi.com/tools/"},{"@type":"ListItem","position":3,"name":"JSON to TOON Converter","item":"https://pulsagi.com/tools/json-to-toon-converter.html"}]}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does this JSON to TOON converter optimize?","acceptedAnswer":{"@type":"Answer","text":"It compresses repeated JSON structures, especially arrays of similar objects, into a more compact TOON representation designed to reduce prompt token usage."}},{"@type":"Question","name":"Can I convert TOON back into JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool supports reverse conversion for the TOON syntax it generates so you can round-trip between both formats in the browser."}},{"@type":"Question","name":"How are token savings estimated?","acceptedAnswer":{"@type":"Answer","text":"The page uses a simple approximate token estimate based on text length and also shows an example cost comparison using a thirty dollars per million token rate."}},{"@type":"Question","name":"Is this a JSON compressor for AI and LLM prompts?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is designed as a browser-based JSON compressor and prompt optimization helper for reducing repeated keys before sending structured data to language models."}},{"@type":"Question","name":"What kind of JSON compresses best in TOON?","acceptedAnswer":{"@type":"Answer","text":"Arrays of similarly shaped objects, API responses, product catalogs, logs, and repeated prompt payloads usually see the strongest reduction."}},{"@type":"Question","name":"Can I use this as a JSON array compressor or prompt token reducer?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is especially useful as a JSON array compressor and prompt token reducer when many objects share the same fields."}}]}
+  </script>
+  <style>
+    :root{
+      --bg:#f4efe8;--bg-2:#efe4d7;--ink:#1f1b18;--muted:#675f57;--muted-2:#8b8279;--border:#e7dccf;
+      --accent:#08b55e;--accent-strong:#05914c;--violet:#9a6bff;--violet-soft:rgba(154,107,255,.1);
+      --green-soft:rgba(8,181,94,.1);--danger:#d34b5f;--danger-soft:rgba(211,75,95,.1);
+      --shadow:0 24px 50px rgba(66,41,18,.08);--mono:"Courier New",monospace;
+    }
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;color:var(--ink);font-family:Georgia,serif;line-height:1.6;
+      background:
+        radial-gradient(circle at top left, rgba(8,181,94,.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(154,107,255,.10), transparent 24%),
+        linear-gradient(180deg,var(--bg),var(--bg-2) 52%,var(--bg));
+    }
+    a{color:inherit} button,input,textarea{font:inherit}
+    nav{
+      position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:1rem 2rem;background:rgba(255,250,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(128,100,68,.12);
+    }
+    .nav-brand{color:var(--accent-strong);font-weight:700;letter-spacing:.05em;text-decoration:none}
+    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0;font:.82rem var(--mono)}
+    nav a{text-decoration:none;color:var(--muted-2)} nav a:hover{color:var(--ink)}
+    .nav-pill{color:var(--accent-strong)!important;padding:.35rem .9rem;border-radius:999px;background:rgba(8,181,94,.08);border:1px solid rgba(8,181,94,.18)}
+    .wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:1.5rem 0 3.5rem}
+    .hero{padding:.4rem 0 1.2rem}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;margin-top:1rem}
+    h1{margin:.1rem 0 .7rem;font-size:clamp(2.1rem,4.2vw,3.35rem);line-height:1.02;letter-spacing:-.04em}
+    .mode-switch{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .mode-btn{
+      appearance:none;border:1px solid var(--border);border-radius:999px;padding:.72rem 1rem;background:rgba(255,255,255,.7);
+      color:var(--muted);font:700 .8rem var(--mono);cursor:pointer;transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease;
+    }
+    .mode-btn:hover{transform:translateY(-1px)}
+    .mode-btn.active{color:#fff;background:linear-gradient(135deg,var(--violet),#b27fff);border-color:transparent;box-shadow:0 12px 24px rgba(154,107,255,.24)}
+    .banner{
+      display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;margin:1rem 0 1.35rem;padding:1rem 1.15rem;border-radius:20px;
+      background:linear-gradient(135deg,#07b55d,#12be6b 60%,#0aa259);color:#f7fff9;box-shadow:0 16px 30px rgba(8,181,94,.24);
+    }
+    .banner.warning{background:linear-gradient(135deg,#8f6cf6,#7654de 60%,#6847d0);box-shadow:0 16px 30px rgba(143,108,246,.25)}
+    .banner.neutral{background:linear-gradient(135deg,#7e7a74,#625e57 60%,#504b46);box-shadow:0 16px 30px rgba(80,75,70,.18)}
+    .banner-title{font-size:1.6rem;font-weight:700;line-height:1.05;margin-bottom:.15rem}
+    .banner-meta{font-size:.88rem;color:rgba(247,255,249,.86)}
+    .banner-cost{text-align:right}
+    .banner-cost strong{display:block;font-size:1.5rem;line-height:1;margin-bottom:.18rem}
+    .banner-cost span{display:block;font-size:.84rem;color:rgba(247,255,249,.86)}
+    .workspace{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:stretch}
+    .card{
+      border:1px solid var(--border);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,248,240,.96));
+      box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;height:100%;
+    }
+    .card-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;padding:1.05rem 1.05rem 0}
+    .card-head h2{margin:0;font-size:1.25rem;line-height:1.15}
+    .card-actions{display:flex;flex-wrap:nowrap;gap:.45rem;justify-content:flex-end;align-items:center}
+    .card-head-copy{flex:1 1 auto;min-width:0}
+    .card-head-copy p{margin:.2rem 0 0;font-size:.88rem;color:var(--muted);white-space:nowrap}
+    .action-btn,.tiny-btn,.upload-label{
+      appearance:none;border:1px solid var(--border);background:#fff;color:var(--ink);border-radius:12px;padding:.64rem .85rem;font:700 .75rem var(--mono);
+      cursor:pointer;text-decoration:none;transition:transform .16s ease,border-color .16s ease,background .16s ease;
+    }
+    .action-btn:hover,.tiny-btn:hover,.upload-label:hover{transform:translateY(-1px);border-color:#c9b7a4}
+    .action-btn.primary{background:linear-gradient(135deg,var(--accent),#1bc36f);border-color:transparent;color:#072f1a}
+    .action-btn.ghost,.tiny-btn.ghost{background:rgba(255,255,255,.65)}
+    .action-btn.violet{background:var(--violet-soft);color:#5e33c7;border-color:rgba(154,107,255,.18)}
+    .status-row{display:flex;justify-content:space-between;gap:.75rem;align-items:center;padding:1rem 1.05rem .7rem;flex-wrap:wrap}
+    .status-pill{
+      display:inline-flex;align-items:center;gap:.45rem;border-radius:999px;padding:.42rem .75rem;border:1px solid var(--border);background:#fff;
+      font:700 .76rem var(--mono);color:var(--muted-2);
+    }
+    .status-pill.success{color:var(--accent-strong);background:var(--green-soft);border-color:rgba(8,181,94,.18)}
+    .status-pill.error{color:var(--danger);background:var(--danger-soft);border-color:rgba(211,75,95,.18)}
+    .status-pill.warning{color:#6b46d9;background:var(--violet-soft);border-color:rgba(154,107,255,.18)}
+    .status-copy{font-size:.84rem;color:var(--muted)}
+    textarea{
+      width:calc(100% - 2.1rem);min-height:430px;margin:0 1.05rem;border:1px solid var(--border);border-radius:18px;padding:1rem;resize:none;outline:none;flex:1;
+      color:var(--ink);background:#fff;font:13px/1.62 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    textarea:focus{border-color:rgba(8,181,94,.45);box-shadow:0 0 0 4px rgba(8,181,94,.10)}
+    textarea[readonly]{background:linear-gradient(180deg,#fff,#fffaf5)}
+    .card-foot{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:.75rem 1.05rem 1rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+    .card-foot strong{color:var(--ink)} .delta.good{color:var(--accent-strong)} .delta.warn{color:#6b46d9}
+    .helper-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.2rem}
+    .mini-card,.faq{border:1px solid var(--border);border-radius:22px;background:rgba(255,255,255,.72);box-shadow:var(--shadow)}
+    .mini-card{padding:1rem}
+    .mini-card h3,.faq h2{margin:0 0 .35rem;font-size:1rem}
+    .mini-card p,.faq p{margin:0;color:var(--muted);font-size:.9rem}
+    .lower{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem;align-items:start}
+    .faq{padding:1.1rem}
+    details{border:1px solid var(--border);border-radius:16px;padding:.8rem .9rem;background:rgba(255,255,255,.68)}
+    details+details{margin-top:.7rem}
+    summary{cursor:pointer;font-weight:700;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    input[type=file]{display:none}
+    footer{border-top:1px solid rgba(128,100,68,.12);padding:2rem 1rem 3rem;text-align:center;color:var(--muted-2);font:.8rem var(--mono)}
+    footer a{color:var(--accent-strong);text-decoration:none}
+    @media (max-width:1080px){.workspace,.hero-grid{grid-template-columns:1fr}.helper-grid{grid-template-columns:1fr}}
+    @media (max-width:760px){
+      nav{padding:.95rem 1rem} nav ul{gap:.85rem;flex-wrap:wrap;justify-content:flex-end} .wrap{width:min(100% - 18px,1240px)}
+      .banner{grid-template-columns:1fr} .banner-cost{text-align:left}
+      .card-head,.status-row,.card-foot{padding-left:.9rem;padding-right:.9rem}
+      textarea{width:calc(100% - 1.8rem);margin:0 .9rem;min-height:320px} .card-actions{justify-content:flex-start}
+      .card-head-copy p{white-space:normal}
+      h1{font-size:clamp(1.9rem,7.4vw,2.5rem)}
+    }
+  </style>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-NFJXRZSV");
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-S55MNPYJF8");
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <nav>
+    <a class="nav-brand" href="/">Pulsagi</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/" class="nav-pill">Tools</a></li>
+      <li><a href="#workspace">Converter</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Convert JSON into a leaner prompt format.</h1>
+          <div class="mode-switch" role="tablist" aria-label="Conversion mode">
+            <button class="mode-btn active" id="jsonToToonMode" type="button">JSON -> TOON</button>
+            <button class="mode-btn" id="toonToJsonMode" type="button">TOON -> JSON</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="banner neutral" id="statsBanner" aria-live="polite">
+      <div>
+        <div class="banner-title" id="bannerTitle">Waiting for valid JSON</div>
+        <div class="banner-meta" id="bannerMeta">Load the sample or paste data to estimate approximate token reduction.</div>
+      </div>
+      <div class="banner-cost">
+        <strong id="costTitle">$0.0000 delta per request</strong>
+        <span id="costMeta">Using an example rate of $30 per 1M tokens</span>
+      </div>
+    </section>
+
+    <section class="workspace" id="workspace">
+      <section class="card">
+        <div class="card-head">
+          <div class="card-head-copy">
+            <h2 id="inputTitle">JSON Input</h2>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn ghost" type="button" id="formatBtn">Format</button>
+            <button class="action-btn violet" type="button" id="sampleBtn">Sample</button>
+            <label class="upload-label" for="fileInput">Upload</label>
+            <button class="action-btn ghost" type="button" id="clearBtn">Clear</button>
+            <button class="action-btn primary" type="button" id="convertBtn">Convert</button>
+          </div>
+        </div>
+        <div class="status-row">
+          <div class="status-pill" id="inputHealth">Waiting for input</div>
+          <div class="status-copy" id="inputHint">JSON is parsed locally in your browser.</div>
+        </div>
+        <textarea id="inputArea" spellcheck="false" placeholder="Paste JSON here..."></textarea>
+        <div class="card-foot">
+          <span><strong id="inputTokenCount">0</strong> estimated source tokens</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div class="card-head-copy">
+            <h2 id="outputTitle">TOON Output</h2>
+            <p id="outputSubtitle">Compact notation with table blocks for repeated object arrays.</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn ghost" type="button" id="copyBtn">Copy</button>
+            <button class="action-btn primary" type="button" id="downloadBtn">Download</button>
+          </div>
+        </div>
+        <div class="status-row">
+          <div class="status-pill" id="outputHealth">No output yet</div>
+          <div class="status-copy" id="outputHint">Approximate token estimate updates after each conversion.</div>
+        </div>
+        <textarea id="outputArea" spellcheck="false" readonly placeholder="Converted output will appear here..."></textarea>
+        <div class="card-foot">
+          <span><strong id="outputTokenCount">0</strong> estimated result tokens</span>
+          <span class="delta" id="deltaText">No token delta yet</span>
+        </div>
+      </section>
+    </section>
+
+    <input id="fileInput" type="file" accept=".json,.toon,.txt,application/json,text/plain" />
+
+    <section class="helper-grid">
+      <article class="mini-card">
+        <h3>What TOON compresses well</h3>
+        <p>Repeated object keys are lifted into one header line, then each row keeps only values. That makes it useful as a JSON compressor for arrays of objects, API payloads, product catalogs, logs, and prompt-ready JSON.</p>
+      </article>
+      <article class="mini-card">
+        <h3>How savings are estimated</h3>
+        <p>The page uses a simple approximate token estimate based on text length, then shows an example cost comparison at $30 per million tokens for AI prompts, LLM payloads, and structured JSON requests.</p>
+      </article>
+      <article class="mini-card">
+        <h3>Round-trip support</h3>
+        <p>Switch to TOON -> JSON to reverse the converter output and verify structure before you move it into prompts, docs, examples, or JSON optimization workflows.</p>
+      </article>
+    </section>
+
+    <section class="lower">
+      <article class="faq" id="faq">
+        <h2>FAQ</h2>
+        <details open>
+          <summary>Does this change the meaning of my JSON?</summary>
+          <p>The goal is structural compression, not semantic compression. The generated TOON keeps enough information for this tool to reconstruct the original JSON shape.</p>
+        </details>
+        <details>
+          <summary>Will every JSON document compress well?</summary>
+          <p>No. TOON helps most when many objects reuse the same keys. Very small JSON or highly irregular nested structures may see smaller gains.</p>
+        </details>
+        <details>
+          <summary>Can I use this output directly in prompts?</summary>
+          <p>Yes, that is the main idea. The banner gives an approximate reduction estimate so you can compare source and TOON payload size quickly.</p>
+        </details>
+        <details>
+          <summary>Who is this tool useful for?</summary>
+          <p>It is useful for developers, prompt engineers, API users, and anyone trying to compress JSON for ChatGPT, Claude, Gemini, or other language model workflows.</p>
+        </details>
+        <details>
+          <summary>What search terms match this tool?</summary>
+          <p>People may look for this as a JSON compressor, prompt token reducer, JSON prompt optimizer, JSON array compressor, TOON converter, TOON parser, or TOON to JSON converter.</p>
+        </details>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  </footer>
+  <script>
+    const STORAGE_KEY = "pulsagi-json-to-toon-v1";
+    const COST_PER_MILLION = 30;
+    const SAMPLE_JSON = {
+      products: [
+        { id: 1, name: "Laptop Pro", price: 999.99, category: "Electronics", inStock: true, rating: 4.5 },
+        { id: 2, name: "Wireless Mouse", price: 29.99, category: "Electronics", inStock: true, rating: 4.8 },
+        { id: 3, name: "Mechanical Keyboard", price: 79.99, category: "Electronics", inStock: false, rating: 4.7 }
+      ]
+    };
+    const state = { mode: "json-to-toon", inputs: { "json-to-toon": "", "toon-to-json": "" }, lastRunOk: false };
+    const $ = (id) => document.getElementById(id);
+    const inputArea = $("inputArea");
+    const outputArea = $("outputArea");
+    const inputTitle = $("inputTitle");
+    const outputTitle = $("outputTitle");
+    const outputSubtitle = $("outputSubtitle");
+    const inputHealth = $("inputHealth");
+    const outputHealth = $("outputHealth");
+    const inputHint = $("inputHint");
+    const outputHint = $("outputHint");
+    const banner = $("statsBanner");
+    const bannerTitle = $("bannerTitle");
+    const bannerMeta = $("bannerMeta");
+    const costTitle = $("costTitle");
+    const costMeta = $("costMeta");
+    const inputTokenCount = $("inputTokenCount");
+    const outputTokenCount = $("outputTokenCount");
+    const deltaText = $("deltaText");
+    const fileInput = $("fileInput");
+    let convertTimer = null;
+
+    function isPlainObject(value) {
+      return Object.prototype.toString.call(value) === "[object Object]";
+    }
+
+    function isPrimitive(value) {
+      return value === null || typeof value === "string" || typeof value === "number" || typeof value === "boolean";
+    }
+
+    function estimateTokens(text) {
+      return Math.max(0, Math.ceil(String(text || "").length / 4));
+    }
+
+    function formatCurrency(value) {
+      return "$" + Number(value || 0).toFixed(4);
+    }
+
+    function setStatus(element, text, tone) {
+      element.className = "status-pill";
+      if (tone) element.classList.add(tone);
+      element.textContent = text;
+    }
+
+    function isBareStringSafe(value, delimiter) {
+      const text = String(value);
+      if (!text) return false;
+      if (text !== text.trim()) return false;
+      if (/^(true|false|null)$/i.test(text)) return false;
+      if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(text)) return false;
+      if (/[\\\"\r\n]/.test(text)) return false;
+      if (text.includes(delimiter) || text.includes("|") || text.includes("=")) return false;
+      if (/[{}\[\]]/.test(text)) return false;
+      return true;
+    }
+
+    function serializeScalar(value, delimiter) {
+      if (value === null) return "null";
+      if (typeof value === "number") return Number.isFinite(value) ? String(value) : JSON.stringify(value);
+      if (typeof value === "boolean") return value ? "true" : "false";
+      if (typeof value === "string") return isBareStringSafe(value, delimiter || ",") ? value : JSON.stringify(value);
+      return JSON.stringify(value);
+    }
+
+    function splitDelimited(text, delimiter) {
+      const source = String(text || "");
+      if (!source) return [];
+      const parts = [];
+      let current = "";
+      let inQuotes = false;
+      let escaped = false;
+      for (let index = 0; index < source.length; index += 1) {
+        const char = source[index];
+        if (escaped) {
+          current += char;
+          escaped = false;
+          continue;
+        }
+        if (char === "\\") {
+          current += char;
+          if (inQuotes) escaped = true;
+          continue;
+        }
+        if (char === "\"") {
+          current += char;
+          inQuotes = !inQuotes;
+          continue;
+        }
+        if (!inQuotes && char === delimiter) {
+          parts.push(current);
+          current = "";
+          continue;
+        }
+        current += char;
+      }
+      if (inQuotes) throw new Error("Unterminated quoted string in TOON input.");
+      parts.push(current);
+      return parts;
+    }
+
+    function parseScalar(token) {
+      const value = String(token || "").trim();
+      if (value === "null") return null;
+      if (value === "true") return true;
+      if (value === "false") return false;
+      if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) return Number(value);
+      if (value.startsWith("\"")) return JSON.parse(value);
+      return value;
+    }
+
+    function getFlatObjectArrayShape(arrayValue) {
+      if (!Array.isArray(arrayValue) || !arrayValue.length) return null;
+      if (!arrayValue.every((item) => isPlainObject(item))) return null;
+      const keys = [];
+      arrayValue.forEach((item) => {
+        Object.keys(item).forEach((key) => {
+          if (!keys.includes(key)) keys.push(key);
+        });
+      });
+      if (!keys.length) return null;
+      const everyValueFlat = arrayValue.every((item) => keys.every((key) => key in item ? isPrimitive(item[key]) : true));
+      return everyValueFlat ? keys : null;
+    }
+
+    function jsonToToon(value) {
+      const lines = [];
+      function visit(node, path) {
+        const label = path || "$";
+        if (isPrimitive(node)) {
+          lines.push(label + "=" + serializeScalar(node, ","));
+          return;
+        }
+        if (Array.isArray(node)) {
+          if (!node.length) {
+            lines.push(label + "[0]=");
+            return;
+          }
+          const shape = getFlatObjectArrayShape(node);
+          if (shape) {
+            lines.push(label + "[" + node.length + "]{" + shape.join(",") + "}:");
+            node.forEach((row) => lines.push(shape.map((key) => serializeScalar(row[key], ",")).join(",")));
+            return;
+          }
+          if (node.every((item) => isPrimitive(item))) {
+            lines.push(label + "[" + node.length + "]=" + node.map((item) => serializeScalar(item, "|")).join("|"));
+            return;
+          }
+          node.forEach((item, index) => visit(item, path ? path + "[" + index + "]" : "$[" + index + "]"));
+          return;
+        }
+        if (isPlainObject(node)) {
+          const keys = Object.keys(node);
+          if (!keys.length) {
+            lines.push(label + "{}=");
+            return;
+          }
+          if (path && keys.every((key) => isPrimitive(node[key]))) {
+            lines.push(path + "{" + keys.join(",") + "}=" + keys.map((key) => serializeScalar(node[key], ",")).join(","));
+            return;
+          }
+          keys.forEach((key) => visit(node[key], path ? path + "." + key : key));
+          return;
+        }
+        lines.push(label + "=" + JSON.stringify(node));
+      }
+      visit(value, "");
+      return lines.join("\n");
+    }
+  </script>
+  <script>
+    function tokenizePath(path) {
+      if (path === "$") return [];
+      let normalized = String(path || "").trim();
+      if (!normalized) return [];
+      if (normalized.startsWith("$.")) normalized = normalized.slice(2);
+      else if (normalized.startsWith("$[")) normalized = normalized.slice(1);
+      const tokens = [];
+      const pattern = /([^[.\]]+)|\[(\d+)\]/g;
+      let match;
+      while ((match = pattern.exec(normalized))) {
+        if (match[1]) tokens.push(match[1]);
+        else tokens.push(Number(match[2]));
+      }
+      return tokens;
+    }
+
+    function assignByPath(holder, path, value) {
+      const tokens = tokenizePath(path);
+      if (!tokens.length) {
+        holder.value = value;
+        return;
+      }
+      if (holder.value === undefined) {
+        holder.value = typeof tokens[0] === "number" ? [] : {};
+      }
+      let current = holder.value;
+      for (let index = 0; index < tokens.length - 1; index += 1) {
+        const token = tokens[index];
+        const nextToken = tokens[index + 1];
+        if (typeof token === "number") {
+          if (!Array.isArray(current)) throw new Error("Path points into a non-array branch.");
+          if (current[token] === undefined) current[token] = typeof nextToken === "number" ? [] : {};
+          current = current[token];
+        } else {
+          if (!isPlainObject(current)) throw new Error("Path points into a non-object branch.");
+          if (current[token] === undefined) current[token] = typeof nextToken === "number" ? [] : {};
+          current = current[token];
+        }
+      }
+      const lastToken = tokens[tokens.length - 1];
+      if (typeof lastToken === "number") {
+        if (!Array.isArray(current)) throw new Error("Path points into a non-array branch.");
+        current[lastToken] = value;
+      } else {
+        if (!isPlainObject(current)) throw new Error("Path points into a non-object branch.");
+        current[lastToken] = value;
+      }
+    }
+
+    function parseToon(input) {
+      const lines = String(input || "").split(/\r?\n/);
+      const holder = { value: undefined };
+      for (let index = 0; index < lines.length; index += 1) {
+        const line = lines[index].trim();
+        if (!line) continue;
+        let match = line.match(/^(.+)\[(\d+)\]\{([^}]*)\}:$/);
+        if (match) {
+          const path = match[1].trim();
+          const rowCount = Number(match[2]);
+          const keys = match[3].trim() ? match[3].split(",").map((key) => key.trim()) : [];
+          const rows = [];
+          while (rows.length < rowCount) {
+            index += 1;
+            if (index >= lines.length) throw new Error("TOON table ended before all rows were read.");
+            const rowLine = lines[index].trim();
+            if (!rowLine) continue;
+            const cells = splitDelimited(rowLine, ",").map((cell) => parseScalar(cell));
+            if (cells.length !== keys.length) throw new Error("A TOON row does not match its header width.");
+            const row = {};
+            keys.forEach((key, keyIndex) => {
+              row[key] = cells[keyIndex];
+            });
+            rows.push(row);
+          }
+          assignByPath(holder, path, rows);
+          continue;
+        }
+        match = line.match(/^(.+)\{([^}]*)\}=(.*)$/);
+        if (match) {
+          const path = match[1].trim();
+          const keys = match[2].trim() ? match[2].split(",").map((key) => key.trim()) : [];
+          const values = match[3].trim() ? splitDelimited(match[3], ",").map((cell) => parseScalar(cell)) : [];
+          if (keys.length !== values.length) throw new Error("A TOON object line does not match its key count.");
+          const objectValue = {};
+          keys.forEach((key, keyIndex) => {
+            objectValue[key] = values[keyIndex];
+          });
+          assignByPath(holder, path, objectValue);
+          continue;
+        }
+        match = line.match(/^(.+)\[(\d+)\]=(.*)$/);
+        if (match) {
+          const path = match[1].trim();
+          const declaredLength = Number(match[2]);
+          const arrayValue = match[3].trim() ? splitDelimited(match[3], "|").map((cell) => parseScalar(cell)) : [];
+          if (arrayValue.length !== declaredLength) throw new Error("A TOON array line does not match its declared length.");
+          assignByPath(holder, path, arrayValue);
+          continue;
+        }
+        match = line.match(/^(.+?)=(.*)$/);
+        if (match) {
+          assignByPath(holder, match[1].trim(), parseScalar(match[2]));
+          continue;
+        }
+        throw new Error("Unrecognized TOON syntax on line " + (index + 1) + ".");
+      }
+      if (holder.value === undefined) throw new Error("No TOON content detected.");
+      return holder.value;
+    }
+
+    function normalizeToon(text) {
+      return String(text || "")
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line, index, lines) => line || (index > 0 && lines[index - 1]))
+        .join("\n")
+        .trim();
+    }
+
+    function downloadText(filename, contents, mimeType) {
+      const blob = new Blob([contents], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    async function copyOutput() {
+      if (!outputArea.value.trim()) return;
+      try {
+        await navigator.clipboard.writeText(outputArea.value);
+        setStatus(outputHealth, "Copied to clipboard", "success");
+      } catch (error) {
+        setStatus(outputHealth, "Clipboard copy failed", "error");
+      }
+    }
+
+    function renderMetrics(sourceText, resultText) {
+      const sourceTokens = estimateTokens(sourceText);
+      const resultTokens = estimateTokens(resultText);
+      inputTokenCount.textContent = String(sourceTokens);
+      outputTokenCount.textContent = String(resultTokens);
+      if (!sourceText.trim() || !resultText.trim()) {
+        banner.className = "banner neutral";
+        bannerTitle.textContent = state.mode === "json-to-toon" ? "Waiting for valid JSON" : "Waiting for valid TOON";
+        bannerMeta.textContent = "Load the sample or paste data to estimate approximate token reduction.";
+        costTitle.textContent = "$0.0000 delta per request";
+        costMeta.textContent = "Using an example rate of $30 per 1M tokens";
+        deltaText.textContent = "No token delta yet";
+        deltaText.className = "delta";
+        return;
+      }
+      const tokenDelta = sourceTokens - resultTokens;
+      const percent = sourceTokens ? Math.abs(tokenDelta) / sourceTokens * 100 : 0;
+      const beforeCost = sourceTokens / 1000000 * COST_PER_MILLION;
+      const afterCost = resultTokens / 1000000 * COST_PER_MILLION;
+      const costDeltaValue = Math.abs(beforeCost - afterCost);
+      if (tokenDelta > 0) {
+        banner.className = "banner";
+        bannerTitle.textContent = percent.toFixed(1) + "% token reduction";
+        bannerMeta.textContent = sourceTokens + " -> " + resultTokens + " tokens (" + tokenDelta + " saved)";
+        costTitle.textContent = formatCurrency(costDeltaValue) + " saved per request";
+        costMeta.textContent = formatCurrency(beforeCost) + " -> " + formatCurrency(afterCost) + " at $30 per 1M tokens";
+        deltaText.textContent = "Save " + tokenDelta + " tokens (" + percent.toFixed(1) + "%)";
+        deltaText.className = "delta good";
+        return;
+      }
+      if (tokenDelta < 0) {
+        banner.className = "banner warning";
+        bannerTitle.textContent = percent.toFixed(1) + "% token increase";
+        bannerMeta.textContent = sourceTokens + " -> " + resultTokens + " tokens (" + Math.abs(tokenDelta) + " added)";
+        costTitle.textContent = formatCurrency(costDeltaValue) + " added per request";
+        costMeta.textContent = formatCurrency(beforeCost) + " -> " + formatCurrency(afterCost) + " at $30 per 1M tokens";
+        deltaText.textContent = "Adds " + Math.abs(tokenDelta) + " tokens (" + percent.toFixed(1) + "%)";
+        deltaText.className = "delta warn";
+        return;
+      }
+      banner.className = "banner neutral";
+      bannerTitle.textContent = "No token change";
+      bannerMeta.textContent = sourceTokens + " -> " + resultTokens + " estimated tokens";
+      costTitle.textContent = "$0.0000 delta per request";
+      costMeta.textContent = formatCurrency(beforeCost) + " -> " + formatCurrency(afterCost) + " at $30 per 1M tokens";
+      deltaText.textContent = "Source and result are the same size";
+      deltaText.className = "delta";
+    }
+  </script>
+  <script>
+    function persistState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          mode: state.mode,
+          inputs: state.inputs
+        }));
+      } catch (error) {}
+    }
+
+    function updateModeUi() {
+      const jsonMode = state.mode === "json-to-toon";
+      $("jsonToToonMode").classList.toggle("active", jsonMode);
+      $("toonToJsonMode").classList.toggle("active", !jsonMode);
+      inputTitle.textContent = jsonMode ? "JSON Input" : "TOON Input";
+      outputTitle.textContent = jsonMode ? "TOON Output" : "JSON Output";
+      outputSubtitle.textContent = jsonMode ? "Compact notation with table blocks for repeated object arrays." : "Pretty-printed JSON reconstructed from TOON syntax.";
+      $("formatBtn").textContent = jsonMode ? "Format" : "Normalize";
+      inputArea.placeholder = jsonMode ? "Paste JSON here..." : "Paste TOON here...";
+      outputArea.placeholder = jsonMode ? "Converted TOON will appear here..." : "Converted JSON will appear here...";
+      inputHint.textContent = jsonMode ? "JSON is parsed locally in your browser." : "TOON parsing is local and reversible for this tool's syntax.";
+      outputHint.textContent = jsonMode ? "Approximate token estimate updates after each conversion." : "The JSON output is pretty-printed after each successful parse.";
+    }
+
+    function setMode(nextMode, options) {
+      const settings = options || {};
+      if (state.mode === nextMode && !settings.force) return;
+      if (!settings.skipTransfer && state.lastRunOk && outputArea.value.trim()) {
+        state.inputs[nextMode] = outputArea.value;
+      }
+      state.mode = nextMode;
+      updateModeUi();
+      inputArea.value = state.inputs[nextMode] || "";
+      outputArea.value = "";
+      state.lastRunOk = false;
+      renderMetrics(inputArea.value, "");
+      persistState();
+      if (inputArea.value.trim()) handleConvert();
+      else setStatus(inputHealth, "Waiting for input", "");
+    }
+
+    function handleFormat() {
+      try {
+        if (state.mode === "json-to-toon") {
+          const parsed = JSON.parse(inputArea.value);
+          inputArea.value = JSON.stringify(parsed, null, 2);
+        } else {
+          inputArea.value = normalizeToon(inputArea.value);
+        }
+        state.inputs[state.mode] = inputArea.value;
+        persistState();
+        handleConvert();
+      } catch (error) {
+        setStatus(inputHealth, error.message || "Unable to format input", "error");
+      }
+    }
+
+    function handleConvert() {
+      const sourceText = inputArea.value;
+      state.inputs[state.mode] = sourceText;
+      persistState();
+      inputTokenCount.textContent = String(estimateTokens(sourceText));
+      if (!sourceText.trim()) {
+        outputArea.value = "";
+        state.lastRunOk = false;
+        setStatus(inputHealth, "Waiting for input", "");
+        setStatus(outputHealth, "No output yet", "");
+        renderMetrics("", "");
+        return;
+      }
+      try {
+        if (state.mode === "json-to-toon") {
+          const parsed = JSON.parse(sourceText);
+          const toon = jsonToToon(parsed);
+          outputArea.value = toon;
+          setStatus(inputHealth, "Valid JSON", "success");
+          setStatus(outputHealth, "TOON ready", "success");
+          inputHint.textContent = "Root type: " + (Array.isArray(parsed) ? "array" : typeof parsed);
+          outputHint.textContent = "TOON uses compact table blocks when repeated object keys are detected.";
+        } else {
+          const parsed = parseToon(sourceText);
+          const json = JSON.stringify(parsed, null, 2);
+          outputArea.value = json;
+          setStatus(inputHealth, "Valid TOON", "success");
+          setStatus(outputHealth, "JSON restored", "success");
+          inputHint.textContent = "TOON was parsed successfully in the browser.";
+          outputHint.textContent = "The reconstructed JSON is pretty-printed and ready to copy.";
+        }
+        state.lastRunOk = true;
+        renderMetrics(sourceText, outputArea.value);
+      } catch (error) {
+        outputArea.value = "";
+        state.lastRunOk = false;
+        setStatus(inputHealth, state.mode === "json-to-toon" ? "Invalid JSON" : "Invalid TOON", "error");
+        setStatus(outputHealth, error.message || "Conversion failed", "error");
+        outputHint.textContent = "Fix the input and convert again.";
+        renderMetrics(sourceText, "");
+      }
+    }
+
+    function queueConvert() {
+      window.clearTimeout(convertTimer);
+      convertTimer = window.setTimeout(handleConvert, 180);
+    }
+
+    function loadSample() {
+      if (state.mode === "json-to-toon") {
+        inputArea.value = JSON.stringify(SAMPLE_JSON, null, 2);
+      } else {
+        inputArea.value = jsonToToon(SAMPLE_JSON);
+      }
+      state.inputs[state.mode] = inputArea.value;
+      persistState();
+      handleConvert();
+    }
+
+    async function handleFileSelection(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      try {
+        inputArea.value = await file.text();
+        state.inputs[state.mode] = inputArea.value;
+        persistState();
+        handleConvert();
+      } catch (error) {
+        setStatus(inputHealth, "Unable to read file", "error");
+      } finally {
+        fileInput.value = "";
+      }
+    }
+
+    function clearAll() {
+      inputArea.value = "";
+      outputArea.value = "";
+      state.inputs[state.mode] = "";
+      state.lastRunOk = false;
+      persistState();
+      setStatus(inputHealth, "Waiting for input", "");
+      setStatus(outputHealth, "No output yet", "");
+      renderMetrics("", "");
+    }
+
+    function restoreState() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (!stored) return;
+        if (stored.mode === "json-to-toon" || stored.mode === "toon-to-json") state.mode = stored.mode;
+        if (stored.inputs && typeof stored.inputs === "object") {
+          state.inputs["json-to-toon"] = String(stored.inputs["json-to-toon"] || "");
+          state.inputs["toon-to-json"] = String(stored.inputs["toon-to-json"] || "");
+        }
+      } catch (error) {}
+    }
+
+    $("jsonToToonMode").addEventListener("click", () => setMode("json-to-toon"));
+    $("toonToJsonMode").addEventListener("click", () => setMode("toon-to-json"));
+    $("convertBtn").addEventListener("click", handleConvert);
+    $("formatBtn").addEventListener("click", handleFormat);
+    $("sampleBtn").addEventListener("click", loadSample);
+    $("clearBtn").addEventListener("click", clearAll);
+    $("copyBtn").addEventListener("click", copyOutput);
+    $("downloadBtn").addEventListener("click", () => {
+      if (!outputArea.value.trim()) return;
+      const filename = state.mode === "json-to-toon" ? "converted.toon" : "converted.json";
+      const mime = state.mode === "json-to-toon" ? "text/plain;charset=utf-8" : "application/json;charset=utf-8";
+      downloadText(filename, outputArea.value, mime);
+    });
+    fileInput.addEventListener("change", handleFileSelection);
+    inputArea.addEventListener("input", queueConvert);
+    inputArea.addEventListener("keydown", (event) => {
+      const mod = event.ctrlKey || event.metaKey;
+      if (mod && event.key === "Enter") {
+        event.preventDefault();
+        handleConvert();
+      }
+      if (mod && event.shiftKey && event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        handleFormat();
+      }
+    });
+
+    restoreState();
+    updateModeUi();
+    inputArea.value = state.inputs[state.mode];
+    if (!inputArea.value.trim()) loadSample();
+    else handleConvert();
+  </script>
+</body>
+</html>
