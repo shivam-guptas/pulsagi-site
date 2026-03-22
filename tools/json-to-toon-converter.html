@@ -160,10 +160,35 @@
       nav{padding:.95rem 1rem} nav ul{gap:.85rem;flex-wrap:wrap;justify-content:flex-end} .wrap{width:min(100% - 18px,1240px)}
       .banner{grid-template-columns:1fr} .banner-cost{text-align:left}
       .card-head,.status-row,.card-foot{padding-left:.9rem;padding-right:.9rem}
-      textarea{width:calc(100% - 1.8rem);margin:0 .9rem;min-height:320px} .card-actions{justify-content:flex-start}
+      .card-head{flex-direction:column;align-items:stretch;gap:.8rem}
+      .card-actions{justify-content:flex-start;flex-wrap:wrap;width:100%}
+      .card-actions .action-btn,.card-actions .upload-label{flex:0 1 auto}
+      textarea{width:calc(100% - 1.8rem);margin:0 .9rem;min-height:320px}
       .card-head-copy p{white-space:normal}
       h1{font-size:clamp(2.15rem,8vw,3rem)}
       .hero-sub{font-size:clamp(.98rem,4.4vw,1.12rem)}
+    }
+    @media (max-width:480px){
+      nav{padding:.85rem .8rem}
+      nav ul{gap:.6rem;font-size:.72rem}
+      .hero{border-radius:26px}
+      .banner{margin:.85rem 0 1.1rem;padding:.9rem 1rem;border-radius:18px}
+      .banner-title{font-size:1.15rem}
+      .banner-cost strong{font-size:1.2rem}
+      .card{border-radius:20px}
+      .card-head h2{font-size:1.45rem}
+      .card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+      .card-actions .action-btn,.card-actions .upload-label{
+        width:100%;
+        min-width:0;
+        text-align:center;
+        padding:.68rem .7rem;
+      }
+      .card-actions #convertBtn{grid-column:1 / -1}
+      .status-row{align-items:flex-start}
+      .status-copy{width:100%}
+      textarea{min-height:300px;padding:.9rem}
+      .card-foot{font-size:.8rem}
     }
   </style>
   <script>
