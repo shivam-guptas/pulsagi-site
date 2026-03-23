@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools</title>
+  <meta name="description" content="Free browser-based Salesforce Apex log analyzer and debug log parser. Upload or paste Salesforce debug logs to inspect exceptions, governor limits, SOQL hotspots, DML hotspots, execution timeline, raw lines, and likely root cause." />
+  <meta name="keywords" content="Salesforce Apex log analyzer, Salesforce debug log analyzer, Apex debug log parser, Salesforce log parser, Salesforce log analyzer, Apex log parser, governor limit log analyzer, Salesforce exception analyzer, SOQL log analyzer, DML log analyzer, Salesforce developer tools, Pulsagi tools" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="application-name" content="Pulsagi Apex Log Analyzer" />
+  <meta name="apple-mobile-web-app-title" content="Pulsagi Apex Log Analyzer" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta name="theme-color" content="#081121" />
+  <link rel="canonical" href="https://pulsagi.com/tools/apex-log-analyzer.html" />
+  <meta property="og:title" content="Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools" />
+  <meta property="og:description" content="Analyze Salesforce debug logs in the browser with exception summaries, governor usage, SOQL and DML hotspots, timeline views, and raw-log search." />
+  <meta property="og:url" content="https://pulsagi.com/tools/apex-log-analyzer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools" />
+  <meta name="twitter:description" content="Browser-based Salesforce debug log analysis for exceptions, governor limits, SOQL and DML hotspots, timelines, and raw line search." />
+  <meta name="twitter:url" content="https://pulsagi.com/tools/apex-log-analyzer.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi Salesforce Apex Log Analyzer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://pulsagi.com/tools/apex-log-analyzer.html","description":"Browser-based Salesforce Apex log analyzer and debug log parser with exception summaries, governor usage, SOQL and DML hotspots, and raw-log exploration.","creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Salesforce Apex Log Analyzer","url":"https://pulsagi.com/tools/apex-log-analyzer.html","description":"A browser-based Salesforce Apex log analyzer and debug log parser for exceptions, governor limits, SOQL hotspots, DML hotspots, and execution hotspots.","isPartOf":{"@type":"WebSite","name":"Pulsagi","url":"https://pulsagi.com/"},"about":{"@type":"Thing","name":"Salesforce Apex debug logs"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pulsagi","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pulsagi.com/tools/"},{"@type":"ListItem","position":3,"name":"Salesforce Apex Log Analyzer","item":"https://pulsagi.com/tools/apex-log-analyzer.html"}]}}
+  </script>
+  <style>
+    :root {
+      --bg: #06111c;
+      --bg-2: #091729;
+      --panel: rgba(10, 22, 40, 0.82);
+      --panel-solid: #0b1830;
+      --panel-soft: rgba(255,255,255,0.03);
+      --line: rgba(157, 180, 255, 0.16);
+      --line-strong: rgba(157, 180, 255, 0.28);
+      --text: #e8f0ff;
+      --muted: #9dafd2;
+      --brand: #78a7ff;
+      --brand-2: #9c8cff;
+      --good: #33d29d;
+      --warn: #f5c161;
+      --bad: #ff7282;
+      --info: #76c1ff;
+      --radius: 24px;
+      --radius-sm: 18px;
+      --shadow: 0 18px 60px rgba(0,0,0,0.4);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --site-border: #40505d;
+      --site-muted: #b6bfca;
+      --site-accent: #76e0c0;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top right, rgba(120,167,255,.16), transparent 25%),
+        radial-gradient(circle at 0% 15%, rgba(156,140,255,.12), transparent 20%),
+        linear-gradient(180deg, var(--bg), #07111b 35%, #040c15 100%);
+      color: var(--text);
+      font-family: var(--sans);
+      scroll-behavior: smooth;
+    }
+    body { min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    code { font-family: var(--mono); }
+
+    .container { width: min(1500px, calc(100vw - 28px)); margin: 0 auto; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2rem; background: rgba(27,36,43,.78); backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--site-border);
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: .05em; color: var(--site-accent); text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; align-items: center; margin: 0; padding: 0; }
+    nav a { color: var(--site-muted); text-decoration: none; font-size: .85rem; font-family: 'Courier New', monospace; transition: color .2s, background .2s, border-color .2s; cursor: pointer; }
+    nav a:hover { color: #fafafa; text-decoration: none; }
+    .nav-pill { background: linear-gradient(180deg, rgba(118,224,192,.14), rgba(118,224,192,.08)); color: var(--site-accent) !important; padding: .35rem .9rem; border-radius: 999px; border: 1px solid rgba(118,224,192,.22); }
+    .nav-pill:hover { background: rgba(118,224,192,.16) !important; }
+
+    .hero { padding: 30px 0 22px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; }
+    .glass {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .hero-card { padding: 28px; position: relative; overflow: hidden; }
+    .hero-card::after {
+      content: ''; position: absolute; width: 280px; height: 280px; right: -90px; bottom: -90px;
+      background: radial-gradient(circle, rgba(156,140,255,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      border: 1px solid rgba(120,167,255,.2); background: rgba(120,167,255,.1);
+      color: #c9d7ff; border-radius: 999px; font-size: .92rem;
+    }
+    .eyebrow {
+      font-size: 0;
+    }
+    .eyebrow::before {
+      content: 'Apex Logs | Parser-first | Browser-based';
+      font-size: .92rem;
+    }
+    h1 {
+      margin: 16px 0 12px;
+      font-size: clamp(2.2rem, 4.3vw, 3.7rem);
+      line-height: 1.02; letter-spacing: -.035em;
+    }
+    .hero p { color: var(--muted); line-height: 1.72; font-size: 1.02rem; margin: 0; max-width: 68ch; }
+    .action-row, .hero-actions, .toolbar, .chip-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions { margin-top: 22px; }
+    .btn {
+      appearance: none; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px;
+      background: rgba(255,255,255,.03); color: var(--text); cursor: pointer; font-weight: 700;
+      transition: .18s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+    .btn.primary { background: linear-gradient(135deg, rgba(120,167,255,.22), rgba(156,140,255,.18)); border-color: rgba(120,167,255,.34); }
+    .btn.ghost { color: var(--muted); }
+    .btn.small { padding: 9px 12px; font-size: .92rem; }
+
+    .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 22px; }
+    .stat {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 18px;
+      min-height: 118px;
+    }
+    .stat .label { color: var(--muted); font-size: .9rem; }
+    .stat .value { margin-top: 10px; font-size: 1.7rem; font-weight: 800; }
+    .stat .sub { margin-top: 10px; color: var(--muted); line-height: 1.55; font-size: .93rem; }
+
+    .layout {
+      display: grid; grid-template-columns: 420px 1fr; gap: 20px; align-items: start; padding-bottom: 34px;
+    }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .panel-inner { padding: 22px; }
+    .panel h2, .panel h3, .panel h4 { margin: 0 0 10px; }
+    .muted { color: var(--muted); }
+    .small { font-size: .92rem; }
+
+    .upload-zone {
+      margin-top: 14px; text-align: center; border-radius: 20px; padding: 20px;
+      border: 1.5px dashed rgba(120,167,255,.36);
+      background: linear-gradient(180deg, rgba(120,167,255,.08), rgba(120,167,255,.02));
+      transition: .18s ease;
+    }
+    .upload-zone.dragover {
+      border-color: rgba(120,167,255,.72);
+      background: linear-gradient(180deg, rgba(120,167,255,.16), rgba(120,167,255,.05));
+    }
+    .upload-icon { font-size: 0; margin-bottom: 10px; }
+    .upload-icon::before { content: 'LOG'; font-size: 1.1rem; font-weight: 800; letter-spacing: .12em; color: #c9d7ff; }
+    .field { margin-top: 18px; }
+    .field label { display: block; margin-bottom: 8px; color: #c9d7ff; font-weight: 700; }
+    textarea, input[type="text"], select {
+      width: 100%; border: 1px solid var(--line); border-radius: 16px; background: #07111f; color: var(--text);
+      padding: 13px 14px;
+    }
+    textarea { min-height: 200px; resize: vertical; font-family: var(--mono); font-size: .86rem; line-height: 1.55; }
+    input[type="checkbox"] { accent-color: var(--brand); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--muted); font-size: .92rem;
+    }
+
+    .results-shell { display: grid; gap: 18px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .summary-tile {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+      min-height: 118px;
+    }
+    .summary-tile .k { color: var(--muted); font-size: .88rem; }
+    .summary-tile .v { margin-top: 8px; font-size: 1.52rem; font-weight: 800; }
+    .summary-tile .sub { margin-top: 8px; color: var(--muted); line-height: 1.5; font-size: .9rem; }
+
+    .section { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .section-inner { padding: 20px; }
+    .section-head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 14px;
+    }
+    .section-title { font-size: 1.08rem; font-weight: 800; }
+    .section-note { color: var(--muted); font-size: .94rem; }
+
+    .cards-2, .cards-3 { display: grid; gap: 14px; }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+    }
+    .card h3, .card h4 { margin: 0 0 10px; }
+    .card p { color: var(--muted); line-height: 1.65; margin: 0; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+      font-size: .84rem; font-weight: 800; border: 1px solid transparent;
+    }
+    .good { background: rgba(51,210,157,.12); color: #8ef1cb; border-color: rgba(51,210,157,.2); }
+    .warn { background: rgba(245,193,97,.12); color: #ffd98f; border-color: rgba(245,193,97,.2); }
+    .bad { background: rgba(255,114,130,.12); color: #ffb1bb; border-color: rgba(255,114,130,.2); }
+    .info { background: rgba(118,193,255,.12); color: #b9e1ff; border-color: rgba(118,193,255,.22); }
+
+    .kv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .kv-item { background: rgba(255,255,255,.025); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+    .kv-item .label { color: var(--muted); font-size: .84rem; margin-bottom: 6px; }
+    .kv-item .value { font-weight: 760; word-break: break-word; }
+
+    .metric-list { display: grid; gap: 12px; }
+    .metric { background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+    .metric-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .metric-name { font-weight: 700; }
+    .metric-val { color: var(--muted); }
+    .meter { height: 10px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,.05); }
+    .meter > span { display: block; height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, var(--good), var(--warn), var(--bad)); }
+
+    .list { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.62; }
+    .list li + li { margin-top: 8px; }
+
+    .timeline { display: grid; gap: 12px; }
+    .timeline-item {
+      border-left: 2px solid rgba(120,167,255,.24); margin-left: 8px; padding-left: 18px; position: relative;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--brand); box-shadow: 0 0 0 5px rgba(120,167,255,.12);
+    }
+    .timeline-item strong { display: block; margin-bottom: 6px; }
+    .timeline-item p { margin: 0; color: var(--muted); line-height: 1.58; }
+
+    .table-wrap {
+      overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.02);
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: rgba(120,167,255,.06); color: #c3d7ff; font-size: .9rem; }
+    td { color: var(--muted); }
+
+    .findings { display: grid; gap: 12px; }
+    .finding {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 15px;
+      display: grid; gap: 10px;
+    }
+    .finding-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .finding-title { font-weight: 800; }
+    .finding p { margin: 0; color: var(--muted); line-height: 1.64; }
+    .finding-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .finding-link {
+      display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line);
+      padding: 8px 10px; border-radius: 999px; color: #c9d7ff; background: rgba(255,255,255,.02); cursor: pointer;
+    }
+
+    .hot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 7px 10px;
+      background: rgba(120,167,255,.08); color: #c8d7ff; border: 1px solid rgba(120,167,255,.16); font-size: .85rem;
+    }
+
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tab-btn {
+      border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; cursor: pointer;
+      color: var(--muted); background: rgba(255,255,255,.02); font-weight: 700;
+    }
+    .tab-btn.active { color: var(--text); border-color: rgba(120,167,255,.3); background: rgba(120,167,255,.12); }
+    .tab-panel { display: none; margin-top: 14px; }
+    .tab-panel.active { display: block; }
+
+    .log-toolbar {
+      display: grid; grid-template-columns: 1fr 180px auto; gap: 10px; margin-bottom: 12px;
+    }
+    .log-wrap {
+      border: 1px solid var(--line); border-radius: 18px; overflow: auto; background: #05101c; max-height: 680px;
+    }
+    .log-table { width: 100%; min-width: 960px; border-collapse: collapse; font-family: var(--mono); font-size: .82rem; }
+    .log-table th { position: sticky; top: 0; z-index: 1; }
+    .log-table tr:hover td { background: rgba(255,255,255,.02); }
+    .log-line { white-space: pre-wrap; word-break: break-word; color: #dce8ff; }
+    .log-row.active td { background: rgba(120,167,255,.12) !important; }
+    .log-row.hidden { display: none; }
+    .line-no { color: #8fa9d8; width: 72px; }
+    .line-kind { width: 190px; }
+    .line-time { width: 140px; color: #9eb1d4; }
+
+    .empty-state {
+      min-height: 380px; display: grid; place-items: center; text-align: center; padding: 34px 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px dashed var(--line); border-radius: var(--radius);
+    }
+    .empty-state h2 { margin: 0 0 8px; }
+    .empty-state p { margin: 0; color: var(--muted); max-width: 60ch; line-height: 1.7; }
+
+    .container.footer { display: none; }
+    footer { border-top: 1px solid var(--site-border); padding: 2rem 1rem 3rem; text-align: center; font-size: .8rem; color: var(--site-muted); font-family: 'Courier New', monospace; background: rgba(255,247,238,.03); }
+    footer a { color: var(--site-accent); text-decoration: none; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid, .layout, .summary-grid, .cards-2, .cards-3, .hot-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100vw - 18px, 1500px); }
+      nav { padding: 1rem 1.2rem; }
+      nav ul { gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+      .hero-card, .panel-inner, .section-inner { padding: 18px; }
+      .hero-stats, .kv-grid { grid-template-columns: 1fr; }
+      .action-row, .hero-actions, .toolbar, .chip-row, .tabs { flex-direction: column; }
+      .btn, .tab-btn { width: 100%; }
+      .log-toolbar { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <nav>
+    <a class="nav-brand" href="/">Pulsagi</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/tools/" class="nav-pill">Tools</a></li>
+      <li><a href="mailto:hello@pulsagi.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container" style="padding-top:96px;">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="glass hero-card">
+          <span class="eyebrow">⚡ V2 · Parser-first · Single HTML file · Production-style UX</span>
+          <h1>Salesforce Apex Log Analyzer</h1>
+          <p>
+            Upload a Salesforce debug log and get a structured diagnosis with this browser-based Apex log analyzer and debug log parser:
+            exception summary, governor usage, SOQL and DML hotspots, likely failure path, root-cause clues, searchable raw lines,
+            and click-through findings that jump directly to the source line.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" id="goAnalyze">Open Analyzer</button>
+            <button class="btn ghost" id="loadSampleTop">Load Sample Log</button>
+          </div>
+          <div class="tag-row" style="margin-top:14px;">
+            <span class="tag">Salesforce debug log analyzer</span>
+            <span class="tag">Apex log parser</span>
+            <span class="tag">Governor limit finder</span>
+            <span class="tag">SOQL and DML hotspots</span>
+          </div>
+        </div>
+
+        <div class="glass hero-stats">
+          <div class="stat">
+            <div class="label">What V2 adds</div>
+            <div class="value">Hotspots + raw navigation</div>
+            <div class="sub">Findings are severity-scored and linked to specific raw log lines so users can inspect the source without hunting manually.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Common gap in many tools</div>
+            <div class="value">Readable diagnosis</div>
+            <div class="sub">Many analyzers show trees and counts, but leave the user to infer what failed first and what to change.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Privacy</div>
+            <div class="value">Browser-only</div>
+            <div class="sub">Parsing, summarization, search, export, and redaction all happen locally in the browser.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Best fit</div>
+            <div class="value">Dev + support workflow</div>
+            <div class="sub">Useful for developers, support engineers, and architects who want fast answers from noisy debug logs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout" id="analyzer">
+      <aside class="panel">
+        <div class="panel-inner">
+          <h2>Input</h2>
+          <p class="muted">Drop a <code>.log</code> or <code>.txt</code> file, paste raw debug text, or load the built-in sample.</p>
+
+          <div class="upload-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload log file">
+            <div class="upload-icon">📄</div>
+            <div><strong>Drop a debug log here</strong></div>
+            <div class="muted small" style="margin-top:8px;">or pick a file manually</div>
+            <div class="action-row" style="justify-content:center; margin-top:14px;">
+              <button class="btn" id="pickFileBtn">Choose File</button>
+              <button class="btn ghost" id="loadSampleBtn">Load Sample</button>
+            </div>
+            <input class="sr-only" id="fileInput" type="file" accept=".log,.txt,text/plain" />
+          </div>
+
+          <div class="field">
+            <label for="logInput">Raw Log</label>
+            <textarea id="logInput" spellcheck="false" placeholder="Paste Salesforce debug log here..."></textarea>
+          </div>
+
+          <div class="chip-row" style="margin-top:14px;">
+            <label class="chip"><input type="checkbox" id="redactToggle" checked /> Redact IDs / emails / URLs</label>
+            <label class="chip"><input type="checkbox" id="dedupeToggle" checked /> Trim duplicate noisy lines</label>
+            <label class="chip"><input type="checkbox" id="perfToggle" checked /> Add performance heuristics</label>
+            <label class="chip"><input type="checkbox" id="flowToggle" checked /> Detect flow hotspots</label>
+          </div>
+
+          <div class="field">
+            <label for="viewMode">Raw log classification</label>
+            <select id="viewMode">
+              <option value="all">Show all lines</option>
+              <option value="important">Important lines only</option>
+              <option value="errors">Errors only</option>
+              <option value="db">SOQL / DML only</option>
+            </select>
+          </div>
+
+          <div class="action-row" style="margin-top:18px;">
+            <button class="btn primary" id="analyzeBtn">Run Analysis</button>
+            <button class="btn" id="clearBtn">Clear</button>
+            <button class="btn" id="exportBtn">Download Report</button>
+          </div>
+
+          <div class="section" style="margin-top:18px; box-shadow:none;">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">V2 focus</div>
+                  <div class="section-note">What makes this version closer to a production tool</div>
+                </div>
+              </div>
+              <ul class="list">
+                <li>Structured parser before explanation instead of only raw-text heuristics.</li>
+                <li>Hotspot tables for repeated methods, SOQL, DML, and flow elements.</li>
+                <li>Severity-scored findings that jump directly to raw log lines.</li>
+                <li>Searchable, filterable raw log viewer with highlighted active row.</li>
+                <li>Support-ready summary plus dev-focused evidence and fix guidance.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section id="resultsRoot">
+        <div class="empty-state panel">
+          <div>
+            <h2>Ready for a log</h2>
+            <p>Run the analyzer to see summary cards, governor usage, error details, execution timeline, hotspots, findings, and a searchable raw-log panel.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    © 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com/">Shivam Gupta</a>
+  </footer>
+
+  <footer>
+    <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+  </footer>
+
+  <script>
+    const SAMPLE_LOG = `61.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;DB,INFO;SYSTEM,DEBUG;VALIDATION,INFO;WORKFLOW,INFO
+12:40:31.0 (511435)|EXECUTION_STARTED
+12:40:31.0 (712110)|CODE_UNIT_STARTED|[EXTERNAL]|01qxx000000ABCD|OpportunityTrigger on Opportunity trigger event AfterUpdate|__sfdc_trigger/OpportunityTrigger
+12:40:31.0 (1892211)|SYSTEM_METHOD_ENTRY|[3]|OpportunityHandler.handleAfterUpdate(List<Opportunity>)
+12:40:31.0 (2414332)|METHOD_ENTRY|[8]|01pxx0000001AAA|OpportunityService.syncContacts(List<Opportunity>)
+12:40:31.0 (3015541)|SOQL_EXECUTE_BEGIN|[21]|Aggregations:0|SELECT Id, AccountId FROM Contact WHERE AccountId = :tmpVar1
+12:40:31.0 (4192112)|SOQL_EXECUTE_END|[21]|Rows:200
+12:40:31.0 (4635980)|METHOD_ENTRY|[37]|01pxx0000001AAB|ContactSyncService.push(List<Contact>)
+12:40:31.0 (4912201)|DML_BEGIN|[44]|Op:Update|Type:Contact|Rows:200
+12:40:31.0 (6121104)|METHOD_ENTRY|[59]|01pxx0000001AAC|ContactSyncService.updateEachContact(Contact)
+12:40:31.0 (6485511)|SOQL_EXECUTE_BEGIN|[61]|Aggregations:0|SELECT Id, Name FROM User WHERE Id = :ownerId
+12:40:31.0 (7234451)|SOQL_EXECUTE_END|[61]|Rows:1
+12:40:31.0 (7689952)|DML_BEGIN|[70]|Op:Update|Type:Contact|Rows:1
+12:40:31.0 (8132312)|METHOD_EXIT|[70]|01pxx0000001AAC|ContactSyncService.updateEachContact(Contact)
+12:40:31.0 (8501104)|METHOD_ENTRY|[59]|01pxx0000001AAC|ContactSyncService.updateEachContact(Contact)
+12:40:31.0 (8871104)|SOQL_EXECUTE_BEGIN|[61]|Aggregations:0|SELECT Id, Name FROM User WHERE Id = :ownerId
+12:40:31.0 (9651104)|SOQL_EXECUTE_END|[61]|Rows:1
+12:40:31.0 (10241104)|DML_BEGIN|[70]|Op:Update|Type:Contact|Rows:1
+12:40:31.0 (10541104)|METHOD_EXIT|[70]|01pxx0000001AAC|ContactSyncService.updateEachContact(Contact)
+12:40:31.0 (11241104)|FLOW_START_INTERVIEW_BEGIN|301xx000000ZZZ|Update_Contact_After_Save
+12:40:31.0 (14241104)|FLOW_ELEMENT_BEGIN|FlowDecision|Check_Customer_Type
+12:40:31.0 (17841104)|FLOW_ELEMENT_END|FlowDecision|Check_Customer_Type
+12:40:31.0 (21241104)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordUpdate|Update_Contacts
+12:40:31.0 (30641104)|FLOW_BULK_ELEMENT_END|FlowRecordUpdate|Update_Contacts|5
+12:40:31.0 (38241104)|EXCEPTION_THROWN|[88]|System.LimitException: Too many SOQL queries: 101
+12:40:31.0 (39744104)|FATAL_ERROR|System.LimitException: Too many SOQL queries: 101
+Class.ContactSyncService.updateEachContact: line 61, column 1
+Class.ContactSyncService.push: line 44, column 1
+Class.OpportunityService.syncContacts: line 37, column 1
+Trigger.OpportunityTrigger: line 8, column 1
+12:40:31.0 (42744104)|CUMULATIVE_LIMIT_USAGE
+Number of SOQL queries: 101 out of 100
+Number of query rows: 401 out of 50000
+Number of SOSL queries: 0 out of 20
+Number of DML statements: 151 out of 150
+Number of DML rows: 405 out of 10000
+Maximum CPU time: 9210 out of 10000
+Maximum heap size: 5123456 out of 6000000
+Number of callouts: 0 out of 100
+Number of queueable jobs added to the queue: 0 out of 50
+12:40:31.0 (43744104)|EXECUTION_FINISHED`;
+
+    const LIMIT_META = {
+      'Number of SOQL queries': { short: 'SOQL', warn: 70, crit: 95 },
+      'Number of query rows': { short: 'Query rows', warn: 65, crit: 90 },
+      'Number of SOSL queries': { short: 'SOSL', warn: 70, crit: 95 },
+      'Number of DML statements': { short: 'DML', warn: 70, crit: 95 },
+      'Number of DML rows': { short: 'DML rows', warn: 65, crit: 90 },
+      'Maximum CPU time': { short: 'CPU', warn: 70, crit: 90 },
+      'Maximum heap size': { short: 'Heap', warn: 70, crit: 90 },
+      'Number of callouts': { short: 'Callouts', warn: 70, crit: 95 },
+      'Number of queueable jobs added to the queue': { short: 'Queueables', warn: 60, crit: 90 },
+    };
+
+    const ui = {
+      goAnalyze: document.getElementById('goAnalyze'),
+      loadSampleTop: document.getElementById('loadSampleTop'),
+      dropZone: document.getElementById('dropZone'),
+      fileInput: document.getElementById('fileInput'),
+      pickFileBtn: document.getElementById('pickFileBtn'),
+      loadSampleBtn: document.getElementById('loadSampleBtn'),
+      logInput: document.getElementById('logInput'),
+      redactToggle: document.getElementById('redactToggle'),
+      dedupeToggle: document.getElementById('dedupeToggle'),
+      perfToggle: document.getElementById('perfToggle'),
+      flowToggle: document.getElementById('flowToggle'),
+      viewMode: document.getElementById('viewMode'),
+      analyzeBtn: document.getElementById('analyzeBtn'),
+      clearBtn: document.getElementById('clearBtn'),
+      exportBtn: document.getElementById('exportBtn'),
+      resultsRoot: document.getElementById('resultsRoot')
+    };
+
+    let lastAnalysis = null;
+    let currentRawFilter = '';
+
+    function repairMojibake(root = document.body) {
+      const replacements = [
+        ['Â·', ' | '],
+        ['â€”', '-'],
+        ['â€¦', '...'],
+        ['Â©', '©'],
+        ['âš¡', 'Apex'],
+        ['ðŸ“„', 'LOG']
+      ];
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let node = walker.nextNode();
+      while (node) {
+        let text = node.nodeValue;
+        for (const [from, to] of replacements) {
+          text = text.split(from).join(to);
+        }
+        node.nodeValue = text;
+        node = walker.nextNode();
+      }
+    }
+
+    function escapeHtml(value = '') {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatNumber(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return '—';
+      return new Intl.NumberFormat().format(value);
+    }
+
+    function redactText(text) {
+      return (text || '')
+        .replace(/\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b/g, '[redacted-email]')
+        .replace(/https?:\/\/\S+/g, '[redacted-url]')
+        .replace(/\b[a-zA-Z0-9]{15,18}\b/g, '[redacted-id]');
+    }
+
+    function preprocessText(raw) {
+      let text = raw || '';
+      if (ui.redactToggle.checked) text = redactText(text);
+      if (ui.dedupeToggle.checked) {
+        const seen = new Map();
+        text = text.split(/\r?\n/).filter(line => {
+          const key = line.trim();
+          if (!key) return true;
+          const count = seen.get(key) || 0;
+          seen.set(key, count + 1);
+          return count < 10;
+        }).join('\n');
+      }
+      return text;
+    }
+
+    function classifyEvent(line) {
+      if (/FATAL_ERROR|EXCEPTION_THROWN/.test(line)) return 'error';
+      if (/SOQL_EXECUTE_(BEGIN|END)/.test(line)) return 'soql';
+      if (/DML_BEGIN|DML_END/.test(line)) return 'dml';
+      if (/FLOW_/.test(line)) return 'flow';
+      if (/METHOD_ENTRY|METHOD_EXIT|SYSTEM_METHOD_ENTRY|SYSTEM_METHOD_EXIT/.test(line)) return 'method';
+      if (/CODE_UNIT_STARTED|CODE_UNIT_FINISHED/.test(line)) return 'code-unit';
+      if (/CUMULATIVE_LIMIT_USAGE|Number of .* out of /.test(line)) return 'limits';
+      if (/USER_DEBUG/.test(line)) return 'debug';
+      return 'other';
+    }
+
+    function parseLine(line, index) {
+      const timeMatch = line.match(/^(\d{1,2}:\d{2}:\d{2}\.\d)\s*\((\d+)\)\|(.*)$/);
+      if (timeMatch) {
+        const payload = timeMatch[3] || '';
+        const parts = payload.split('|');
+        return {
+          lineNo: index + 1,
+          raw: line,
+          time: timeMatch[1],
+          nanos: Number(timeMatch[2]),
+          event: parts[0] || '',
+          parts,
+          classification: classifyEvent(line)
+        };
+      }
+      return {
+        lineNo: index + 1,
+        raw: line,
+        time: '',
+        nanos: null,
+        event: line.startsWith('Class.') || line.startsWith('Trigger.') ? 'STACK_TRACE' : '',
+        parts: [line],
+        classification: classifyEvent(line)
+      };
+    }
+
+    function parseLimits(lines) {
+      const rx = /(Number of SOQL queries|Number of query rows|Number of SOSL queries|Number of DML statements|Number of DML rows|Maximum CPU time|Maximum heap size|Number of callouts|Number of queueable jobs added to the queue):\s*(\d+)\s*out of\s*(\d+)/;
+      const limits = [];
+      for (const line of lines) {
+        const match = line.raw.match(rx);
+        if (!match) continue;
+        const name = match[1];
+        const used = Number(match[2]);
+        const total = Number(match[3]);
+        const meta = LIMIT_META[name] || { short: name, warn: 70, crit: 90 };
+        const pct = total ? (used / total) * 100 : 0;
+        let level = 'good';
+        if (pct >= meta.crit) level = 'bad';
+        else if (pct >= meta.warn) level = 'warn';
+        limits.push({ name, short: meta.short, used, total, pct, level, lineNo: line.lineNo });
+      }
+      return limits;
+    }
+
+    function parseException(lines, rawText) {
+      let fatalLine = lines.find(l => l.event === 'FATAL_ERROR');
+      let thrownLine = lines.find(l => l.event === 'EXCEPTION_THROWN');
+      const stack = lines.filter(l => l.raw.startsWith('Class.') || l.raw.startsWith('Trigger.')).map(l => ({ text: l.raw.trim(), lineNo: l.lineNo }));
+
+      let message = 'No explicit fatal error found';
+      if (fatalLine) message = fatalLine.parts.slice(1).join('|').trim() || fatalLine.raw;
+      else if (thrownLine) message = thrownLine.parts.slice(2).join('|').trim() || thrownLine.raw;
+      else {
+        const generic = rawText.match(/(System\.[A-Za-z]+Exception: [^\n]+)/);
+        if (generic) message = generic[1];
+      }
+
+      let type = 'No fatal exception detected';
+      if (/LimitException/i.test(message)) type = 'LimitException';
+      else if (/NullPointerException/i.test(message)) type = 'NullPointerException';
+      else if (/DmlException/i.test(message)) type = 'DmlException';
+      else if (/QueryException/i.test(message)) type = 'QueryException';
+      else if (/StringException/i.test(message)) type = 'StringException';
+      else if (/Exception/i.test(message)) type = message.split(':')[0].replace('System.', '').trim();
+
+      return {
+        type,
+        message,
+        fatalLineNo: fatalLine?.lineNo || thrownLine?.lineNo || null,
+        stack,
+        stackTop: stack[0]?.text || '—'
+      };
+    }
+
+    function countTop(entries, limit = 8) {
+      return Object.entries(entries)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, limit);
+    }
+
+    function parseExecution(lines) {
+      const methods = {};
+      const codeUnits = {};
+      const flows = {};
+      const soqlStatements = {};
+      const dmlStatements = {};
+      const timeline = [];
+      const eventLineMap = {};
+
+      for (const line of lines) {
+        const raw = line.raw;
+        const mark = (type, label, detail) => timeline.push({ type, label, detail, lineNo: line.lineNo, time: line.time || '—' });
+
+        if (/CODE_UNIT_STARTED\|/.test(raw)) {
+          const name = line.parts[4] || line.parts[3] || raw;
+          codeUnits[name] = (codeUnits[name] || 0) + 1;
+          mark('code-unit', 'Code unit started', name);
+        }
+        if (/METHOD_ENTRY\|/.test(raw) || /SYSTEM_METHOD_ENTRY\|/.test(raw)) {
+          const name = line.parts[line.parts.length - 1] || raw;
+          methods[name] = (methods[name] || 0) + 1;
+          if ((methods[name] || 0) <= 4) mark('method', 'Method entry', name);
+        }
+        if (/FLOW_START_INTERVIEW_BEGIN\|/.test(raw)) {
+          const name = line.parts[line.parts.length - 1] || raw;
+          flows[name] = (flows[name] || 0) + 1;
+          mark('flow', 'Flow started', name);
+        }
+        if (/FLOW_(ELEMENT|BULK_ELEMENT)_BEGIN\|/.test(raw)) {
+          const detail = line.parts.slice(1).join(' | ');
+          flows[detail] = (flows[detail] || 0) + 1;
+        }
+        if (/SOQL_EXECUTE_BEGIN\|/.test(raw)) {
+          const query = line.parts[line.parts.length - 1] || raw;
+          soqlStatements[query] = (soqlStatements[query] || 0) + 1;
+          eventLineMap[query] = eventLineMap[query] || line.lineNo;
+          if ((soqlStatements[query] || 0) <= 3) mark('soql', 'SOQL executed', query);
+        }
+        if (/DML_BEGIN\|/.test(raw)) {
+          const detail = line.parts.slice(3).join(' | ') || raw;
+          dmlStatements[detail] = (dmlStatements[detail] || 0) + 1;
+          eventLineMap[detail] = eventLineMap[detail] || line.lineNo;
+          if ((dmlStatements[detail] || 0) <= 3) mark('dml', 'DML operation', detail);
+        }
+        if (/EXCEPTION_THROWN|FATAL_ERROR/.test(raw)) {
+          mark('error', 'Exception', raw.split('|').slice(1).join(' | ') || raw);
+        }
+      }
+
+      return {
+        topMethods: countTop(methods),
+        topCodeUnits: countTop(codeUnits),
+        topFlows: countTop(flows),
+        topSoql: countTop(soqlStatements).map(i => ({ ...i, lineNo: eventLineMap[i.name] || null })),
+        topDml: countTop(dmlStatements).map(i => ({ ...i, lineNo: eventLineMap[i.name] || null })),
+        timeline: timeline.slice(0, 20)
+      };
+    }
+
+    function inferSeverity(score) {
+      if (score >= 85) return 'bad';
+      if (score >= 55) return 'warn';
+      return 'info';
+    }
+
+    function makeFinding(title, summary, evidence, score, lineNo, fix) {
+      return { title, summary, evidence, score, severity: inferSeverity(score), lineNo, fix };
+    }
+
+    function generateFindings({ exception, limits, execution, lines }) {
+      const findings = [];
+      const limitByShort = Object.fromEntries(limits.map(l => [l.short, l]));
+      const soql = limitByShort.SOQL;
+      const dml = limitByShort.DML;
+      const cpu = limitByShort.CPU;
+      const heap = limitByShort.Heap;
+
+      if (exception.type !== 'No fatal exception detected') {
+        findings.push(makeFinding(
+          `Primary failure: ${exception.type}`,
+          exception.message,
+          exception.stackTop !== '—' ? `Top stack frame: ${exception.stackTop}` : 'No explicit stack frame found in the log.',
+          95,
+          exception.fatalLineNo,
+          'Start with the top stack frame or fatal line. Validate the exact method and inspect any per-record processing, null assumptions, and DML/queries near that line.'
+        ));
+      }
+
+      if (soql && soql.pct >= 95) {
+        findings.push(makeFinding(
+          'SOQL usage exceeded or reached critical range',
+          `${formatNumber(soql.used)} of ${formatNumber(soql.total)} SOQL queries consumed.`,
+          execution.topMethods[0] ? `Frequently repeated method: ${execution.topMethods[0].name} (${execution.topMethods[0].count} calls)` : 'Repeated query activity detected.',
+          92,
+          soql.lineNo || exception.fatalLineNo,
+          'Look for queries inside loops or repeated handler calls. Bulkify by collecting IDs first, then querying once and using maps or sets.'
+        ));
+      } else if (soql && soql.pct >= 70) {
+        findings.push(makeFinding(
+          'SOQL usage is high',
+          `${formatNumber(soql.used)} of ${formatNumber(soql.total)} SOQL queries used.`,
+          'The transaction is close enough to the governor limit to warrant refactoring before production load increases.',
+          68,
+          soql.lineNo || null,
+          'Review repeated trigger or handler paths and collapse duplicate queries into a single pre-fetched collection.'
+        ));
+      }
+
+      if (dml && dml.pct >= 95) {
+        findings.push(makeFinding(
+          'DML statements are in the critical range',
+          `${formatNumber(dml.used)} of ${formatNumber(dml.total)} DML statements consumed.`,
+          execution.topDml[0] ? `Most repeated DML pattern: ${execution.topDml[0].name}` : 'Heavy DML activity detected.',
+          88,
+          dml.lineNo || execution.topDml[0]?.lineNo || null,
+          'Batch updates into collections and avoid per-record update/insert calls. Check for repeated record updates caused by flows or recursive logic.'
+        ));
+      }
+
+      if (cpu && cpu.pct >= 90) {
+        findings.push(makeFinding(
+          'CPU time is near limit',
+          `${formatNumber(cpu.used)} of ${formatNumber(cpu.total)} ms CPU consumed.`,
+          'The transaction is spending too much time in cumulative business logic, likely from repeated work, heavy flow actions, or nested loops.',
+          86,
+          cpu.lineNo || null,
+          'Reduce repeated processing, simplify nested logic, and move non-transaction-critical work to async processing where appropriate.'
+        ));
+      }
+
+      if (heap && heap.pct >= 85) {
+        findings.push(makeFinding(
+          'Heap usage is elevated',
+          `${formatNumber(heap.used)} of ${formatNumber(heap.total)} heap consumed.`,
+          'Large collections, serialized payloads, or repeatedly built structures may be retained longer than needed.',
+          60,
+          heap.lineNo || null,
+          'Avoid storing unnecessary large collections, trim queried fields, and reuse maps/lists carefully.'
+        ));
+      }
+
+      const repeatedMethod = execution.topMethods[0];
+      if (repeatedMethod && repeatedMethod.count >= 5) {
+        findings.push(makeFinding(
+          'Repeated method execution suggests loop-driven processing',
+          `${repeatedMethod.name} appears ${formatNumber(repeatedMethod.count)} times in the log.`,
+          'The same method is being entered repeatedly, which often points to per-record processing or recursion.',
+          78,
+          findFirstLine(lines, repeatedMethod.name),
+          'Inspect this method for loops that execute SOQL or DML inside the iteration path, and add recursion guards if updates re-trigger the same logic.'
+        ));
+      }
+
+      const repeatedSoql = execution.topSoql[0];
+      if (repeatedSoql && repeatedSoql.count >= 2) {
+        findings.push(makeFinding(
+          'Repeated SOQL pattern detected',
+          `Same query observed ${formatNumber(repeatedSoql.count)} times.`,
+          repeatedSoql.name,
+          72,
+          repeatedSoql.lineNo,
+          'Convert repeated single-record queries into one bulk query and index results by key in a map.'
+        ));
+      }
+
+      const flowSignals = execution.topFlows.filter(f => f.count >= 1);
+      if (ui.flowToggle.checked && flowSignals.length && (soql?.pct >= 70 || dml?.pct >= 70 || cpu?.pct >= 70)) {
+        findings.push(makeFinding(
+          'Flow activity may be contributing to transaction cost',
+          `${flowSignals[0].name} appears in the execution path while governor usage is elevated.`,
+          'Record-triggered flows and Apex together can compound DML, CPU, and recursion risk in the same transaction.',
+          65,
+          findFirstLine(lines, flowSignals[0].name),
+          'Review whether the flow updates records that re-enter trigger logic or duplicate work already done in Apex.'
+        ));
+      }
+
+      if (!findings.length) {
+        findings.push(makeFinding(
+          'No critical issue automatically identified',
+          'The parser did not detect a clear fatal pattern from the uploaded log.',
+          'Use the raw search, timeline, and hotspot tables to inspect the transaction path manually.',
+          30,
+          null,
+          'Search for FATAL_ERROR, EXCEPTION_THROWN, SOQL_EXECUTE_BEGIN, and DML_BEGIN to inspect suspicious areas.'
+        ));
+      }
+
+      return findings.sort((a, b) => b.score - a.score);
+    }
+
+    function findFirstLine(lines, text) {
+      if (!text) return null;
+      const found = lines.find(l => l.raw.includes(text));
+      return found ? found.lineNo : null;
+    }
+
+    function buildDiagnosis(exception, findings, limits, execution) {
+      const primary = findings[0];
+      const topMethod = execution.topMethods[0]?.name || 'No dominant method detected';
+      const criticalLimits = limits.filter(l => l.level === 'bad').map(l => l.short);
+      const warningLimits = limits.filter(l => l.level === 'warn').map(l => l.short);
+      const pieces = [];
+
+      if (exception.type !== 'No fatal exception detected') {
+        pieces.push(`The transaction failed with ${exception.type}.`);
+      } else {
+        pieces.push('The log does not show a clear fatal exception, so the issue may be partial, swallowed, or outside the extracted snippet.');
+      }
+
+      if (criticalLimits.length) {
+        pieces.push(`Critical governor pressure was observed in ${criticalLimits.join(', ')}.`);
+      } else if (warningLimits.length) {
+        pieces.push(`Governor usage is elevated in ${warningLimits.join(', ')}.`);
+      }
+
+      if (primary?.summary) pieces.push(primary.summary);
+      if (topMethod) pieces.push(`The most repeated method in the transaction is ${topMethod}.`);
+
+      return pieces.join(' ');
+    }
+
+    function analyzeLog(rawInput) {
+      const normalized = preprocessText(rawInput).trim();
+      if (!normalized) return null;
+
+      const rawLines = normalized.split(/\r?\n/);
+      const lines = rawLines.map((line, index) => parseLine(line, index));
+      const limits = parseLimits(lines);
+      const exception = parseException(lines, normalized);
+      const execution = parseExecution(lines);
+      const findings = generateFindings({ exception, limits, execution, lines });
+      const diagnosis = buildDiagnosis(exception, findings, limits, execution);
+
+      const score = Math.max(1, Math.min(100,
+        (exception.type !== 'No fatal exception detected' ? 35 : 10)
+        + limits.filter(l => l.level === 'bad').length * 20
+        + limits.filter(l => l.level === 'warn').length * 8
+        + Math.min((execution.topMethods[0]?.count || 0), 10)
+      ));
+
+      const status = exception.type !== 'No fatal exception detected' ? 'Failed' : 'Completed / inconclusive';
+      const primaryPath = exception.stack.slice(0, 4).map(s => s.text).join(' → ') || execution.topMethods.slice(0, 3).map(s => s.name).join(' → ') || '—';
+
+      return {
+        sourceText: normalized,
+        lineCount: lines.length,
+        parsedAt: new Date().toLocaleString(),
+        lines,
+        limits,
+        exception,
+        execution,
+        findings,
+        diagnosis,
+        score,
+        status,
+        primaryPath
+      };
+    }
+
+    function scoreBadge(score) {
+      if (score >= 85) return '<span class="badge bad">Critical</span>';
+      if (score >= 55) return '<span class="badge warn">Warning</span>';
+      return '<span class="badge info">Info</span>';
+    }
+
+    function renderMetrics(limits) {
+      if (!limits.length) return '<div class="card"><p>No cumulative limit usage block was found in the uploaded log.</p></div>';
+      return `
+        <div class="metric-list">
+          ${limits.map(limit => `
+            <div class="metric">
+              <div class="metric-top">
+                <div class="metric-name">${escapeHtml(limit.short)}</div>
+                <div class="metric-val">${formatNumber(limit.used)} / ${formatNumber(limit.total)}</div>
+              </div>
+              <div class="meter"><span style="width:${Math.min(limit.pct, 100)}%"></span></div>
+              <div class="small muted" style="margin-top:8px;">${limit.pct.toFixed(1)}% used · line ${limit.lineNo ?? '—'}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderHotspotTable(rows, type) {
+      if (!rows.length) return '<div class="card"><p>No repeated patterns detected in this category.</p></div>';
+      return `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>${type}</th>
+                <th>Count</th>
+                <th>First line</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => `
+                <tr>
+                  <td><div class="log-line">${escapeHtml(row.name)}</div></td>
+                  <td>${formatNumber(row.count)}</td>
+                  <td>${row.lineNo ? `<button class="finding-link" data-line="${row.lineNo}">Line ${row.lineNo}</button>` : '—'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderRawLog(lines) {
+      return `
+        <div class="log-toolbar">
+          <input type="text" id="rawSearch" placeholder="Search raw lines, method names, SOQL, exceptions..." value="${escapeHtml(currentRawFilter)}" />
+          <select id="rawKindFilter">
+            <option value="all">All kinds</option>
+            <option value="error">Errors</option>
+            <option value="soql">SOQL</option>
+            <option value="dml">DML</option>
+            <option value="flow">Flow</option>
+            <option value="method">Method</option>
+            <option value="limits">Limits</option>
+          </select>
+          <button class="btn small" id="clearRawSearch">Reset Filter</button>
+        </div>
+        <div class="log-wrap">
+          <table class="log-table">
+            <thead>
+              <tr>
+                <th class="line-no">Line</th>
+                <th class="line-time">Time</th>
+                <th class="line-kind">Kind</th>
+                <th>Raw content</th>
+              </tr>
+            </thead>
+            <tbody id="rawLogBody">
+              ${lines.map(line => `
+                <tr class="log-row" data-line="${line.lineNo}" data-kind="${escapeHtml(line.classification)}">
+                  <td class="line-no">${line.lineNo}</td>
+                  <td class="line-time">${escapeHtml(line.time || '—')}</td>
+                  <td class="line-kind">${escapeHtml(line.classification)}</td>
+                  <td class="log-line">${escapeHtml(line.raw)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderResults(analysis) {
+      const criticalCount = analysis.limits.filter(l => l.level === 'bad').length;
+      const warningCount = analysis.limits.filter(l => l.level === 'warn').length;
+      const topMethod = analysis.execution.topMethods[0]?.name || '—';
+
+      ui.resultsRoot.innerHTML = `
+        <div class="results-shell">
+          <div class="summary-grid">
+            <div class="summary-tile">
+              <div class="k">Transaction status</div>
+              <div class="v">${escapeHtml(analysis.status)}</div>
+              <div class="sub">Parsed ${formatNumber(analysis.lineCount)} lines · ${analysis.exception.type}</div>
+            </div>
+            <div class="summary-tile">
+              <div class="k">Severity score</div>
+              <div class="v">${analysis.score}/100</div>
+              <div class="sub">${criticalCount} critical governor signals · ${warningCount} warning signals</div>
+            </div>
+            <div class="summary-tile">
+              <div class="k">Likely failing path</div>
+              <div class="v" style="font-size:1.1rem; line-height:1.35;">${escapeHtml(analysis.primaryPath.slice(0, 110) + (analysis.primaryPath.length > 110 ? '…' : ''))}</div>
+              <div class="sub">Shortened from stack trace or dominant execution chain</div>
+            </div>
+            <div class="summary-tile">
+              <div class="k">Top repeated method</div>
+              <div class="v" style="font-size:1.05rem; line-height:1.35;">${escapeHtml(topMethod.slice(0, 62) + (topMethod.length > 62 ? '…' : ''))}</div>
+              <div class="sub">Most repeated method signal in the parsed execution path</div>
+            </div>
+          </div>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Executive summary</div>
+                  <div class="section-note">Readable diagnosis with support-friendly wording</div>
+                </div>
+                ${scoreBadge(analysis.score)}
+              </div>
+              <div class="cards-2">
+                <div class="card">
+                  <h3>Diagnosis</h3>
+                  <p>${escapeHtml(analysis.diagnosis)}</p>
+                </div>
+                <div class="card">
+                  <h3>What to inspect first</h3>
+                  <ul class="list">
+                    ${analysis.findings.slice(0, 4).map(f => `<li><strong>${escapeHtml(f.title)}:</strong> ${escapeHtml(f.fix)}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Exception and core evidence</div>
+                  <div class="section-note">Fatal line, stack hint, and governor summary</div>
+                </div>
+              </div>
+              <div class="cards-2">
+                <div class="card">
+                  <div class="tag-row" style="margin-bottom:10px;">
+                    <span class="badge ${analysis.exception.type === 'No fatal exception detected' ? 'info' : 'bad'}">${escapeHtml(analysis.exception.type)}</span>
+                    ${analysis.exception.fatalLineNo ? `<button class="finding-link" data-line="${analysis.exception.fatalLineNo}">Jump to line ${analysis.exception.fatalLineNo}</button>` : ''}
+                  </div>
+                  <p>${escapeHtml(analysis.exception.message)}</p>
+                  <div class="tag-row" style="margin-top:12px;">
+                    ${analysis.exception.stack.slice(0, 4).map(s => `<button class="finding-link" data-line="${s.lineNo}">${escapeHtml(s.text)}</button>`).join('') || '<span class="tag">No stack frames found</span>'}
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="kv-grid">
+                    <div class="kv-item"><div class="label">Primary status</div><div class="value">${escapeHtml(analysis.status)}</div></div>
+                    <div class="kv-item"><div class="label">Parsed at</div><div class="value">${escapeHtml(analysis.parsedAt)}</div></div>
+                    <div class="kv-item"><div class="label">Line count</div><div class="value">${formatNumber(analysis.lineCount)}</div></div>
+                    <div class="kv-item"><div class="label">Critical findings</div><div class="value">${formatNumber(analysis.findings.filter(f => f.severity === 'bad').length)}</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Governor usage</div>
+                  <div class="section-note">Critical and near-limit pressure shown as visual meters</div>
+                </div>
+              </div>
+              ${renderMetrics(analysis.limits)}
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">High-confidence findings</div>
+                  <div class="section-note">Each finding includes evidence, impact, and a jump-to-line action</div>
+                </div>
+              </div>
+              <div class="findings">
+                ${analysis.findings.map(f => `
+                  <article class="finding">
+                    <div class="finding-top">
+                      <div>
+                        <div class="finding-title">${escapeHtml(f.title)}</div>
+                        <div style="margin-top:8px;">${scoreBadge(f.score)}</div>
+                      </div>
+                      <div class="small muted">Score ${f.score}/100</div>
+                    </div>
+                    <p>${escapeHtml(f.summary)}</p>
+                    <p><strong>Evidence:</strong> ${escapeHtml(f.evidence)}</p>
+                    <p><strong>Recommended fix:</strong> ${escapeHtml(f.fix)}</p>
+                    <div class="finding-actions">
+                      ${f.lineNo ? `<button class="finding-link" data-line="${f.lineNo}">Jump to line ${f.lineNo}</button>` : '<span class="tag">No direct line reference</span>'}
+                    </div>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Execution timeline</div>
+                  <div class="section-note">Condensed path through code units, methods, SOQL, DML, flows, and exception</div>
+                </div>
+              </div>
+              <div class="timeline">
+                ${analysis.execution.timeline.map(item => `
+                  <div class="timeline-item">
+                    <strong>${escapeHtml(item.label)} · ${escapeHtml(item.time)}</strong>
+                    <p>${escapeHtml(item.detail)}</p>
+                    ${item.lineNo ? `<div class="small" style="margin-top:8px;"><button class="finding-link" data-line="${item.lineNo}">View line ${item.lineNo}</button></div>` : ''}
+                  </div>
+                `).join('') || '<div class="card"><p>No timeline events extracted.</p></div>'}
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Hotspots</div>
+                  <div class="section-note">Repeated methods, SOQL, DML, and flows that deserve attention</div>
+                </div>
+              </div>
+              <div class="tabs" id="tabs">
+                <button class="tab-btn active" data-tab="methods">Methods</button>
+                <button class="tab-btn" data-tab="soql">SOQL</button>
+                <button class="tab-btn" data-tab="dml">DML</button>
+                <button class="tab-btn" data-tab="flows">Flows</button>
+              </div>
+              <div class="tab-panel active" data-panel="methods">${renderHotspotTable(analysis.execution.topMethods, 'Method')}</div>
+              <div class="tab-panel" data-panel="soql">${renderHotspotTable(analysis.execution.topSoql, 'SOQL statement')}</div>
+              <div class="tab-panel" data-panel="dml">${renderHotspotTable(analysis.execution.topDml, 'DML pattern')}</div>
+              <div class="tab-panel" data-panel="flows">${renderHotspotTable(analysis.execution.topFlows, 'Flow signal')}</div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-inner">
+              <div class="section-head">
+                <div>
+                  <div class="section-title">Raw log explorer</div>
+                  <div class="section-note">Search, filter, and jump directly to specific lines</div>
+                </div>
+              </div>
+              ${renderRawLog(analysis.lines)}
+            </div>
+          </section>
+        </div>
+      `;
+
+      repairMojibake(ui.resultsRoot);
+      bindResultEvents();
+      applyRawFilters();
+    }
+
+    function bindResultEvents() {
+      document.querySelectorAll('[data-line]').forEach(el => {
+        el.addEventListener('click', () => jumpToLine(Number(el.dataset.line)));
+      });
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+          btn.classList.add('active');
+          document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`)?.classList.add('active');
+        });
+      });
+
+      const rawSearch = document.getElementById('rawSearch');
+      const rawKindFilter = document.getElementById('rawKindFilter');
+      const clearRawSearch = document.getElementById('clearRawSearch');
+      if (rawSearch) rawSearch.addEventListener('input', () => {
+        currentRawFilter = rawSearch.value || '';
+        applyRawFilters();
+      });
+      if (rawKindFilter) rawKindFilter.addEventListener('change', applyRawFilters);
+      if (clearRawSearch) clearRawSearch.addEventListener('click', () => {
+        currentRawFilter = '';
+        if (rawSearch) rawSearch.value = '';
+        if (rawKindFilter) rawKindFilter.value = 'all';
+        applyRawFilters();
+      });
+    }
+
+    function applyRawFilters() {
+      const term = (document.getElementById('rawSearch')?.value || '').toLowerCase().trim();
+      const kindFilter = document.getElementById('rawKindFilter')?.value || 'all';
+      const viewMode = ui.viewMode.value;
+      document.querySelectorAll('.log-row').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const kind = row.dataset.kind;
+        let visible = true;
+        if (term && !text.includes(term)) visible = false;
+        if (kindFilter !== 'all' && kind !== kindFilter) visible = false;
+        if (viewMode === 'important' && !['error', 'soql', 'dml', 'flow', 'method', 'limits'].includes(kind)) visible = false;
+        if (viewMode === 'errors' && kind !== 'error') visible = false;
+        if (viewMode === 'db' && !['soql', 'dml'].includes(kind)) visible = false;
+        row.classList.toggle('hidden', !visible);
+      });
+    }
+
+    function jumpToLine(lineNo) {
+      if (!lineNo) return;
+      const target = document.querySelector(`.log-row[data-line="${lineNo}"]`);
+      if (!target) return;
+      document.querySelectorAll('.log-row.active').forEach(r => r.classList.remove('active'));
+      target.classList.add('active');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const rawSearch = document.getElementById('rawSearch');
+      if (rawSearch) rawSearch.value = '';
+      const rawKindFilter = document.getElementById('rawKindFilter');
+      if (rawKindFilter) rawKindFilter.value = 'all';
+      currentRawFilter = '';
+      ui.viewMode.value = 'all';
+      applyRawFilters();
+    }
+
+    function exportReport() {
+      if (!lastAnalysis) return;
+      const lines = [];
+      lines.push('Apex Log Analyzer V2 Report');
+      lines.push('');
+      lines.push(`Status: ${lastAnalysis.status}`);
+      lines.push(`Severity score: ${lastAnalysis.score}/100`);
+      lines.push(`Exception type: ${lastAnalysis.exception.type}`);
+      lines.push(`Exception message: ${lastAnalysis.exception.message}`);
+      lines.push(`Likely failing path: ${lastAnalysis.primaryPath}`);
+      lines.push('');
+      lines.push('Diagnosis:');
+      lines.push(lastAnalysis.diagnosis);
+      lines.push('');
+      lines.push('Governor usage:');
+      lastAnalysis.limits.forEach(limit => lines.push(`- ${limit.short}: ${limit.used}/${limit.total} (${limit.pct.toFixed(1)}%)`));
+      lines.push('');
+      lines.push('Findings:');
+      lastAnalysis.findings.forEach((f, i) => {
+        lines.push(`${i + 1}. ${f.title} [${f.score}/100]`);
+        lines.push(`   Summary: ${f.summary}`);
+        lines.push(`   Evidence: ${f.evidence}`);
+        lines.push(`   Fix: ${f.fix}`);
+        if (f.lineNo) lines.push(`   Line: ${f.lineNo}`);
+      });
+      lines.push('');
+      lines.push('Top methods:');
+      lastAnalysis.execution.topMethods.forEach(item => lines.push(`- ${item.name}: ${item.count}`));
+      lines.push('');
+      lines.push('Top SOQL:');
+      lastAnalysis.execution.topSoql.forEach(item => lines.push(`- ${item.name}: ${item.count}`));
+      lines.push('');
+      lines.push('Top DML:');
+      lastAnalysis.execution.topDml.forEach(item => lines.push(`- ${item.name}: ${item.count}`));
+
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'apex-log-analysis-report-v2.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAll() {
+      lastAnalysis = null;
+      currentRawFilter = '';
+      ui.logInput.value = '';
+      ui.fileInput.value = '';
+      ui.resultsRoot.innerHTML = `
+        <div class="empty-state panel">
+          <div>
+            <h2>Ready for a log</h2>
+            <p>Run the analyzer to see summary cards, governor usage, error details, execution timeline, hotspots, findings, and a searchable raw-log panel.</p>
+          </div>
+        </div>
+      `;
+      repairMojibake(ui.resultsRoot);
+    }
+
+    async function readFile(file) {
+      const text = await file.text();
+      ui.logInput.value = text;
+    }
+
+    function runAnalysis() {
+      const input = ui.logInput.value.trim();
+      if (!input) {
+        alert('Please upload or paste a Salesforce debug log first.');
+        return;
+      }
+      const analysis = analyzeLog(input);
+      if (!analysis) {
+        alert('Could not parse the provided log.');
+        return;
+      }
+      lastAnalysis = analysis;
+      renderResults(analysis);
+    }
+
+    ui.goAnalyze.addEventListener('click', () => document.getElementById('analyzer').scrollIntoView({ behavior: 'smooth' }));
+    ui.loadSampleTop.addEventListener('click', () => { ui.logInput.value = SAMPLE_LOG; runAnalysis(); });
+    ui.loadSampleBtn.addEventListener('click', () => { ui.logInput.value = SAMPLE_LOG; runAnalysis(); });
+    ui.pickFileBtn.addEventListener('click', () => ui.fileInput.click());
+    ui.fileInput.addEventListener('change', async e => { if (e.target.files[0]) await readFile(e.target.files[0]); });
+    ui.analyzeBtn.addEventListener('click', runAnalysis);
+    ui.clearBtn.addEventListener('click', clearAll);
+    ui.exportBtn.addEventListener('click', exportReport);
+    ui.viewMode.addEventListener('change', applyRawFilters);
+
+    ['dragenter', 'dragover'].forEach(evt => ui.dropZone.addEventListener(evt, e => {
+      e.preventDefault();
+      ui.dropZone.classList.add('dragover');
+    }));
+    ['dragleave', 'drop'].forEach(evt => ui.dropZone.addEventListener(evt, e => {
+      e.preventDefault();
+      ui.dropZone.classList.remove('dragover');
+    }));
+    ui.dropZone.addEventListener('drop', async e => {
+      const file = e.dataTransfer.files?.[0];
+      if (file) await readFile(file);
+    });
+    ui.dropZone.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        ui.fileInput.click();
+      }
+    });
+    repairMojibake();
+  </script>
+</body>
+</html>

@@ -35,6 +35,7 @@ Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Ar
 - Scam Checker: https://pulsagi.com/tools/scam-checker.html
 - Apex and SOQL Formatter: https://pulsagi.com/tools/apex-soql-formatter.html
 - Salesforce Governor Limit Analyzer: https://pulsagi.com/tools/salesforce-governor-limit-analyzer.html
+- Salesforce Apex Log Analyzer: https://pulsagi.com/tools/apex-log-analyzer.html
 - Founder profile: https://shivam.pulsagi.com
 - Contact: mailto:hello@pulsagi.com
 
@@ -45,6 +46,7 @@ Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Ar
 - **Scam Checker**: Analyze suspicious messages, phishing links, fake jobs, UPI payment requests, and screenshots with OCR.
 - **Apex and SOQL Formatter**: Format Apex, SOQL, triggers, and anonymous Apex with browser-based output.
 - **Salesforce Governor Limit Analyzer**: Review Apex classes and triggers for bulkification issues, SOQL-in-loop patterns, DML risks, and governor-limit problems.
+- **Salesforce Apex Log Analyzer**: Analyze Salesforce debug logs for exceptions, governor usage, repeated hotspots, likely failure paths, and raw-line evidence.
 
 ## Crawl Guidance
 
