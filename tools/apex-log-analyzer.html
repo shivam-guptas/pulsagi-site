@@ -89,13 +89,13 @@
     .nav-pill { background: linear-gradient(180deg, rgba(118,224,192,.14), rgba(118,224,192,.08)); color: var(--site-accent) !important; padding: .35rem .9rem; border-radius: 999px; border: 1px solid rgba(118,224,192,.22); }
     .nav-pill:hover { background: rgba(118,224,192,.16) !important; }
 
-    .hero { padding: 30px 0 22px; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; }
+    .hero { padding: 12px 0 18px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .75fr); gap: 16px; align-items: stretch; }
     .glass {
       background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
       box-shadow: var(--shadow); backdrop-filter: blur(18px);
     }
-    .hero-card { padding: 28px; position: relative; overflow: hidden; }
+    .hero-card { padding: 22px; position: relative; overflow: hidden; }
     .hero-card::after {
       content: ''; position: absolute; width: 280px; height: 280px; right: -90px; bottom: -90px;
       background: radial-gradient(circle, rgba(156,140,255,.18), transparent 70%);
@@ -110,17 +110,17 @@
       font-size: 0;
     }
     .eyebrow::before {
-      content: 'Apex Logs | Parser-first | Browser-based';
+      content: 'Fast triage | Browser-only | Minimal setup';
       font-size: .92rem;
     }
     h1 {
-      margin: 16px 0 12px;
-      font-size: clamp(2.2rem, 4.3vw, 3.7rem);
+      margin: 12px 0 10px;
+      font-size: clamp(2rem, 3.5vw, 3.1rem);
       line-height: 1.02; letter-spacing: -.035em;
     }
-    .hero p { color: var(--muted); line-height: 1.72; font-size: 1.02rem; margin: 0; max-width: 68ch; }
+    .hero p { color: var(--muted); line-height: 1.65; font-size: .98rem; margin: 0; max-width: 60ch; }
     .action-row, .hero-actions, .toolbar, .chip-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-actions { margin-top: 22px; }
+    .hero-actions { margin-top: 16px; }
     .btn {
       appearance: none; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px;
       background: rgba(255,255,255,.03); color: var(--text); cursor: pointer; font-weight: 700;
@@ -131,17 +131,79 @@
     .btn.ghost { color: var(--muted); }
     .btn.small { padding: 9px 12px; font-size: .92rem; }
 
-    .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 22px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 18px; align-content: start; }
     .stat {
       background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 18px;
-      min-height: 118px;
+      min-height: 100px;
     }
     .stat .label { color: var(--muted); font-size: .9rem; }
     .stat .value { margin-top: 10px; font-size: 1.7rem; font-weight: 800; }
     .stat .sub { margin-top: 10px; color: var(--muted); line-height: 1.55; font-size: .93rem; }
 
     .layout {
-      display: grid; grid-template-columns: 420px 1fr; gap: 20px; align-items: start; padding-bottom: 34px;
+      display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; padding-bottom: 34px;
+    }
+    .workspace { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .workspace-main { display: grid; }
+    .workspace-main .panel-inner { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(300px, .85fr); gap: 14px; align-items: stretch; }
+    .workspace-main .panel-inner > h2,
+    .workspace-main .panel-inner > p,
+    .workspace-main .panel-inner > .quick-toggles { grid-column: 1 / -1; }
+    .workspace-main textarea { min-height: 250px; }
+    .workspace-side { display: none; }
+    .top-upload { margin-top: 18px; }
+    .workspace-main .panel-inner > .field:first-of-type { grid-column: 1; }
+    .workspace-main .panel-inner > .top-upload { grid-column: 2; }
+    .workspace-main .panel-inner > .primary-actions { grid-column: 2; }
+    .workspace-main .panel-inner > .filters-field { grid-column: 1 / -1; align-self: start; }
+    .workspace-main .panel-inner > .quick-toggles { grid-column: 1 / -1; }
+    .workspace-main .panel-inner > .upload-icon { display: none; }
+    .workspace-main .panel-inner > .field:first-of-type,
+    .workspace-main .panel-inner > .top-upload {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.025);
+      align-self: stretch;
+    }
+    .workspace-main .panel-inner > .field:first-of-type { margin-top: 18px; }
+    .workspace-main .panel-inner > .top-upload {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 250px;
+    }
+    .primary-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-self: stretch;
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.025);
+    }
+    .primary-actions .btn { width: 100%; }
+    .action-cluster {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .action-cluster .btn { width: 100%; }
+    .action-cluster .btn.primary { grid-column: 1 / -1; }
+    .quick-toggles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .quick-toggles .chip { width: 100%; justify-content: flex-start; }
+    .filters-field {
+      grid-column: 1;
+      max-width: 460px;
+      align-self: start;
+    }
+    .primary-actions {
+      grid-column: 2;
+      align-self: start;
+      margin-top: 18px !important;
     }
     .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
     .panel-inner { padding: 22px; }
@@ -150,7 +212,7 @@
     .small { font-size: .92rem; }
 
     .upload-zone {
-      margin-top: 14px; text-align: center; border-radius: 20px; padding: 20px;
+      text-align: center; border-radius: 20px; padding: 20px;
       border: 1.5px dashed rgba(120,167,255,.36);
       background: linear-gradient(180deg, rgba(120,167,255,.08), rgba(120,167,255,.02));
       transition: .18s ease;
@@ -175,14 +237,30 @@
     }
 
     .results-shell { display: grid; gap: 18px; }
-    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; min-width: 0; }
     .summary-tile {
       background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
       min-height: 118px;
+      min-width: 0;
+      overflow: hidden;
     }
     .summary-tile .k { color: var(--muted); font-size: .88rem; }
-    .summary-tile .v { margin-top: 8px; font-size: 1.52rem; font-weight: 800; }
-    .summary-tile .sub { margin-top: 8px; color: var(--muted); line-height: 1.5; font-size: .9rem; }
+    .summary-tile .v {
+      margin-top: 8px;
+      font-size: 1.52rem;
+      font-weight: 800;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .summary-tile .sub {
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: .9rem;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
 
     .section { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
     .section-inner { padding: 20px; }
@@ -192,14 +270,22 @@
     .section-title { font-size: 1.08rem; font-weight: 800; }
     .section-note { color: var(--muted); font-size: .94rem; }
 
-    .cards-2, .cards-3 { display: grid; gap: 14px; }
-    .cards-2 { grid-template-columns: repeat(2, 1fr); }
-    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-2, .cards-3 { display: grid; gap: 14px; min-width: 0; }
+    .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .card {
       background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+      min-width: 0;
+      overflow: hidden;
     }
     .card h3, .card h4 { margin: 0 0 10px; }
-    .card p { color: var(--muted); line-height: 1.65; margin: 0; }
+    .card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
 
     .badge {
       display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
@@ -210,7 +296,7 @@
     .bad { background: rgba(255,114,130,.12); color: #ffb1bb; border-color: rgba(255,114,130,.2); }
     .info { background: rgba(118,193,255,.12); color: #b9e1ff; border-color: rgba(118,193,255,.22); }
 
-    .kv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .kv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; }
     .kv-item { background: rgba(255,255,255,.025); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
     .kv-item .label { color: var(--muted); font-size: .84rem; margin-bottom: 6px; }
     .kv-item .value { font-weight: 760; word-break: break-word; }
@@ -254,6 +340,21 @@
     .finding-title { font-weight: 800; }
     .finding p { margin: 0; color: var(--muted); line-height: 1.64; }
     .finding-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .finding-title,
+    .section-title,
+    .section-note,
+    .pane-title,
+    .pane-subtitle,
+    .metric-name,
+    .metric-val,
+    .kv-item .value,
+    .timeline-item strong,
+    .timeline-item p,
+    .log-line {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      min-width: 0;
+    }
     .finding-link {
       display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line);
       padding: 8px 10px; border-radius: 999px; color: #c9d7ff; background: rgba(255,255,255,.02); cursor: pointer;
@@ -274,6 +375,15 @@
     .tab-btn.active { color: var(--text); border-color: rgba(120,167,255,.3); background: rgba(120,167,255,.12); }
     .tab-panel { display: none; margin-top: 14px; }
     .tab-panel.active { display: block; }
+    .results-tabs {
+      position: sticky; top: 78px; z-index: 6; padding: 12px;
+      border: 1px solid var(--line); border-radius: 18px;
+      background: rgba(6, 17, 28, 0.92); backdrop-filter: blur(16px);
+    }
+    .results-panel { display: none; }
+    .results-panel.active { display: block; min-width: 0; }
+    .overview-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 14px; }
+    .overview-grid .section { height: 100%; }
 
     .log-toolbar {
       display: grid; grid-template-columns: 1fr 180px auto; gap: 10px; margin-bottom: 12px;
@@ -299,7 +409,6 @@
     .empty-state h2 { margin: 0 0 8px; }
     .empty-state p { margin: 0; color: var(--muted); max-width: 60ch; line-height: 1.7; }
 
-    .container.footer { display: none; }
     footer { border-top: 1px solid var(--site-border); padding: 2rem 1rem 3rem; text-align: center; font-size: .8rem; color: var(--site-muted); font-family: 'Courier New', monospace; background: rgba(255,247,238,.03); }
     footer a { color: var(--site-accent); text-decoration: none; }
     .sr-only {
@@ -308,8 +417,16 @@
     }
 
     @media (max-width: 1180px) {
-      .hero-grid, .layout, .summary-grid, .cards-2, .cards-3, .hot-grid { grid-template-columns: 1fr; }
+      .hero-grid, .layout, .summary-grid, .cards-2, .cards-3, .hot-grid, .workspace, .overview-grid { grid-template-columns: 1fr; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .workspace-main .panel-inner { grid-template-columns: 1fr; }
+      .workspace-main textarea { min-height: 280px; }
+      .workspace-main .panel-inner > .top-upload { min-height: auto; }
+      .workspace-main .panel-inner > .top-upload,
+      .workspace-main .panel-inner > .primary-actions,
+      .workspace-main .panel-inner > .filters-field { grid-column: 1 / -1; }
+      .filters-field { max-width: none; }
+      .quick-toggles { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 760px) {
       .container { width: min(100vw - 18px, 1500px); }
@@ -320,8 +437,181 @@
       .action-row, .hero-actions, .toolbar, .chip-row, .tabs { flex-direction: column; }
       .btn, .tab-btn { width: 100%; }
       .log-toolbar { grid-template-columns: 1fr; }
+      .action-cluster { grid-template-columns: 1fr; }
+      .quick-toggles { grid-template-columns: 1fr; }
+      .results-tabs { top: 70px; }
     }
-  </style>
+      .app-shell {
+      padding-top: 92px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      padding-bottom: 16px;
+    }
+    .tool-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(9, 17, 31, 0.92);
+    }
+    .tool-header-copy { min-width: 0; }
+    .tool-title { margin: 0; font-size: 1.55rem; letter-spacing: -.02em; }
+    .tool-subtitle { margin: 4px 0 0; color: var(--muted); font-size: .92rem; }
+    .tool-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .tool-workspace {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(360px, 1.04fr) minmax(420px, .96fr);
+      gap: 14px;
+      min-width: 0;
+    }
+    .pane {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      border-radius: 20px;
+      background: rgba(9, 17, 31, 0.92);
+      min-width: 0;
+    }
+    .pane-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .pane-title { font-weight: 800; }
+    .pane-subtitle { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+    .pane-head-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .input-tools { display: flex; align-items: center; gap: 10px; min-width: min(100%, 280px); }
+    .input-tools input { min-width: 0; }
+    .editor-shell {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 14px;
+      border: 0;
+      background: transparent;
+    }
+    .editor-shell textarea {
+      min-height: 0;
+      height: 100%;
+      resize: none;
+      border-radius: 14px;
+      background: #0a1423;
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 16px;
+    }
+    .editor-hint { color: var(--muted); font-size: .86rem; text-align: left; padding: 0 4px; }
+    .pane-output { overflow: hidden; }
+    .app-shell.output-focus .tool-workspace {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .app-shell.output-focus .pane-input {
+      display: none;
+    }
+    .results-root { min-height: 0; min-width: 0; overflow: auto; padding: 14px; }
+    .results-root > .empty-state {
+      min-height: 100%;
+      box-shadow: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.008));
+    }
+    .bottom-toolbar {
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(9, 17, 31, 0.96);
+      backdrop-filter: blur(16px);
+    }
+    .toolbar-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .toolbar-field { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: .92rem; }
+    .toolbar-field select { min-width: 190px; }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .status-indicator.loading {
+      color: #dfe8ff;
+      border-color: rgba(120,167,255,.34);
+      background: rgba(120,167,255,.12);
+    }
+    .status-indicator.success {
+      color: #aef0d1;
+      border-color: rgba(51,210,157,.22);
+      background: rgba(51,210,157,.12);
+    }
+    .loading-state {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--muted);
+    }
+    .loading-state::before {
+      content: '';
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid rgba(120,167,255,.18);
+      border-top-color: var(--brand);
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    .results-shell { min-height: 100%; min-width: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: 14px; }
+    .execution-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; min-width: 0; }
+    .exec-pill { padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.025); }
+    .exec-pill .k { color: var(--muted); font-size: .8rem; }
+    .exec-pill .v { margin-top: 6px; font-size: 1.1rem; font-weight: 800; overflow-wrap: anywhere; word-break: break-word; }
+    .results-tabs { position: sticky; top: 0; padding: 0; border: 0; background: transparent; backdrop-filter: none; z-index: 5; }
+    .results-panel.active { display: grid; gap: 14px; align-content: start; }
+    .finding.error-hit { border-color: rgba(255,114,130,.28); background: rgba(255,114,130,.05); }
+    .metric.is-critical { border-color: rgba(255,114,130,.24); box-shadow: inset 0 0 0 1px rgba(255,114,130,.08); }
+    .metric.is-warning { border-color: rgba(245,193,97,.24); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 1180px) {
+      .app-shell { grid-template-rows: auto auto auto; }
+      .tool-workspace { grid-template-columns: 1fr; }
+      .pane { min-height: 420px; }
+      .summary-grid, .execution-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bottom-toolbar { flex-direction: column; align-items: stretch; }
+      .toolbar-field { width: 100%; justify-content: space-between; }
+      .toolbar-field select { flex: 1; min-width: 0; }
+    }
+    @media (max-width: 760px) {
+      .app-shell { padding-top: 110px; }
+      .tool-header, .pane-head { flex-direction: column; align-items: stretch; }
+      .tool-actions, .input-tools, .toolbar-group, .pane-head-actions { width: 100%; }
+      .tool-actions .btn, .input-tools .btn, .input-tools input { width: 100%; }
+      .summary-grid, .execution-strip { grid-template-columns: 1fr; }
+      .bottom-toolbar { padding-bottom: 16px; }
+    }</style>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
   <!-- End Google Tag Manager -->
@@ -342,134 +632,83 @@
     </ul>
   </nav>
 
-  <main class="container" style="padding-top:96px;">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="glass hero-card">
-          <span class="eyebrow">⚡ V2 · Parser-first · Single HTML file · Production-style UX</span>
-          <h1>Salesforce Apex Log Analyzer</h1>
-          <p>
-            Upload a Salesforce debug log and get a structured diagnosis with this browser-based Apex log analyzer and debug log parser:
-            exception summary, governor usage, SOQL and DML hotspots, likely failure path, root-cause clues, searchable raw lines,
-            and click-through findings that jump directly to the source line.
-          </p>
-          <div class="hero-actions">
-            <button class="btn primary" id="goAnalyze">Open Analyzer</button>
-            <button class="btn ghost" id="loadSampleTop">Load Sample Log</button>
-          </div>
-          <div class="tag-row" style="margin-top:14px;">
-            <span class="tag">Salesforce debug log analyzer</span>
-            <span class="tag">Apex log parser</span>
-            <span class="tag">Governor limit finder</span>
-            <span class="tag">SOQL and DML hotspots</span>
-          </div>
-        </div>
-
-        <div class="glass hero-stats">
-          <div class="stat">
-            <div class="label">What V2 adds</div>
-            <div class="value">Hotspots + raw navigation</div>
-            <div class="sub">Findings are severity-scored and linked to specific raw log lines so users can inspect the source without hunting manually.</div>
-          </div>
-          <div class="stat">
-            <div class="label">Common gap in many tools</div>
-            <div class="value">Readable diagnosis</div>
-            <div class="sub">Many analyzers show trees and counts, but leave the user to infer what failed first and what to change.</div>
-          </div>
-          <div class="stat">
-            <div class="label">Privacy</div>
-            <div class="value">Browser-only</div>
-            <div class="sub">Parsing, summarization, search, export, and redaction all happen locally in the browser.</div>
-          </div>
-          <div class="stat">
-            <div class="label">Best fit</div>
-            <div class="value">Dev + support workflow</div>
-            <div class="sub">Useful for developers, support engineers, and architects who want fast answers from noisy debug logs.</div>
-          </div>
-        </div>
+  <main class="container app-shell">
+    <section class="tool-header panel">
+      <div class="tool-header-copy">
+        <h1 class="tool-title">Salesforce Apex Log Analyzer</h1>
+        <p class="tool-subtitle">Fast single-screen debugging for Salesforce debug logs.</p>
       </div>
+      <div class="tool-actions">
+        <button class="btn primary" id="analyzeBtn">Run Analysis</button>
+        <button class="btn" id="pickFileBtn">Upload Log</button>
+        <button class="btn" id="loadSampleBtn">Load Sample</button>
+        <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn" id="exportBtn">Download Report</button>
+      </div>
+      <input class="sr-only" id="fileInput" type="file" accept=".log,.txt,text/plain" />
     </section>
 
-    <section class="layout" id="analyzer">
-      <aside class="panel">
-        <div class="panel-inner">
-          <h2>Input</h2>
-          <p class="muted">Drop a <code>.log</code> or <code>.txt</code> file, paste raw debug text, or load the built-in sample.</p>
-
-          <div class="upload-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload log file">
-            <div class="upload-icon">📄</div>
-            <div><strong>Drop a debug log here</strong></div>
-            <div class="muted small" style="margin-top:8px;">or pick a file manually</div>
-            <div class="action-row" style="justify-content:center; margin-top:14px;">
-              <button class="btn" id="pickFileBtn">Choose File</button>
-              <button class="btn ghost" id="loadSampleBtn">Load Sample</button>
-            </div>
-            <input class="sr-only" id="fileInput" type="file" accept=".log,.txt,text/plain" />
+    <section class="tool-workspace" id="analyzer">
+      <section class="panel pane pane-input">
+        <div class="pane-head">
+          <div>
+            <div class="pane-title">Raw Log Input</div>
+            <div class="pane-subtitle">Paste a log, search within it, or drag in a file.</div>
           </div>
-
-          <div class="field">
-            <label for="logInput">Raw Log</label>
-            <textarea id="logInput" spellcheck="false" placeholder="Paste Salesforce debug log here..."></textarea>
-          </div>
-
-          <div class="chip-row" style="margin-top:14px;">
-            <label class="chip"><input type="checkbox" id="redactToggle" checked /> Redact IDs / emails / URLs</label>
-            <label class="chip"><input type="checkbox" id="dedupeToggle" checked /> Trim duplicate noisy lines</label>
-            <label class="chip"><input type="checkbox" id="perfToggle" checked /> Add performance heuristics</label>
-            <label class="chip"><input type="checkbox" id="flowToggle" checked /> Detect flow hotspots</label>
-          </div>
-
-          <div class="field">
-            <label for="viewMode">Raw log classification</label>
-            <select id="viewMode">
-              <option value="all">Show all lines</option>
-              <option value="important">Important lines only</option>
-              <option value="errors">Errors only</option>
-              <option value="db">SOQL / DML only</option>
-            </select>
-          </div>
-
-          <div class="action-row" style="margin-top:18px;">
-            <button class="btn primary" id="analyzeBtn">Run Analysis</button>
-            <button class="btn" id="clearBtn">Clear</button>
-            <button class="btn" id="exportBtn">Download Report</button>
-          </div>
-
-          <div class="section" style="margin-top:18px; box-shadow:none;">
-            <div class="section-inner">
-              <div class="section-head">
-                <div>
-                  <div class="section-title">V2 focus</div>
-                  <div class="section-note">What makes this version closer to a production tool</div>
-                </div>
-              </div>
-              <ul class="list">
-                <li>Structured parser before explanation instead of only raw-text heuristics.</li>
-                <li>Hotspot tables for repeated methods, SOQL, DML, and flow elements.</li>
-                <li>Severity-scored findings that jump directly to raw log lines.</li>
-                <li>Searchable, filterable raw log viewer with highlighted active row.</li>
-                <li>Support-ready summary plus dev-focused evidence and fix guidance.</li>
-              </ul>
-            </div>
+          <div class="input-tools">
+            <input type="text" id="logSearch" placeholder="Find in input log" />
+            <button class="btn small" id="findLogBtn">Find</button>
           </div>
         </div>
-      </aside>
-
-      <section id="resultsRoot">
-        <div class="empty-state panel">
-          <div>
-            <h2>Ready for a log</h2>
-            <p>Run the analyzer to see summary cards, governor usage, error details, execution timeline, hotspots, findings, and a searchable raw-log panel.</p>
-          </div>
+        <div class="editor-shell upload-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload log file">
+          <textarea id="logInput" spellcheck="false" placeholder="Paste Salesforce debug log here..."></textarea>
+          <div class="editor-hint">Drag a .log or .txt file here, paste from clipboard, or use Upload Log.</div>
         </div>
       </section>
+
+      <section class="panel pane pane-output">
+        <div class="pane-head">
+          <div>
+            <div class="pane-title">Analysis Output</div>
+            <div class="pane-subtitle">Summary, errors, governor limits, timeline, and raw lines.</div>
+          </div>
+          <div class="pane-head-actions">
+            <button class="btn small" id="toggleOutputViewBtn" aria-pressed="false">Full View</button>
+            <div class="status-indicator" id="analysisStatus">Idle</div>
+          </div>
+        </div>
+        <section id="resultsRoot" class="results-root">
+          <div class="empty-state panel">
+            <div>
+              <h2>Paste a log and click Run Analysis</h2>
+              <p>The analysis pane will populate here with clickable debugging results.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="bottom-toolbar panel">
+      <div class="toolbar-group toolbar-toggles">
+        <label class="chip"><input type="checkbox" id="redactToggle" checked /> Redact logs</label>
+        <label class="chip"><input type="checkbox" id="dedupeToggle" checked /> Trim duplicates</label>
+        <label class="chip"><input type="checkbox" id="perfToggle" checked /> Detect hotspots</label>
+        <label class="chip"><input type="checkbox" id="flowToggle" checked /> Flow signals</label>
+        <label class="chip"><input type="checkbox" id="autoRunToggle" /> Auto-run on paste</label>
+      </div>
+      <div class="toolbar-group toolbar-filters">
+        <label class="toolbar-field">
+          <span>Raw filter</span>
+          <select id="viewMode">
+            <option value="all">Show all lines</option>
+            <option value="important">Important only</option>
+            <option value="errors">Errors only</option>
+            <option value="db">SOQL / DML only</option>
+          </select>
+        </label>
+      </div>
     </section>
   </main>
-
-  <footer class="container footer">
-    © 2026 Pulsagi · Built by <a href="https://shivam.pulsagi.com/">Shivam Gupta</a>
-  </footer>
-
   <footer>
     <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
   </footer>
@@ -530,21 +769,24 @@ Number of queueable jobs added to the queue: 0 out of 50
     };
 
     const ui = {
-      goAnalyze: document.getElementById('goAnalyze'),
-      loadSampleTop: document.getElementById('loadSampleTop'),
       dropZone: document.getElementById('dropZone'),
       fileInput: document.getElementById('fileInput'),
       pickFileBtn: document.getElementById('pickFileBtn'),
       loadSampleBtn: document.getElementById('loadSampleBtn'),
       logInput: document.getElementById('logInput'),
+      logSearch: document.getElementById('logSearch'),
+      findLogBtn: document.getElementById('findLogBtn'),
       redactToggle: document.getElementById('redactToggle'),
       dedupeToggle: document.getElementById('dedupeToggle'),
       perfToggle: document.getElementById('perfToggle'),
       flowToggle: document.getElementById('flowToggle'),
+      autoRunToggle: document.getElementById('autoRunToggle'),
       viewMode: document.getElementById('viewMode'),
       analyzeBtn: document.getElementById('analyzeBtn'),
+      toggleOutputViewBtn: document.getElementById('toggleOutputViewBtn'),
       clearBtn: document.getElementById('clearBtn'),
       exportBtn: document.getElementById('exportBtn'),
+      analysisStatus: document.getElementById('analysisStatus'),
       resultsRoot: document.getElementById('resultsRoot')
     };
 
@@ -931,6 +1173,7 @@ Number of queueable jobs added to the queue: 0 out of 50
 
       const rawLines = normalized.split(/\r?\n/);
       const lines = rawLines.map((line, index) => parseLine(line, index));
+      const nanos = lines.map(line => line.nanos).filter(n => Number.isFinite(n));
       const limits = parseLimits(lines);
       const exception = parseException(lines, normalized);
       const execution = parseExecution(lines);
@@ -950,6 +1193,7 @@ Number of queueable jobs added to the queue: 0 out of 50
       return {
         sourceText: normalized,
         lineCount: lines.length,
+        elapsedMs: nanos.length ? ((Math.max(...nanos) - Math.min(...nanos)) / 1000000) : 0,
         parsedAt: new Date().toLocaleString(),
         lines,
         limits,
@@ -974,7 +1218,7 @@ Number of queueable jobs added to the queue: 0 out of 50
       return `
         <div class="metric-list">
           ${limits.map(limit => `
-            <div class="metric">
+            <div class="metric ${limit.level === 'bad' ? 'is-critical' : limit.level === 'warn' ? 'is-warning' : ''}">
               <div class="metric-top">
                 <div class="metric-name">${escapeHtml(limit.short)}</div>
                 <div class="metric-val">${formatNumber(limit.used)} / ${formatNumber(limit.total)}</div>
@@ -1053,10 +1297,56 @@ Number of queueable jobs added to the queue: 0 out of 50
       `;
     }
 
+    function setLoading(isLoading) {
+      ui.analyzeBtn.disabled = isLoading;
+      ui.pickFileBtn.disabled = isLoading;
+      ui.loadSampleBtn.disabled = isLoading;
+      ui.analysisStatus.classList.toggle('loading', isLoading);
+      ui.analysisStatus.classList.toggle('success', false);
+      ui.analysisStatus.textContent = isLoading ? 'Analyzing...' : 'Idle';
+      if (isLoading) {
+        ui.resultsRoot.innerHTML = '<div class="loading-state">Analyzing log and preparing debugger view...</div>';
+      }
+    }
+
+    function setReadyStatus() {
+      ui.analysisStatus.classList.remove('loading');
+      ui.analysisStatus.classList.add('success');
+      ui.analysisStatus.textContent = 'Analysis ready';
+    }
+
+    function getLimitUsed(analysis, shortName) {
+      return analysis.limits.find(limit => limit.short === shortName)?.used ?? 0;
+    }
+
+    function findInInputLog() {
+      const term = (ui.logSearch?.value || '').trim();
+      if (!term) return;
+      const text = ui.logInput.value || '';
+      const startAt = ui.logInput.selectionEnd || 0;
+      let index = text.toLowerCase().indexOf(term.toLowerCase(), startAt);
+      if (index === -1) index = text.toLowerCase().indexOf(term.toLowerCase());
+      if (index === -1) return;
+      ui.logInput.focus();
+      ui.logInput.setSelectionRange(index, index + term.length);
+      const lineHeight = 18;
+      const before = text.slice(0, index).split('\n').length - 1;
+      ui.logInput.scrollTop = Math.max(0, before * lineHeight - ui.logInput.clientHeight / 3);
+    }
+
+    function toggleOutputView() {
+      const shell = document.querySelector('.app-shell');
+      if (!shell) return;
+      const isFocused = shell.classList.toggle('output-focus');
+      ui.toggleOutputViewBtn.textContent = isFocused ? 'Split View' : 'Full View';
+      ui.toggleOutputViewBtn.setAttribute('aria-pressed', String(isFocused));
+    }
+
     function renderResults(analysis) {
       const criticalCount = analysis.limits.filter(l => l.level === 'bad').length;
       const warningCount = analysis.limits.filter(l => l.level === 'warn').length;
       const topMethod = analysis.execution.topMethods[0]?.name || '—';
+      const topFindings = analysis.findings.slice(0, 4);
 
       ui.resultsRoot.innerHTML = `
         <div class="results-shell">
@@ -1083,7 +1373,22 @@ Number of queueable jobs added to the queue: 0 out of 50
             </div>
           </div>
 
-          <section class="section">
+          <div class="execution-strip">
+            <div class="exec-pill"><div class="k">Elapsed</div><div class="v">${analysis.elapsedMs ? `${analysis.elapsedMs.toFixed(2)} ms` : 'n/a'}</div></div>
+            <div class="exec-pill"><div class="k">CPU</div><div class="v">${formatNumber(getLimitUsed(analysis, 'CPU'))}</div></div>
+            <div class="exec-pill"><div class="k">SOQL</div><div class="v">${formatNumber(getLimitUsed(analysis, 'SOQL'))}</div></div>
+            <div class="exec-pill"><div class="k">DML</div><div class="v">${formatNumber(getLimitUsed(analysis, 'DML'))}</div></div>
+          </div>
+
+          <div class="tabs results-tabs" data-tab-group="results">
+            <button class="tab-btn active" data-tab-group="results" data-tab="summary">Summary</button>
+            <button class="tab-btn" data-tab-group="results" data-tab="errors">Errors</button>
+            <button class="tab-btn" data-tab-group="results" data-tab="limits">Governor Limits</button>
+            <button class="tab-btn" data-tab-group="results" data-tab="timeline">Timeline</button>
+            <button class="tab-btn" data-tab-group="results" data-tab="raw">Raw</button>
+          </div>
+
+          <section class="section results-panel active" data-panel-group="results" data-panel="summary">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1100,14 +1405,14 @@ Number of queueable jobs added to the queue: 0 out of 50
                 <div class="card">
                   <h3>What to inspect first</h3>
                   <ul class="list">
-                    ${analysis.findings.slice(0, 4).map(f => `<li><strong>${escapeHtml(f.title)}:</strong> ${escapeHtml(f.fix)}</li>`).join('')}
+                    ${topFindings.map(f => `<li><strong>${escapeHtml(f.title)}:</strong> ${escapeHtml(f.fix)}</li>`).join('')}
                   </ul>
                 </div>
               </div>
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="errors">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1138,7 +1443,7 @@ Number of queueable jobs added to the queue: 0 out of 50
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="limits">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1150,7 +1455,7 @@ Number of queueable jobs added to the queue: 0 out of 50
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="errors">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1160,7 +1465,7 @@ Number of queueable jobs added to the queue: 0 out of 50
               </div>
               <div class="findings">
                 ${analysis.findings.map(f => `
-                  <article class="finding">
+                  <article class="finding ${f.severity === 'bad' ? 'error-hit' : ''}">
                     <div class="finding-top">
                       <div>
                         <div class="finding-title">${escapeHtml(f.title)}</div>
@@ -1180,7 +1485,7 @@ Number of queueable jobs added to the queue: 0 out of 50
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="timeline">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1200,7 +1505,7 @@ Number of queueable jobs added to the queue: 0 out of 50
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="summary">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1208,20 +1513,20 @@ Number of queueable jobs added to the queue: 0 out of 50
                   <div class="section-note">Repeated methods, SOQL, DML, and flows that deserve attention</div>
                 </div>
               </div>
-              <div class="tabs" id="tabs">
-                <button class="tab-btn active" data-tab="methods">Methods</button>
-                <button class="tab-btn" data-tab="soql">SOQL</button>
-                <button class="tab-btn" data-tab="dml">DML</button>
-                <button class="tab-btn" data-tab="flows">Flows</button>
+              <div class="tabs" data-tab-group="hotspots">
+                <button class="tab-btn active" data-tab-group="hotspots" data-tab="methods">Methods</button>
+                <button class="tab-btn" data-tab-group="hotspots" data-tab="soql">SOQL</button>
+                <button class="tab-btn" data-tab-group="hotspots" data-tab="dml">DML</button>
+                <button class="tab-btn" data-tab-group="hotspots" data-tab="flows">Flows</button>
               </div>
-              <div class="tab-panel active" data-panel="methods">${renderHotspotTable(analysis.execution.topMethods, 'Method')}</div>
-              <div class="tab-panel" data-panel="soql">${renderHotspotTable(analysis.execution.topSoql, 'SOQL statement')}</div>
-              <div class="tab-panel" data-panel="dml">${renderHotspotTable(analysis.execution.topDml, 'DML pattern')}</div>
-              <div class="tab-panel" data-panel="flows">${renderHotspotTable(analysis.execution.topFlows, 'Flow signal')}</div>
+              <div class="tab-panel active" data-panel-group="hotspots" data-panel="methods">${renderHotspotTable(analysis.execution.topMethods, 'Method')}</div>
+              <div class="tab-panel" data-panel-group="hotspots" data-panel="soql">${renderHotspotTable(analysis.execution.topSoql, 'SOQL statement')}</div>
+              <div class="tab-panel" data-panel-group="hotspots" data-panel="dml">${renderHotspotTable(analysis.execution.topDml, 'DML pattern')}</div>
+              <div class="tab-panel" data-panel-group="hotspots" data-panel="flows">${renderHotspotTable(analysis.execution.topFlows, 'Flow signal')}</div>
             </div>
           </section>
 
-          <section class="section">
+          <section class="section results-panel" data-panel-group="results" data-panel="raw">
             <div class="section-inner">
               <div class="section-head">
                 <div>
@@ -1247,10 +1552,11 @@ Number of queueable jobs added to the queue: 0 out of 50
 
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-          document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+          const group = btn.dataset.tabGroup || 'default';
+          document.querySelectorAll(`.tab-btn[data-tab-group="${group}"]`).forEach(x => x.classList.remove('active'));
+          document.querySelectorAll(`[data-panel-group="${group}"]`).forEach(x => x.classList.remove('active'));
           btn.classList.add('active');
-          document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`)?.classList.add('active');
+          document.querySelectorAll(`[data-panel-group="${group}"][data-panel="${btn.dataset.tab}"]`).forEach(x => x.classList.add('active'));
         });
       });
 
@@ -1289,6 +1595,10 @@ Number of queueable jobs added to the queue: 0 out of 50
 
     function jumpToLine(lineNo) {
       if (!lineNo) return;
+      document.querySelectorAll('.tab-btn[data-tab-group="results"]').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('[data-panel-group="results"]').forEach(x => x.classList.remove('active'));
+      document.querySelector('.tab-btn[data-tab-group="results"][data-tab="raw"]')?.classList.add('active');
+      document.querySelectorAll('[data-panel-group="results"][data-panel="raw"]').forEach(x => x.classList.add('active'));
       const target = document.querySelector(`.log-row[data-line="${lineNo}"]`);
       if (!target) return;
       document.querySelectorAll('.log-row.active').forEach(r => r.classList.remove('active'));
@@ -1354,11 +1664,14 @@ Number of queueable jobs added to the queue: 0 out of 50
       currentRawFilter = '';
       ui.logInput.value = '';
       ui.fileInput.value = '';
+      if (ui.logSearch) ui.logSearch.value = '';
+      ui.analysisStatus.classList.remove('loading', 'success');
+      ui.analysisStatus.textContent = 'Idle';
       ui.resultsRoot.innerHTML = `
         <div class="empty-state panel">
           <div>
-            <h2>Ready for a log</h2>
-            <p>Run the analyzer to see summary cards, governor usage, error details, execution timeline, hotspots, findings, and a searchable raw-log panel.</p>
+            <h2>Paste a log and click Run Analysis</h2>
+            <p>The analysis pane will populate here with clickable debugging results.</p>
           </div>
         </div>
       `;
@@ -1368,25 +1681,31 @@ Number of queueable jobs added to the queue: 0 out of 50
     async function readFile(file) {
       const text = await file.text();
       ui.logInput.value = text;
+      if (ui.autoRunToggle.checked) runAnalysis();
     }
 
-    function runAnalysis() {
+    async function runAnalysis() {
       const input = ui.logInput.value.trim();
       if (!input) {
         alert('Please upload or paste a Salesforce debug log first.');
         return;
       }
+      setLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 0));
       const analysis = analyzeLog(input);
       if (!analysis) {
+        setLoading(false);
         alert('Could not parse the provided log.');
         return;
       }
       lastAnalysis = analysis;
       renderResults(analysis);
+      setReadyStatus();
+      ui.analyzeBtn.disabled = false;
+      ui.pickFileBtn.disabled = false;
+      ui.loadSampleBtn.disabled = false;
     }
 
-    ui.goAnalyze.addEventListener('click', () => document.getElementById('analyzer').scrollIntoView({ behavior: 'smooth' }));
-    ui.loadSampleTop.addEventListener('click', () => { ui.logInput.value = SAMPLE_LOG; runAnalysis(); });
     ui.loadSampleBtn.addEventListener('click', () => { ui.logInput.value = SAMPLE_LOG; runAnalysis(); });
     ui.pickFileBtn.addEventListener('click', () => ui.fileInput.click());
     ui.fileInput.addEventListener('change', async e => { if (e.target.files[0]) await readFile(e.target.files[0]); });
@@ -1394,6 +1713,17 @@ Number of queueable jobs added to the queue: 0 out of 50
     ui.clearBtn.addEventListener('click', clearAll);
     ui.exportBtn.addEventListener('click', exportReport);
     ui.viewMode.addEventListener('change', applyRawFilters);
+    ui.toggleOutputViewBtn.addEventListener('click', toggleOutputView);
+    ui.findLogBtn.addEventListener('click', findInInputLog);
+    ui.logSearch.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        findInInputLog();
+      }
+    });
+    ui.logInput.addEventListener('paste', () => {
+      if (ui.autoRunToggle.checked) setTimeout(() => runAnalysis(), 0);
+    });
 
     ['dragenter', 'dragover'].forEach(evt => ui.dropZone.addEventListener(evt, e => {
       e.preventDefault();
@@ -1408,6 +1738,7 @@ Number of queueable jobs added to the queue: 0 out of 50
       if (file) await readFile(file);
     });
     ui.dropZone.addEventListener('keydown', e => {
+      if (e.target !== ui.dropZone) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         ui.fileInput.click();
@@ -1417,3 +1748,5 @@ Number of queueable jobs added to the queue: 0 out of 50
   </script>
 </body>
 </html>
+
+
