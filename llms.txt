@@ -30,6 +30,7 @@ Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Ar
 
 - Homepage: https://pulsagi.com
 - Tools directory: https://pulsagi.com/tools/
+- Articles directory: https://pulsagi.com/articles/
 - JSON to TOON Converter: https://pulsagi.com/tools/json-to-toon-converter.html
 - JSON Viewer and Flow Visualizer: https://pulsagi.com/tools/json-viewer.html
 - Scam Checker: https://pulsagi.com/tools/scam-checker.html
@@ -48,9 +49,14 @@ Pulsagi is an AI infrastructure company founded by Shivam Gupta, a Salesforce Ar
 - **Salesforce Governor Limit Analyzer**: Review Apex classes and triggers for bulkification issues, SOQL-in-loop patterns, DML risks, and governor-limit problems.
 - **Salesforce Apex Log Analyzer**: Analyze Salesforce debug logs for exceptions, governor usage, repeated hotspots, likely failure paths, and raw-line evidence.
 
+## Articles
+
+- **Articles directory**: Pulsagi article hub for AI engineering notes, Salesforce architecture guides, developer tooling playbooks, and scam safety explainers.
+
 ## Crawl Guidance
 
 - All public tools live under: https://pulsagi.com/tools/
 - The tools directory links to every current public tool: https://pulsagi.com/tools/
+- Public articles live under: https://pulsagi.com/articles/
 - The XML sitemap is available at: https://pulsagi.com/sitemap.xml
 - Public crawl access is allowed in `robots.txt` for compliant crawlers and AI agents.
