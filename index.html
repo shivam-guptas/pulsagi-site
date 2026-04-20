@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -343,6 +343,7 @@
     
     gtag('config', 'G-S55MNPYJF8');
   </script>
+  <link rel="stylesheet" href="assets/site-nav.css" />
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -351,13 +352,13 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<nav>
-  <a class="nav-brand" href="/" onclick="showPage('home');return false;">Pulsagi</a>
-  <ul>
-    <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#about" onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),50);return false;">About</a></li>
-    <li><a href="/tools/" class="nav-pill">Tools</a></li>
-    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/" aria-current="page">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/">Articles</a></li>
   </ul>
 </nav>
 
