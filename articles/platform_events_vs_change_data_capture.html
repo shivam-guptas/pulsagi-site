@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>Platform Events vs Change Data Capture in Salesforce | Pulsagi Articles</title>
+  <meta name="description" content="A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations." />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/articles/platform_events_vs_change_data_capture.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="Platform Events vs Change Data Capture in Salesforce" />
+  <meta property="og:description" content="When to use Platform Events, when to use Change Data Capture, and how replay, payload shape, and subscriber expectations affect your architecture." />
+  <meta property="og:url" content="https://pulsagi.com/articles/platform_events_vs_change_data_capture.html" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Platform Events vs Change Data Capture in Salesforce" />
+  <meta name="twitter:description" content="A practical, docs-first comparison of Salesforce Platform Events and Change Data Capture, now with Apex examples." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  
+  <style>
+    .table-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 22px; background: rgba(255, 255, 255, 0.94); }
+    .article-table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    .article-table th, .article-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(221, 211, 194, 0.95); }
+    .article-table th { background: rgba(11, 92, 171, 0.08); color: var(--ink); font-family: "Merriweather", serif; font-size: 0.98rem; }
+    .article-table td { color: var(--muted-strong); }
+    .reference-list { padding-left: 22px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Platform Events vs Change Data Capture in Salesforce",
+    "description": "A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations.",
+    "mainEntityOfPage": "https://pulsagi.com/articles/platform_events_vs_change_data_capture.html",
+    "datePublished": "2026-04-13",
+    "dateModified": "2026-04-13",
+    "image": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"],
+    "author": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" },
+    "publisher": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" }
+  }
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="shell">
+  <nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Event-Driven Architecture</div>
+        <h1 class="article-title">Platform Events vs Change Data Capture in Salesforce</h1>
+        <p class="article-standfirst">A docs-first comparison of Salesforce's two main event-bus patterns, with Apex code examples, replay guidance, channel naming, and a practical decision framework for architects.</p>
+        <div class="reading-meta"><span>14 min read</span><span>Published April 13, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Salesforce event bus architecture" loading="eager" />
+        <p>This article stays anchored to current Salesforce documentation for the event bus, Pub/Sub API, CDC setup, durability, and event channel conventions.</p>
+      </div>
+    </section>
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#meaning">What each event type means</a></li>
+          <li><a href="#comparison">Side-by-side comparison</a></li>
+          <li><a href="#examples">Code examples</a></li>
+          <li><a href="#delivery">Delivery, replay, and payload details</a></li>
+          <li><a href="#decision">Decision framework</a></li>
+          <li><a href="#mistakes">Common mistakes</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+      <article class="content-card">
+        <section id="intro">
+          <h2>Introduction</h2>
+          <p>Salesforce's modern event bus gives you two very different ways to tell the outside world that something happened: <strong>Platform Events</strong> and <strong>Change Data Capture</strong> (CDC). Both are durable for replay within the retention window, both can be consumed through Pub/Sub API, and both can drive Apex triggers, Flow, and external integrations. But they are not interchangeable.</p>
+          <p>The cleanest way to choose is to ask one question first: <strong>are you publishing a business fact, or are you exposing a record mutation?</strong></p>
+          <div class="callout"><strong>Short version:</strong> use <strong>Platform Events</strong> when your producer wants to emit an intentional business signal such as <code>Order_Submitted__e</code>. Use <strong>CDC</strong> when subscribers need to know that Salesforce data itself changed, such as an <code>Account</code>, <code>Opportunity</code>, or supported custom object being created, updated, deleted, or undeleted.</div>
+          <p>Another important framing from Salesforce documentation: <strong>Pub/Sub API is not a third event type.</strong> It is a transport and subscription interface that works with both Platform Events and CDC.</p>
+        </section>
+
+        <section id="meaning">
+          <h2>What each event type means</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Platform Events</h3>
+              <ul>
+                <li>You decide when the event is emitted.</li>
+                <li>You own the event contract and field design.</li>
+                <li>Best for business milestones, orchestration, and decoupled domain messaging.</li>
+                <li>Typical channel shape is <code>/event/EventName__e</code>.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Change Data Capture</h3>
+              <ul>
+                <li>Salesforce emits the event automatically when tracked records change.</li>
+                <li>The payload shape follows the underlying object plus <code>ChangeEventHeader</code>.</li>
+                <li>Best for sync, replication, audit-style consumers, and downstream data pipelines.</li>
+                <li>Typical channel shape is <code>/data/AccountChangeEvent</code> or <code>/data/MyObject__ChangeEvent</code>.</li>
+              </ul>
+            </div>
+          </div>
+          <p>That difference in <strong>publisher intent</strong> is the whole architecture story. Platform Events express meaning at the business layer. CDC expresses meaning at the data-change layer.</p>
+          <div class="callout"><strong>Architectural inference from the docs:</strong> if an external system should react only after committed Salesforce work is real, a custom Platform Event configured with <strong>Publish After Commit</strong> is usually the safer contract than exposing raw object triggers or assuming every record update deserves an integration event.</div>
+        </section>
+
+        <section id="comparison">
+          <h2>Side-by-side comparison</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead><tr><th>Area</th><th>Platform Events</th><th>Change Data Capture</th></tr></thead>
+              <tbody>
+                <tr><td>Who emits the message</td><td>Your app, Flow, Apex, or an API client chooses when to publish.</td><td>Salesforce publishes automatically when a tracked record changes.</td></tr>
+                <tr><td>What the payload means</td><td>A business contract such as order submitted, invoice approved, shipment delayed.</td><td>A change notification for a Salesforce record operation.</td></tr>
+                <tr><td>Schema ownership</td><td>You define custom event fields and keep the contract stable for subscribers.</td><td>Salesforce defines the event shape from the source object and the change header.</td></tr>
+                <tr><td>Can you publish it manually</td><td>Yes. Apex, Flow, data APIs, and Pub/Sub API can publish supported platform events.</td><td>No. You enable CDC for supported objects and Salesforce produces the events.</td></tr>
+                <tr><td>Best-fit consumer</td><td>Apps that care about business outcomes and process steps.</td><td>Apps that care about record deltas, synchronization, or data movement.</td></tr>
+                <tr><td>Typical topic name</td><td><code>/event/Order_Submitted__e</code></td><td><code>/data/AccountChangeEvent</code></td></tr>
+                <tr><td>Retention and replay</td><td>Stored on the event bus for 72 hours and replayable within that window.</td><td>Stored on the event bus for 72 hours and replayable within that window.</td></tr>
+                <tr><td>Good fit</td><td>You want a stable, intentional message that survives source-object refactors.</td><td>You want downstream systems to track what changed on Salesforce records.</td></tr>
+                <tr><td>Poor fit</td><td>You are trying to mirror every row-level mutation for replication.</td><td>You need a curated business event rather than every qualifying CRUD mutation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A lot of confusion comes from treating CDC as if it were a business API. It is not. CDC tells subscribers that Salesforce data changed. If subscribers should react to a <em>meaningful business step</em>, define that step explicitly as a Platform Event.</p>
+        </section>
+
+        <section id="examples">
+          <h2>Code examples</h2>
+          <p>These examples are intentionally simple and map to the documented event model. The Platform Event examples use a custom event contract. The CDC example shows how change subscribers work with <code>ChangeEventHeader</code>.</p>
+
+          <h3>Platform Event publisher in Apex</h3>
+          <p>Use Platform Events when you want to publish a business fact that is independent from the internal shape of the source record.</p>
+<pre><code>public with sharing class OrderEventPublisher {
+    public static void publishSubmitted(Order orderRecord) {
+        Order_Submitted__e eventRecord = new Order_Submitted__e(
+            Order_Id__c = String.valueOf(orderRecord.Id),
+            Account_Id__c = String.valueOf(orderRecord.AccountId),
+            Order_Number__c = orderRecord.OrderNumber,
+            Status__c = 'Submitted',
+            Submitted_At__c = System.now()
+        );
+
+        Database.SaveResult publishResult = EventBus.publish(eventRecord);
+
+        if (!publishResult.isSuccess()) {
+            for (Database.Error err : publishResult.getErrors()) {
+                System.debug(LoggingLevel.ERROR,
+                    err.getStatusCode() + ': ' + err.getMessage());
+            }
+        }
+    }
+}</code></pre>
+          <p>The event schema is yours. That is why Platform Events are a better contract when subscribers should not care whether the source process touched one object, three objects, or a dozen fields behind the scenes.</p>
+
+          <h3>Platform Event subscriber with an Apex trigger</h3>
+          <p>Platform Event triggers are always <code>after insert</code> because the event has already been published onto the bus.</p>
+<pre><code>trigger OrderSubmittedSubscriber on Order_Submitted__e (after insert) {
+    List&lt;Task&gt; followUps = new List&lt;Task&gt;();
+
+    for (Order_Submitted__e eventRecord : Trigger.New) {
+        followUps.add(new Task(
+            Subject = 'Process submitted order ' + eventRecord.Order_Number__c,
+            Status = 'Not Started',
+            Priority = 'Normal',
+            Description =
+                'Order Id: ' + eventRecord.Order_Id__c +
+                '\nAccount Id: ' + eventRecord.Account_Id__c +
+                '\nSubmitted at: ' + String.valueOf(eventRecord.Submitted_At__c)
+        ));
+    }
+
+    if (!followUps.isEmpty()) {
+        insert followUps;
+    }
+}</code></pre>
+
+          <h3>CDC subscriber with an Apex trigger</h3>
+          <p>CDC is different. You do not publish the change event yourself. You enable the object for CDC in Setup, and Salesforce inserts change events when the tracked record changes.</p>
+<pre><code>trigger AccountChangeSubscriber on AccountChangeEvent (after insert) {
+    for (AccountChangeEvent changeEvent : Trigger.New) {
+        EventBus.ChangeEventHeader header = changeEvent.ChangeEventHeader;
+
+        if (header.changeType == 'UPDATE') {
+            System.debug(LoggingLevel.INFO,
+                'Record ids: ' + header.recordIds +
+                ', transaction key: ' + header.transactionKey +
+                ', changed fields payload: ' + header.changedFields +
+                ', current Name value: ' + changeEvent.Name);
+        }
+    }
+}</code></pre>
+          <p>Notice the contract difference. In CDC, the subscriber reasons about <code>changeType</code>, <code>recordIds</code>, and the source-object fields carried on the event. That is great for data synchronization and change processing, but it is a different abstraction than a business-domain event.</p>
+
+          <h3>External topic naming with Pub/Sub API</h3>
+          <p>Salesforce's Pub/Sub quick starts document the topic naming rules clearly, which is helpful when comparing the two models from an integration-client perspective.</p>
+<pre><code>Custom Platform Event: /event/Order_Submitted__e
+Standard-object CDC:  /data/AccountChangeEvent
+Custom-object CDC:    /data/Shipment__ChangeEvent
+All tracked CDC:      /data/ChangeEvents</code></pre>
+        </section>
+
+        <section id="delivery">
+          <h2>Delivery, replay, and payload details</h2>
+          <p>Salesforce documents the event bus as a <strong>time-ordered event log</strong>. Platform Events and CDC events are stored on that bus for <strong>72 hours</strong>. A subscriber can persist the last processed replay position and ask for missed events again, as long as that replay point is still inside the retention window.</p>
+          <div class="callout"><strong>Important:</strong> replay IDs are opaque and Salesforce does not guarantee they are contiguous. Store them exactly as received and treat them as bookmarks, not sequence numbers.</div>
+          <ul>
+            <li><strong>Store replay positions durably:</strong> never keep them only in memory if you care about reconnect recovery.</li>
+            <li><strong>Separate event meaning from transport:</strong> Platform Events vs CDC is an architecture decision; Pub/Sub API vs Streaming API is a transport decision.</li>
+            <li><strong>Decode CDC deltas correctly:</strong> Salesforce documents <code>changedFields</code>, <code>diffFields</code>, and <code>nulledFields</code> on CDC headers.</li>
+            <li><strong>Know the Pub/Sub payload shape:</strong> Pub/Sub API CDC messages include unchanged fields with empty values, while <code>changedFields</code> tells you what actually changed.</li>
+          </ul>
+          <p>That last point is easy to miss and matters a lot. If you inspect a Pub/Sub CDC message and assume every field shown in the payload changed, your subscriber logic will be wrong. The documented delta indicators in <code>ChangeEventHeader</code> are the reliable guide.</p>
+        </section>
+
+        <section id="decision">
+          <h2>Decision framework</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead><tr><th>If your scenario is...</th><th>Start with...</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td>"Notify downstream systems that an order was submitted."</td><td>Platform Events</td><td>You want a business milestone with a publisher-owned contract.</td></tr>
+                <tr><td>"Keep a warehouse or MDM system in sync with Salesforce record changes."</td><td>CDC</td><td>You want automatic notifications tied to actual CRUD mutations.</td></tr>
+                <tr><td>"Expose only selected record changes, not every update."</td><td>Platform Events</td><td>CDC publishes tracked changes automatically; Platform Events let you filter meaning before publication.</td></tr>
+                <tr><td>"Let subscribers understand exactly which fields changed on a record."</td><td>CDC</td><td>The change-event model and header semantics are built for that.</td></tr>
+                <tr><td>"Keep external contracts stable even if the internal data model changes."</td><td>Platform Events</td><td>The event schema is decoupled from the underlying object design.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In mature orgs, the answer is often <strong>both</strong>. CDC can feed operational sync and analytics, while Platform Events express curated business milestones such as <code>Customer_Tier_Changed__e</code> or <code>Invoice_Approved__e</code>.</p>
+        </section>
+
+        <section id="mistakes">
+          <h2>Common mistakes</h2>
+          <ul>
+            <li><strong>Using CDC as a business-domain API:</strong> that couples subscribers to your object model and CRUD behavior instead of a stable process contract.</li>
+            <li><strong>Using Platform Events as a raw replication stream:</strong> that usually recreates CDC badly and forces you to hand-maintain an object-shaped contract.</li>
+            <li><strong>Ignoring replay storage:</strong> both event types are replayable only if your subscriber persists replay IDs and reconnect logic correctly.</li>
+            <li><strong>Forgetting CDC enablement:</strong> no object selection in Setup means no CDC events, even if the subscriber code is ready.</li>
+            <li><strong>Assuming one event per trigger execution:</strong> Salesforce event triggers still need bulk-safe logic, and the documented Apex trigger batch size for Platform Events and CDC is larger than standard object-trigger batches.</li>
+            <li><strong>Misreading CDC payloads in Pub/Sub API:</strong> use <code>changedFields</code>, <code>nulledFields</code>, and <code>diffFields</code> instead of assuming every field shown changed.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Use <strong>Platform Events</strong> when you want Salesforce or an external publisher to announce a business event intentionally, with a clean contract that can survive internal data-model changes. Use <strong>CDC</strong> when you want subscribers to react to Salesforce record mutations themselves.</p>
+          <p>If you are still unsure, choose based on what the subscriber is supposed to understand. If the subscriber should understand <em>business intent</em>, publish a Platform Event. If the subscriber should understand <em>which Salesforce record changed and how</em>, use CDC. Then consume either one through Pub/Sub API when you want a single external interface and replay-aware subscriber design.</p>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <ul class="reference-list">
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html" target="_blank" rel="noopener">Get Started with Pub/Sub API</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/expanded-event-bus.html" target="_blank" rel="noopener">Pub/Sub API and the Expanded Event Bus</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/supported-event-types.html" target="_blank" rel="noopener">Event Types</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html" target="_blank" rel="noopener">Event Message Durability</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-set-up-events.html" target="_blank" rel="noopener">Step 3: Set Up Events</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-subscribe.html" target="_blank" rel="noopener">Step 4: Write Code That Subscribes to an Event Channel</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-java-change-events.html" target="_blank" rel="noopener">Step 5: Subscribe to Change Events</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-deserialization-considerations.html" target="_blank" rel="noopener">Event Deserialization Considerations</a></li>
+            <li><a href="https://developer.salesforce.com/docs/service/messaging-partner/guide/create-platform-event.html" target="_blank" rel="noopener">Create and Configure the Custom Platform Event</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm" target="_blank" rel="noopener">Apex Governor Limits</a></li>
+          </ul>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

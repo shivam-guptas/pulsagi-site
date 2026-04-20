@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.ico" sizes="any" /><title>Integrations, Quality, and Delivery | Pulsagi Articles</title><meta name="description" content="Integration architecture, migration, DevOps, release management, and QA/testing." /><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html" /><meta property="og:type" content="article" /><meta property="og:site_name" content="Pulsagi" /><meta property="og:title" content="Integrations, Quality, and Delivery" /><meta property="og:description" content="Integration architecture, migration, DevOps, release management, and QA/testing." /><meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html" /><meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Integrations, Quality, and Delivery" /><meta name="twitter:description" content="Integration architecture, migration, DevOps, release management, and QA/testing." /><meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Integrations, Quality, and Delivery | Codex and Claude in Salesforce",
+  "description": "Integration architecture, migration, DevOps, release management, and QA/testing.",
+  "mainEntityOfPage": "https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html",
+  "image": [
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  }
+}</script><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S55MNPYJF8');
+</script>  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Integrations, Quality, and Delivery</h1><p class="article-standfirst">Integration architecture, migration, DevOps, release management, and QA/testing.</p><div class="reading-meta"><span>16 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-11-use-in-integrations">Section 11: Use in Integrations</a></li><li><a href="#section-12-use-in-data-migration-and-data-quality">Section 12: Use in Data Migration and Data Quality</a></li><li><a href="#section-13-use-in-devops-releases-and-environment-management">Section 13: Use in DevOps, Releases, and Environment Management</a></li><li><a href="#section-14-use-in-qa-and-testing">Section 14: Use in QA and Testing</a></li></ol></aside><article class="content-card doc-content"><section id="section-11-use-in-integrations"><h2 id="section-11-use-in-integrations">Section 11: Use in Integrations</h2>
+<h3 id="11-1-ai-support-areas">11.1 AI support areas</h3>
+<ul><li>API design</li><li>payload mapping</li><li>JSON schema generation</li><li>authentication pattern explanation</li><li>named credentials planning</li><li>sequence diagrams</li><li>retry/error handling</li><li>logging strategy</li><li>event-driven architecture</li><li>webhook handling</li><li>middleware collaboration</li></ul>
+<h3 id="11-2-integration-examples">11.2 Integration examples</h3>
+<p>#### Loan origination system</p>
+<p>AI can help define:</p>
+<ul><li>application creation payload</li><li>underwriting update events</li><li>idempotent retry strategy</li><li>reconciliation rules</li></ul>
+<p>#### Payment gateway</p>
+<p>AI can help define:</p>
+<ul><li>tokenized payment flow</li><li>safe error categories</li><li>PCI-sensitive fields to never expose</li></ul>
+<p>#### Identity provider</p>
+<p>AI can help with:</p>
+<ul><li>SSO/SAML/OIDC explanation</li><li>user provisioning flow</li><li>role mapping model</li></ul>
+<p>#### ERP integration</p>
+<p>AI can generate:</p>
+<ul><li>account/order/invoice mapping sheets</li><li>ownership matrix</li><li>sync frequency tradeoffs</li></ul>
+<p>#### Communication tools</p>
+<p>AI can design:</p>
+<ul><li>SMS/email event flow</li><li>consent checks</li><li>communication logging strategy</li><li>campaign response integration patterns for marketing operations</li><li>audience segmentation data handoff guidance</li></ul>
+<h3 id="11-3-mulesoft-and-api-led-guidance">11.3 MuleSoft and API-led guidance</h3>
+<p>Where MuleSoft or another middleware layer exists, AI can help define:</p>
+<ul><li>experience, process, and system API separation</li><li>ownership of transformation logic</li><li>replay and dead-letter handling</li><li>API versioning policy</li><li>support model between Salesforce, middleware, and source systems</li></ul>
+<h3 id="11-4-sequence-diagram-prompt">11.4 Sequence diagram prompt</h3>
+<pre><code class="language-text">Create a text sequence diagram for Salesforce integrating with ERP for order fulfillment.
+Include:
+- order created in Salesforce
+- middleware transformation
+- ERP acknowledgment
+- failure handling
+- retry
+- status update back into Salesforce</code></pre>
+<h3 id="11-5-integration-checklist">11.5 Integration checklist</h3>
+<ul><li>What is the system of record?</li><li>Is the pattern sync or async?</li><li>How are retries handled?</li><li>Is idempotency required?</li><li>What gets logged?</li><li>Who owns schema changes?</li><li>What is the timeout strategy?</li><li>What is the support model?</li></ul>
+<hr /></section>
+<section id="section-12-use-in-data-migration-and-data-quality"><h2 id="section-12-use-in-data-migration-and-data-quality">Section 12: Use in Data Migration and Data Quality</h2>
+<h3 id="12-1-high-value-uses">12.1 High-value uses</h3>
+<ul><li>source-to-target mapping drafts</li><li>cleansing rules</li><li>dedupe logic</li><li>validation planning</li><li>sequencing plans</li><li>mock datasets</li><li>UAT data strategy</li><li>data quality dashboards</li><li>reconciliation logic</li><li>cutover and rollback planning</li></ul>
+<h3 id="12-2-example-prompt">12.2 Example prompt</h3>
+<pre><code class="language-text">Act as a Salesforce data migration architect.
+Create a source-to-target mapping and migration checklist for:
+- legacy customer table
+- contact table
+- loan table
+- communication preference table
+
+Target: Salesforce Account, Contact, Opportunity, custom Loan__c
+Include:
+- transformations
+- default values
+- dedupe rules
+- validation rules impact
+- load sequence
+- reconciliation checks</code></pre>
+<h3 id="12-3-migration-operating-principles">12.3 Migration operating principles</h3>
+<ul><li>migrate reference data before transactional data</li><li>define survivorship rules early</li><li>plan for inactive/archived records</li><li>separate cleansing from loading</li><li>define reconciliation reports before cutover</li></ul>
+<h3 id="12-4-data-quality-dashboard-ideas">12.4 Data quality dashboard ideas</h3>
+<ul><li>duplicate rate by source</li><li>mandatory field completeness</li><li>invalid email rate</li><li>orphan child records</li><li>status value normalization coverage</li></ul>
+<hr /></section>
+<section id="section-13-use-in-devops-releases-and-environment-management"><h2 id="section-13-use-in-devops-releases-and-environment-management">Section 13: Use in DevOps, Releases, and Environment Management</h2>
+<h3 id="13-1-ai-use-cases">13.1 AI use cases</h3>
+<ul><li>deployment plans</li><li>package manifest drafts</li><li>change risk summaries</li><li>release notes</li><li>regression scope identification</li><li>environment readiness checklists</li><li>user communication drafts</li><li>backout plans</li><li>branching strategy guidance</li><li>CI/CD explanation</li><li>Copado process documentation</li></ul>
+<h3 id="13-2-example-prompt">13.2 Example prompt</h3>
+<pre><code class="language-text">Given this deployment scope, generate:
+1. deployment checklist
+2. pre-deploy validation
+3. smoke test scope
+4. rollback plan
+5. support notification draft
+6. release note summary for business users</code></pre>
+<h3 id="13-3-release-manager-checklist">13.3 Release manager checklist</h3>
+<ul><li>metadata validated in lower environments</li><li>permission changes reviewed</li><li>data scripts sequenced</li><li>smoke tests agreed</li><li>backout criteria defined</li><li>support team briefed</li><li>user communication approved</li></ul>
+<h3 id="13-4-merge-conflict-help">13.4 Merge conflict help</h3>
+<p>AI can explain:</p>
+<ul><li>why metadata conflicts happened</li><li>which profile/permission set merges are risky</li><li>how to compare Flow versions safely</li><li>how to isolate high-risk deployment components</li></ul>
+<hr /></section>
+<section id="section-14-use-in-qa-and-testing"><h2 id="section-14-use-in-qa-and-testing">Section 14: Use in QA and Testing</h2>
+<h3 id="14-1-core-uses">14.1 Core uses</h3>
+<ul><li>test scenario generation</li><li>test case generation</li><li>negative testing</li><li>edge-case identification</li><li>regression suite planning</li><li>UAT scripts</li><li>defect summary creation</li><li>traceability matrix drafts</li><li>risk-based testing plans</li><li>automation test ideas</li></ul>
+<h3 id="14-2-example-scenarios">14.2 Example scenarios</h3>
+<div class="table-wrap"><table><thead><tr><th>Process</th><th>QA Questions AI Can Help Generate</th></tr></thead><tbody><tr><td>Lead conversion</td><td>What happens if duplicate account exists, required fields missing, owner inactive, or integration unavailable?</td></tr><tr><td>Contact creation</td><td>What if dedupe triggers, phone invalid, user lacks permission, or flow faults?</td></tr><tr><td>Case escalation</td><td>What if entitlement missing, queue full, SLA timestamp null, or omni-channel unavailable?</td></tr><tr><td>Approval process</td><td>What if delegated approver absent, approval recalled, or threshold changed mid-flight?</td></tr><tr><td>API failure handling</td><td>What if external timeout occurs, duplicate retry happens, or partial response returns?</td></tr></tbody></table></div>
+<h3 id="14-3-prompt-example">14.3 Prompt example</h3>
+<pre><code class="language-text">Generate a risk-based test suite for Salesforce lead conversion.
+Include:
+- happy path
+- negative path
+- edge cases
+- permission-based scenarios
+- integration dependencies
+- regression priorities
+- suggested automation candidates</code></pre>
+<h3 id="14-4-human-review-required">14.4 Human review required</h3>
+<ul><li>QA leads must validate business risk ranking.</li><li>Test data assumptions must match actual org rules.</li><li>AI-generated test coverage is not a substitute for domain expertise.</li></ul>
+<hr /></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-admin-development-and-automation.html">Previous: Admin, Development, and Automation</a> <a class="button button-primary" href="codex-claude-salesforce-documentation-operations-and-prompts.html">Next: Documentation, Operations, and Prompt Library</a></div></section></article></div></main><footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer></div>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

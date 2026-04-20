@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.ico" sizes="any" /><title>Documentation, Operations, and Prompt Library | Pulsagi Articles</title><meta name="description" content="Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns." /><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html" /><meta property="og:type" content="article" /><meta property="og:site_name" content="Pulsagi" /><meta property="og:title" content="Documentation, Operations, and Prompt Library" /><meta property="og:description" content="Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns." /><meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html" /><meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Documentation, Operations, and Prompt Library" /><meta name="twitter:description" content="Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns." /><meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Documentation, Operations, and Prompt Library | Codex and Claude in Salesforce",
+  "description": "Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns.",
+  "mainEntityOfPage": "https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html",
+  "image": [
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  }
+}</script><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S55MNPYJF8');
+</script>  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Documentation, Operations, and Prompt Library</h1><p class="article-standfirst">Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns.</p><div class="reading-meta"><span>18 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-15-use-in-documentation">Section 15: Use in Documentation</a></li><li><a href="#section-16-use-in-support-and-maintenance">Section 16: Use in Support and Maintenance</a></li><li><a href="#section-17-use-for-leadership-pm-and-delivery-management">Section 17: Use for Leadership, PM, and Delivery Management</a></li><li><a href="#section-18-role-based-usage-model">Section 18: Role-Based Usage Model</a></li><li><a href="#section-19-prompt-library">Section 19: Prompt Library</a></li></ol></aside><article class="content-card doc-content"><section id="section-15-use-in-documentation"><h2 id="section-15-use-in-documentation">Section 15: Use in Documentation</h2>
+<h3 id="15-1-documents-ai-can-accelerate">15.1 Documents AI can accelerate</h3>
+<ul><li>technical design documents</li><li>low-level designs</li><li>architecture decision records</li><li>admin guides</li><li>runbooks</li><li>support guides</li><li>onboarding documents</li><li>release notes</li><li>troubleshooting guides</li><li>knowledge articles</li><li>README files</li><li>API docs</li><li>inline code comments</li><li>handover packs</li></ul>
+<h3 id="15-2-documentation-operating-model">15.2 Documentation operating model</h3>
+<div class="table-wrap"><table><thead><tr><th>Document Type</th><th>Draft by</th><th>Technical Validate by</th><th>Business Validate by</th></tr></thead><tbody><tr><td>TDD/LLD</td><td>Claude</td><td>Architect/Lead</td><td>BA/Product Owner</td></tr><tr><td>Runbook</td><td>Claude</td><td>Support Lead/Developer</td><td>Ops Manager</td></tr><tr><td>Release notes</td><td>Claude</td><td>Release Manager</td><td>Product Owner</td></tr><tr><td>Code comments/README</td><td>Codex</td><td>Developer</td><td>n/a</td></tr><tr><td>API docs</td><td>Codex + Claude</td><td>Integration Lead</td><td>BA if external consumers exist</td></tr></tbody></table></div>
+<h3 id="15-3-best-practice">15.3 Best practice</h3>
+<ul><li>generate first draft with AI</li><li>require named human owner</li><li>store docs in version control or controlled repository</li><li>maintain changelog and review date</li></ul>
+<hr /></section>
+<section id="section-16-use-in-support-and-maintenance"><h2 id="section-16-use-in-support-and-maintenance">Section 16: Use in Support and Maintenance</h2>
+<h3 id="16-1-support-use-cases">16.1 Support use cases</h3>
+<ul><li>incident analysis</li><li>log interpretation</li><li>impact analysis</li><li>root cause drafts</li><li>bug triage</li><li>troubleshooting playbooks</li><li>user issue summaries</li><li>knowledge article creation</li><li>trend detection from recurring incidents</li></ul>
+<h3 id="16-2-example-prompt">16.2 Example prompt</h3>
+<pre><code class="language-text">Analyze the following Salesforce production incident notes and logs.
+Provide:
+1. probable root cause
+2. impacted user groups
+3. immediate containment options
+4. permanent fix options
+5. support-friendly explanation
+6. KB article draft</code></pre>
+<h3 id="16-3-support-anti-patterns">16.3 Support anti-patterns</h3>
+<ul><li>pasting raw customer PII into prompts</li><li>using AI to communicate RCA before technical validation</li><li>skipping incident timelines and evidence</li></ul>
+<hr /></section>
+<section id="section-17-use-for-leadership-pm-and-delivery-management"><h2 id="section-17-use-for-leadership-pm-and-delivery-management">Section 17: Use for Leadership, PM, and Delivery Management</h2>
+<h3 id="17-1-management-use-cases">17.1 Management use cases</h3>
+<ul><li>project planning</li><li>estimate decomposition</li><li>RAID logs</li><li>sprint planning summaries</li><li>steering committee packs</li><li>executive summaries</li><li>stakeholder communication drafts</li><li>adoption plans</li><li>training plans</li></ul>
+<h3 id="17-2-example-outputs">17.2 Example outputs</h3>
+<ul><li>project milestone summary</li><li>risk summary by workstream</li><li>sprint objective draft</li><li>executive one-page decision memo</li><li>training rollout plan</li></ul>
+<h3 id="17-3-prompt-example">17.3 Prompt example</h3>
+<pre><code class="language-text">Create a steering committee summary for a Salesforce transformation.
+Include:
+- progress since last meeting
+- top risks
+- decisions required
+- dependencies
+- budget/scope watch items
+- next 30-day priorities
+
+Audience: CIO, business sponsor, enterprise architect, PMO</code></pre>
+<hr /></section>
+<section id="section-18-role-based-usage-model"><h2 id="section-18-role-based-usage-model">Section 18: Role-Based Usage Model</h2>
+<h3 id="salesforce-admin">Salesforce Admin</h3>
+<ul><li>Key use cases: formulas, Flow logic, page layouts, reports, release notes</li><li>High-value prompts: &quot;draft validation rules with examples&quot;, &quot;explain this Flow fault path&quot;</li><li>Benefits: faster configuration drafting, better documentation</li><li>Risks: incorrect security assumptions, inefficient automation logic</li><li>Best practices: always request test scenarios and performance notes</li></ul>
+<h3 id="salesforce-developer">Salesforce Developer</h3>
+<ul><li>Key use cases: Apex/LWC/test classes/refactoring</li><li>High-value prompts: &quot;review this trigger for bulk and sharing issues&quot;</li><li>Benefits: faster implementation and review</li><li>Risks: subtle limit/security defects</li><li>Best practices: static analysis and peer review mandatory</li></ul>
+<h3 id="technical-lead">Technical Lead</h3>
+<ul><li>Key use cases: code review standards, refactoring plans, release risk analysis</li><li>Benefits: team acceleration, consistency</li><li>Risks: over-trusting generated fixes</li><li>Best practices: use AI to augment review, not replace it</li></ul>
+<h3 id="solution-architect">Solution Architect</h3>
+<ul><li>Key use cases: option analysis, NFRs, security model, integration patterns</li><li>Benefits: faster architecture artifacts</li><li>Risks: elegant but unvalidated design assumptions</li><li>Best practices: cross-check with org constraints and enterprise standards</li></ul>
+<h3 id="enterprise-architect">Enterprise Architect</h3>
+<ul><li>Key use cases: operating model, platform strategy, multi-org decisions, governance</li><li>Benefits: better standardization</li><li>Risks: abstract outputs disconnected from delivery reality</li><li>Best practices: tie recommendations to measurable controls</li></ul>
+<h3 id="qa-engineer">QA Engineer</h3>
+<ul><li>Key use cases: test matrices, edge cases, defect summaries</li><li>Benefits: broader coverage</li><li>Risks: shallow tests if prompts are weak</li><li>Best practices: combine business risk and system dependency views</li></ul>
+<h3 id="business-analyst">Business Analyst</h3>
+<ul><li>Key use cases: stories, acceptance criteria, discovery packs, BRD/FRD</li><li>Benefits: stronger requirement clarity</li><li>Risks: missing domain nuance</li><li>Best practices: use AI to expose questions, not invent answers</li></ul>
+<h3 id="delivery-manager">Delivery Manager</h3>
+<ul><li>Key use cases: status, RAID, release comms, planning artifacts</li><li>Benefits: lower reporting overhead</li><li>Risks: over-polished but inaccurate summaries</li><li>Best practices: verify with workstream leads before sharing</li></ul>
+<h3 id="support-analyst">Support Analyst</h3>
+<ul><li>Key use cases: triage summaries, incident patterns, KB articles</li><li>Benefits: faster issue handling</li><li>Risks: unsupported RCA assumptions</li><li>Best practices: require evidence references in every support draft</li></ul>
+<h3 id="product-owner">Product Owner</h3>
+<ul><li>Key use cases: backlog shaping, priority articulation, acceptance readiness</li><li>Benefits: clearer stories and release communication</li><li>Risks: AI-generated priorities that miss business nuance</li><li>Best practices: keep final prioritization human-owned</li></ul>
+<hr /></section>
+<section id="section-19-prompt-library"><h2 id="section-19-prompt-library">Section 19: Prompt Library</h2>
+<h3 id="requirements">Requirements</h3>
+<pre><code class="language-text">Act as a Salesforce business analyst.
+Convert the following business requirement into epics, features, user stories, acceptance criteria, assumptions, open questions, and edge cases.
+Prioritize standard Salesforce functionality.
+Requirement:
+[paste]</code></pre>
+<h3 id="architecture">Architecture</h3>
+<pre><code class="language-text">Act as a Salesforce solution architect.
+Given the requirements below, propose solution options with pros/cons, risks, scalability considerations, integration implications, and a recommended approach.
+[paste]</code></pre>
+<h3 id="admin-configuration">Admin configuration</h3>
+<pre><code class="language-text">Design the Salesforce admin solution for this requirement.
+Include:
+- objects/fields
+- validation rules
+- Flow outline
+- page layout or Dynamic Forms recommendations
+- permission set impacts
+- reporting impacts</code></pre>
+<h3 id="apex-generation">Apex generation</h3>
+<pre><code class="language-text">Generate Apex for the following requirement using enterprise patterns:
+- with sharing unless justified otherwise
+- bulk-safe
+- null-safe
+- service layer
+- test class included
+- error handling included
+Requirement:
+[paste]</code></pre>
+<h3 id="lwc-generation">LWC generation</h3>
+<pre><code class="language-text">Create an LWC for the following use case.
+Include:
+- HTML
+- JS
+- CSS
+- Apex interface assumptions
+- accessibility notes
+- performance considerations
+- Jest tests outline</code></pre>
+<h3 id="flow-design">Flow design</h3>
+<pre><code class="language-text">Design a Salesforce Flow for this process.
+Include:
+- trigger type
+- entry criteria
+- decisions
+- subflows
+- fault paths
+- naming conventions
+- maintainability recommendations</code></pre>
+<h3 id="integrations">Integrations</h3>
+<pre><code class="language-text">Create an integration design for Salesforce and [system].
+Include:
+- system of record
+- API pattern
+- auth model
+- payload mapping
+- retries
+- logging
+- error handling
+- support ownership</code></pre>
+<h3 id="test-classes">Test classes</h3>
+<pre><code class="language-text">Create comprehensive Salesforce Apex tests for this class.
+Cover:
+- happy path
+- validation failures
+- limit-sensitive behavior
+- bulk scenarios
+- security assumptions</code></pre>
+<h3 id="test-scenarios">Test scenarios</h3>
+<pre><code class="language-text">Generate business and system test scenarios for this process.
+Include:
+- positive
+- negative
+- edge
+- role-based
+- integration failure
+- data quality</code></pre>
+<h3 id="documentation">Documentation</h3>
+<pre><code class="language-text">Turn the following implementation notes into a technical design document.
+Audience: architects, developers, admins, support
+Include assumptions, dependencies, design decisions, risks, and operational notes.</code></pre>
+<h3 id="release-notes">Release notes</h3>
+<pre><code class="language-text">Summarize these deployment changes into:
+1. technical release notes
+2. business release notes
+3. support impact summary
+4. rollback considerations</code></pre>
+<h3 id="support-troubleshooting">Support troubleshooting</h3>
+<pre><code class="language-text">Analyze this incident evidence and produce:
+- probable root cause
+- impact
+- immediate workaround
+- long-term fix
+- required teams
+- draft knowledge article</code></pre>
+<h3 id="data-migration">Data migration</h3>
+<pre><code class="language-text">Create a migration plan for these source datasets into Salesforce.
+Include mappings, transformations, load order, validation impacts, reconciliation, and rollback considerations.</code></pre>
+<h3 id="security-reviews">Security reviews</h3>
+<pre><code class="language-text">Review this Salesforce solution for security and compliance risks.
+Consider:
+- field access
+- sharing
+- secrets
+- integration auth
+- PII exposure
+- auditability
+- admin bypass risks</code></pre>
+<h3 id="code-review">Code review</h3>
+<pre><code class="language-text">Review this Salesforce code with a senior code-review mindset.
+Prioritize:
+- bugs
+- regressions
+- bulkification
+- security
+- readability
+- missing tests</code></pre>
+<h3 id="performance-review">Performance review</h3>
+<pre><code class="language-text">Review this design for Salesforce performance risks.
+Focus on:
+- limits
+- large data volume
+- query selectivity
+- Flow recursion
+- UI performance
+- integration latency</code></pre>
+<h3 id="refactoring">Refactoring</h3>
+<pre><code class="language-text">Refactor this Salesforce implementation for maintainability.
+Keep behavior unchanged.
+Improve structure, naming, reuse, error handling, and tests.</code></pre>
+<h3 id="user-story-writing">User story writing</h3>
+<pre><code class="language-text">Write a user story for Salesforce implementation using:
+As a
+I want
+So that
+
+Also provide acceptance criteria, dependencies, and test notes.</code></pre>
+<h3 id="acceptance-criteria-creation">Acceptance criteria creation</h3>
+<pre><code class="language-text">Create detailed acceptance criteria for this Salesforce requirement.
+Include business rules, permissions, edge cases, and reporting expectations.</code></pre>
+<hr /></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-integrations-quality-and-delivery.html">Previous: Integrations, Quality, and Delivery</a> <a class="button button-primary" href="codex-claude-salesforce-governance-roadmap-and-appendices.html">Next: Governance, Roadmap, and Operating Model</a></div></section></article></div></main><footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer></div>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

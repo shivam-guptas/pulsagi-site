@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>Apex Batch vs Queueable with Apex Cursors in Spring &#39;26 | Pulsagi Articles</title>
+  <meta name="description" content="A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring '26, including limits, patterns, tradeoffs, and when to choose each option." />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="Apex Batch vs Queueable with Apex Cursors in Spring '26" />
+  <meta property="og:description" content="How Batch Apex compares with Queueable plus Apex Cursors in Spring '26, with architecture guidance for high-volume Salesforce processing." />
+  <meta property="og:url" content="https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Apex Batch vs Queueable with Apex Cursors in Spring '26" />
+  <meta name="twitter:description" content="A practical guide to Batch Apex, Queueable Apex, and the new Apex Cursor pattern for large Salesforce workloads." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Apex Batch vs Queueable with Apex Cursors in Spring '26",
+    "description": "A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring '26, including limits, patterns, tradeoffs, and when to choose each option.",
+    "mainEntityOfPage": "https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html",
+    "datePublished": "2026-04-13",
+    "dateModified": "2026-04-13",
+    "image": [
+      "https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com/"
+    },
+    "keywords": [
+      "Apex Cursors",
+      "Batch Apex",
+      "Queueable Apex",
+      "Salesforce Spring 26",
+      "Async Apex"
+    ]
+  }
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S55MNPYJF8');
+</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <div class="shell">
+  <nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Async Apex - Spring '26</div>
+        <h1 class="article-title">Apex Batch vs Queueable with Apex Cursors in Spring '26</h1>
+        <p class="article-standfirst">A practical guide for Salesforce architects and senior developers deciding when Batch Apex still fits best, when Queueable Apex is enough, and where Apex Cursors change the design conversation.</p>
+        <div class="reading-meta">
+          <span>11 min read</span>
+          <span>Published April 13, 2026</span>
+          <span>By Shivam Gupta</span>
+        </div>
+        <div class="author-block">
+          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" />
+          <div class="author-copy">
+            <strong>Shivam Gupta</strong>
+            <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="article-hero-media">
+        <img src="assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" alt="Batch Apex vs Queueable Apex with cursors comparison graphic" loading="eager" />
+        <p>This article focuses on the real architectural tradeoff: when Salesforce's framework-managed batch model is enough and when a cursor-driven Queueable design gives you better control over chunking, retries, and downstream pressure.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Why this matters now</a></li>
+          <li><a href="#batch">Batch Apex</a></li>
+          <li><a href="#queueable">Queueable Apex</a></li>
+          <li><a href="#cursors">Apex Cursors</a></li>
+          <li><a href="#pattern">Cursor plus Queueable pattern</a></li>
+          <li><a href="#pagination">Pagination cursor example</a></li>
+          <li><a href="#comparison">Side-by-side comparison</a></li>
+          <li><a href="#limits">Limits and caveats</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Why this matters now</h2>
+          <p>For a long time, the default answer to "how do we process a very large Salesforce data set?" was simple: use <strong>Batch Apex</strong>. That is still often the right answer. But Spring '26 made the conversation more interesting because <strong>Apex Cursors are now generally available in API v66.0</strong>, and Salesforce explicitly positions cursors plus chained Queueable jobs as a strong alternative for some large-volume workloads.</p>
+          <p>The key shift is not that Batch Apex became obsolete. The shift is that architects now have another native pattern for processing large SOQL result sets in smaller, controlled chunks without being locked into a fixed batch framework lifecycle.</p>
+          <div class="callout">
+            <strong>Quick framing:</strong> Batch Apex is still excellent for uniform, framework-friendly bulk jobs. Cursor-driven Queueable processing becomes compelling when you need more control over fetch size, job chaining, retry decisions, or integration pressure.
+          </div>
+        </section>
+
+        <section id="batch">
+          <h2>Batch Apex</h2>
+          <p>Batch Apex remains Salesforce's most established large-volume asynchronous processing model. It breaks work into chunks and executes each chunk in its own transaction, which is exactly why it has stayed useful for scheduled recalculation, cleanup, archive, and mass-update jobs.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Where it works well</h3>
+              <ul>
+                <li>Nightly or weekly processing on large record sets.</li>
+                <li>Uniform logic where each record costs roughly the same to process.</li>
+                <li>Jobs that benefit from the built-in <code>start</code>, <code>execute</code>, and <code>finish</code> lifecycle.</li>
+                <li>Teams that want a mature and familiar support model.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Why teams still prefer it</h3>
+              <ul>
+                <li>Per-scope transactions naturally reset many transaction-level limits.</li>
+                <li>The operational model is well-known across most Salesforce teams.</li>
+                <li><code>Database.QueryLocator</code> remains a clean fit for classic bulk jobs.</li>
+                <li>Finalization logic fits naturally in <code>finish()</code>.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>global class AccountRiskBatch implements Database.Batchable&lt;SObject&gt; {
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator([
+            SELECT Id, AnnualRevenue, Risk_Score__c
+            FROM Account
+            WHERE Type = 'Merchant'
+        ]);
+    }
+
+    global void execute(Database.BatchableContext bc, List&lt;Account&gt; scope) {
+        for (Account acc : scope) {
+            acc.Risk_Score__c = acc.AnnualRevenue == null ? 0 : acc.AnnualRevenue / 100000;
+        }
+
+        if (!scope.isEmpty()) {
+            update scope;
+        }
+    }
+
+    global void finish(Database.BatchableContext bc) {
+        System.debug('AccountRiskBatch completed');
+    }
+}</code></pre>
+        </section>
+
+        <section id="queueable">
+          <h2>Queueable Apex</h2>
+          <p>Queueable Apex is lighter than Batch Apex and usually easier to reason about. It is a strong fit when you want explicit async orchestration, the ability to pass state between jobs, or callout-friendly transaction boundaries without the full batch framework.</p>
+          <p>Before Spring '26, Queueable was already useful for targeted async work and step-by-step chaining. What changed is that Apex Cursors now let Queueable participate in large-result processing more naturally.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Strengths</h3>
+              <ul>
+                <li>Simple single-<code>execute()</code> structure.</li>
+                <li>Natural fit for chained jobs and orchestration logic.</li>
+                <li>Easier to combine with callouts and downstream throttling rules.</li>
+                <li>Good when you want explicit ownership of progress and retries.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Tradeoffs</h3>
+              <ul>
+                <li>No native <code>finish()</code> lifecycle hook.</li>
+                <li>You own more of the completion, retry, and monitoring design.</li>
+                <li>Without cursors, it is not the best tool for very large query traversal.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>public class MerchantSyncQueueable implements Queueable, Database.AllowsCallouts {
+    private Set&lt;Id&gt; accountIds;
+
+    public MerchantSyncQueueable(Set&lt;Id&gt; accountIds) {
+        this.accountIds = accountIds;
+    }
+
+    public void execute(QueueableContext context) {
+        List&lt;Account&gt; merchants = [
+            SELECT Id, Name, External_Id__c
+            FROM Account
+            WHERE Id IN :accountIds
+        ];
+
+        // Call integration service, update sync status, log results
+    }
+}</code></pre>
+        </section>
+
+        <section id="cursors">
+          <h2>Apex Cursors</h2>
+          <p>Apex Cursors let you work through a large SOQL result set in pieces instead of pulling the full result at once. According to the Apex Developer Guide, cursors can traverse results in parts, fetch from specified positions, and be used with chained Queueable jobs as a powerful alternative to Batch Apex for some high-volume designs.</p>
+          <div class="callout">
+            <strong>Important detail:</strong> Apex Cursors are not a limit bypass. Salesforce documents that <code>fetch()</code> calls count against SOQL query limits, and the fetched rows count against query row limits.
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <h3>What changed in Spring '26</h3>
+              <ul>
+                <li>Apex Cursors are GA in API v66.0.</li>
+                <li>Salesforce now highlights Cursor plus Queueable as a first-class async pattern.</li>
+                <li>Architects can size chunks based on work cost instead of one fixed batch scope.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What makes them useful</h3>
+              <ul>
+                <li>Process large result sets incrementally.</li>
+                <li>Adjust chunk size to match CPU, DML, or callout pressure.</li>
+                <li>Move through the result set by position instead of only a rigid forward scope.</li>
+                <li>Track progress explicitly in application logic.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>Database.Cursor cursor = Database.getCursor(
+    'SELECT Id, Name, Industry FROM Account ORDER BY CreatedDate DESC'
+);
+
+List&lt;Account&gt; firstChunk = (List&lt;Account&gt;) cursor.fetch(0, 200);</code></pre>
+          <p>A useful way to think about standard cursors is that they are <strong>position-based</strong>. You decide the offset and chunk size explicitly. That makes them good for controlled chunk processing even before you add Queueable chaining.</p>
+<pre><code>Database.Cursor cursor = Database.getCursor(
+    'SELECT Id, Name FROM Account ORDER BY Name'
+);
+
+Integer position = 0;
+Integer chunkSize = 100;
+
+while (position &lt; cursor.getNumRecords()) {
+    List&lt;Account&gt; scope = cursor.fetch(position, chunkSize);
+
+    // Process this chunk here.
+
+    position += scope.size();
+}</code></pre>
+        </section>
+
+        <section id="pattern">
+          <h2>Cursor plus Queueable pattern</h2>
+          <p>This is the most interesting new architecture pattern for many enterprise teams. Instead of handing the entire progression to Batch Apex, your code keeps track of cursor position, chooses the next chunk size, decides whether to continue, and can react to downstream conditions in real time.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Good fit</h3>
+              <ul>
+                <li>Integration-heavy jobs where record cost is uneven.</li>
+                <li>Dynamic throttling based on API response or error rate.</li>
+                <li>Pipelines where progress tracking and custom retries matter.</li>
+                <li>Workloads that benefit from smaller or variable transaction size.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What you must design</h3>
+              <ul>
+                <li>Position tracking and stop conditions.</li>
+                <li>Logging, retry behavior, and completion handling.</li>
+                <li>Idempotency for partially completed chains.</li>
+                <li>Operational visibility for support teams.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>public class QueryChunkingQueueable implements Queueable {
+    private Database.Cursor locator;
+    private Integer position;
+
+    public QueryChunkingQueueable() {
+        locator = Database.getCursor(
+            'SELECT Id FROM Contact WHERE LastActivityDate = LAST_N_DAYS:400'
+        );
+        position = 0;
+    }
+
+    public void execute(QueueableContext ctx) {
+        List&lt;Contact&gt; scope = locator.fetch(position, 200);
+        position += scope.size();
+
+        // Do something with this chunk of records.
+
+        if (position &lt; locator.getNumRecords()) {
+            System.enqueueJob(this);
+        }
+    }
+}</code></pre>
+          <p>The practical advantage here is adaptability. If some records trigger callouts, heavy validation, or external scoring while others are lightweight updates, a dynamic fetch strategy can be much easier to tune than a single fixed batch size.</p>
+        </section>
+
+        <section id="pagination">
+          <h2>Pagination cursor example</h2>
+          <p>Salesforce also provides <strong>pagination cursors</strong> for scenarios where the main need is page-oriented navigation rather than background chunk processing. This is more relevant for UI and service-layer pagination than for async job orchestration.</p>
+<pre><code>Database.PaginationCursor pagCursor = Database.getPaginationCursor(
+    'SELECT Id, Name FROM Account ORDER BY Name LIMIT 15'
+);
+
+Database.CursorFetchResult page = pagCursor.fetchPage(0, 5);
+List&lt;Account&gt; records = (List&lt;Account&gt;) page.getRecords();
+
+// Return records plus pagination state to the caller.</code></pre>
+          <div class="callout">
+            <strong>Use the right cursor type:</strong> standard <code>Database.Cursor</code> fits chunked processing, while <code>Database.PaginationCursor</code> is the better fit for page-based navigation patterns.
+          </div>
+        </section>
+
+        <section id="comparison">
+          <h2>Side-by-side comparison</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Batch Apex</th>
+                  <th>Queueable plus Cursor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Processing model</td>
+                  <td>Framework-managed batch execution.</td>
+                  <td>Application-managed chaining and chunk retrieval.</td>
+                </tr>
+                <tr>
+                  <td>Chunk size</td>
+                  <td>Usually fixed for the run.</td>
+                  <td>Can be tuned transaction by transaction.</td>
+                </tr>
+                <tr>
+                  <td>Lifecycle</td>
+                  <td>Built-in <code>start</code>, <code>execute</code>, <code>finish</code>.</td>
+                  <td>No native finish hook; you design completion logic.</td>
+                </tr>
+                <tr>
+                  <td>Operational simplicity</td>
+                  <td>Usually simpler for classic bulk jobs.</td>
+                  <td>More flexible, but more custom responsibility.</td>
+                </tr>
+                <tr>
+                  <td>Integration pressure control</td>
+                  <td>Less adaptive once scope size is chosen.</td>
+                  <td>Stronger when callout cost or downstream limits vary.</td>
+                </tr>
+                <tr>
+                  <td>Best fit</td>
+                  <td>Uniform, recurring, bulk transformations.</td>
+                  <td>Adaptive, integration-heavy, or orchestration-heavy workloads.</td>
+                </tr>
+                <tr>
+                  <td>Developer responsibility</td>
+                  <td>Lower. Salesforce owns more of the mechanics.</td>
+                  <td>Higher. Your code owns more of the orchestration model.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <h3>Choose Batch Apex when</h3>
+              <ul>
+                <li>The work is predictable and mostly uniform per record.</li>
+                <li>You want the simplest native large-volume model.</li>
+                <li>The support team already has a strong batch monitoring model.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Choose Queueable plus Cursor when</h3>
+              <ul>
+                <li>You need to actively control chunk size and chaining.</li>
+                <li>External systems or callouts create variable processing cost.</li>
+                <li>You want custom progress, retry, or throttling behavior.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="limits">
+          <h2>Limits and caveats</h2>
+          <p>Salesforce documents several important cursor constraints, and they matter for architecture. A standard Apex cursor can represent up to <strong>50 million rows</strong>. Fetch calls count against SOQL limits, fetched rows count against query row limits, and cursor-related daily or transaction limits should be monitored through the documented <code>Limits</code> and <code>OrgLimits</code> APIs.</p>
+          <div class="callout">
+            <strong>Design implication:</strong> Apex Cursors improve how you shape work. They do not remove CPU, DML, callout, heap, or SOQL pressure inside a transaction.
+          </div>
+<pre><code>// Create a standard cursor
+Database.Cursor cursor = Database.getCursor(
+    'SELECT Id, Name FROM Account LIMIT 20'
+);
+System.debug('Standard Cursors: ' +
+    Limits.getApexCursors() + '/' + Limits.getLimitApexCursors());
+System.debug('Standard Cursor Rows: ' +
+    Limits.getApexCursorRows() + '/' + Limits.getLimitApexCursorRows());
+
+// Fetch records
+List&lt;Account&gt; batch1 = cursor.fetch(0, 10);
+List&lt;Account&gt; batch2 = cursor.fetch(10, 10);
+
+// Create a pagination cursor
+Database.PaginationCursor pagCursor = Database.getPaginationCursor(
+    'SELECT Id, Name FROM Account LIMIT 15'
+);
+System.debug('Pagination Cursors: ' +
+    Limits.getApexPaginationCursors() + '/' + Limits.getLimitApexPaginationCursors());
+System.debug('Pagination Cursor Rows: ' +
+    Limits.getApexPaginationCursorRows() + '/' + Limits.getLimitApexPaginationCursorRows());
+
+// Fetch a page
+Database.CursorFetchResult page = pagCursor.fetchPage(0, 5);
+
+// Shared fetch call limit
+System.debug('Fetch Calls: ' +
+    Limits.getFetchCallsOnApexCursor() + '/' + Limits.getLimitFetchCallsOnApexCursor());
+
+// Daily org limits
+Map&lt;String, System.OrgLimit&gt; limitMap = OrgLimits.getMap();
+
+System.OrgLimit dailyCursorLimit = limitMap.get('DailyApexCursorLimit');
+System.debug('Daily Cursors: ' +
+    dailyCursorLimit.getValue() + '/' + dailyCursorLimit.getLimit());
+
+System.OrgLimit dailyPCursorLimit = limitMap.get('DailyApexPCursorLimit');
+System.debug('Daily Pagination Cursors: ' +
+    dailyPCursorLimit.getValue() + '/' + dailyPCursorLimit.getLimit());
+
+System.OrgLimit dailyRowsLimit = limitMap.get('DailyApexCursorRowsLimit');
+System.debug('Daily Cursor Rows: ' +
+    dailyRowsLimit.getValue() + '/' + dailyRowsLimit.getLimit());</code></pre>
+          <ul>
+            <li>Batch Apex still gives you a very clean per-scope limit reset model.</li>
+            <li>Cursor plus Queueable gives you more control over how much work enters each transaction.</li>
+            <li>The extra flexibility is useful only if you also design logging, retries, and idempotency carefully.</li>
+            <li>If your team does not need adaptive behavior, Batch Apex may still be the better operational choice.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <div class="callout">
+            <strong>Do not replace Batch Apex just because Apex Cursors are new.</strong> Use cursor-driven Queueable processing when the business or technical workload genuinely benefits from adaptive chunking and explicit orchestration.
+          </div>
+          <ul>
+            <li><strong>Use Batch Apex</strong> for classic large-volume recalculation, cleanup, archive, and scheduled transformation work.</li>
+            <li><strong>Use Queueable Apex</strong> for targeted async orchestration where the record set is already bounded.</li>
+            <li><strong>Use Queueable plus Apex Cursor</strong> when you must traverse very large SOQL results while controlling chunk size, retries, and downstream behavior more deliberately.</li>
+            <li><strong>Keep observability first-class</strong> by storing progress, correlation IDs, error counts, and completion state in a support-friendly model.</li>
+          </ul>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <p>This article aligns with Salesforce's official Spring '26 and Apex documentation describing Apex Cursors as generally available in API v66.0, positioning them as a strong Queueable-based alternative for some large-volume jobs, and documenting their limit model.</p>
+          <ul class="reference-list">
+            <li><a href="https://developer.salesforce.com/blogs/2026/01/developers-guide-to-the-spring-26-release" target="_blank" rel="noopener">The Salesforce Developer's Guide to the Spring '26 Release</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_cursors.htm" target="_blank" rel="noopener">Apex Cursors - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm" target="_blank" rel="noopener">Apex Governor Limits - Salesforce Developer Limits and Allocations Quick Reference</a></li>
+          </ul>
+        </section>
+
+        <section class="related-section">
+          <h2>Related resources</h2>
+          <div class="related-grid">
+            <a class="related-card" href="/articles/">
+              <div class="article-kicker">Salesforce Blog</div>
+              <h3>Browse all Salesforce articles</h3>
+              <p>Open the Salesforce blog landing page and explore more platform-focused writing.</p>
+            </a>
+            <a class="related-card" href="salesforce_approval_vs_flow_approval.html">
+              <div class="article-kicker">Approvals</div>
+              <h3>Salesforce Approval Process vs Flow Approval</h3>
+              <p>Compare auditability, flexibility, and enterprise fit across Salesforce approval models.</p>
+            </a>
+            <a class="related-card" href="/articles/">
+              <div class="article-kicker">Resources</div>
+              <h3>Search all resources</h3>
+              <p>Use the central resource directory to find every article and guide page.</p>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>Salesforce GraphQL API Overview | Pulsagi Articles</title>
+  <meta name="description" content="A docs-first overview of Salesforce GraphQL API with practical request examples, pagination guidance, schema patterns, limits, and current mutation support." />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/articles/graphql_api_overview.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="Salesforce GraphQL API Overview" />
+  <meta property="og:description" content="How Salesforce GraphQL API works in practice, with code examples, schema conventions, pagination guidance, and realistic architecture advice." />
+  <meta property="og:url" content="https://pulsagi.com/articles/graphql_api_overview.html" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce GraphQL API Overview" />
+  <meta name="twitter:description" content="A practical, docs-checked guide to Salesforce GraphQL API with concrete examples." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  
+  <style>
+    .table-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 22px; background: rgba(255, 255, 255, 0.94); }
+    .article-table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    .article-table th, .article-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(221, 211, 194, 0.95); }
+    .article-table th { background: rgba(11, 92, 171, 0.08); color: var(--ink); font-family: "Merriweather", serif; font-size: 0.98rem; }
+    .article-table td { color: var(--muted-strong); }
+    .reference-list { padding-left: 22px; }
+    .content-card h3 { margin-top: 28px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Salesforce GraphQL API Overview",
+    "description": "A docs-first overview of Salesforce GraphQL API with practical request examples, pagination guidance, schema patterns, limits, and current mutation support.",
+    "mainEntityOfPage": "https://pulsagi.com/articles/graphql_api_overview.html",
+    "datePublished": "2026-04-13",
+    "dateModified": "2026-04-13",
+    "image": ["https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80"],
+    "author": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" },
+    "publisher": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" }
+  }
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="shell">
+  <nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">APIs - Data Access</div>
+        <h1 class="article-title">Salesforce GraphQL API Overview</h1>
+        <p class="article-standfirst">A docs-first guide to Salesforce GraphQL API for architects and developers who want fewer round trips, exact field selection, better relationship traversal, and a realistic view of where GraphQL fits better than REST-style access.</p>
+        <div class="reading-meta"><span>12 min read</span><span>Published April 13, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" alt="Graph query and API design" loading="eager" />
+        <p>This article is checked against current Salesforce GraphQL API documentation for request shape, schema conventions, query limits, pagination, and mutation support.</p>
+      </div>
+    </section>
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#meaning">What the API is</a></li>
+          <li><a href="#shape">Endpoint and schema shape</a></li>
+          <li><a href="#examples">Code examples</a></li>
+          <li><a href="#limits">Pagination and limits</a></li>
+          <li><a href="#mutations">Mutations and current scope</a></li>
+          <li><a href="#fit">When GraphQL fits</a></li>
+          <li><a href="#mistakes">Common mistakes</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+      <article class="content-card">
+        <section id="intro">
+          <h2>Introduction</h2>
+          <p>Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits: <strong>field selection</strong>, <strong>resource aggregation</strong>, and <strong>schema introspection</strong>. That sounds abstract until you look at the practical outcome: one screen can often fetch exactly the fields and related records it needs in one request instead of orchestrating several REST calls.</p>
+          <p>The important architectural caveat is that this is not a universal replacement for every Salesforce API. GraphQL in Salesforce is intentionally scoped. It is strongest when you want UI-facing, permission-aware data retrieval across supported objects and relationships, not when you need every platform capability or custom server-side orchestration.</p>
+          <div class="callout"><strong>Short version:</strong> start with GraphQL when a client needs data from multiple related Salesforce resources and you want one stable request shape with exact field control. Reach for Apex, REST, or purpose-built APIs when the use case is broader than UI API-backed data access.</div>
+        </section>
+
+        <section id="meaning">
+          <h2>What the API is, and what it is not</h2>
+          <p>Salesforce documents GraphQL API as a standards-based endpoint that follows the June 2018 GraphQL spec and is available in Enterprise, Performance, Unlimited, and Developer Editions. The Salesforce-specific twist is that the schema is versioned through the normal REST API version path, which keeps the GraphQL contract aligned with platform release behavior.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead><tr><th>Area</th><th>Salesforce GraphQL API</th><th>Why it matters</th></tr></thead>
+              <tbody>
+                <tr><td>Endpoint model</td><td>Single versioned endpoint at <code>/services/data/vXX.X/graphql</code>.</td><td>Clients can fetch multiple supported resources from one endpoint instead of stitching together several REST URLs.</td></tr>
+                <tr><td>Data contract</td><td>The client explicitly selects fields and relationships.</td><td>Payload size stays focused on what the screen or integration step really needs.</td></tr>
+                <tr><td>Security model</td><td>Queries return only objects and fields the running user can access.</td><td>GraphQL convenience does not bypass object-level or field-level security.</td></tr>
+                <tr><td>Platform scope</td><td>Query and mutation coverage is limited to UI API-supported objects and GraphQL-supported operations.</td><td>It is powerful, but it is not a replacement for every REST resource, Tooling API call, or Apex service.</td></tr>
+                <tr><td>Relationship access</td><td>Supports parent and child traversal within documented limits.</td><td>This is one of the biggest practical wins over many REST call chains.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>That last row is usually the real selling point. If a page needs Accounts, a few child Contacts, and some filterable related collections, GraphQL is often a cleaner fit than multiple REST calls or a custom Apex passthrough. If you are building Lightning Web Components specifically, pair this API view with the site's companion article on <a href="graphql_wire_adapter_lwc.html">GraphQL wire adapter for LWC</a>.</p>
+        </section>
+
+        <section id="shape">
+          <h2>Endpoint and schema shape</h2>
+<pre><code>POST https://{MyDomain}.my.salesforce.com/services/data/v66.0/graphql</code></pre>
+          <p>Salesforce documents the request body as a JSON envelope that can include <code>query</code>, <code>operationName</code>, <code>variables</code>, and <code>extensions</code>. The response can contain <code>data</code>, <code>errors</code>, and <code>extensions</code>.</p>
+          <p>Three schema details matter in practice:</p>
+          <ul>
+            <li><strong>Field wrappers:</strong> many UI API-backed fields are returned as objects such as <code>Name { value displayValue }</code> rather than flat scalars. The <code>Id</code> field is a direct scalar, but many business fields are not.</li>
+            <li><strong>Connection-based collections:</strong> record lists use GraphQL connection patterns such as <code>edges</code>, <code>node</code>, and <code>pageInfo</code>, which is how pagination and cursors work.</li>
+            <li><strong>Permission-safe field selection:</strong> in API v65.0 and later, Salesforce supports the <code>@optional</code> directive so a query can still succeed when some fields are inaccessible to the current user.</li>
+          </ul>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead><tr><th>Pattern</th><th>What it means</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr><td>Scalar field</td><td>The value is returned directly.</td><td><code>Id</code></td></tr>
+                <tr><td>Value object field</td><td>The field carries a structured value, and often a formatted display value.</td><td><code>Name { value }</code>, <code>AnnualRevenue { value displayValue }</code></td></tr>
+                <tr><td>Child relationship</td><td>The field returns a connection, not a plain array.</td><td><code>Contacts(first: 3) { edges { node { ... } } }</code></td></tr>
+                <tr><td>Pagination state</td><td>The server returns cursors for fetching the next slice.</td><td><code>pageInfo { hasNextPage endCursor }</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>One more detail from the schema docs is easy to miss and useful when you inspect generated types. For supported sObjects added in API v60.0 and later, the node type name in the schema uses a <code>_Record</code> suffix to avoid naming collisions. That is why newer types can look slightly different from the sObject API name even though the query field itself still uses the object name.</p>
+          <div class="callout"><strong>Useful nuance from the docs:</strong> API version changes are not cosmetic here. GraphQL capabilities such as five-level child-to-parent traversal, aggregate features, optional fields, upper-bound pagination behavior, and mutation support all depend on the version you target in the endpoint path.</div>
+        </section>
+
+        <section id="examples">
+          <h2>Code examples</h2>
+          <p>These examples are intentionally written in the request shapes Salesforce documents today. They are not toy syntax sketches. They show the patterns you actually need to understand: variables, field wrappers, relationship traversal, and cursor pagination.</p>
+
+          <h3>Example 1: Query accounts and related contacts with variables</h3>
+          <p>This is the kind of request that makes GraphQL worth using: one operation, exact fields, and one level of child relationship traversal.</p>
+<pre><code>query AccountsWithContacts($name: String!, $cursor: String) {
+  uiapi {
+    query {
+      Account(first: 5, after: $cursor, where: { Name: { like: $name } }) {
+        edges {
+          cursor
+          node {
+            Id
+            Name { value }
+            Industry { value }
+            Contacts(first: 3) {
+              edges {
+                node {
+                  Id
+                  FirstName { value }
+                  LastName { value }
+                  Email { value }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        totalCount
+      }
+    }
+  }
+}</code></pre>
+<pre><code>{
+  "name": "Acme%",
+  "cursor": null
+}</code></pre>
+          <p>Notice three Salesforce-specific details. <code>Name</code> and <code>Industry</code> are value objects, not plain strings. <code>Contacts</code> is a connection, not a simple array. And the list state is expressed through <code>pageInfo</code> and cursors, not offset-based paging.</p>
+
+          <h3>Example 2: Send the query through the GraphQL endpoint</h3>
+          <p>The request body keeps the GraphQL document stable while moving runtime values into <code>variables</code>. That is cleaner for clients, easier to reuse, and friendlier to tooling.</p>
+<pre><code>curl https://your-domain.my.salesforce.com/services/data/v66.0/graphql \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "operationName": "AccountsWithContacts",
+    "query": "query AccountsWithContacts($name: String!, $cursor: String) { uiapi { query { Account(first: 5, after: $cursor, where: { Name: { like: $name } }) { edges { cursor node { Id Name { value } Industry { value } Contacts(first: 3) { edges { node { Id FirstName { value } LastName { value } Email { value } } } } } } pageInfo { hasNextPage endCursor } totalCount } } } }",
+    "variables": {
+      "name": "Acme%",
+      "cursor": null
+    }
+  }'</code></pre>
+
+          <h3>Example 3: Query multiple objects in one call</h3>
+          <p>Salesforce's examples show that you can retrieve multiple supported objects in one GraphQL request, as long as the operations are independent. What you cannot do is make one part of the same request depend on a value returned by an earlier query field.</p>
+<pre><code>query HomePageData {
+  uiapi {
+    query {
+      Account(first: 3, where: { Industry: { eq: "Manufacturing" } }) {
+        edges {
+          node {
+            Id
+            Name { value }
+          }
+        }
+      }
+      Case(first: 5, where: { Status: { eq: "New" } }) {
+        edges {
+          node {
+            Id
+            CaseNumber { value }
+            Subject { value }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+          <p>This is exactly the sort of homepage or dashboard query shape where GraphQL can remove a lot of client orchestration noise.</p>
+        </section>
+
+        <section id="limits">
+          <h2>Pagination and limits</h2>
+          <p>Salesforce's GraphQL docs are clear that the API uses forward cursor pagination. By default, the first <strong>10</strong> records are returned. If you need more, you use <code>first</code> and then continue with <code>after</code> plus the previous <code>endCursor</code>.</p>
+          <ul>
+            <li><strong>Default page size:</strong> the first 10 records are returned unless you set <code>first</code>.</li>
+            <li><strong>Per-subquery cap:</strong> each subquery can return up to <strong>2,000</strong> records within the same GraphQL query.</li>
+            <li><strong>Subquery count:</strong> each GraphQL query can contain up to <strong>10</strong> subqueries, and each subquery counts as one request for rate limiting.</li>
+            <li><strong>Upper-bound pagination:</strong> in API v59.0 and later, <code>upperBound</code> supports larger paged retrieval patterns with valid values from <strong>200</strong> to <strong>2000</strong>; in API v60.0 and later, you can switch to upper-bound pagination after an initial record-connection query.</li>
+            <li><strong>Relationship limits:</strong> parent-to-child traversal is one level deep, while child-to-parent traversal goes up to five levels in API v58.0 and later.</li>
+          </ul>
+          <div class="callout"><strong>Architectural implication:</strong> GraphQL reduces round trips, but it does not remove the need to think about query cost. A single huge document with many subqueries, child collections, and counts can still be the wrong shape for a page.</div>
+          <p>Another easy-to-miss detail is that newer schema versions expose extra paging helpers such as <code>pageResultCount</code> in API v60.0 and later. Object support also remains bounded. Query coverage follows UI API-supported objects, with documented exceptions such as Task and Event support arriving as Beta for GraphQL query use in API v59.0 and later. If a data model or metadata area is outside the supported GraphQL scope, you still need another API.</p>
+        </section>
+
+        <section id="mutations">
+          <h2>Mutations and current platform scope</h2>
+          <p>Older summaries of Salesforce GraphQL API often describe it as read-only. That is no longer current. Salesforce documentation now states that <strong>Mutation</strong> support was a Beta service in API v59.0 through v65.0 and is <strong>generally available in API v66.0 and later</strong>.</p>
+          <ul>
+            <li><strong>Create, update, delete:</strong> mutation coverage is now part of the official platform story for UI API-supported objects.</li>
+            <li><strong>Transaction behavior:</strong> the mutation <code>uiapi</code> entry point supports an <code>allOrNone</code> option, which defaults to <code>true</code>.</li>
+            <li><strong>Operation references:</strong> Salesforce documents the <code>IdOrRef</code> scalar so one mutation operation can reference an earlier operation in the same request.</li>
+            <li><strong>Still scoped:</strong> mutation support does not turn GraphQL into a universal replacement for Apex services, Composite API, or every Salesforce write path.</li>
+          </ul>
+          <p>That scope matters. If you need a secure, permission-aware create or update flow directly against supported record types, GraphQL is more capable than many older blog posts suggest. If you need business logic in system context, cross-object orchestration, or behavior outside UI API support, Apex still owns that space.</p>
+        </section>
+
+        <section id="fit">
+          <h2>When GraphQL fits best</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Strong fit</h3>
+              <ul>
+                <li>One screen needs several related record collections and you want one request instead of a REST fan-out.</li>
+                <li>You want exact field selection to reduce payload size and overfetching.</li>
+                <li>You want permission-aware reads without writing an Apex aggregation layer.</li>
+                <li>You want the client to own the shape of the response while staying within supported UI API data access.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Use something else when</h3>
+              <ul>
+                <li>You need platform capabilities that are not exposed through the GraphQL schema.</li>
+                <li>You need complex server-side logic, system-context execution, or reusable domain services in Apex.</li>
+                <li>A simpler adapter such as LDS or a small REST resource already matches the use case cleanly.</li>
+                <li>You need a workflow where later steps depend on values produced by earlier queries in the same request.</li>
+              </ul>
+            </div>
+          </div>
+          <p>The cleanest mental model is this: Salesforce GraphQL API is best when the client genuinely benefits from assembling one precise data graph. It is less compelling when the client just needs one record or when the business logic belongs on the server anyway.</p>
+        </section>
+
+        <section id="mistakes">
+          <h2>Common mistakes</h2>
+          <ul>
+            <li><strong>Treating the schema like plain JSON:</strong> many Salesforce fields are value objects such as <code>Name { value }</code>, so a flat-field assumption breaks clients quickly.</li>
+            <li><strong>Assuming all Salesforce objects are queryable:</strong> GraphQL coverage follows documented supported objects, not the entire platform surface.</li>
+            <li><strong>Forgetting the default page size:</strong> if you do not think about <code>first</code>, <code>after</code>, and <code>pageInfo</code>, you will silently under-fetch data.</li>
+            <li><strong>Putting dependent workflows into one query:</strong> multiple object queries are supported, but one query block cannot depend on values returned by another query block in that same execution.</li>
+            <li><strong>Using GraphQL only because it is fashionable:</strong> a simple record view, LDS adapter, or small Apex endpoint can still be the better architecture.</li>
+            <li><strong>Missing version-specific behavior:</strong> optional fields, upper-bound pagination improvements, and mutation support all depend on the API version in the endpoint path.</li>
+          </ul>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <ul class="reference-list">
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/graphql-about.html" target="_blank" rel="noopener">Get Started with GraphQL API</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/intro-graphql-api.html" target="_blank" rel="noopener">What is GraphQL API?</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html" target="_blank" rel="noopener">GraphQL Request and Response Structure</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/schema-conventions.html" target="_blank" rel="noopener">Schema Conventions</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-record-objects.html" target="_blank" rel="noopener">Query Objects</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-record-examples.html" target="_blank" rel="noopener">Query Objects Examples</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/paginate.html" target="_blank" rel="noopener">Paginate with Record Connections</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/paginate-use-upperbound.html" target="_blank" rel="noopener">Paginate with Upper-Bound Limit</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-limits.html" target="_blank" rel="noopener">GraphQL API Query Limitations</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-intro.html" target="_blank" rel="noopener">Mutations Overview</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-use.html" target="_blank" rel="noopener">Send Mutation Requests</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-references.html" target="_blank" rel="noopener">Mutation Field References</a></li>
+          </ul>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

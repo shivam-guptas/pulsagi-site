@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 620" role="img" aria-labelledby="title desc">
+  <title id="title">Custom MCP server configuration screen</title>
+  <desc id="desc">Salesforce Setup screen showing a custom MCP server named Shivam Test MCP with active status, server URL, and authentication details.</desc>
+  <rect width="1240" height="620" fill="#f3f4f6"/>
+  <rect x="0" y="0" width="1240" height="40" fill="#f8f8f2"/>
+  <rect x="34" y="7" width="126" height="28" rx="3" fill="#d8ebff"/>
+  <text x="64" y="25" font-family="Arial, sans-serif" font-size="12" fill="#032d60">Developer Edition</text>
+  <rect x="0" y="41" width="1240" height="42" fill="#ffffff" stroke="#d8dde6"/>
+  <circle cx="24" cy="62" r="11" fill="#00a1e0"/>
+  <circle cx="15" cy="66" r="8" fill="#00a1e0"/>
+  <circle cx="32" cy="68" r="8" fill="#00a1e0"/>
+  <rect x="391" y="50" width="474" height="26" rx="5" fill="#ffffff" stroke="#c9c9c9"/>
+  <text x="429" y="67" font-family="Arial, sans-serif" font-size="11" fill="#4b5563">Search Setup</text>
+  <rect x="0" y="83" width="1240" height="32" fill="#fbfbfb" stroke="#d8dde6"/>
+  <text x="39" y="105" font-family="Arial, sans-serif" font-size="20" fill="#080707">Setup</text>
+  <text x="111" y="104" font-family="Arial, sans-serif" font-size="11" fill="#032d60">Home</text>
+  <text x="154" y="104" font-family="Arial, sans-serif" font-size="11" fill="#032d60">Object Manager</text>
+  <rect x="267" y="83" width="173" height="32" fill="#f4f6f9"/>
+  <text x="286" y="104" font-family="Arial, sans-serif" font-size="11" fill="#032d60">MCP Servers</text>
+  <rect x="267" y="112" width="173" height="3" fill="#1b73e8"/>
+  <rect x="0" y="115" width="196" height="505" fill="#ffffff" stroke="#d8dde6"/>
+  <rect x="10" y="126" width="150" height="24" rx="4" fill="#ffffff" stroke="#a8a8a8"/>
+  <text x="36" y="142" font-family="Arial, sans-serif" font-size="11" fill="#334155">Quick Find</text>
+  <rect x="0" y="170" width="174" height="18" rx="5" fill="#eb445a"/>
+  <text x="11" y="205" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Setup Home</text>
+  <text x="11" y="228" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Salesforce Go</text>
+  <text x="11" y="251" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Service Setup Assistant</text>
+  <text x="11" y="274" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Commerce Setup Assistant</text>
+  <text x="11" y="333" font-family="Arial, sans-serif" font-size="11" fill="#475569" letter-spacing="1">ADMINISTRATION</text>
+  <text x="29" y="466" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Users</text>
+  <text x="29" y="491" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Data</text>
+  <rect x="197" y="115" width="1043" height="505" fill="#f7f7f7"/>
+  <text x="268" y="140" font-family="Arial, sans-serif" font-size="11" fill="#0176d3">SETUP &gt; MCP Servers &gt; Shivam Test MCP</text>
+  <rect x="225" y="135" width="31" height="31" rx="3" fill="#080707"/>
+  <path d="M236 155c6-10 11-16 17-10 4 4 1 10-4 16l-9 11c-4 4-11 0-8-6l10-16" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text x="267" y="166" font-family="Arial, sans-serif" font-size="24" fill="#032d60">Shivam Test MCP</text>
+  <rect x="1034" y="138" width="76" height="25" rx="13" fill="#ffffff" stroke="#ba005c"/>
+  <text x="1048" y="154" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ba005c">Deactivate</text>
+  <rect x="1123" y="138" width="132" height="25" rx="13" fill="#f3f3f3" stroke="#c9c9c9"/>
+  <text x="1145" y="154" font-family="Arial, sans-serif" font-size="11" fill="#9ca3af">Add Server Assets</text>
+  <text x="206" y="206" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Type</text>
+  <text x="206" y="223" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#032d60">Custom</text>
+  <text x="298" y="206" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Server Status</text>
+  <rect x="298" y="214" width="39" height="19" rx="2" fill="#acf3e4"/>
+  <text x="304" y="227" font-family="Arial, sans-serif" font-size="10" fill="#056764">Active</text>
+  <text x="405" y="206" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Tools</text>
+  <text x="405" y="223" font-family="Arial, sans-serif" font-size="10" fill="#032d60">9</text>
+  <text x="476" y="206" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Prompts</text>
+  <text x="476" y="223" font-family="Arial, sans-serif" font-size="10" fill="#032d60">0</text>
+  <rect x="211" y="259" width="1029" height="32" rx="12" fill="#ffffff"/>
+  <text x="222" y="279" font-family="Arial, sans-serif" font-size="12" fill="#032d60">Details</text>
+  <text x="278" y="279" font-family="Arial, sans-serif" font-size="12" fill="#3f3f46">Tools</text>
+  <text x="320" y="279" font-family="Arial, sans-serif" font-size="12" fill="#3f3f46">Prompts</text>
+  <rect x="212" y="288" width="54" height="3" fill="#1b73e8"/>
+  <rect x="221" y="302" width="1019" height="39" fill="#eeeeee"/>
+  <text x="251" y="327" font-family="Arial, sans-serif" font-size="16" fill="#032d60">MCP Server Details</text>
+  <text x="232" y="361" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#52525b">API Name</text>
+  <text x="232" y="385" font-family="Arial, sans-serif" font-size="11" fill="#52525b">ShivamTestMCP</text>
+  <text x="232" y="408" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#52525b">Description</text>
+  <text x="232" y="431" font-family="Arial, sans-serif" font-size="11" fill="#52525b">ShivamTestMCP</text>
+  <rect x="221" y="453" width="1019" height="39" fill="#eeeeee"/>
+  <text x="251" y="478" font-family="Arial, sans-serif" font-size="16" fill="#032d60">Authentication Details</text>
+  <text x="232" y="516" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#52525b">Server URL</text>
+  <text x="232" y="534" font-family="Arial, sans-serif" font-size="11" fill="#0176d3">https://api.salesforce.com/platform/mcp/v1/custom/ShivamTestMCP</text>
+  <rect x="221" y="556" width="1019" height="39" fill="#eeeeee"/>
+  <text x="251" y="581" font-family="Arial, sans-serif" font-size="16" fill="#032d60">Additional Information</text>
+</svg>

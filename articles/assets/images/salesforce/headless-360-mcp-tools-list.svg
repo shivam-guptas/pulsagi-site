@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1332 600" role="img" aria-labelledby="title desc">
+  <title id="title">Tools under MCP server configuration</title>
+  <desc id="desc">Salesforce Setup screen showing the Tools tab for a custom MCP server with tools such as getRelatedRecords, listRecentSObjectRecords, soqlQuery, find, and getUserInfo.</desc>
+  <rect width="1332" height="600" fill="#f4f6f9"/>
+  <rect x="0" y="0" width="1332" height="37" fill="#f8f8f2"/>
+  <text x="39" y="25" font-family="Arial, sans-serif" font-size="12" fill="#032d60">Developer Edition</text>
+  <rect x="0" y="38" width="1332" height="42" fill="#ffffff" stroke="#d8dde6"/>
+  <circle cx="22" cy="59" r="10" fill="#00a1e0"/>
+  <circle cx="14" cy="63" r="7" fill="#00a1e0"/>
+  <circle cx="30" cy="64" r="7" fill="#00a1e0"/>
+  <rect x="385" y="46" width="474" height="26" rx="5" fill="#ffffff" stroke="#c9c9c9"/>
+  <text x="428" y="63" font-family="Arial, sans-serif" font-size="11" fill="#4b5563">Search Setup</text>
+  <rect x="0" y="80" width="1332" height="32" fill="#fbfbfb" stroke="#d8dde6"/>
+  <text x="39" y="102" font-family="Arial, sans-serif" font-size="20" fill="#080707">Setup</text>
+  <text x="112" y="101" font-family="Arial, sans-serif" font-size="11" fill="#032d60">Home</text>
+  <text x="149" y="101" font-family="Arial, sans-serif" font-size="11" fill="#032d60">Object Manager</text>
+  <rect x="258" y="80" width="173" height="32" fill="#f4f6f9"/>
+  <text x="277" y="101" font-family="Arial, sans-serif" font-size="11" fill="#032d60">MCP Servers</text>
+  <rect x="258" y="109" width="173" height="3" fill="#1b73e8"/>
+  <rect x="0" y="112" width="193" height="488" fill="#ffffff" stroke="#d8dde6"/>
+  <rect x="8" y="123" width="146" height="24" rx="4" fill="#ffffff" stroke="#a8a8a8"/>
+  <text x="35" y="139" font-family="Arial, sans-serif" font-size="11" fill="#334155">Quick Find</text>
+  <rect x="0" y="166" width="173" height="18" rx="5" fill="#eb445a"/>
+  <text x="9" y="202" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Setup Home</text>
+  <text x="9" y="225" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Salesforce Go</text>
+  <text x="9" y="248" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Service Setup Assistant</text>
+  <text x="9" y="298" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Release Updates</text>
+  <text x="9" y="428" font-family="Arial, sans-serif" font-size="11" fill="#475569" letter-spacing="1">ADMINISTRATION</text>
+  <text x="30" y="463" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Users</text>
+  <text x="30" y="488" font-family="Arial, sans-serif" font-size="11" fill="#1f2937">Data</text>
+  <rect x="193" y="112" width="1139" height="488" fill="#f7f7f7"/>
+  <text x="260" y="122" font-family="Arial, sans-serif" font-size="11" fill="#0176d3">SETUP &gt; MCP Servers &gt; Shivam Test MCP</text>
+  <rect x="220" y="118" width="31" height="31" rx="3" fill="#080707"/>
+  <path d="M231 138c6-10 11-16 17-10 4 4 1 10-4 16l-9 11c-4 4-11 0-8-6l10-16" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text x="261" y="150" font-family="Arial, sans-serif" font-size="24" fill="#032d60">Shivam Test MCP</text>
+  <rect x="1028" y="121" width="76" height="25" rx="13" fill="#ffffff" stroke="#ba005c"/>
+  <text x="1043" y="137" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#ba005c">Deactivate</text>
+  <rect x="1119" y="121" width="128" height="25" rx="13" fill="#f3f3f3" stroke="#c9c9c9"/>
+  <text x="1136" y="137" font-family="Arial, sans-serif" font-size="11" fill="#9ca3af">Add Server Assets</text>
+  <rect x="1250" y="121" width="42" height="25" rx="13" fill="#ffffff" stroke="#8c8c8c"/>
+  <text x="1261" y="137" font-family="Arial, sans-serif" font-size="11" fill="#3f3f46">Edit</text>
+  <text x="206" y="191" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Type</text>
+  <text x="206" y="208" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#032d60">Custom</text>
+  <text x="291" y="191" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Server Status</text>
+  <rect x="292" y="197" width="39" height="19" rx="2" fill="#acf3e4"/>
+  <text x="298" y="210" font-family="Arial, sans-serif" font-size="10" fill="#056764">Active</text>
+  <text x="397" y="191" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Tools</text>
+  <text x="399" y="208" font-family="Arial, sans-serif" font-size="10" fill="#032d60">9</text>
+  <text x="471" y="191" font-family="Arial, sans-serif" font-size="10" fill="#1f2937">Prompts</text>
+  <text x="471" y="208" font-family="Arial, sans-serif" font-size="10" fill="#032d60">0</text>
+  <rect x="209" y="243" width="1122" height="357" rx="14" fill="#ffffff"/>
+  <text x="218" y="264" font-family="Arial, sans-serif" font-size="12" fill="#3f3f46">Details</text>
+  <text x="275" y="264" font-family="Arial, sans-serif" font-size="12" fill="#032d60">Tools</text>
+  <text x="316" y="264" font-family="Arial, sans-serif" font-size="12" fill="#3f3f46">Prompts</text>
+  <rect x="262" y="272" width="39" height="3" fill="#1b73e8"/>
+  <g font-family="Arial, sans-serif">
+    <rect x="220" y="286" width="1098" height="59" rx="8" fill="#ffffff" stroke="#dddbda"/>
+    <text x="238" y="310" font-size="23" fill="#64748b">&gt;</text>
+    <text x="256" y="306" font-size="12" font-weight="700" fill="#3f3f46">getRelatedRecords</text>
+    <text x="365" y="306" font-size="11" font-style="italic" fill="#3f3f46">(getRelatedRecords platform_sobject_all)</text>
+    <text x="256" y="331" font-size="11" fill="#3f3f46">Retrieves child records related to a parent record by traversing relationships. Use this instead of a separate SOQL query when you already have a record ID.</text>
+    <rect x="1193" y="297" width="44" height="25" rx="13" fill="#ffffff" stroke="#8c8c8c"/>
+    <text x="1209" y="314" font-size="10" fill="#3f3f46">Edit</text>
+    <rect x="1241" y="297" width="62" height="25" rx="13" fill="#f8f8f8" stroke="#c9c9c9"/>
+    <text x="1255" y="314" font-size="10" fill="#9ca3af">Remove</text>
+    <rect x="220" y="352" width="1098" height="59" rx="8" fill="#ffffff" stroke="#dddbda"/>
+    <text x="238" y="376" font-size="23" fill="#64748b">&gt;</text>
+    <text x="256" y="372" font-size="12" font-weight="700" fill="#3f3f46">listRecentSObjectRecords</text>
+    <text x="406" y="372" font-size="11" font-style="italic" fill="#3f3f46">(listRecentSObjectRecords platform_sobject_all)</text>
+    <text x="256" y="397" font-size="11" fill="#3f3f46">Returns records of a specific type that the user recently viewed or modified. Use this as a starting point for recent accounts, cases, or opportunities.</text>
+    <rect x="1193" y="363" width="44" height="25" rx="13" fill="#ffffff" stroke="#8c8c8c"/>
+    <text x="1209" y="380" font-size="10" fill="#3f3f46">Edit</text>
+    <rect x="1241" y="363" width="62" height="25" rx="13" fill="#f8f8f8" stroke="#c9c9c9"/>
+    <text x="1255" y="380" font-size="10" fill="#9ca3af">Remove</text>
+    <rect x="220" y="418" width="1098" height="59" rx="8" fill="#ffffff" stroke="#dddbda"/>
+    <text x="238" y="442" font-size="23" fill="#64748b">&gt;</text>
+    <text x="256" y="438" font-size="12" font-weight="700" fill="#3f3f46">soqlQuery</text>
+    <text x="318" y="438" font-size="11" font-style="italic" fill="#3f3f46">(soqlQuery platform_sobject_all)</text>
+    <text x="256" y="463" font-size="11" fill="#3f3f46">Executes a SOQL query to retrieve Salesforce records. Use this when you know which object and fields you need.</text>
+    <rect x="1193" y="429" width="44" height="25" rx="13" fill="#ffffff" stroke="#8c8c8c"/>
+    <text x="1209" y="446" font-size="10" fill="#3f3f46">Edit</text>
+    <rect x="1241" y="429" width="62" height="25" rx="13" fill="#f8f8f8" stroke="#c9c9c9"/>
+    <text x="1255" y="446" font-size="10" fill="#9ca3af">Remove</text>
+    <rect x="220" y="484" width="1098" height="59" rx="8" fill="#ffffff" stroke="#dddbda"/>
+    <text x="238" y="508" font-size="23" fill="#64748b">&gt;</text>
+    <text x="256" y="504" font-size="12" font-weight="700" fill="#3f3f46">find</text>
+    <text x="289" y="504" font-size="11" font-style="italic" fill="#3f3f46">(find platform_sobject_all)</text>
+    <text x="256" y="529" font-size="11" fill="#3f3f46">Executes a text search across multiple objects simultaneously. Use this when searching for a term that may exist in several object types.</text>
+    <rect x="1193" y="495" width="44" height="25" rx="13" fill="#ffffff" stroke="#8c8c8c"/>
+    <text x="1209" y="512" font-size="10" fill="#3f3f46">Edit</text>
+    <rect x="1241" y="495" width="62" height="25" rx="13" fill="#f8f8f8" stroke="#c9c9c9"/>
+    <text x="1255" y="512" font-size="10" fill="#9ca3af">Remove</text>
+    <rect x="220" y="550" width="1098" height="50" rx="8" fill="#ffffff" stroke="#dddbda"/>
+    <text x="238" y="581" font-size="23" fill="#64748b">&gt;</text>
+    <text x="256" y="573" font-size="12" font-weight="700" fill="#3f3f46">getUserInfo</text>
+    <text x="337" y="573" font-size="11" font-style="italic" fill="#3f3f46">(getUserInfo platform_sobject_all)</text>
+    <text x="256" y="592" font-size="11" fill="#3f3f46">Returns current user's identity, role, and preferences. Call this when you need to personalize responses or understand user context.</text>
+  </g>
+</svg>

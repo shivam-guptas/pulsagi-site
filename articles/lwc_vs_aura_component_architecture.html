@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>LWC vs Aura in Salesforce | Pulsagi Articles</title>
+  <meta name="description" content="A practical guide to Lightning Web Components versus Aura, including official Salesforce guidance on when to choose LWC and when Aura still matters." />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="LWC vs Aura in Salesforce" />
+  <meta property="og:description" content="How Salesforce frames the choice between Lightning Web Components and Aura." />
+  <meta property="og:url" content="https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LWC vs Aura in Salesforce" />
+  <meta name="twitter:description" content="A practical component architecture guide for Salesforce teams choosing between LWC and Aura." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"LWC vs Aura in Salesforce","description":"A practical guide to Lightning Web Components versus Aura, including official Salesforce guidance on when to choose LWC and when Aura still matters.","mainEntityOfPage":"https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html","datePublished":"2026-04-13","dateModified":"2026-04-13","image":["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"],"author":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com/"},"publisher":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com/"}}</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="shell"><nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav><main class="page-shell article-page"><section class="article-hero"><div class="article-hero-copy"><div class="eyebrow">Component Architecture</div><h1 class="article-title">LWC vs Aura in Salesforce</h1><p class="article-standfirst">A practical guide to when Salesforce recommends Lightning Web Components, what Aura still does, and how teams should make the choice in modern orgs.</p><div class="reading-meta"><span>8 min read</span><span>Published April 13, 2026</span><span>By Shivam Gupta</span></div><div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div></div><div class="article-hero-media"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Component architecture design" loading="eager" /><p>Salesforceâ€™s own guidance is clear: prefer LWC unless you specifically need something Aura still provides.</p></div></section><div class="article-layout"><aside class="toc-card" aria-label="Table of contents"><h2>Table of contents</h2><ol><li><a href="#intro">Introduction</a></li><li><a href="#guidance">Salesforce guidance</a></li><li><a href="#when-aura">When Aura still matters</a></li><li><a href="#example">Example choices</a></li><li><a href="#references">References</a></li></ol></aside><article class="content-card"><section id="intro"><h2>Introduction</h2><p>Salesforce recommends Lightning Web Components as the preferred programming model for building UI on the platform. Aura still exists and still powers important parts of the platform, but it is no longer the default choice for new component work.</p><div class="callout"><strong>Practical default:</strong> start with LWC first and justify Aura only when there is a documented gap you actually need.</div></section><section id="guidance"><h2>Salesforce guidance</h2><ul><li>LWC is the preferred model for new UI development.</li><li>LWC aligns more closely with modern web standards.</li><li>Aura remains relevant for some capabilities, interoperability scenarios, and legacy investments.</li></ul></section><section id="when-aura"><h2>When Aura still matters</h2><p>Even in modern orgs, Aura can still appear where older implementations exist or where some platform features historically depended on it. The most important architectural point is that legacy relevance is not the same thing as a default for new work.</p></section><section id="example"><h2>Example choices</h2><p>A new record dashboard, utility UI, or reusable component library should almost always start in LWC. An older complex Aura implementation may remain in Aura temporarily if rewriting it creates more risk than value in the near term. The right question is not â€œCan Aura do this?â€ but â€œDoes this new requirement actually need Aura at all?â€</p></section><section id="references"><h2>References</h2><ul class="reference-list"><li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/get-started-introduction.html" target="_blank" rel="noopener">Introduction to Lightning Web Components</a></li><li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/get-started-component-comparison.html" target="_blank" rel="noopener">How to Choose Between Lightning Web Components and Aura Components</a></li></ul></section></article></div></main><footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer></div></body></html>
+
+
+
+
+
+
+

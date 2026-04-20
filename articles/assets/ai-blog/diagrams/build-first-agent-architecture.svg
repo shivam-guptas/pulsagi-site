@@ -1,0 +1,78 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title>First Agent Build Stack</title>
+  <desc>A narrow first release should keep the runtime surface small and measurable.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.99"/>
+      <stop offset="100%" stop-color="#ecfdf5" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d1fae5"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="860" rx="34" fill="#f8fafc"/>
+  <rect x="26" y="26" width="1348" height="808" rx="30" fill="url(#bg)"/>
+  <rect x="50" y="150" width="1300" height="626" rx="36" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="78" y="92" font-family="'Merriweather', serif" font-size="42" fill="#ffffff" font-weight="700">First Agent Build Stack</text>
+  <text x="78" y="132" font-family="'Source Sans 3', sans-serif" font-size="24" fill="#d1fae5">A narrow first release should keep the runtime surface small and measurable.</text>
+  <path d="M414 292 H544" stroke="#d1fae5" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M854 292 H984" stroke="#d1fae5" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M700 376 V516" stroke="#d1fae5" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M414 610 H544" stroke="#d1fae5" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M854 610 H984" stroke="#d1fae5" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="104" y="198" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="122" y="216" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="146" cy="238" r="20" fill="#14532d"/>
+    <text x="140" y="244" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">1</text>
+    <text x="188" y="276" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Builder</text>
+    <text x="188" y="318" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="188" dy="0">Agent role and channel</tspan></text>
+  </g>
+  <g>
+    <rect x="544" y="198" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="562" y="216" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="586" cy="238" r="20" fill="#14532d"/>
+    <text x="580" y="244" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">2</text>
+    <text x="628" y="276" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Topic</text>
+    <text x="628" y="318" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="628" dy="0">Single job to be done</tspan></text>
+  </g>
+  <g>
+    <rect x="984" y="198" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="1002" y="216" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="1026" cy="238" r="20" fill="#14532d"/>
+    <text x="1020" y="244" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">3</text>
+    <text x="1068" y="276" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Prompt</text>
+    <text x="1068" y="318" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="1068" dy="0">Instructions and</tspan><tspan x="1068" dy="28">variables</tspan></text>
+  </g>
+  <g>
+    <rect x="104" y="516" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="122" y="534" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="146" cy="556" r="20" fill="#14532d"/>
+    <text x="140" y="562" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">4</text>
+    <text x="188" y="594" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Data</text>
+    <text x="188" y="636" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="188" dy="0">Record context and</tspan><tspan x="188" dy="28">knowledge</tspan></text>
+  </g>
+  <g>
+    <rect x="544" y="516" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="562" y="534" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="586" cy="556" r="20" fill="#14532d"/>
+    <text x="580" y="562" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">5</text>
+    <text x="628" y="594" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Actions</text>
+    <text x="628" y="636" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="628" dy="0">One or two safe</tspan><tspan x="628" dy="28">automations</tspan></text>
+  </g>
+  <g>
+    <rect x="984" y="516" width="312" height="176" rx="28" fill="url(#panel)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="1002" y="534" width="276" height="140" rx="22" fill="rgba(255,255,255,0.56)" stroke="rgba(255,255,255,0.5)"/>
+    <circle cx="1026" cy="556" r="20" fill="#14532d"/>
+    <text x="1020" y="562" font-family="'IBM Plex Mono', monospace" font-size="16" fill="#ffffff" font-weight="700">6</text>
+    <text x="1068" y="594" font-family="'Source Sans 3', sans-serif" font-size="31" fill="#0f172a" font-weight="700">Testing</text>
+    <text x="1068" y="636" font-family="'Source Sans 3', sans-serif" font-size="22" fill="#475569"><tspan x="1068" dy="0">Preview, eval, pilot</tspan></text>
+  </g>
+</svg>

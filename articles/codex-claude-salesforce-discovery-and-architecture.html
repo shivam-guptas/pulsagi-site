@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.ico" sizes="any" /><title>Discovery and Architecture | Pulsagi Articles</title><meta name="description" content="Requirements translation, solution design, architecture options, NFRs, and org strategy." /><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html" /><meta property="og:type" content="article" /><meta property="og:site_name" content="Pulsagi" /><meta property="og:title" content="Discovery and Architecture" /><meta property="og:description" content="Requirements translation, solution design, architecture options, NFRs, and org strategy." /><meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html" /><meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Discovery and Architecture" /><meta name="twitter:description" content="Requirements translation, solution design, architecture options, NFRs, and org strategy." /><meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Discovery and Architecture | Codex and Claude in Salesforce",
+  "description": "Requirements translation, solution design, architecture options, NFRs, and org strategy.",
+  "mainEntityOfPage": "https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html",
+  "image": [
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com/"
+  }
+}</script><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S55MNPYJF8');
+</script>  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="pulsagi-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" class="nav-pill">Articles</a></li>
+  </ul>
+</nav>
+<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Discovery and Architecture</h1><p class="article-standfirst">Requirements translation, solution design, architecture options, NFRs, and org strategy.</p><div class="reading-meta"><span>16 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-5-use-in-requirements-gathering-and-discovery">Section 5: Use in Requirements Gathering and Discovery</a></li><li><a href="#section-6-use-in-solution-design-and-architecture">Section 6: Use in Solution Design and Architecture</a></li></ol></aside><article class="content-card doc-content"><section id="section-5-use-in-requirements-gathering-and-discovery"><h2 id="section-5-use-in-requirements-gathering-and-discovery">Section 5: Use in Requirements Gathering and Discovery</h2>
+<h3 id="5-1-core-uses">5.1 Core uses</h3>
+<p>Codex and Claude can help with:</p>
+<ul><li>converting business needs into epics, features, user stories, and tasks</li><li>surfacing ambiguous statements and missing decisions</li><li>generating acceptance criteria</li><li>identifying edge cases and exception paths</li><li>preparing workshop questions</li><li>creating discovery questionnaires</li><li>mapping business processes to Salesforce capabilities</li><li>producing BRD/FRD drafts</li><li>performing gap analysis between current state and target state</li></ul>
+<h3 id="5-2-recommended-split">5.2 Recommended split</h3>
+<ul><li>Claude: discovery synthesis, BRD/FRD drafting, workshop questions, process decomposition</li><li>Codex: validating whether requested behavior maps to current metadata/code patterns, identifying technical debt in existing implementation</li></ul>
+<h3 id="5-3-use-case-examples">5.3 Use case examples</h3>
+<p>#### Lead management</p>
+<p>AI can:</p>
+<ul><li>convert lead lifecycle workshops into stories like dedupe, routing, SLA follow-up, and conversion</li><li>identify missing requirements such as round-robin logic, territory exceptions, duplicate handling, and assignment overrides</li><li>map needs to Sales Cloud, Assignment Rules, Flow, duplicate rules, and custom objects where needed</li></ul>
+<p><strong>Sample prompt</strong></p>
+<pre><code class="language-text">Act as a senior Salesforce business analyst and solution architect.
+Using the workshop notes below, create:
+1. epics
+2. features
+3. user stories
+4. acceptance criteria
+5. edge cases
+6. Salesforce feature mapping
+
+Business domain: lead management
+Priority: standard Salesforce first, custom only where necessary
+Workshop notes:
+[paste notes]</code></pre>
+<p>#### Loan processing</p>
+<p>AI can:</p>
+<ul><li>decompose intake, document validation, underwriting review, approval routing, and disbursement</li><li>identify where standard objects are insufficient and custom objects are needed</li><li>generate process questions around KYC, consent, audit, and exception handling</li></ul>
+<p>#### Customer service workflow</p>
+<p>AI can:</p>
+<ul><li>define service request lifecycle</li><li>map case types, entitlement checks, escalation triggers, and omni-channel routing</li><li>identify KB, bots, handoff, and SLA reporting needs</li></ul>
+<p>#### Approval flows</p>
+<p>AI can:</p>
+<ul><li>identify approval levels, delegated approvers, fallback approvers, bypass logic, and audit requirements</li><li>draft approval matrices</li></ul>
+<p>#### Partner portal requirements</p>
+<p>AI can:</p>
+<ul><li>convert partner onboarding notes into Experience Cloud capability backlog</li><li>identify profile, permission, sharing, and role model questions</li></ul>
+<h3 id="5-4-discovery-framework">5.4 Discovery framework</h3>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Questions AI should help surface</th></tr></thead><tbody><tr><td>Process</td><td>What is the start, end, approval, and exception path?</td></tr><tr><td>Data</td><td>Which records are created, updated, validated, or migrated?</td></tr><tr><td>Security</td><td>Who can see, edit, approve, export, or escalate?</td></tr><tr><td>Integration</td><td>Which external systems are sources of truth?</td></tr><tr><td>Reporting</td><td>What metrics define success and operational control?</td></tr><tr><td>Compliance</td><td>What retention, masking, consent, or audit needs exist?</td></tr></tbody></table></div>
+<h3 id="5-5-checklist">5.5 Checklist</h3>
+<ul><li>Have all primary personas been identified?</li><li>Are exception paths documented?</li><li>Are success metrics defined?</li><li>Are integration boundaries identified?</li><li>Are compliance constraints captured?</li><li>Are assumptions and open questions logged?</li></ul>
+<hr /></section>
+<section id="section-6-use-in-solution-design-and-architecture"><h2 id="section-6-use-in-solution-design-and-architecture">Section 6: Use in Solution Design and Architecture</h2>
+<h3 id="6-1-what-ai-can-do-well-in-architecture">6.1 What AI can do well in architecture</h3>
+<p>AI can rapidly turn requirements into:</p>
+<ul><li>solution options</li><li>standard-vs-custom recommendations</li><li>object and field models</li><li>automation strategy options</li><li>security model candidates</li><li>integration patterns</li><li>migration strategies</li><li>multi-org versus single-org considerations</li><li>NFR lists</li><li>risk matrices</li></ul>
+<h3 id="6-2-standard-versus-custom-analysis">6.2 Standard versus custom analysis</h3>
+<p><strong>Prompt template</strong></p>
+<pre><code class="language-text">Act as a Salesforce solution architect.
+Given these requirements, propose three solution options:
+1. standard-first
+2. hybrid
+3. custom-heavy
+
+For each option include:
+- Salesforce features used
+- custom build required
+- pros
+- cons
+- risks
+- scalability implications
+- maintainability implications
+- security considerations
+- recommended option</code></pre>
+<h3 id="6-3-design-areas">6.3 Design areas</h3>
+<p>#### Object model and field design</p>
+<p>AI can draft:</p>
+<ul><li>entity relationships</li><li>field purpose tables</li><li>ownership rules</li><li>indexing considerations</li><li>archival concerns</li></ul>
+<p>#### Automation strategy</p>
+<p>AI can help decide:</p>
+<ul><li>record-triggered flow versus Apex</li><li>before-save versus after-save flow</li><li>when subflows are appropriate</li><li>where async patterns are needed</li></ul>
+<p>#### Integration architecture</p>
+<p>AI can outline:</p>
+<ul><li>sync versus async tradeoffs</li><li>middleware versus direct API</li><li>platform event use</li><li>retry and idempotency strategy</li><li>ownership of transformation logic</li></ul>
+<p>#### Security model</p>
+<p>AI can structure:</p>
+<ul><li>role hierarchy</li><li>profile/permission set strategy</li><li>sharing model</li><li>field-level security matrix</li><li>sensitive data controls</li></ul>
+<p>#### Service architecture</p>
+<p>AI can help with:</p>
+<ul><li>omni-channel design</li><li>case routing</li><li>entitlement model</li><li>escalation model</li><li>service console design</li></ul>
+<p>#### Experience Cloud design</p>
+<p>AI can support:</p>
+<ul><li>audience segmentation</li><li>external user sharing</li><li>authentication patterns</li><li>content architecture</li><li>portal self-service journeys</li></ul>
+<p>#### Org strategy and operating topology</p>
+<p>AI can help frame:</p>
+<ul><li>single-org versus multi-org decision factors</li><li>regional, business-unit, or regulatory partitioning needs</li><li>integration and data residency implications</li><li>support and CoE operating model consequences</li></ul>
+<p>#### Non-functional requirements and scalability</p>
+<p>AI can draft NFR sets covering:</p>
+<ul><li>transaction volumes</li><li>latency expectations</li><li>resiliency and retry posture</li><li>auditability</li><li>maintainability</li><li>observability</li><li>supportability</li><li>large data volume considerations</li></ul>
+<p>#### Performance considerations</p>
+<p>AI can help identify:</p>
+<ul><li>Flow recursion and transaction depth risks</li><li>unselective query patterns</li><li>synchronous integration bottlenecks</li><li>UI rendering and LWC state churn issues</li><li>high-volume sharing recalculation concerns</li></ul>
+<p>#### Data migration planning</p>
+<p>AI can structure:</p>
+<ul><li>object sequencing</li><li>mapping sheets</li><li>validation rules to disable/enable</li><li>cutover windows</li><li>reconciliation metrics</li></ul>
+<h3 id="6-4-architecture-review-use">6.4 Architecture review use</h3>
+<p>AI is valuable in architecture review boards for:</p>
+<ul><li>design challenge questions</li><li>anti-pattern detection</li><li>tradeoff summaries</li><li>readiness checklists</li><li>ADR drafting</li></ul>
+<h3 id="6-5-pros-cons-matrix-example">6.5 Pros/cons matrix example</h3>
+<div class="table-wrap"><table><thead><tr><th>Option</th><th>Pros</th><th>Cons</th><th>Best Fit</th></tr></thead><tbody><tr><td>Standard Sales Cloud routing</td><td>low maintenance, native reporting</td><td>limited custom prioritization logic</td><td>low complexity routing</td></tr><tr><td>Flow-based orchestration</td><td>admin-manageable, visible logic</td><td>can sprawl, harder to debug at scale</td><td>medium complexity</td></tr><tr><td>Apex orchestration</td><td>full control, complex logic support</td><td>higher maintenance, dev dependency</td><td>high complexity or heavy integration</td></tr></tbody></table></div>
+<h3 id="6-6-human-review-required">6.6 Human review required</h3>
+<ul><li>Validate every design option against actual licensing, org constraints, and integration ownership.</li><li>Do not accept AI recommendations for sharing or encryption without security review.</li><li>Pressure-test AI-generated designs against transaction volume and support model.</li></ul>
+<hr /></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-overview.html">Previous: Overview, Comparison, and Lifecycle</a> <a class="button button-primary" href="codex-claude-salesforce-admin-development-and-automation.html">Next: Admin, Development, and Automation</a></div></section></article></div></main><footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer></div>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,25 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pulsagi Articles | AI, Salesforce, Developer Tools, and Safety Guides</title>
-  <meta name="description" content="Browse articles from Pulsagi about AI engineering, Salesforce architecture, developer tools, browser utilities, scam safety, and practical software workflows." />
-  <meta name="keywords" content="Pulsagi articles, AI engineering articles, Salesforce architecture guides, developer tooling, browser tools, scam safety guides, Shivam Gupta" />
+  <meta name="description" content="Browse Pulsagi articles about AI engineering, Salesforce architecture, Agentforce, developer tools, browser utilities, and practical software workflows." />
+  <meta name="keywords" content="Pulsagi articles, AI engineering articles, Salesforce architecture guides, Agentforce, developer tooling, browser tools, Shivam Gupta" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="theme-color" content="#24313a" />
   <link rel="canonical" href="https://pulsagi.com/articles/" />
   <meta property="og:title" content="Pulsagi Articles" />
-  <meta property="og:description" content="Practical articles about AI engineering, Salesforce architecture, developer tools, browser utilities, and digital safety." />
+  <meta property="og:description" content="Practical articles about AI engineering, Salesforce architecture, Agentforce, developer tools, and software delivery." />
   <meta property="og:url" content="https://pulsagi.com/articles/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Pulsagi" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Pulsagi Articles" />
-  <meta name="twitter:description" content="Practical articles about AI engineering, Salesforce architecture, developer tools, browser utilities, and digital safety." />
+  <meta name="twitter:description" content="Practical articles about AI engineering, Salesforce architecture, Agentforce, developer tools, and software delivery." />
   <meta name="twitter:url" content="https://pulsagi.com/articles/" />
   <script type="application/ld+json">
   {
@@ -27,90 +27,223 @@
     "@type": "CollectionPage",
     "name": "Pulsagi Articles",
     "url": "https://pulsagi.com/articles/",
-    "description": "A collection of Pulsagi articles about AI engineering, Salesforce architecture, developer tools, and practical software workflows.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Pulsagi",
-      "url": "https://pulsagi.com/"
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Pulsagi",
-          "item": "https://pulsagi.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Articles",
-          "item": "https://pulsagi.com/articles/"
-        }
-      ]
-    }
+    "description": "A collection of Pulsagi articles about AI engineering, Salesforce architecture, Agentforce, developer tools, and practical software workflows.",
+    "isPartOf": { "@type": "WebSite", "name": "Pulsagi", "url": "https://pulsagi.com/" }
   }
   </script>
   <style>
-    :root{
-      --bg:#1b242b;--surface:#2b3540;--surface-2:#34404c;--border:#40505d;--text:#f7f2e8;--muted:#b6bfca;--muted-2:#93a0ac;
-      --accent:#76e0c0;--accent-2:#93c5fd;--warm:#f0c98e;--accent-dim:rgba(118,224,192,.12);--shadow:0 18px 42px rgba(0,0,0,.16);
-      --mono:"Courier New",monospace;
-    }
-    *{box-sizing:border-box} html,body{margin:0;padding:0} body{font-family:Georgia,serif;background:
-      radial-gradient(circle at top left, rgba(118,224,192,.12), transparent 24%),
-      radial-gradient(circle at 80% 12%, rgba(240,201,142,.10), transparent 20%),
-      radial-gradient(circle at bottom right, rgba(147,197,253,.12), transparent 28%),
-      linear-gradient(180deg,#1b242b,#232d36 68%,#202931);
-      color:var(--text);min-height:100vh;line-height:1.65}
-    a{color:inherit}
+    :root{--bg:#1b242b;--surface:#2b3540;--surface-2:#34404c;--border:#40505d;--text:#f7f2e8;--muted:#b6bfca;--muted-2:#93a0ac;--accent:#76e0c0;--accent-2:#93c5fd;--warm:#f0c98e;--accent-dim:rgba(118,224,192,.12);--shadow:0 18px 42px rgba(0,0,0,.16);--mono:"Courier New",monospace}
+    *{box-sizing:border-box} html,body{margin:0;padding:0} body{font-family:Georgia,serif;background:radial-gradient(circle at top left,rgba(118,224,192,.12),transparent 24%),radial-gradient(circle at 80% 12%,rgba(240,201,142,.10),transparent 20%),radial-gradient(circle at bottom right,rgba(147,197,253,.12),transparent 28%),linear-gradient(180deg,#1b242b,#232d36 68%,#202931);color:var(--text);min-height:100vh;line-height:1.65} a{color:inherit}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;background:rgba(27,36,43,.78);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
-    .nav-brand{font-size:1.1rem;font-weight:700;letter-spacing:.05em;color:var(--accent);text-decoration:none}
-    nav ul{list-style:none;display:flex;gap:1.75rem;align-items:center;margin:0;padding:0}
-    nav a{text-decoration:none;color:var(--muted);font-size:.85rem;font-family:var(--mono);transition:color .2s,background .2s,border-color .2s}
-    nav a:hover{color:var(--text)}
-    .nav-pill{background:linear-gradient(180deg,rgba(118,224,192,.14),rgba(118,224,192,.08));color:var(--accent)!important;padding:.35rem .9rem;border-radius:999px;border:1px solid rgba(118,224,192,.22)}
-    .nav-pill:hover{background:rgba(118,224,192,.16)!important}
-    .wrap{max-width:1100px;margin:0 auto;padding:96px 24px 40px}
-    .hero{padding:2rem 0 2.6rem}
-    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(118,224,192,.24);border-radius:999px;padding:.42rem .9rem;font:700 .72rem var(--mono);letter-spacing:.08em;color:var(--accent);text-transform:uppercase;background:rgba(118,224,192,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
-    h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.03;letter-spacing:-.03em;margin:1.1rem 0 1rem;background:linear-gradient(135deg,#fffdf8 0%,#f2e1c4 32%,#d8e0ea 68%,#9ad0c0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .lead{max-width:760px;color:#dbe3eb;font-size:1.04rem}
-    .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.7rem}
-    .btn{display:inline-block;text-decoration:none;border-radius:10px;padding:.82rem 1.35rem;font:700 .86rem var(--mono);transition:transform .2s,border-color .2s,background .2s}
-    .btn-primary{background:linear-gradient(135deg,var(--accent),#9ee7cf);color:#132018;box-shadow:0 10px 24px rgba(79,209,163,.18)}
-    .btn-secondary{border:1px solid rgba(202,212,223,.16);color:var(--text);background:rgba(255,248,238,.05)}
-    .btn:hover{transform:translateY(-1px)}
-    .section{margin-top:2rem}
-    .section-head{margin-bottom:1.3rem}
-    .section-head h2{font-size:2rem;margin:0 0 .55rem}
-    .section-head p{color:var(--muted);margin:0;max-width:760px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem}
-    .tool-card{display:block;text-decoration:none;padding:1.55rem;border:1px solid var(--border);border-radius:18px;background:
-      radial-gradient(circle at top right, rgba(118,224,192,.10), transparent 34%),
-      radial-gradient(circle at bottom left, rgba(240,201,142,.08), transparent 36%),
-      linear-gradient(180deg,rgba(48,59,71,.98),rgba(36,45,55,.98));box-shadow:var(--shadow);transition:transform .2s,border-color .2s,box-shadow .2s}
-    .tool-card:hover{transform:translateY(-3px);border-color:rgba(118,224,192,.35);box-shadow:0 22px 44px rgba(0,0,0,.20)}
-    .tool-card-top{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:.95rem}
-    .tool-badge,.tool-status,.mini-tag{font-family:var(--mono)}
-    .tool-badge{font-size:.68rem;letter-spacing:.08em;padding:.24rem .62rem;border-radius:999px;color:var(--accent);background:rgba(118,224,192,.10);border:1px solid rgba(118,224,192,.18)}
-    .tool-status{font-size:.73rem;color:var(--muted)}
-    .tool-card h3{margin:0 0 .5rem;font-size:1.16rem}
-    .tool-card p{margin:0 0 1rem;color:var(--muted)}
-    .meta-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
-    .mini-tag{font-size:.67rem;color:var(--muted);background:rgba(255,247,238,.08);padding:.26rem .58rem;border-radius:999px;border:1px solid rgba(202,212,223,.08)}
-    .tool-link{font:700 .78rem var(--mono);color:var(--accent)}
-    .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-    .note{padding:1.2rem;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,rgba(255,247,238,.07),rgba(255,247,238,.04));box-shadow:0 12px 28px rgba(0,0,0,.10)}
-    .note h3{margin:0 0 .45rem;font-size:1rem}
-    .note p{margin:0;color:var(--muted);font-size:.92rem}
-    footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.8rem;color:var(--muted);font-family:var(--mono);background:rgba(255,247,238,.03)}
-    footer a{color:var(--accent);text-decoration:none}
-    @media (max-width:760px){
-      nav{padding:1rem 1.2rem}
-      nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}
-      .wrap{padding:92px 14px 24px}
+    .nav-brand{font-size:1.1rem;font-weight:700;letter-spacing:.05em;color:var(--accent);text-decoration:none} nav ul{list-style:none;display:flex;gap:1.75rem;align-items:center;margin:0;padding:0} nav a{text-decoration:none;color:var(--muted);font-size:.85rem;font-family:var(--mono);transition:color .2s,background .2s,border-color .2s} nav a:hover{color:var(--text)} .nav-pill{background:linear-gradient(180deg,rgba(118,224,192,.14),rgba(118,224,192,.08));color:var(--accent)!important;padding:.35rem .9rem;border-radius:999px;border:1px solid rgba(118,224,192,.22)} .nav-pill:hover{background:rgba(118,224,192,.16)!important}
+    .wrap{max-width:1100px;margin:0 auto;padding:96px 24px 40px}.hero{padding:2rem 0 2.6rem}.eyebrow{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(118,224,192,.24);border-radius:999px;padding:.42rem .9rem;font:700 .72rem var(--mono);letter-spacing:.08em;color:var(--accent);text-transform:uppercase;background:rgba(118,224,192,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)} h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.03;letter-spacing:-.03em;margin:1.1rem 0 1rem;background:linear-gradient(135deg,#fffdf8 0%,#f2e1c4 32%,#d8e0ea 68%,#9ad0c0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.lead{max-width:790px;color:#dbe3eb;font-size:1.04rem}.cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.7rem}.btn{display:inline-block;text-decoration:none;border-radius:10px;padding:.82rem 1.35rem;font:700 .86rem var(--mono);transition:transform .2s,border-color .2s,background .2s}.btn-primary{background:linear-gradient(135deg,var(--accent),#9ee7cf);color:#132018;box-shadow:0 10px 24px rgba(79,209,163,.18)}.btn-secondary{border:1px solid rgba(202,212,223,.16);color:var(--text);background:rgba(255,248,238,.05)}.btn:hover{transform:translateY(-1px)}
+    .section{margin-top:2rem}.section-head{margin-bottom:1.3rem}.section-head h2{font-size:2rem;margin:0 0 .55rem}.section-head p{color:var(--muted);margin:0;max-width:760px}.article-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.4rem 0 1.3rem}.search-box{position:relative;flex:1 1 340px;max-width:560px}.search-box span{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font:700 .72rem var(--mono);letter-spacing:.08em;color:var(--accent);text-transform:uppercase}.search-box input{width:100%;min-height:48px;border:1px solid rgba(202,212,223,.16);border-radius:8px;background:rgba(255,248,238,.06);color:var(--text);padding:.8rem 1rem .8rem 5.4rem;font:1rem Georgia,serif;outline:none}.search-box input:focus{border-color:rgba(118,224,192,.44);box-shadow:0 0 0 3px rgba(118,224,192,.1)}.article-count{font:700 .78rem var(--mono);color:var(--muted);letter-spacing:.04em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem}.tool-card{display:block;text-decoration:none;padding:1.55rem;border:1px solid var(--border);border-radius:8px;background:radial-gradient(circle at top right,rgba(118,224,192,.10),transparent 34%),radial-gradient(circle at bottom left,rgba(240,201,142,.08),transparent 36%),linear-gradient(180deg,rgba(48,59,71,.98),rgba(36,45,55,.98));box-shadow:var(--shadow);transition:transform .2s,border-color .2s,box-shadow .2s}.tool-card:hover{transform:translateY(-3px);border-color:rgba(118,224,192,.35);box-shadow:0 22px 44px rgba(0,0,0,.20)}.tool-card[hidden]{display:none}.tool-card-top{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:.95rem}.tool-badge,.tool-status,.mini-tag{font-family:var(--mono)}.tool-badge{font-size:.68rem;letter-spacing:.08em;padding:.24rem .62rem;border-radius:999px;color:var(--accent);background:rgba(118,224,192,.10);border:1px solid rgba(118,224,192,.18);text-transform:uppercase}.tool-status{font-size:.73rem;color:var(--muted);white-space:nowrap}.tool-card h3{margin:0 0 .5rem;font-size:1.16rem}.tool-card p{margin:0 0 1rem;color:var(--muted)}.meta-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}.mini-tag{font-size:.67rem;color:var(--muted);background:rgba(255,247,238,.08);padding:.26rem .58rem;border-radius:999px;border:1px solid rgba(202,212,223,.08)}.tool-link{font:700 .78rem var(--mono);color:var(--accent)}.no-results{padding:1.4rem;border:1px solid var(--border);border-radius:8px;background:rgba(255,247,238,.05);color:var(--muted)} footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.8rem;color:var(--muted);font-family:var(--mono);background:rgba(255,247,238,.03)} footer a{color:var(--accent);text-decoration:none}
+    @media (max-width:760px){nav{padding:1rem 1.2rem}nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}.wrap{padding:108px 14px 24px}.article-toolbar{align-items:stretch}.search-box{max-width:none}.tool-card-top{align-items:flex-start}.tool-status{white-space:normal}}
+  </style>
+  <style>
+    :root {
+      --reader-surface: #fffdf8;
+      --reader-surface-2: #f7f3eb;
+      --reader-border: #d8ccbb;
+      --reader-text: #16212a;
+      --reader-muted: #4a5864;
+      --reader-soft: #657381;
+    }
+
+    .wrap {
+      width: min(1120px, 100%);
+      padding: 128px 16px 40px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 0.72rem;
+      padding: 1rem 1.25rem;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 0.35rem 0.8rem;
+      justify-content: center;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      min-width: 0;
+      padding: 0 0.1rem;
+      line-height: 1;
+    }
+
+    .nav-pill {
+      padding: 0.36rem 0.6rem;
+    }
+
+    .hero {
+      padding: 2.35rem 0 2rem;
+    }
+
+    .lead {
+      max-width: 760px;
+      line-height: 1.75;
+    }
+
+    .section {
+      padding: 1.25rem 0 2.5rem;
+    }
+
+    .article-toolbar {
+      align-items: stretch;
+      padding: 1rem;
+      border: 1px solid rgba(216, 204, 187, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.06);
+    }
+
+    .search-box {
+      flex: 1 1 100%;
+      max-width: none;
+    }
+
+    .search-box input {
+      border-color: var(--reader-border);
+      color: var(--reader-text);
+      background: var(--reader-surface);
+      box-shadow: 0 10px 28px rgba(8, 13, 18, 0.08);
+    }
+
+    .search-box input::placeholder {
+      color: #7a8792;
+    }
+
+    .article-count {
+      align-self: center;
+      color: #dbe3eb;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 1.25rem;
+      border-color: var(--reader-border);
+      color: var(--reader-text);
+      background:
+        radial-gradient(circle at top right, rgba(118, 224, 192, 0.12), transparent 34%),
+        linear-gradient(180deg, var(--reader-surface), var(--reader-surface-2));
+      box-shadow: 0 16px 38px rgba(8, 13, 18, 0.14);
+    }
+
+    .tool-card:hover {
+      border-color: rgba(15, 118, 110, 0.42);
+      box-shadow: 0 20px 44px rgba(8, 13, 18, 0.18);
+    }
+
+    .tool-card-top {
+      align-items: flex-start;
+    }
+
+    .tool-badge {
+      color: #0f766e;
+      border-color: rgba(15, 118, 110, 0.18);
+      background: #e7f8f3;
+    }
+
+    .tool-status {
+      color: var(--reader-soft);
+    }
+
+    .tool-card h3 {
+      color: var(--reader-text);
+      font-size: 1.22rem;
+      line-height: 1.32;
+    }
+
+    .tool-card p {
+      color: var(--reader-muted);
+      line-height: 1.7;
+    }
+
+    .meta-row {
+      margin-top: auto;
+    }
+
+    .mini-tag {
+      color: var(--reader-muted);
+      border-color: rgba(15, 118, 110, 0.12);
+      background: rgba(15, 118, 110, 0.08);
+    }
+
+    .tool-link {
+      color: #0f766e;
+    }
+
+    .no-results {
+      border-color: var(--reader-border);
+      color: var(--reader-muted);
+      background: var(--reader-surface);
+    }
+
+    @media (min-width: 700px) {
+      nav {
+        flex-direction: row;
+        padding: 1.1rem 2rem;
+      }
+
+      nav ul {
+        display: flex;
+        width: auto;
+        gap: 1.75rem;
+      }
+
+      nav a {
+        min-height: auto;
+        padding: 0;
+      }
+
+      .nav-pill {
+        padding: .35rem .9rem;
+      }
+
+      .wrap {
+        padding: 96px 24px 40px;
+      }
+
+      .article-toolbar {
+        align-items: center;
+      }
+
+      .search-box {
+        flex: 1 1 420px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.2rem;
+      }
+
+      .tool-card {
+        padding: 1.45rem;
+      }
+    }
+
+    @media (min-width: 1040px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
   </style>
   <!-- Google Tag Manager -->
@@ -129,15 +262,15 @@
       <li><a href="/">Home</a></li>
       <li><a href="/#about">About</a></li>
       <li><a href="/tools/">Tools</a></li>
-      <li><a href="/articles/" class="nav-pill">Article</a></li>
+      <li><a href="/articles/" class="nav-pill">Articles</a></li>
     </ul>
   </nav>
 
   <main class="wrap">
     <section class="hero">
       <div class="eyebrow">Pulsagi Articles</div>
-      <h1>Practical articles for builders, architects, and careful internet users.</h1>
-      <p class="lead">This is the new Pulsagi article directory. It is ready for long-form guides, technical notes, safety explainers, and implementation playbooks that sit beside the live tools.</p>
+      <h1>Practical articles for AI builders and Salesforce architects.</h1>
+      <p class="lead">Browse the full Pulsagi article library, now migrated from the older Shivam site. Newer articles appear first, and search filters titles, summaries, categories, topics, and dates instantly.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="/tools/">Browse Tools</a>
         <a class="btn btn-secondary" href="/">Back to Home</a>
@@ -147,95 +280,520 @@
     <section class="section" aria-labelledby="article-directory-title">
       <div class="section-head">
         <h2 id="article-directory-title">Article directory</h2>
-        <p>Upcoming articles will appear here as individual cards with clear categories, short summaries, and direct URLs for sharing and search.</p>
+        <p>37 articles sorted newest first across Salesforce, Agentforce, AI engineering, and enterprise delivery guides.</p>
       </div>
-      <div class="grid">
-        <article class="tool-card">
+      <div class="article-toolbar" role="search">
+        <label class="search-box" for="articleSearch"><span>Search</span><input id="articleSearch" type="search" autocomplete="off" placeholder="Search Salesforce MCP, Agentforce, Codex, OpenClaw..." /></label>
+        <div class="article-count" id="articleCount">37 articles</div>
+      </div>
+      <div class="grid" id="articleGrid">
+        <a class="tool-card article-card" href="salesforce_headless_360_guide.html" data-search="Salesforce Headless 360: Practical Setup Guide A practical Salesforce Headless 360 guide covering what it is, why it matters, Hosted MCP Servers, Agentforce Vibes, setup steps, examples, code, best practices, limitations, and rollout recommendations. Salesforce Agentic Enterprise - Headless 360 Apr 19, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 19, 2026</span>
+          </div>
+          <h3>Salesforce Headless 360: Practical Setup Guide</h3>
+          <p>A practical Salesforce Headless 360 guide covering what it is, why it matters, Hosted MCP Servers, Agentforce Vibes, setup steps, examples, code, best practices, limitations, and rollout recommendations.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Agentic Enterprise - Headless 360</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="salesforce_hosted_mcp_servers_beta.html" data-search="Salesforce Hosted MCP Servers (Beta) A practical guide to Salesforce Hosted MCP Servers (Beta), including what Salesforce MCP is, use cases, supported features, and how admins and developers can use it safely. Salesforce AI Integration - MCP Apr 15, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 15, 2026</span>
+          </div>
+          <h3>Salesforce Hosted MCP Servers (Beta)</h3>
+          <p>A practical guide to Salesforce Hosted MCP Servers (Beta), including what Salesforce MCP is, use cases, supported features, and how admins and developers can use it safely.</p>
+          <div class="meta-row">
+            <span class="mini-tag">AI Integration - MCP</span>
+            <span class="mini-tag">12 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="apex_batch_vs_queueable_with_apex_cursors_spring26.html" data-search="Apex Batch vs Queueable with Apex Cursors in Spring &#39;26 A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring &#39;26, including limits, patterns, tradeoffs, and when to choose each option. Salesforce Async Apex - Spring &#39;26 Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Apex Batch vs Queueable with Apex Cursors in Spring &#39;26</h3>
+          <p>A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring &#39;26, including limits, patterns, tradeoffs, and when to choose each option.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Async Apex - Spring &#39;26</span>
+            <span class="mini-tag">11 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="devops_center_guide.html" data-search="DevOps Center in Salesforce A practical guide to Salesforce DevOps Center, including where it fits, setup expectations, and how to think about it in a real delivery model. Salesforce Delivery - Release Management Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>DevOps Center in Salesforce</h3>
+          <p>A practical guide to Salesforce DevOps Center, including where it fits, setup expectations, and how to think about it in a real delivery model.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Delivery - Release Management</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="dynamic_forms_guide.html" data-search="Dynamic Forms in Salesforce A practical guide to Dynamic Forms in Salesforce, including migration, visibility rules, supported objects, and page architecture tradeoffs. Salesforce UX - Lightning App Builder Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Dynamic Forms in Salesforce</h3>
+          <p>A practical guide to Dynamic Forms in Salesforce, including migration, visibility rules, supported objects, and page architecture tradeoffs.</p>
+          <div class="meta-row">
+            <span class="mini-tag">UX - Lightning App Builder</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="graphql_wire_adapter_lwc.html" data-search="GraphQL Wire Adapter for LWC A practical guide to the Salesforce GraphQL wire adapter for Lightning Web Components, including when to use lightning/graphql, limitations, pagination, and architecture fit. Salesforce LWC - Data Access Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>GraphQL Wire Adapter for LWC</h3>
+          <p>A practical guide to the Salesforce GraphQL wire adapter for Lightning Web Components, including when to use lightning/graphql, limitations, pagination, and architecture fit.</p>
+          <div class="meta-row">
+            <span class="mini-tag">LWC - Data Access</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="lightning_web_security_vs_locker.html" data-search="Lightning Web Security vs Locker in Salesforce A practical guide to Lightning Web Security in Salesforce, including how it differs from Locker, what it enables, and what teams should evaluate before enabling it. Salesforce Security - Lightning Components Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Lightning Web Security vs Locker in Salesforce</h3>
+          <p>A practical guide to Lightning Web Security in Salesforce, including how it differs from Locker, what it enables, and what teams should evaluate before enabling it.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Security - Lightning Components</span>
+            <span class="mini-tag">8 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="lwc_vs_aura_component_architecture.html" data-search="LWC vs Aura in Salesforce A practical guide to Lightning Web Components versus Aura, including official Salesforce guidance on when to choose LWC and when Aura still matters. Salesforce Component Architecture Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>LWC vs Aura in Salesforce</h3>
+          <p>A practical guide to Lightning Web Components versus Aura, including official Salesforce guidance on when to choose LWC and when Aura still matters.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Component Architecture</span>
+            <span class="mini-tag">8 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="named_credentials_and_external_credentials.html" data-search="Named Credentials and External Credentials in Salesforce An official-docs-first guide to Named Credentials and External Credentials in Salesforce, including principals, per-user auth, custom headers, packaging, and secure outbound callout design. Salesforce Integrations - Security Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Named Credentials and External Credentials in Salesforce</h3>
+          <p>An official-docs-first guide to Named Credentials and External Credentials in Salesforce, including principals, per-user auth, custom headers, packaging, and secure outbound callout design.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Integrations - Security</span>
+            <span class="mini-tag">12 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="permission_set_groups_guide.html" data-search="Permission Set Groups in Salesforce A practical guide to Permission Set Groups in Salesforce, including access governance, muting strategy, session-based activation, and least-privilege design. Salesforce Security - Access Model Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Permission Set Groups in Salesforce</h3>
+          <p>A practical guide to Permission Set Groups in Salesforce, including access governance, muting strategy, session-based activation, and least-privilege design.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Security - Access Model</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="platform_events_vs_change_data_capture.html" data-search="Platform Events vs Change Data Capture in Salesforce A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations. Salesforce Event-Driven Architecture Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Platform Events vs Change Data Capture in Salesforce</h3>
+          <p>A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Event-Driven Architecture</span>
+            <span class="mini-tag">14 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="graphql_api_overview.html" data-search="Salesforce GraphQL API Overview A docs-first overview of Salesforce GraphQL API with practical request examples, pagination guidance, schema patterns, limits, and current mutation support. Salesforce APIs - Data Access Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Salesforce GraphQL API Overview</h3>
+          <p>A docs-first overview of Salesforce GraphQL API with practical request examples, pagination guidance, schema patterns, limits, and current mutation support.</p>
+          <div class="meta-row">
+            <span class="mini-tag">APIs - Data Access</span>
+            <span class="mini-tag">12 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="pub_sub_api_event_driven_integrations.html" data-search="Salesforce Pub/Sub API for Event-Driven Integrations A practical guide to Salesforce Pub/Sub API, including supported event types, durability, replay, deserialization, and where it fits in event-driven integration architecture. Salesforce Integrations - Events Apr 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Apr 13, 2026</span>
+          </div>
+          <h3>Salesforce Pub/Sub API for Event-Driven Integrations</h3>
+          <p>A practical guide to Salesforce Pub/Sub API, including supported event types, durability, replay, deserialization, and where it fits in event-driven integration architecture.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Integrations - Events</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="hiclaw-explained.html" data-search="HiClaw Explained: Alibaba&#39;s Transparent Multi-Agent OS, Matrix Collaboration, and Human-in-the-Loop Design A detailed look at HiClaw&#39;s manager-workers model, Matrix-room transparency, MCP gateway security, and enterprise use cases. AI Multi-Agent Systems | HiClaw Mar 18, 2026">
           <div class="tool-card-top">
             <span class="tool-badge">AI</span>
-            <span class="tool-status">Coming soon</span>
+            <span class="tool-status">Mar 18, 2026</span>
           </div>
-          <h3>AI Engineering Notes</h3>
-          <p>Practical writing about building useful AI workflows, prompt formats, tool design, evaluations, and agent-assisted development.</p>
+          <h3>HiClaw Explained: Alibaba&#39;s Transparent Multi-Agent OS, Matrix Collaboration, and Human-in-the-Loop Design</h3>
+          <p>A detailed look at HiClaw&#39;s manager-workers model, Matrix-room transparency, MCP gateway security, and enterprise use cases.</p>
           <div class="meta-row">
-            <span class="mini-tag">Agents</span>
-            <span class="mini-tag">Prompts</span>
-            <span class="mini-tag">Evaluation</span>
+            <span class="mini-tag">Multi-Agent Systems | HiClaw</span>
+            <span class="mini-tag">8 min read</span>
           </div>
-          <div class="tool-link">Articles will appear here -&gt;</div>
-        </article>
-
-        <article class="tool-card">
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="nemoclaw-explained.html" data-search="NVIDIA NemoClaw Explained: Safer OpenClaw Deployments, OpenShell Guardrails, and the Enterprise Runtime Story A deeper technical and strategic review of NemoClaw, OpenShell, NVIDIA Agent Toolkit, and why runtime safety is becoming central. AI Runtime Safety | NemoClaw Mar 18, 2026">
           <div class="tool-card-top">
-            <span class="tool-badge">SALESFORCE</span>
-            <span class="tool-status">Coming soon</span>
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 18, 2026</span>
           </div>
-          <h3>Salesforce Architecture Guides</h3>
-          <p>Deep dives on Apex design, governor limits, debug logs, org architecture, integrations, and production-ready Salesforce patterns.</p>
+          <h3>NVIDIA NemoClaw Explained: Safer OpenClaw Deployments, OpenShell Guardrails, and the Enterprise Runtime Story</h3>
+          <p>A deeper technical and strategic review of NemoClaw, OpenShell, NVIDIA Agent Toolkit, and why runtime safety is becoming central.</p>
           <div class="meta-row">
-            <span class="mini-tag">Apex</span>
-            <span class="mini-tag">Architecture</span>
-            <span class="mini-tag">Debugging</span>
+            <span class="mini-tag">Runtime Safety | NemoClaw</span>
+            <span class="mini-tag">8 min read</span>
           </div>
-          <div class="tool-link">Articles will appear here -&gt;</div>
-        </article>
-
-        <article class="tool-card">
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="oneclaw-explained.html" data-search="OneClaw Explained: Why Agent Discovery and Observability May Become a Major Enterprise Category A detailed analysis of OneClaw as the governance layer for OpenClaw-style deployments, and why security teams care. AI AI Governance | OneClaw Mar 18, 2026">
           <div class="tool-card-top">
-            <span class="tool-badge">TOOLS</span>
-            <span class="tool-status">Coming soon</span>
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 18, 2026</span>
           </div>
-          <h3>Developer Tooling Playbooks</h3>
-          <p>Guides for using browser utilities, JSON tooling, data inspection workflows, and small helpers that save time during real work.</p>
+          <h3>OneClaw Explained: Why Agent Discovery and Observability May Become a Major Enterprise Category</h3>
+          <p>A detailed analysis of OneClaw as the governance layer for OpenClaw-style deployments, and why security teams care.</p>
           <div class="meta-row">
-            <span class="mini-tag">JSON</span>
-            <span class="mini-tag">Utilities</span>
-            <span class="mini-tag">Workflow</span>
+            <span class="mini-tag">AI Governance | OneClaw</span>
+            <span class="mini-tag">8 min read</span>
           </div>
-          <div class="tool-link">Articles will appear here -&gt;</div>
-        </article>
-
-        <article class="tool-card">
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="ai-claw-article.html" data-search="OneClaw, OpenClaw, and the New AI Claw Wave A practical guide to OneClaw, OpenClaw, and the fast-growing AI claw ecosystem in 2026. AI AI Agents | 2026 Mar 18, 2026">
           <div class="tool-card-top">
-            <span class="tool-badge">SAFETY</span>
-            <span class="tool-status">Coming soon</span>
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 18, 2026</span>
           </div>
-          <h3>Scam Safety and Trust Guides</h3>
-          <p>Clear explainers for spotting suspicious links, fake job offers, risky payment requests, and social engineering patterns.</p>
+          <h3>OneClaw, OpenClaw, and the New AI Claw Wave</h3>
+          <p>A practical guide to OneClaw, OpenClaw, and the fast-growing AI claw ecosystem in 2026.</p>
           <div class="meta-row">
-            <span class="mini-tag">Phishing</span>
-            <span class="mini-tag">UPI safety</span>
-            <span class="mini-tag">Fake jobs</span>
+            <span class="mini-tag">AI Agents | 2026</span>
+            <span class="mini-tag">8 min read</span>
           </div>
-          <div class="tool-link">Articles will appear here -&gt;</div>
-        </article>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="openclaw-explained.html" data-search="OpenClaw Explained: Architecture, Use Cases, Components, and Why the AI Agent World Is Paying Attention A deeper look at OpenClaw&#39;s self-hosted gateway model, workspace design, plugin architecture, and the real workflows it unlocks. AI AI Agents | OpenClaw Mar 18, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 18, 2026</span>
+          </div>
+          <h3>OpenClaw Explained: Architecture, Use Cases, Components, and Why the AI Agent World Is Paying Attention</h3>
+          <p>A deeper look at OpenClaw&#39;s self-hosted gateway model, workspace design, plugin architecture, and the real workflows it unlocks.</p>
+          <div class="meta-row">
+            <span class="mini-tag">AI Agents | OpenClaw</span>
+            <span class="mini-tag">9 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="qclaw-explained.html" data-search="QClaw Explained: Tencent&#39;s Bet on Mainstream AI Agents Through WeChat, Hunyuan, and Consumer Distribution A publish-ready analysis of what QClaw is, how Tencent is positioning it, and why distribution may be its biggest advantage. AI Consumer AI | QClaw Mar 18, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 18, 2026</span>
+          </div>
+          <h3>QClaw Explained: Tencent&#39;s Bet on Mainstream AI Agents Through WeChat, Hunyuan, and Consumer Distribution</h3>
+          <p>A publish-ready analysis of what QClaw is, how Tencent is positioning it, and why distribution may be its biggest advantage.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Consumer AI | QClaw</span>
+            <span class="mini-tag">8 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="salesforce_approval_vs_flow_approval.html" data-search="Salesforce Approval Process vs Flow Approval: Architecture, Audit Trail, and Best Practices A practical comparison of Salesforce Approval Process and Flow Approval Processes, including pros, cons, audit trail design, field history tracking, and enterprise architecture guidance. Salesforce Approvals - Salesforce Platform Mar 13, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Salesforce</span>
+            <span class="tool-status">Mar 13, 2026</span>
+          </div>
+          <h3>Salesforce Approval Process vs Flow Approval: Architecture, Audit Trail, and Best Practices</h3>
+          <p>A practical comparison of Salesforce Approval Process and Flow Approval Processes, including pros, cons, audit trail design, field history tracking, and enterprise architecture guidance.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Approvals - Salesforce Platform</span>
+            <span class="mini-tag">12 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="salesforce_ai_tools_comparison.html" data-search="Where Salesforce Developers Can Use Claude, Codex, Agentforce, Gemini, and Similar AI Tools A comparison of Claude, Codex, Agentforce, and Gemini for Salesforce development, architecture, testing, documentation, and agent delivery. AI AI Mar 12, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 12, 2026</span>
+          </div>
+          <h3>Where Salesforce Developers Can Use Claude, Codex, Agentforce, Gemini, and Similar AI Tools</h3>
+          <p>A comparison of Claude, Codex, Agentforce, and Gemini for Salesforce development, architecture, testing, documentation, and agent delivery.</p>
+          <div class="meta-row">
+            <span class="mini-tag">AI</span>
+            <span class="mini-tag">Guide</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-admin-development-and-automation.html" data-search="Admin, Development, and Automation Admin work, Apex, LWC, and Flow/automation guidance for implementation teams. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Admin, Development, and Automation</h3>
+          <p>Admin work, Apex, LWC, and Flow/automation guidance for implementation teams.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">18 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="advanced-reasoning.html" data-search="Advanced Multi-Step AI Agent Reasoning Techniques for decomposing tasks, validating intermediate steps, and orchestrating reliable multi-hop Agentforce workflows. AI Reasoning - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Advanced Multi-Step AI Agent Reasoning</h3>
+          <p>Techniques for decomposing tasks, validating intermediate steps, and orchestrating reliable multi-hop Agentforce workflows.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Reasoning - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="prompt-builder.html" data-search="Agentforce Prompt Builder Deep Dive An implementation-level exploration of Prompt Builder templates, context layering, evaluation, and operational discipline. AI Prompting - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Agentforce Prompt Builder Deep Dive</h3>
+          <p>An implementation-level exploration of Prompt Builder templates, context layering, evaluation, and operational discipline.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Prompting - Salesforce Agentforce</span>
+            <span class="mini-tag">15 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="security-governance.html" data-search="Agentforce Security, Governance and Trust Layer A security-first look at policy enforcement, auditability, data minimization, and operational governance for Agentforce. AI Security - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Agentforce Security, Governance and Trust Layer</h3>
+          <p>A security-first look at policy enforcement, auditability, data minimization, and operational governance for Agentforce.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Security - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="support-agent.html" data-search="Building Autonomous Customer Support Agents How to design a support agent that grounds on knowledge, resolves cases safely, and escalates with full context. AI Service - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Building Autonomous Customer Support Agents</h3>
+          <p>How to design a support agent that grounds on knowledge, resolves cases safely, and escalates with full context.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Service - Salesforce Agentforce</span>
+            <span class="mini-tag">15 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="agent-actions-apex.html" data-search="Creating Custom Agent Actions with Apex A practical guide to building secure, testable Apex actions for Agentforce orchestration. AI Apex - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Creating Custom Agent Actions with Apex</h3>
+          <p>A practical guide to building secure, testable Apex actions for Agentforce orchestration.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Apex - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="production-deployment.html" data-search="Deploying Agentforce to Production A production-readiness guide covering promotion strategy, testing, monitoring, rollback, and operational ownership. AI DevOps - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Deploying Agentforce to Production</h3>
+          <p>A production-readiness guide covering promotion strategy, testing, monitoring, rollback, and operational ownership.</p>
+          <div class="meta-row">
+            <span class="mini-tag">DevOps - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-discovery-and-architecture.html" data-search="Discovery and Architecture Requirements translation, solution design, architecture options, NFRs, and org strategy. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Discovery and Architecture</h3>
+          <p>Requirements translation, solution design, architecture options, NFRs, and org strategy.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-documentation-operations-and-prompts.html" data-search="Documentation, Operations, and Prompt Library Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Documentation, Operations, and Prompt Library</h3>
+          <p>Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">18 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-governance-roadmap-and-appendices.html" data-search="Governance, Roadmap, and Operating Model Enterprise governance, quality control, KPI tracking, adoption roadmap, and operating model. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Governance, Roadmap, and Operating Model</h3>
+          <p>Enterprise governance, quality control, KPI tracking, adoption roadmap, and operating model.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">20 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="build-first-agent.html" data-search="How to Build Your First AI Agent in Salesforce Agentforce Step-by-step guidance for creating, grounding, testing, and deploying a first Agentforce implementation. AI Implementation - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>How to Build Your First AI Agent in Salesforce Agentforce</h3>
+          <p>Step-by-step guidance for creating, grounding, testing, and deploying a first Agentforce implementation.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Implementation - Salesforce Agentforce</span>
+            <span class="mini-tag">15 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="external-api.html" data-search="Integrating Agentforce with External APIs Patterns for connecting Agentforce to external systems with named credentials, flows, middleware, and guardrails. AI Integrations - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Integrating Agentforce with External APIs</h3>
+          <p>Patterns for connecting Agentforce to external systems with named credentials, flows, middleware, and guardrails.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Integrations - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-integrations-quality-and-delivery.html" data-search="Integrations, Quality, and Delivery Integration architecture, migration, DevOps, release management, and QA/testing. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Integrations, Quality, and Delivery</h3>
+          <p>Integration architecture, migration, DevOps, release management, and QA/testing.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="codex-claude-salesforce-overview.html" data-search="Overview, Comparison, and Lifecycle Executive framing for leadership and delivery teams, plus lifecycle and comparison guidance. Enterprise Guide Enterprise Guide - Codex and Claude in Salesforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">Enterprise Guide</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Overview, Comparison, and Lifecycle</h3>
+          <p>Executive framing for leadership and delivery teams, plus lifecycle and comparison guidance.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Enterprise Guide - Codex and Claude in Salesforce</span>
+            <span class="mini-tag">18 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="data-cloud-agent.html" data-search="Using Agentforce with Data Cloud A detailed implementation guide for grounding Agentforce on unified profiles, calculated insights, and real-time segmentation. AI Data Cloud - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>Using Agentforce with Data Cloud</h3>
+          <p>A detailed implementation guide for grounding Agentforce on unified profiles, calculated insights, and real-time segmentation.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Data Cloud - Salesforce Agentforce</span>
+            <span class="mini-tag">15 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
+        <a class="tool-card article-card" href="agentforce-architecture.html" data-search="What is Salesforce Agentforce - Complete Architecture Guide A complete technical guide to Agentforce architecture, runtime components, enterprise grounding, and delivery patterns. AI Architecture - Salesforce Agentforce Mar 11, 2026">
+          <div class="tool-card-top">
+            <span class="tool-badge">AI</span>
+            <span class="tool-status">Mar 11, 2026</span>
+          </div>
+          <h3>What is Salesforce Agentforce - Complete Architecture Guide</h3>
+          <p>A complete technical guide to Agentforce architecture, runtime components, enterprise grounding, and delivery patterns.</p>
+          <div class="meta-row">
+            <span class="mini-tag">Architecture - Salesforce Agentforce</span>
+            <span class="mini-tag">16 min read</span>
+          </div>
+          <div class="tool-link">Read article -&gt;</div>
+        </a>
       </div>
-    </section>
-
-    <section class="section" aria-labelledby="publishing-title">
-      <div class="section-head">
-        <h2 id="publishing-title">Publishing structure</h2>
-        <p>New article pages can live under this directory and be linked from the grid above, matching the same simple static pattern used by the tools directory.</p>
-      </div>
-      <div class="notes">
-        <div class="note">
-          <h3>Clean URLs</h3>
-          <p>Each future article can use a direct URL under <strong>/articles/</strong> for search, sharing, and citation.</p>
-        </div>
-        <div class="note">
-          <h3>Consistent cards</h3>
-          <p>The directory uses the same card pattern as the tools page, so new posts can be added without redesigning the page.</p>
-        </div>
-        <div class="note">
-          <h3>Search ready</h3>
-          <p>The page includes canonical, Open Graph, Twitter, and CollectionPage metadata for the article section.</p>
-        </div>
-      </div>
+      <p class="no-results" id="noResults" hidden>No articles match that search.</p>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
   </footer>
+  <script>
+    const articleSearch = document.getElementById('articleSearch');
+    const articleCards = Array.from(document.querySelectorAll('.article-card'));
+    const articleCount = document.getElementById('articleCount');
+    const noResults = document.getElementById('noResults');
+    function updateArticles() {
+      const query = articleSearch.value.trim().toLowerCase();
+      let visible = 0;
+      articleCards.forEach((card) => {
+        const match = !query || card.dataset.search.toLowerCase().includes(query);
+        card.hidden = !match;
+        if (match) visible += 1;
+      });
+      articleCount.textContent = visible + (visible === 1 ? ' article' : ' articles');
+      noResults.hidden = visible !== 0;
+    }
+    articleSearch.addEventListener('input', updateArticles);
+  </script>
 </body>
 </html>
+
