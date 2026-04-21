@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **How to Connect Salesforce with ChatGPT using Hosted MCP Servers** (Apr 20, 2026): https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html
 - **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce_headless_360_guide.html
 - **Salesforce Hosted MCP Servers (Beta)** (Apr 15, 2026): https://pulsagi.com/articles/salesforce_hosted_mcp_servers_beta.html
 - **Apex Batch vs Queueable with Apex Cursors in Spring '26** (Apr 13, 2026): https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html

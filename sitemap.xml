@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -71,6 +71,12 @@
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce_headless_360_guide.html</loc>
