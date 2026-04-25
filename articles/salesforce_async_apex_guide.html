@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>Salesforce Async Apex: Queueable, Batch, Scheduled, and Future | Pulsagi Articles</title>
+  <meta name="description" content="A practical Salesforce guide to asynchronous Apex, including Queueable, Batch, Scheduled, and Future methods, with limits, code examples, tradeoffs, and recommendations." />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce_async_apex_guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="Salesforce Async Apex: Queueable, Batch, Scheduled, and Future" />
+  <meta property="og:description" content="How Salesforce async Apex really works, where each option fits, and what limits and operational tradeoffs admins and developers should plan for." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce_async_apex_guide.html" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce Async Apex: Queueable, Batch, Scheduled, and Future" />
+  <meta name="twitter:description" content="A practical Salesforce architect guide to Queueable, Batch, Scheduled, and Future Apex, including limitations, code, and when to choose each." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Salesforce Async Apex: Queueable, Batch, Scheduled, and Future",
+    "description": "A practical Salesforce guide to asynchronous Apex, including Queueable, Batch, Scheduled, and Future methods, with limits, code examples, tradeoffs, and recommendations.",
+    "mainEntityOfPage": "https://pulsagi.com/articles/salesforce_async_apex_guide.html",
+    "datePublished": "2026-04-26",
+    "dateModified": "2026-04-26",
+    "image": [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Shivam Gupta",
+      "url": "https://shivam.pulsagi.com/"
+    },
+    "keywords": [
+      "Salesforce Async Apex",
+      "Queueable Apex",
+      "Batch Apex",
+      "Scheduled Apex",
+      "Future Methods"
+    ]
+  }
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S55MNPYJF8');
+</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Salesforce Async Apex</div>
+        <h1 class="article-title">Salesforce Async Apex: Queueable, Batch, Scheduled, and Future</h1>
+        <p class="article-standfirst">A practical guide for Salesforce admins, architects, and developers who need to choose the right asynchronous pattern, respect the real platform limits, and keep operations supportable in production.</p>
+        <div class="reading-meta">
+          <span>14 min read</span>
+          <span>Published April 26, 2026</span>
+          <span>By Shivam Gupta</span>
+        </div>
+        <div class="author-block">
+          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" />
+          <div class="author-copy">
+            <strong>Shivam Gupta</strong>
+            <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="article-hero-media">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Salesforce async Apex guide hero image" loading="eager" />
+        <p>Async Apex improves user experience and gives Salesforce room to schedule work efficiently, but it also introduces queueing behavior, monitoring overhead, and hard platform limits that teams need to understand upfront.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">What async Apex actually is</a></li>
+          <li><a href="#decision">How to choose the right pattern</a></li>
+          <li><a href="#queueable">Queueable Apex</a></li>
+          <li><a href="#batch">Batch Apex</a></li>
+          <li><a href="#scheduled">Scheduled Apex</a></li>
+          <li><a href="#future">Future methods</a></li>
+          <li><a href="#operations">Admin and operations perspective</a></li>
+          <li><a href="#limits">Limits and limitations table</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>What async Apex actually is</h2>
+          <p>Asynchronous Apex means the work is placed onto Salesforce-managed infrastructure and executed later, outside the user's current transaction. That matters because not every action belongs in a synchronous save path. If a process is heavy, integration-driven, retry-prone, or scheduled by time rather than user interaction, async execution usually gives a better user experience and a safer resource model.</p>
+          <p>The architectural tradeoff is that async work is not immediate and it is not free. Salesforce can delay execution based on resource availability, and once work leaves the original transaction you also lose the simplicity of one end-to-end context. That means teams need to think about monitoring, idempotency, retries, and queue pressure, not just business logic.</p>
+          <div class="callout">
+            <strong>Important framing:</strong> async Apex should not be the default answer to every governor-limit problem. It is the right tool when the business process itself is asynchronous, slow, scheduled, or operationally separable from the initiating transaction.
+          </div>
+          <p>For current Salesforce best practice, the primary async Apex models are <strong>Queueable</strong>, <strong>Batch</strong>, and <strong>Scheduled</strong>. <strong>Future methods</strong> still exist, but Salesforce's own developer guidance no longer recommends them for new production implementations when Queueable can do the job better.</p>
+        </section>
+
+        <section id="decision">
+          <h2>How to choose the right pattern</h2>
+          <p>The fastest way to choose the right async approach is to ask four questions. How large is the data set? Does the job need a clock-based schedule? Do you need job chaining or richer state passing? Does operations need a simple native lifecycle or more custom orchestration control?</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Choose Queueable when</h3>
+              <ul>
+                <li>The job is a bounded unit of work.</li>
+                <li>You want to pass structured state into the job.</li>
+                <li>You need chaining, retries, or callout orchestration.</li>
+                <li>You want the modern default for one-off async processing.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Choose Batch when</h3>
+              <ul>
+                <li>You are traversing very large record volumes.</li>
+                <li>You want Salesforce-managed chunking and per-scope transactions.</li>
+                <li>You need a native <code>start</code>, <code>execute</code>, <code>finish</code> lifecycle.</li>
+                <li>Support teams are already comfortable with batch monitoring.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Choose Scheduled when</h3>
+              <ul>
+                <li>The trigger for work is time-based.</li>
+                <li>You need a nightly, hourly, or cron-driven dispatcher.</li>
+                <li>You want to launch Queueable or Batch at controlled times.</li>
+                <li>The business process is recurring rather than event-driven.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Use Future only when</h3>
+              <ul>
+                <li>You are maintaining legacy code.</li>
+                <li>A very small primitive-only async method already exists and works.</li>
+                <li>Refactoring risk is higher than the immediate business value.</li>
+                <li>You fully accept the narrower feature set and monitoring limitations.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="queueable">
+          <h2>Queueable Apex</h2>
+          <p>Queueable Apex is the best default choice for most new async Apex development. It supports a class-based model, gives you a job ID for monitoring, allows structured data to be passed into the job, and works cleanly for chaining, callouts, and orchestration-driven logic.</p>
+          <p>From a developer perspective, Queueable is easier to reason about than Batch when the workload is already bounded. From an admin perspective, it is easier to explain than Future because the job can be monitored in <code>AsyncApexJob</code> and Setup. This observability alone is a major operational advantage.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Best use cases</h3>
+              <ul>
+                <li>Post-save integration callouts.</li>
+                <li>Enrichment or scoring after record creation.</li>
+                <li>Orderly chained processing steps.</li>
+                <li>Retry-friendly business operations.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Key limitations</h3>
+              <ul>
+                <li>Still subject to normal transaction limits inside each job.</li>
+                <li>Large-record traversal is not its natural strength without extra design.</li>
+                <li>Only one Queueable can be enqueued from an already-async transaction.</li>
+                <li>You own completion, retry, and failure orchestration logic.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>public class InvoiceSyncQueueable implements Queueable, Database.AllowsCallouts {
+    private Set&lt;Id&gt; invoiceIds;
+    private String correlationId;
+
+    public InvoiceSyncQueueable(Set&lt;Id&gt; invoiceIds, String correlationId) {
+        this.invoiceIds = invoiceIds;
+        this.correlationId = correlationId;
+    }
+
+    public void execute(QueueableContext context) {
+        List&lt;Invoice__c&gt; invoices = [
+            SELECT Id, Name, External_Id__c, Status__c
+            FROM Invoice__c
+            WHERE Id IN :invoiceIds
+        ];
+
+        // Build request payload, call external service, update sync status.
+        // Persist correlationId and the queueable job id for support visibility.
+    }
+}</code></pre>
+          <p>The most important Queueable limit to remember is architectural, not syntactic: <strong>up to 50 jobs can be enqueued in a synchronous transaction, but only one additional Queueable can be enqueued once you are already inside an asynchronous transaction</strong>. That is why good Queueable design uses batching of input IDs, not one job per record.</p>
+          <p>There is also a current design nuance worth noting. As of Spring '26, <strong>Apex Cursors are GA in API v66.0</strong>, and Salesforce explicitly positions cursors plus chained Queueable jobs as a strong alternative for some large-volume scenarios that previously defaulted to Batch Apex. That does not replace Batch across the board, but it does widen what Queueable can handle well when you need more control over chunk size and progression.</p>
+        </section>
+
+        <section id="batch">
+          <h2>Batch Apex</h2>
+          <p>Batch Apex is still the most natural fit for true large-volume processing. It breaks work into scopes, runs each scope in a separate transaction, and provides the cleanest native lifecycle for bulk background processing. When a team says, "We need to recalculate, clean up, archive, or update a very large data set," Batch is usually still the first thing to evaluate.</p>
+          <p>Its biggest strength is that Salesforce manages the chunking model for you. Each execute scope gets its own transaction and therefore its own transaction-level governor budget. That makes Batch far more forgiving than trying to brute-force a huge data set through one Queueable job.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Best use cases</h3>
+              <ul>
+                <li>Nightly recalculation or cleanup jobs.</li>
+                <li>Archive and retention processes.</li>
+                <li>Mass backfills and bulk transformations.</li>
+                <li>Jobs where each record is processed similarly.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Key limitations</h3>
+              <ul>
+                <li>Higher framework overhead than Queueable.</li>
+                <li>Less elegant for orchestration-heavy or branching logic.</li>
+                <li>Only five active batch jobs can run concurrently.</li>
+                <li>The flex queue is finite, so runaway scheduling creates backlog risk.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>global class AccountTierRecalcBatch implements Database.Batchable&lt;SObject&gt; {
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator([
+            SELECT Id, AnnualRevenue, Customer_Tier__c
+            FROM Account
+            WHERE IsActive__c = true
+        ]);
+    }
+
+    global void execute(Database.BatchableContext bc, List&lt;Account&gt; scope) {
+        for (Account acc : scope) {
+            if (acc.AnnualRevenue == null) {
+                acc.Customer_Tier__c = 'Standard';
+            } else if (acc.AnnualRevenue &gt;= 10000000) {
+                acc.Customer_Tier__c = 'Strategic';
+            } else {
+                acc.Customer_Tier__c = 'Growth';
+            }
+        }
+
+        if (!scope.isEmpty()) {
+            update scope;
+        }
+    }
+
+    global void finish(Database.BatchableContext bc) {
+        System.debug('AccountTierRecalcBatch completed');
+    }
+}</code></pre>
+          <p>For limitations, the most important number is that a <code>Database.QueryLocator</code> in Batch can traverse up to <strong>50 million records</strong>, which is why Batch remains so strong for very large data sets. Operationally, official Salesforce developer guidance also highlights that only <strong>five batch jobs</strong> can be actively processing at once, with a maximum of <strong>100 waiting jobs in the flex queue</strong>. That is manageable in a disciplined org and painful in an org that schedules everything blindly.</p>
+          <p>From an admin perspective, Batch becomes risky when too many unrelated jobs are launched on the same schedule window. From a developer perspective, Batch becomes risky when teams use it for low-volume work just because it feels "safer," even though the framework overhead is unnecessary.</p>
+        </section>
+
+        <section id="scheduled">
+          <h2>Scheduled Apex</h2>
+          <p>Scheduled Apex is about <strong>when</strong> work should start, not about being the best engine for all the work itself. The cleanest mental model is to treat Scheduled Apex as a dispatcher. If the job is simple, it may execute directly. If the work is large or integration-heavy, the scheduled job should usually launch a Queueable or Batch process.</p>
+          <p>This distinction matters in real delivery. Admins tend to think in business windows such as hourly syncs, nightly reconciliations, or month-end rollups. Developers tend to think in frameworks. Scheduled Apex is where those two perspectives meet: the schedule belongs to operations, while the downstream execution pattern belongs to architecture.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Best use cases</h3>
+              <ul>
+                <li>Nightly dispatch of a batch job.</li>
+                <li>Hourly queueable dispatch for integration polling.</li>
+                <li>Recurring maintenance or housekeeping tasks.</li>
+                <li>Time-based orchestration that Flow cannot own cleanly.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Key limitations</h3>
+              <ul>
+                <li>It adds cron management and operational ownership.</li>
+                <li>Too many scheduled jobs create queue noise and hidden coupling.</li>
+                <li>It should not become a substitute for event-driven design.</li>
+                <li>It consumes the shared daily asynchronous execution budget.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>global class NightlyRevenueScheduler implements Schedulable {
+    global void execute(SchedulableContext sc) {
+        Database.executeBatch(new AccountTierRecalcBatch(), 200);
+    }
+
+    public static void scheduleNightlyJob() {
+        System.schedule(
+            'Nightly Revenue Recalculation',
+            '0 0 1 * * ?',
+            new NightlyRevenueScheduler()
+        );
+    }
+}</code></pre>
+          <p>Salesforce's consolidated async limit model is especially relevant here. Scheduled executions count against the same shared asynchronous execution pool as other async Apex types. That means a badly designed schedule strategy does not just affect one job. It can consume capacity needed by Queueable, Batch, and Future work elsewhere in the org.</p>
+          <p>The practical recommendation is simple: schedule less, dispatch smarter, and prefer a single orchestrated nightly job over dozens of overlapping schedules with overlapping ownership.</p>
+        </section>
+
+        <section id="future">
+          <h2>Future methods</h2>
+          <p>Future methods are the legacy async Apex tool. They are easy to write, but that simplicity hides meaningful constraints. You can only pass primitive data types or collections of primitives, you do not get the same rich class-based execution model as Queueable, and the operational story is weaker for modern enterprise work.</p>
+          <p>Salesforce's own developer guidance is now clear on this point: if you are building new production-grade async Apex, <strong>prefer Queueable over Future</strong> unless there is a very narrow reason not to. Future still exists, but it is no longer the preferred architecture choice.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Best use cases</h3>
+              <ul>
+                <li>Very small legacy async operations.</li>
+                <li>Low-risk refactor deferral in mature codebases.</li>
+                <li>Simple primitive-only fire-and-forget work.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Key limitations</h3>
+              <ul>
+                <li>No complex object arguments such as sObjects.</li>
+                <li>No class-based state model like Queueable.</li>
+                <li>Not the recommended pattern for new production work.</li>
+                <li>Architecturally weaker for orchestration and observability.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>public class LegacyCaseNotifier {
+    @future(callout=true)
+    public static void notifyExternalSystem(Set&lt;Id&gt; caseIds) {
+        List&lt;Case&gt; closedCases = [
+            SELECT Id, CaseNumber, Status
+            FROM Case
+            WHERE Id IN :caseIds
+        ];
+
+        // Build payload and make callout to legacy integration endpoint.
+    }
+}</code></pre>
+          <p>The important governor detail is that a single transaction can invoke only a limited number of future calls, and the org-wide asynchronous execution pool is shared across async types. That is why firing one future call per record is such a classic anti-pattern. If you still maintain Future code, batch the identifiers and make one bulk-safe invocation per transaction whenever possible.</p>
+        </section>
+
+        <section id="operations">
+          <h2>Admin and operations perspective</h2>
+          <p>Async design is not finished when the code compiles. Someone has to operate it. In most Salesforce teams, that operator is not the original developer. It is an admin, support lead, release manager, or platform owner looking at Setup after a failure. That makes observability a first-class requirement, not a luxury.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>What admins should monitor</h3>
+              <ul>
+                <li><strong>Apex Jobs</strong> for Queueable, Batch, and Future execution status.</li>
+                <li><strong>Scheduled Jobs</strong> for cron-driven work and schedule sprawl.</li>
+                <li><strong>Flex Queue</strong> for waiting batch backlog.</li>
+                <li>Failure trends, long runtimes, and overlapping jobs.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What developers should build in</h3>
+              <ul>
+                <li>Correlation IDs or business job IDs.</li>
+                <li>Custom logging for critical business failures.</li>
+                <li>Idempotent reprocessing behavior.</li>
+                <li>Support-friendly status storage on custom objects when the process matters to the business.</li>
+              </ul>
+            </div>
+          </div>
+<pre><code>// Example monitoring query for recent async failures
+List&lt;AsyncApexJob&gt; failedJobs = [
+    SELECT Id, JobType, ApexClass.Name, Status, NumberOfErrors, CreatedDate
+    FROM AsyncApexJob
+    WHERE Status IN ('Failed', 'Aborted')
+    ORDER BY CreatedDate DESC
+    LIMIT 50
+];</code></pre>
+          <p>A strong admin-developer operating model usually looks like this: admins own schedule hygiene, failure triage, and business communication; developers own bulk safety, error handling, and diagnostic detail. If either side is missing, async reliability drops fast.</p>
+        </section>
+
+        <section id="limits">
+          <h2>Limits and limitations table</h2>
+          <p>The table below summarizes the most important practical limits and caveats. A few numeric limits can evolve by release, so teams should always recheck the official Apex limits reference when planning a high-volume implementation. The points below are based on current official Salesforce documentation and developer guidance as of April 26, 2026.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Async type</th>
+                  <th>What it is best at</th>
+                  <th>Important limits</th>
+                  <th>Main limitations</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Queueable Apex</td>
+                  <td>Bounded async work, chaining, callouts, orchestration.</td>
+                  <td>Up to 50 enqueues in one synchronous transaction; only 1 enqueue from an already-async transaction.</td>
+                  <td>Not naturally ideal for very large record traversal without extra design such as cursor-based chunking.</td>
+                </tr>
+                <tr>
+                  <td>Batch Apex</td>
+                  <td>Very large record volumes and framework-managed chunking.</td>
+                  <td><code>QueryLocator</code> can traverse up to 50 million records; only 5 active batch jobs at a time; flex queue max 100.</td>
+                  <td>Higher overhead, slower startup, and less elegant for orchestration-heavy logic.</td>
+                </tr>
+                <tr>
+                  <td>Scheduled Apex</td>
+                  <td>Time-based dispatch and recurring jobs.</td>
+                  <td>Consumes the shared org-wide asynchronous execution budget; active scheduled-job count is finite.</td>
+                  <td>Easy to overuse, easy to duplicate, and often misapplied where event-driven design would be cleaner.</td>
+                </tr>
+                <tr>
+                  <td>Future methods</td>
+                  <td>Small legacy fire-and-forget work.</td>
+                  <td>Only primitive or primitive-collection arguments; shares the same org-wide async execution pool.</td>
+                  <td>Weaker monitoring, weaker extensibility, and not recommended for new production implementations.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <strong>Shared org-wide limit:</strong> Salesforce's consolidated async model uses a shared 24-hour execution pool across Batch, Queueable, Scheduled, and Future work. Salesforce developer guidance describes this as <code>250,000</code> executions or <code>200</code> times the number of qualifying user licenses, whichever is greater.
+          </div>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Choose async for business reasons, not as a reflex.</strong> If synchronous logic can be made efficient and still satisfies the user experience, prefer the simpler architecture.</li>
+            <li><strong>Bulkify the entry point.</strong> Whether you use Queueable, Future, or Batch, collect IDs and process sets, not one record per job.</li>
+            <li><strong>Use Queueable as the default for new one-off async work.</strong> It is the most balanced option for modern implementations.</li>
+            <li><strong>Use Batch when the data set is truly large.</strong> Do not fight the platform if the workload is clearly bulk-oriented.</li>
+            <li><strong>Use Scheduled Apex as an orchestrator.</strong> Let it launch the right worker rather than owning every heavy step itself.</li>
+            <li><strong>Avoid new Future-based designs.</strong> Keep Future for legacy compatibility, not for fresh architecture.</li>
+            <li><strong>Persist operational evidence.</strong> If the process matters to the business, store job outcome, correlation ID, timestamps, and retry state somewhere support can use.</li>
+            <li><strong>Design for idempotency.</strong> Async retries and partial failures happen. Reprocessing should not create duplicate side effects.</li>
+            <li><strong>Control schedule sprawl.</strong> Too many cron jobs create invisible coupling and shared-capacity risk.</li>
+            <li><strong>Test with realistic volume.</strong> A passing unit test with five records proves correctness, not production readiness.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>If you want one practical rule set, use this. For <strong>new development</strong>, start with <strong>Queueable Apex</strong>. If the work is <strong>very large-volume</strong>, move to <strong>Batch Apex</strong>. If the process is <strong>time-driven</strong>, use <strong>Scheduled Apex</strong> to dispatch the real worker. Treat <strong>Future methods</strong> as a legacy compatibility tool, not a preferred design pattern.</p>
+          <p>For admins, the recommendation is to govern schedules and monitor queue health. For developers, the recommendation is to build async logic that is bulk-safe, idempotent, and supportable. The right async solution is not the one that merely runs in the background. It is the one that your team can still explain, monitor, and recover six months after go-live.</p>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <p>This article was checked against Salesforce's official Apex documentation and Salesforce Developers blog guidance current as of April 26, 2026. Where newer guidance affects interpretation, such as the recommendation to prefer Queueable over Future or the addition of Apex Cursors in Spring '26, those points are called out explicitly.</p>
+          <ul class="reference-list">
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_async_overview.htm" target="_blank" rel="noopener">Asynchronous Apex - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_queueing_jobs.htm" target="_blank" rel="noopener">Queueable Apex - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_batch.htm" target="_blank" rel="noopener">Batch Apex - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_invoking_future_methods.htm" target="_blank" rel="noopener">Future Methods - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm" target="_blank" rel="noopener">Execution Governors and Limits - Salesforce Limits Quick Reference</a></li>
+            <li><a href="https://developer.salesforce.com/blogs/2023/05/leveling-up-your-apex-skills" target="_blank" rel="noopener">Leveling Up Your Apex Skills - Salesforce Developers Blog</a></li>
+            <li><a href="https://developer.salesforce.com/blogs/2023/02/exploring-a-combined-async-apex-framework" target="_blank" rel="noopener">Exploring A Combined Async Apex Framework - Salesforce Developers Blog</a></li>
+            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_cursors.htm" target="_blank" rel="noopener">Apex Cursors - Apex Developer Guide</a></li>
+            <li><a href="https://developer.salesforce.com/blogs/2026/01/developers-guide-to-the-spring-26-release" target="_blank" rel="noopener">The Salesforce Developer's Guide to the Spring '26 Release</a></li>
+            <li><a href="https://developer.salesforce.com/blogs/2022/01/drive-consistency-and-grow-developer-skills-with-a-developer-best-practices-checklist" target="_blank" rel="noopener">Drive Consistency and Grow Developer Skills with a Developer Best Practices Checklist</a></li>
+          </ul>
+        </section>
+
+        <section class="related-section">
+          <h2>Related resources</h2>
+          <div class="related-grid">
+            <a class="related-card" href="apex_batch_vs_queueable_with_apex_cursors_spring26.html">
+              <div class="article-kicker">Async Apex</div>
+              <h3>Apex Batch vs Queueable with Apex Cursors in Spring '26</h3>
+              <p>A deeper comparison focused specifically on Batch, Queueable, and the new cursor-based pattern.</p>
+            </a>
+            <a class="related-card" href="platform_events_vs_change_data_capture.html">
+              <div class="article-kicker">Event-Driven</div>
+              <h3>Platform Events vs Change Data Capture in Salesforce</h3>
+              <p>Useful when the right answer is event-driven architecture instead of a scheduled or queued job.</p>
+            </a>
+            <a class="related-card" href="/articles/">
+              <div class="article-kicker">Resources</div>
+              <h3>Browse all Salesforce articles</h3>
+              <p>Open the central article directory for more Salesforce architecture and platform guides.</p>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>
