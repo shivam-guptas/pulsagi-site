@@ -63,6 +63,14 @@
     .reference-list li + li {
       margin-top: 10px;
     }
+
+    .article-hero-media.article-hero-media--infographic img {
+      aspect-ratio: auto;
+      object-fit: contain;
+      height: auto;
+      max-height: 980px;
+      background: #ffffff;
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -146,7 +154,7 @@
           </div>
         </div>
       </div>
-      <div class="article-hero-media">
+      <div class="article-hero-media article-hero-media--infographic">
         <img src="assets/images/salesforce/salesforce-async-apex-guide.png" alt="Salesforce async Apex guide hero image" loading="eager" />
         <p>Async Apex improves user experience and gives Salesforce room to schedule work efficiently, but it also introduces queueing behavior, monitoring overhead, and hard platform limits that teams need to understand upfront.</p>
       </div>
