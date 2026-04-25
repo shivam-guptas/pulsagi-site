@@ -12,6 +12,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#081121" />
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
   <link rel="canonical" href="https://pulsagi.com/tools/salesforce-governor-limit-analyzer.html" />
   <meta property="og:title" content="Salesforce Governor Limit Analyzer | Pulsagi Tools" />
   <meta property="og:description" content="Analyze Apex classes and triggers for common governor limit risks directly in the browser." />
@@ -552,7 +553,7 @@
     function renderContextNotes(context){
       contextNotesEl.className = '';
       contextNotesEl.innerHTML = `
-        <div class="meta"><strong>${escapeHtml(context.title)}</strong> · ${escapeHtml(context.profileLabel)}</div>
+        <div class="meta"><strong>${escapeHtml(context.title)}</strong> | ${escapeHtml(context.profileLabel)}</div>
         <ul>
           ${context.limits.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
         </ul>

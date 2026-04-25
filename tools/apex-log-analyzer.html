@@ -13,6 +13,7 @@
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="theme-color" content="#081121" />
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
   <link rel="canonical" href="https://pulsagi.com/tools/apex-log-analyzer.html" />
   <meta property="og:title" content="Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools" />
   <meta property="og:description" content="Analyze Salesforce debug logs in the browser with exception summaries, governor usage, SOQL and DML hotspots, timeline views, and raw-log search." />
@@ -799,9 +800,9 @@ Number of queueable jobs added to the queue: 0 out of 50
         ['Â·', ' | '],
         ['â€”', '-'],
         ['â€¦', '...'],
-        ['Â©', '©'],
+        ['Â©', 'Â©'],
         ['âš¡', 'Apex'],
-        ['ðŸ“„', 'LOG']
+        ['ðŸ“', 'LOG']
       ];
       const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
       let node = walker.nextNode();
@@ -825,7 +826,7 @@ Number of queueable jobs added to the queue: 0 out of 50
     }
 
     function formatNumber(value) {
-      if (value === null || value === undefined || Number.isNaN(value)) return '—';
+      if (value === null || value === undefined || Number.isNaN(value)) return '-';
       return new Intl.NumberFormat().format(value);
     }
 
@@ -935,7 +936,7 @@ Number of queueable jobs added to the queue: 0 out of 50
         message,
         fatalLineNo: fatalLine?.lineNo || thrownLine?.lineNo || null,
         stack,
-        stackTop: stack[0]?.text || '—'
+        stackTop: stack[0]?.text || '-'
       };
     }
 
@@ -957,7 +958,7 @@ Number of queueable jobs added to the queue: 0 out of 50
 
       for (const line of lines) {
         const raw = line.raw;
-        const mark = (type, label, detail) => timeline.push({ type, label, detail, lineNo: line.lineNo, time: line.time || '—' });
+        const mark = (type, label, detail) => timeline.push({ type, label, detail, lineNo: line.lineNo, time: line.time || '-' });
 
         if (/CODE_UNIT_STARTED\|/.test(raw)) {
           const name = line.parts[4] || line.parts[3] || raw;
@@ -1027,7 +1028,7 @@ Number of queueable jobs added to the queue: 0 out of 50
         findings.push(makeFinding(
           `Primary failure: ${exception.type}`,
           exception.message,
-          exception.stackTop !== '—' ? `Top stack frame: ${exception.stackTop}` : 'No explicit stack frame found in the log.',
+          exception.stackTop !== '-' ? `Top stack frame: ${exception.stackTop}` : 'No explicit stack frame found in the log.',
           95,
           exception.fatalLineNo,
           'Start with the top stack frame or fatal line. Validate the exact method and inspect any per-record processing, null assumptions, and DML/queries near that line.'
@@ -1189,7 +1190,7 @@ Number of queueable jobs added to the queue: 0 out of 50
       ));
 
       const status = exception.type !== 'No fatal exception detected' ? 'Failed' : 'Completed / inconclusive';
-      const primaryPath = exception.stack.slice(0, 4).map(s => s.text).join(' → ') || execution.topMethods.slice(0, 3).map(s => s.name).join(' → ') || '—';
+      const primaryPath = exception.stack.slice(0, 4).map(s => s.text).join(' -> ') || execution.topMethods.slice(0, 3).map(s => s.name).join(' -> ') || '-';
 
       return {
         sourceText: normalized,
@@ -1225,7 +1226,7 @@ Number of queueable jobs added to the queue: 0 out of 50
                 <div class="metric-val">${formatNumber(limit.used)} / ${formatNumber(limit.total)}</div>
               </div>
               <div class="meter"><span style="width:${Math.min(limit.pct, 100)}%"></span></div>
-              <div class="small muted" style="margin-top:8px;">${limit.pct.toFixed(1)}% used · line ${limit.lineNo ?? '—'}</div>
+              <div class="small muted" style="margin-top:8px;">${limit.pct.toFixed(1)}% used | line ${limit.lineNo ?? '-'}</div>
             </div>
           `).join('')}
         </div>
@@ -1249,7 +1250,7 @@ Number of queueable jobs added to the queue: 0 out of 50
                 <tr>
                   <td><div class="log-line">${escapeHtml(row.name)}</div></td>
                   <td>${formatNumber(row.count)}</td>
-                  <td>${row.lineNo ? `<button class="finding-link" data-line="${row.lineNo}">Line ${row.lineNo}</button>` : '—'}</td>
+                  <td>${row.lineNo ? `<button class="finding-link" data-line="${row.lineNo}">Line ${row.lineNo}</button>` : '-'}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -1287,7 +1288,7 @@ Number of queueable jobs added to the queue: 0 out of 50
               ${lines.map(line => `
                 <tr class="log-row" data-line="${line.lineNo}" data-kind="${escapeHtml(line.classification)}">
                   <td class="line-no">${line.lineNo}</td>
-                  <td class="line-time">${escapeHtml(line.time || '—')}</td>
+                  <td class="line-time">${escapeHtml(line.time || '-')}</td>
                   <td class="line-kind">${escapeHtml(line.classification)}</td>
                   <td class="log-line">${escapeHtml(line.raw)}</td>
                 </tr>
@@ -1346,7 +1347,7 @@ Number of queueable jobs added to the queue: 0 out of 50
     function renderResults(analysis) {
       const criticalCount = analysis.limits.filter(l => l.level === 'bad').length;
       const warningCount = analysis.limits.filter(l => l.level === 'warn').length;
-      const topMethod = analysis.execution.topMethods[0]?.name || '—';
+      const topMethod = analysis.execution.topMethods[0]?.name || '-';
       const topFindings = analysis.findings.slice(0, 4);
 
       ui.resultsRoot.innerHTML = `
@@ -1355,21 +1356,21 @@ Number of queueable jobs added to the queue: 0 out of 50
             <div class="summary-tile">
               <div class="k">Transaction status</div>
               <div class="v">${escapeHtml(analysis.status)}</div>
-              <div class="sub">Parsed ${formatNumber(analysis.lineCount)} lines · ${analysis.exception.type}</div>
+              <div class="sub">Parsed ${formatNumber(analysis.lineCount)} lines | ${analysis.exception.type}</div>
             </div>
             <div class="summary-tile">
               <div class="k">Severity score</div>
               <div class="v">${analysis.score}/100</div>
-              <div class="sub">${criticalCount} critical governor signals · ${warningCount} warning signals</div>
+              <div class="sub">${criticalCount} critical governor signals | ${warningCount} warning signals</div>
             </div>
             <div class="summary-tile">
               <div class="k">Likely failing path</div>
-              <div class="v" style="font-size:1.1rem; line-height:1.35;">${escapeHtml(analysis.primaryPath.slice(0, 110) + (analysis.primaryPath.length > 110 ? '…' : ''))}</div>
+              <div class="v" style="font-size:1.1rem; line-height:1.35;">${escapeHtml(analysis.primaryPath.slice(0, 110) + (analysis.primaryPath.length > 110 ? '...' : ''))}</div>
               <div class="sub">Shortened from stack trace or dominant execution chain</div>
             </div>
             <div class="summary-tile">
               <div class="k">Top repeated method</div>
-              <div class="v" style="font-size:1.05rem; line-height:1.35;">${escapeHtml(topMethod.slice(0, 62) + (topMethod.length > 62 ? '…' : ''))}</div>
+              <div class="v" style="font-size:1.05rem; line-height:1.35;">${escapeHtml(topMethod.slice(0, 62) + (topMethod.length > 62 ? '...' : ''))}</div>
               <div class="sub">Most repeated method signal in the parsed execution path</div>
             </div>
           </div>
@@ -1497,7 +1498,7 @@ Number of queueable jobs added to the queue: 0 out of 50
               <div class="timeline">
                 ${analysis.execution.timeline.map(item => `
                   <div class="timeline-item">
-                    <strong>${escapeHtml(item.label)} · ${escapeHtml(item.time)}</strong>
+                    <strong>${escapeHtml(item.label)} | ${escapeHtml(item.time)}</strong>
                     <p>${escapeHtml(item.detail)}</p>
                     ${item.lineNo ? `<div class="small" style="margin-top:8px;"><button class="finding-link" data-line="${item.lineNo}">View line ${item.lineNo}</button></div>` : ''}
                   </div>

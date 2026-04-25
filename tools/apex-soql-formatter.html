@@ -12,6 +12,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#08101f" />
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
   <link rel="canonical" href="https://pulsagi.com/tools/apex-soql-formatter.html" />
   <meta property="og:title" content="Apex and SOQL Formatter | Pulsagi Tools" />
   <meta property="og:description" content="Format Salesforce Apex classes, triggers, anonymous Apex, and SOQL queries directly in the browser." />
@@ -575,8 +576,8 @@
     function syntaxHighlight(code, mode){
       let html = escapeHtml(code);
       const placeholders = [];
-      const hold = (value) => `§§H${placeholders.push(value) - 1}§§`;
-      const restore = (value) => value.replace(/§§H(\d+)§§/g, (_, index) => placeholders[Number(index)]);
+      const hold = (value) => `##H${placeholders.push(value) - 1}##`;
+      const restore = (value) => value.replace(/##H(\d+)##/g, (_, index) => placeholders[Number(index)]);
 
       html = html.replace(/&(?:[a-z]+|#\d+);/gi, match => hold(match));
       html = html.replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*)/g, match => hold(`<span class="com">${match}</span>`));
