@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_multi_framework_react.html
 - **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_async_apex_guide.html
 - **How to Connect Salesforce with ChatGPT using Hosted MCP Servers** (Apr 20, 2026): https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html
 - **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce_headless_360_guide.html
