@@ -1,4 +1,4 @@
-﻿# Pulsagi
+# Pulsagi
 
 > AI tools, developer utilities, and practical articles for modern software workflows.
 
@@ -9,7 +9,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 - **Website**: https://pulsagi.com
 - **Founded**: 2026
 - **Focus**: AI tools, Salesforce architecture, developer utilities, software delivery, and practical safety workflows
-- **Contact**: hello@pulsagi.com
+- **Contact**: er.shivam.guptas@gmail.com
 
 ## Links
 
@@ -23,7 +23,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 - Salesforce Governor Limit Analyzer: https://pulsagi.com/tools/salesforce-governor-limit-analyzer.html
 - Salesforce Apex Log Analyzer: https://pulsagi.com/tools/apex-log-analyzer.html
 - Founder profile: https://shivam.pulsagi.com
-- Contact: mailto:hello@pulsagi.com
+- Contact: mailto:er.shivam.guptas@gmail.com
 
 ## Tools
 
@@ -84,4 +84,4 @@ The articles directory is sorted newest first and includes search: https://pulsa
 - All public tools live under: https://pulsagi.com/tools/
 - Public articles live under: https://pulsagi.com/articles/
 - The XML sitemap is available at: https://pulsagi.com/sitemap.xml
-- Public crawl access is allowed in obots.txt for compliant crawlers and AI agents.
+- Public crawl access is allowed in robots.txt for compliant crawlers and AI agents.
