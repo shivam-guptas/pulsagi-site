@@ -225,7 +225,7 @@ blockquote,
 }
 
 .article-standfirst {
-  max-width: 66ch;
+  max-width: 100%;
   color: var(--reader-muted) !important;
   font-size: 1.03rem;
   line-height: 1.72;
