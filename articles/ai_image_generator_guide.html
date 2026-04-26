@@ -166,6 +166,25 @@
     .scorecard p:last-child {
       margin-bottom: 0;
     }
+    .article-hero {
+      gap: 18px;
+    }
+    .article-hero-copy {
+      order: 2 !important;
+      width: min(100%, 800px) !important;
+      max-width: 800px !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    .article-hero-copy > * {
+      max-width: 100% !important;
+    }
+    .article-hero-media {
+      order: 1 !important;
+    }
     @media (max-width: 759px) {
       .tool-grid,
       .checklist-grid {
