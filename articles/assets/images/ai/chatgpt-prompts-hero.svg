@@ -1,0 +1,63 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="70" x2="1480" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2F7FF"/>
+      <stop offset="1" stop-color="#EEF8F4"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0C1F2E"/>
+      <stop offset="1" stop-color="#123B4B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#082032" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <circle cx="230" cy="180" r="180" fill="#D9F6EE"/>
+  <circle cx="1380" cy="720" r="220" fill="#DCEFFE"/>
+  <circle cx="1280" cy="160" r="110" fill="#FEEBC8"/>
+
+  <g filter="url(#shadow)">
+    <rect x="76" y="78" width="710" height="744" rx="34" fill="url(#panel)"/>
+  </g>
+
+  <text x="128" y="194" fill="#D9FFF5" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="0.18em">CHATGPT PROMPTS</text>
+  <text x="128" y="310" fill="white" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="800">Get Better</text>
+  <text x="128" y="404" fill="white" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="800">Answers Faster</text>
+  <text x="128" y="478" fill="#B9D4DF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Clear task + useful context + output format + constraints</text>
+
+  <rect x="128" y="550" width="606" height="186" rx="24" fill="#F8FFFD" fill-opacity="0.08" stroke="#6EE7B7" stroke-opacity="0.3"/>
+  <text x="164" y="608" fill="#7DEBC6" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="600">PROMPT FORMULA</text>
+  <text x="164" y="660" fill="white" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Role + Goal + Context + Format</text>
+  <text x="164" y="708" fill="#DCE8F0" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">+ Constraints + Examples + Iteration</text>
+
+  <rect x="880" y="106" width="640" height="164" rx="28" fill="white" stroke="#CDE7DE"/>
+  <rect x="914" y="138" width="88" height="88" rx="22" fill="url(#accent)"/>
+  <path d="M959 160C942 160 928 173 928 190C928 207 942 220 959 220C976 220 990 207 990 190C990 173 976 160 959 160Z" fill="white" fill-opacity="0.92"/>
+  <text x="1032" y="176" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800">Best Prompt Ingredients</text>
+  <text x="1032" y="224" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">Specific, contextual, structured, and easy to refine</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="308" width="640" height="170" rx="28" fill="white"/>
+  </g>
+  <text x="920" y="360" fill="#0F172A" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="700">EXAMPLE 1</text>
+  <text x="920" y="404" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Summarize this report for executives.</text>
+  <text x="920" y="446" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">Output: 5 bullets, 120 words max, include risks and next steps.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="516" width="640" height="170" rx="28" fill="white"/>
+  </g>
+  <text x="920" y="568" fill="#0F172A" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="700">EXAMPLE 2</text>
+  <text x="920" y="612" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Review this code and list likely bugs first.</text>
+  <text x="920" y="654" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">Focus on correctness, regressions, and missing test cases.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="724" width="640" height="112" rx="28" fill="#ECFDF5" stroke="#A7F3D0"/>
+  </g>
+  <text x="920" y="792" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Good prompts reduce rework and improve output quality.</text>
+</svg>

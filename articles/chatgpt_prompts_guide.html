@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  <title>Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research | Pulsagi Articles</title>
+  <meta name="description" content="A practical guide to ChatGPT prompts in 2026, including what prompts are, why they matter, the anatomy of a strong prompt, best prompt examples, admin and developer guidance, and common limitations." />
+  <meta name="keywords" content="ChatGPT prompts, best ChatGPT prompts, prompt examples, prompt engineering for ChatGPT, ChatGPT prompts for work, ChatGPT prompts for coding, ChatGPT prompts for writing" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="canonical" href="https://pulsagi.com/articles/chatgpt_prompts_guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:title" content="Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research" />
+  <meta property="og:description" content="Learn how to write better ChatGPT prompts with practical examples for summarization, email, coding, planning, research, and structured business work." />
+  <meta property="og:url" content="https://pulsagi.com/articles/chatgpt_prompts_guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/ai/chatgpt-prompts-hero.png" />
+  <meta property="article:published_time" content="2026-04-27T00:00:00+05:30" />
+  <meta property="article:modified_time" content="2026-04-27T00:00:00+05:30" />
+  <meta property="article:author" content="Shivam Gupta" />
+  <meta property="article:section" content="AI" />
+  <meta property="article:tag" content="ChatGPT" />
+  <meta property="article:tag" content="Prompts" />
+  <meta property="article:tag" content="Prompt Engineering" />
+  <meta property="article:tag" content="AI Productivity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research" />
+  <meta name="twitter:description" content="A practical ChatGPT prompting guide with structure, examples, best practices, and team-friendly recommendations." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/ai/chatgpt-prompts-hero.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 22px; background: rgba(255, 255, 255, 0.94); }
+    .article-table { width: 100%; min-width: 800px; border-collapse: collapse; }
+    .article-table th, .article-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(221, 211, 194, 0.95); }
+    .article-table th { background: rgba(11, 92, 171, 0.08); color: var(--ink); font-family: "Merriweather", serif; font-size: 0.98rem; }
+    .article-table td { color: var(--muted-strong); }
+    .reference-list { padding-left: 22px; }
+    .reference-list li + li { margin-top: 10px; }
+    .hero-visual {
+      overflow: visible;
+      background: #ffffff;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: auto !important;
+      object-fit: contain !important;
+      aspect-ratio: auto !important;
+      border-radius: 20px;
+    }
+    .hero-visual p {
+      display: block;
+      margin: 0;
+      padding: 14px 16px 16px;
+      color: var(--muted-strong) !important;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .prompt-card {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid rgba(11, 92, 171, 0.12);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(11, 92, 171, 0.05), rgba(255, 255, 255, 0.92));
+    }
+    .prompt-card h3,
+    .prompt-card h4 {
+      margin-top: 0;
+    }
+    .prompt-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(11, 92, 171, 0.08);
+      color: #0b5cab;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+    .prompt-card pre,
+    .example-block pre {
+      white-space: pre-wrap;
+      margin: 14px 0 0;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #0f172a;
+      color: #e5eef8;
+      overflow-x: auto;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .example-block + .example-block {
+      margin-top: 20px;
+    }
+    .example-note {
+      margin-top: 10px;
+      color: var(--muted-strong);
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 759px) {
+      .checklist-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research",
+    "description": "A practical guide to ChatGPT prompts in 2026, including what prompts are, why they matter, the anatomy of a strong prompt, best prompt examples, admin and developer guidance, and common limitations.",
+    "mainEntityOfPage": "https://pulsagi.com/articles/chatgpt_prompts_guide.html",
+    "datePublished": "2026-04-27",
+    "dateModified": "2026-04-27",
+    "image": ["https://pulsagi.com/articles/assets/images/ai/chatgpt-prompts-hero.png"],
+    "author": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
+    "publisher": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
+    "keywords": ["ChatGPT prompts", "best ChatGPT prompts", "prompt examples", "prompt engineering for ChatGPT"]
+  }
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <div class="shell">
+    <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+    <main class="page-shell article-page">
+      <section class="article-hero">
+        <div class="article-hero-copy">
+          <div class="eyebrow">AI Productivity - ChatGPT Prompting</div>
+          <h1 class="article-title">Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research</h1>
+          <p class="article-standfirst">Good ChatGPT results usually come from good prompts, not from luck. This guide explains what ChatGPT prompts are, why they matter, how to structure them well, and which prompt patterns work best for real business and developer workflows. It also includes many prompt examples you can reuse immediately.</p>
+          <div class="reading-meta"><span>16 min read</span><span>Published April 27, 2026</span><span>By Shivam Gupta</span></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+        </div>
+        <div class="hero-visual article-hero-media">
+          <img src="assets/images/ai/chatgpt-prompts-hero.png" alt="Infographic showing the best ChatGPT prompts in 2026, why prompts matter, prompt structure, and practical examples" loading="eager" />
+          <p>The strongest prompts usually combine a clear task, useful context, an expected output format, and a quick iteration cycle.</p>
+        </div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc-card" aria-label="Table of contents">
+          <h2>Table of contents</h2>
+          <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#what-it-is">What a ChatGPT prompt is</a></li>
+            <li><a href="#why-it-matters">Why ChatGPT prompts matter</a></li>
+            <li><a href="#anatomy">Anatomy of a strong prompt</a></li>
+            <li><a href="#best-prompts">Few best ChatGPT prompts</a></li>
+            <li><a href="#examples">Many prompt examples</a></li>
+            <li><a href="#admin-developer">Admin and developer perspective</a></li>
+            <li><a href="#best-practices">Best practices</a></li>
+            <li><a href="#limitations">Limitations</a></li>
+            <li><a href="#recommendation">Recommendation</a></li>
+            <li><a href="#references">References</a></li>
+          </ol>
+        </aside>
+
+        <article class="content-card">
+          <section id="introduction">
+            <h2>Introduction</h2>
+            <p>A <strong>ChatGPT prompt</strong> is the instruction, question, context, or input you give to ChatGPT to start or guide a response. That sounds simple, but in practice the quality of your output depends heavily on how clearly you describe the job, the audience, the format, and the constraints.</p>
+            <p>OpenAI's official guidance reviewed on <strong>April 27, 2026</strong> is consistent across ChatGPT help articles, OpenAI Academy, and developer docs: be clear, provide context, describe the output you want, and improve the prompt iteratively when needed.</p>
+            <div class="callout">
+              <strong>Practical framing:</strong> the goal of prompt writing is not to sound clever. The goal is to reduce ambiguity so ChatGPT can produce something more useful on the first try.
+            </div>
+          </section>
+
+          <section id="what-it-is">
+            <h2>What a ChatGPT prompt is</h2>
+            <p>According to OpenAI's Help Center, a prompt is the input that initiates a conversation or triggers a response from the model, and it can be text, image, or audio. In day-to-day usage, most prompts are text instructions that tell ChatGPT what to do, what context to use, and how the result should look.</p>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Prompt element</th>
+                    <th>What it does</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Task</strong></td>
+                    <td>Tells ChatGPT what job to do.</td>
+                    <td>"Summarize this transcript."</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Context</strong></td>
+                    <td>Provides background so the answer is more relevant.</td>
+                    <td>"This is for an executive audience that wants only business risks."</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Format</strong></td>
+                    <td>Defines how the output should be shaped.</td>
+                    <td>"Return a 5-row table."</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Constraints</strong></td>
+                    <td>Sets boundaries such as length, tone, or exclusions.</td>
+                    <td>"Keep it under 150 words and avoid jargon."</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Examples</strong></td>
+                    <td>Shows the model what "good" looks like.</td>
+                    <td>"Use this sample structure as the template."</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="why-it-matters">
+            <h2>Why ChatGPT prompts matter</h2>
+            <p>OpenAI Academy's prompting fundamentals page makes the core point well: ChatGPT works best when you give it clear instructions. Better prompts matter because they improve output quality, reduce back-and-forth, and make the tool more reliable for repeatable workflows.</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3>Better quality</h3>
+                <p>Specific prompts produce responses that are closer to your actual goal.</p>
+              </div>
+              <div class="card">
+                <h3>Less rework</h3>
+                <p>Good prompt structure reduces the need to keep correcting the answer.</p>
+              </div>
+              <div class="card">
+                <h3>More consistency</h3>
+                <p>Team-friendly prompt patterns are easier to reuse across similar tasks.</p>
+              </div>
+              <div class="card">
+                <h3>Safer collaboration</h3>
+                <p>Clear prompts make it easier to review whether the output matched the ask.</p>
+              </div>
+            </div>
+            <p>For individual users, this means faster results. For teams, it means prompt quality becomes an operational asset rather than a personal trick.</p>
+          </section>
+
+          <section id="anatomy">
+            <h2>Anatomy of a strong prompt</h2>
+            <p>OpenAI's current guidance can be translated into a simple structure that works well in ChatGPT:</p>
+            <div class="prompt-card">
+              <div class="prompt-tag">Reusable prompt formula</div>
+<pre><code>Act as [role or perspective].
+
+Your task: [what you want done].
+
+Context:
+- [important background]
+- [audience]
+- [source material or assumptions]
+
+Output requirements:
+- [format]
+- [length]
+- [tone]
+- [must include / must avoid]
+
+If anything is unclear, state your assumptions first.</code></pre>
+            </div>
+            <div class="checklist-grid">
+              <div class="card">
+                <h3>What usually helps</h3>
+                <ul>
+                  <li>Clear action verbs like <code>summarize</code>, <code>draft</code>, <code>review</code>, or <code>compare</code>.</li>
+                  <li>Audience guidance such as executive, technical, customer-facing, or beginner.</li>
+                  <li>Explicit format requests like bullet list, table, checklist, or email draft.</li>
+                  <li>Constraints on length, tone, priority, and exclusions.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>What usually hurts</h3>
+                <ul>
+                  <li>Vague asks like "make this better" with no context.</li>
+                  <li>Large multi-part tasks with no structure.</li>
+                  <li>No definition of what the final output should look like.</li>
+                  <li>Trying to solve planning, drafting, analysis, and formatting in one messy sentence.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="best-prompts">
+            <h2>Few best ChatGPT prompts</h2>
+            <p>There is no single best prompt for everything, but these are some of the most reusable prompt patterns for real work.</p>
+
+            <div class="example-block">
+              <h3>1. Best prompt for summarization</h3>
+<pre><code>Summarize the text below for a busy executive.
+
+Requirements:
+- Use 5 bullet points
+- Keep it under 120 words
+- Include the 2 biggest risks
+- End with 1 recommended next step
+
+Text:
+"""
+[paste content here]
+"""</code></pre>
+              <p class="example-note">Why it works: it defines audience, format, length, and decision value.</p>
+            </div>
+
+            <div class="example-block">
+              <h3>2. Best prompt for writing a professional email</h3>
+<pre><code>Draft a professional email to [person or team].
+
+Goal:
+- [what the email needs to achieve]
+
+Context:
+- [important background]
+- [relationship or tone context]
+
+Requirements:
+- Keep it concise
+- Sound confident but respectful
+- Include a clear call to action
+- Give me 2 subject line options</code></pre>
+              <p class="example-note">Why it works: it avoids generic fluff and anchors the email to a real outcome.</p>
+            </div>
+
+            <div class="example-block">
+              <h3>3. Best prompt for coding help</h3>
+<pre><code>Review the code below like a senior engineer.
+
+Focus on:
+- correctness bugs
+- edge cases
+- likely regressions
+- missing tests
+
+Output format:
+1. Findings first, ordered by severity
+2. Then suggested fixes
+3. Then example test cases
+
+Code:
+```[paste code here]```</code></pre>
+              <p class="example-note">Why it works: it tells ChatGPT exactly how to think and how to return the answer.</p>
+            </div>
+
+            <div class="example-block">
+              <h3>4. Best prompt for research comparison</h3>
+<pre><code>Compare [option A] and [option B] for [use case].
+
+Requirements:
+- Use a table
+- Compare cost, complexity, speed, risks, and best-fit scenarios
+- End with a recommendation
+- If anything is uncertain, state it explicitly</code></pre>
+              <p class="example-note">Why it works: it encourages structured reasoning and makes uncertainty visible.</p>
+            </div>
+          </section>
+
+          <section id="examples">
+            <h2>Many prompt examples</h2>
+            <p>The examples below are intentionally practical and reusable. You can paste them into ChatGPT directly and then replace the placeholders.</p>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Work planning</div>
+              <h3>Weekly planning prompt</h3>
+<pre><code>Help me plan my week.
+
+Context:
+- My role: [job title]
+- My top priorities: [list]
+- Constraints: [meetings, deadlines, travel, etc.]
+
+Output:
+- A day-by-day plan from Monday to Friday
+- Top 3 priorities per day
+- Risks or overload warnings
+- A suggested focus block schedule</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Meetings</div>
+              <h3>Meeting notes to action items prompt</h3>
+<pre><code>Turn these meeting notes into an action-oriented summary.
+
+Requirements:
+- Start with a 3-bullet executive summary
+- List decisions made
+- List action items with owner and due date placeholders
+- Call out open questions
+
+Notes:
+"""
+[paste notes]
+"""</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Writing</div>
+              <h3>Rewrite for clarity prompt</h3>
+<pre><code>Rewrite the text below for clarity.
+
+Requirements:
+- Preserve the meaning
+- Make it easier to read
+- Remove repetition
+- Keep the tone professional
+- Give me both:
+  1. a polished version
+  2. a shorter version
+
+Text:
+"""
+[paste draft]
+"""</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Research</div>
+              <h3>Research brief prompt</h3>
+<pre><code>Create a research brief on [topic].
+
+Include:
+- what it is
+- why it matters
+- current trends
+- major risks or controversies
+- practical implications for [my team / business]
+
+Output format:
+- short overview
+- bullet list of findings
+- 3 recommendations</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Presentations</div>
+              <h3>Slide outline prompt</h3>
+<pre><code>Create a presentation outline for [topic].
+
+Audience:
+- [executives / clients / internal team]
+
+Requirements:
+- 8 to 10 slides
+- one-line purpose for each slide
+- suggested title for each slide
+- note where charts or visuals would help</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Debugging</div>
+              <h3>Bug investigation prompt</h3>
+<pre><code>Help me debug this issue.
+
+Problem:
+- [describe the bug]
+
+Context:
+- expected behavior
+- actual behavior
+- environment / stack
+- relevant logs or error messages
+
+Output:
+- likely root causes ranked from most likely to least likely
+- what to test first
+- fixes to try
+- how to prevent this in future</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Requirements</div>
+              <h3>PRD drafting prompt</h3>
+<pre><code>Draft a lightweight product requirements document for [feature].
+
+Include:
+- problem statement
+- target users
+- goals and non-goals
+- user stories
+- edge cases
+- acceptance criteria
+- launch risks</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Data review</div>
+              <h3>Table or spreadsheet analysis prompt</h3>
+<pre><code>Analyze the data below and identify the most important insights.
+
+Requirements:
+- highlight trends
+- call out anomalies
+- identify likely causes if visible
+- suggest 3 decisions a manager could make from this data
+- keep the language non-technical
+
+Data:
+"""
+[paste rows or attach file]
+"""</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Learning</div>
+              <h3>Explain simply prompt</h3>
+<pre><code>Explain [topic] to me like I'm new to it.
+
+Requirements:
+- avoid jargon
+- use one simple analogy
+- keep it under 200 words
+- end with 3 follow-up questions I should ask next</code></pre>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-tag">Prompt refinement</div>
+              <h3>Improve my prompt prompt</h3>
+<pre><code>Improve the prompt below.
+
+Your goals:
+- make it clearer
+- reduce ambiguity
+- add useful structure
+- preserve the original intent
+
+Return:
+1. improved prompt
+2. why it is better
+3. optional advanced version
+
+Original prompt:
+"""
+[paste prompt]
+"""</code></pre>
+            </div>
+          </section>
+
+          <section id="admin-developer">
+            <h2>Admin and developer perspective</h2>
+            <p>Prompt quality becomes more important when ChatGPT use moves from personal experimentation to team workflows.</p>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Perspective</th>
+                    <th>What matters most</th>
+                    <th>Practical guidance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Admin / team lead</strong></td>
+                    <td>Consistency, governance, training, and safe data use.</td>
+                    <td>Create approved prompt patterns for common tasks such as summaries, emails, and meeting outputs. Also define what data users should not paste into external tools.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Developer</strong></td>
+                    <td>Repeatability, evaluation, and prompt lifecycle management.</td>
+                    <td>OpenAI's developer docs now support long-lived prompt objects with versioning, variables, reuse across APIs and the dashboard, and rollbacks. That matters when prompts become part of a product workflow instead of ad hoc chat usage.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Operations / leadership</strong></td>
+                    <td>Output quality, adoption, and measurable productivity.</td>
+                    <td>Standardize a small library of high-value prompts and review where they reduce rework, accelerate reporting, or improve communication quality.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>One useful boundary is this: for casual personal use, prompt writing can stay lightweight. For repeatable business workflows, prompt structure should be treated more like documentation or process design.</p>
+            <div class="callout">
+              <strong>Date-specific note:</strong> OpenAI's current developer docs also describe prompt objects with versioning, variables, sharing, history, and rollback in the dashboard. That is especially relevant for developers who want prompt management to be auditable and reusable.
+            </div>
+          </section>
+
+          <section id="best-practices">
+            <h2>Best practices</h2>
+            <ul>
+              <li><strong>Be clear and specific:</strong> OpenAI's help guidance is consistent on this point because vague prompts create vague outputs.</li>
+              <li><strong>Give useful context:</strong> tell ChatGPT who the answer is for, why the task matters, and what source material to use.</li>
+              <li><strong>Describe the ideal output:</strong> include format, tone, length, and must-have elements.</li>
+              <li><strong>Break large tasks into steps:</strong> multi-part workflows usually work better as staged prompts than one overloaded instruction.</li>
+              <li><strong>Iterate:</strong> refine the prompt based on the first answer instead of expecting perfection on turn one.</li>
+              <li><strong>Ask for options when helpful:</strong> OpenAI Academy explicitly recommends asking for alternatives when you want choice.</li>
+              <li><strong>Use custom instructions carefully:</strong> OpenAI says custom instructions are available on all plans across web, desktop, iOS, and Android, but they apply broadly, so keep them stable and useful rather than overly task-specific.</li>
+              <li><strong>For team workflows, version prompts:</strong> if prompts are tied to products or automations, use a controlled lifecycle rather than editing live behavior informally.</li>
+            </ul>
+          </section>
+
+          <section id="limitations">
+            <h2>Limitations</h2>
+            <p>Even a strong prompt does not guarantee a perfect answer. Prompting improves the odds, but it does not remove the model's limits.</p>
+            <ul>
+              <li><strong>Good prompts do not eliminate hallucinations:</strong> outputs still need human review for high-stakes tasks.</li>
+              <li><strong>Prompt quality is only one factor:</strong> model choice, context quality, and source material also affect results.</li>
+              <li><strong>Overly long prompts can become noisy:</strong> more detail is often helpful, but irrelevant detail can reduce quality.</li>
+              <li><strong>Custom instructions are broad, not surgical:</strong> they are useful for stable preferences, not for every one-off task.</li>
+              <li><strong>Prompt recipes age:</strong> OpenAI's guidance and product capabilities evolve, so prompt patterns that work best today may need revision later.</li>
+            </ul>
+          </section>
+
+          <section id="recommendation">
+            <h2>Recommendation</h2>
+            <p>The best approach is simple: <strong>treat prompt writing as practical communication design</strong>. Start with a clear task, add only the context that matters, define the output, and refine from there.</p>
+            <p>If you only remember one pattern, remember this one: <strong>goal + context + format + constraints</strong>. That structure is enough to improve most ChatGPT usage immediately.</p>
+            <p>For teams, go one step further. Save your best prompts, standardize the ones that create repeatable value, and review them the same way you would review a template, workflow, or internal playbook.</p>
+          </section>
+
+          <section id="references">
+            <h2>References</h2>
+            <ol class="reference-list">
+              <li><a href="https://openai.com/academy/prompting/" rel="noopener" target="_blank">OpenAI Academy: Prompting fundamentals</a></li>
+              <li><a href="https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt" rel="noopener" target="_blank">OpenAI Help Center: Prompt engineering best practices for ChatGPT</a></li>
+              <li><a href="https://help.openai.com/en/articles/4936848-how-do-i-create-a-good-prompt" rel="noopener" target="_blank">OpenAI Help Center: How do I create a good prompt for an AI model?</a></li>
+              <li><a href="https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt" rel="noopener" target="_blank">OpenAI Help Center: ChatGPT Custom Instructions</a></li>
+              <li><a href="https://developers.openai.com/api/docs/guides/prompting" rel="noopener" target="_blank">OpenAI Developers: Prompting</a></li>
+            </ol>
+          </section>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

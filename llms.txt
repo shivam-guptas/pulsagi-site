@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt_prompts_guide.html
 - **Best AI Tools in 2026 for Productivity, Writing, Design, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/best_ai_tools_guide.html
 - **Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_multi_framework_react.html
 - **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_async_apex_guide.html
