@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Best AI Tools in 2026 for Productivity, Writing, Design, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/best_ai_tools_guide.html
 - **Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_multi_framework_react.html
 - **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_async_apex_guide.html
 - **How to Connect Salesforce with ChatGPT using Hosted MCP Servers** (Apr 20, 2026): https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html
