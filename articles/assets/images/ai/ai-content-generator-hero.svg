@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI content generator guide illustration</title>
+  <desc id="desc">A dashboard-style illustration showing AI content generation, brand voice, workflow automation, and publishing outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffaf1" />
+      <stop offset="52%" stop-color="#f6efe4" />
+      <stop offset="100%" stop-color="#eef5f4" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f6f2ea" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#0b5cab" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#24313a" flood-opacity="0.16" />
+    </filter>
+  </defs>
+  <rect width="1200" height="900" rx="40" fill="url(#bg)" />
+  <circle cx="168" cy="154" r="120" fill="#dff5ef" />
+  <circle cx="1028" cy="132" r="92" fill="#e0ebff" />
+  <circle cx="1032" cy="722" r="144" fill="#f8e8c8" />
+  <g filter="url(#shadow)">
+    <rect x="88" y="96" width="1024" height="708" rx="34" fill="#24313a" />
+    <rect x="112" y="120" width="976" height="660" rx="28" fill="url(#panel)" />
+  </g>
+  <rect x="152" y="162" width="400" height="170" rx="24" fill="#fffdf8" stroke="#ddd3c2" />
+  <text x="184" y="210" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">AI Content Generator</text>
+  <text x="184" y="246" fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="20">Draft blogs, emails, product pages, and</text>
+  <text x="184" y="274" fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="20">campaign copy with reusable brand rules.</text>
+  <rect x="184" y="294" width="152" height="12" rx="6" fill="#dff5ef" />
+  <rect x="184" y="318" width="208" height="12" rx="6" fill="#e3edf5" />
+  <rect x="580" y="162" width="356" height="248" rx="24" fill="#fffdf8" stroke="#ddd3c2" />
+  <text x="612" y="208" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">What Good Tools Include</text>
+  <g fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="19">
+    <text x="630" y="254">• Brand voice and style controls</text>
+    <text x="630" y="288">• Rewrite, summarize, and expand</text>
+    <text x="630" y="322">• Workflow templates and approvals</text>
+    <text x="630" y="356">• Team governance and integrations</text>
+  </g>
+  <rect x="612" y="374" width="292" height="12" rx="6" fill="#d7e8ff" />
+  <rect x="152" y="382" width="474" height="352" rx="24" fill="#fffdf8" stroke="#ddd3c2" />
+  <text x="184" y="428" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">Example Workflow</text>
+  <g>
+    <rect x="184" y="458" width="126" height="84" rx="18" fill="#e7f8f3" />
+    <text x="207" y="492" fill="#0f766e" font-family="IBM Plex Mono, Courier New, monospace" font-size="16" font-weight="700">INPUT</text>
+    <text x="207" y="520" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="17">Product brief</text>
+    <rect x="332" y="458" width="126" height="84" rx="18" fill="#eef4ff" />
+    <text x="356" y="492" fill="#0b5cab" font-family="IBM Plex Mono, Courier New, monospace" font-size="16" font-weight="700">PROMPT</text>
+    <text x="354" y="520" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="17">Audience + tone</text>
+    <rect x="480" y="458" width="114" height="84" rx="18" fill="#f7efe1" />
+    <text x="501" y="492" fill="#9a6700" font-family="IBM Plex Mono, Courier New, monospace" font-size="16" font-weight="700">OUTPUT</text>
+    <text x="500" y="520" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="17">Draft set</text>
+  </g>
+  <path d="M310 500h18" stroke="#8aa4bc" stroke-width="6" stroke-linecap="round" />
+  <path d="M458 500h18" stroke="#8aa4bc" stroke-width="6" stroke-linecap="round" />
+  <text x="184" y="592" fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="19">Blog intro, landing page copy, support macro,</text>
+  <text x="184" y="620" fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="19">release email, social caption, and FAQ from the same source.</text>
+  <rect x="184" y="650" width="380" height="14" rx="7" fill="url(#accent)" opacity="0.9" />
+  <rect x="662" y="448" width="274" height="286" rx="24" fill="#fffdf8" stroke="#ddd3c2" />
+  <text x="694" y="494" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">Best Fit</text>
+  <g fill="#4a5864" font-family="Inter, Arial, sans-serif" font-size="19">
+    <text x="694" y="540">• Marketing teams</text>
+    <text x="694" y="572">• Support operations</text>
+    <text x="694" y="604">• Sales enablement</text>
+    <text x="694" y="636">• Docs and knowledge teams</text>
+  </g>
+  <rect x="694" y="670" width="164" height="38" rx="19" fill="#24313a" />
+  <text x="723" y="695" fill="#fffdf8" font-family="IBM Plex Mono, Courier New, monospace" font-size="16" font-weight="700">HUMAN REVIEW</text>
+  <text x="152" y="100" fill="#0f766e" font-family="IBM Plex Mono, Courier New, monospace" font-size="18" font-weight="700">PULSAGI GUIDE</text>
+</svg>
