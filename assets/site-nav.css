@@ -85,6 +85,15 @@ nav.site-nav .nav-brand:hover {
   background: transparent;
 }
 
+nav.site-nav a.nav-secondary,
+nav.site-nav a.nav-secondary:visited {
+  color: #98a4b1 !important;
+}
+
+nav.site-nav a.nav-secondary:hover {
+  color: #d9e0e7 !important;
+}
+
 nav.site-nav a[aria-current="page"],
 nav.site-nav .nav-pill {
   color: #76e0c0 !important;
