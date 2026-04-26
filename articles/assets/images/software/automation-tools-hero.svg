@@ -1,0 +1,67 @@
+<svg width="1400" height="860" viewBox="0 0 1400 860" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Best automation tools in 2026 hero graphic</title>
+  <desc id="desc">Editorial style illustration highlighting workflow automation, integrations, governance, and operations.</desc>
+  <defs>
+    <linearGradient id="bg" x1="108" y1="88" x2="1274" y2="772" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EFE7"/>
+      <stop offset="1" stop-color="#E7F1F8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0B5CAB"/>
+      <stop offset="1" stop-color="#118A72"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="860" rx="36" fill="url(#bg)"/>
+  <circle cx="1172" cy="172" r="122" fill="#DCEBFA"/>
+  <circle cx="235" cy="708" r="156" fill="#E4F4EE"/>
+  <rect x="74" y="72" width="1252" height="716" rx="28" fill="#FFFDF8" stroke="#D8CCBB" stroke-width="2"/>
+  <text x="118" y="150" fill="#0F172A" font-family="Georgia, serif" font-size="44" font-weight="700">Best Automation Tools in 2026</text>
+  <text x="118" y="194" fill="#475569" font-family="Arial, sans-serif" font-size="24">Workflow automation, AI agents, RPA, orchestration, and enterprise control</text>
+
+  <rect x="118" y="246" width="372" height="178" rx="24" fill="#0F172A"/>
+  <text x="150" y="294" fill="#93C5FD" font-family="Arial, sans-serif" font-size="18" font-weight="700">WHY TEAMS BUY</text>
+  <text x="150" y="342" fill="#F8FAFC" font-family="Georgia, serif" font-size="28" font-weight="700">Reduce repetitive work</text>
+  <text x="150" y="378" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="22">Connect apps, approvals, files,</text>
+  <text x="150" y="408" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="22">data, and AI-driven actions.</text>
+
+  <rect x="516" y="246" width="352" height="178" rx="24" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="546" y="294" fill="#0B5CAB" font-family="Arial, sans-serif" font-size="18" font-weight="700">TOP CATEGORIES</text>
+  <text x="546" y="338" fill="#0F172A" font-family="Georgia, serif" font-size="26" font-weight="700">No-code workflow tools</text>
+  <text x="546" y="372" fill="#334155" font-family="Arial, sans-serif" font-size="21">Visual automation for business teams</text>
+  <text x="546" y="406" fill="#334155" font-family="Arial, sans-serif" font-size="21">RPA and orchestration for enterprise ops</text>
+
+  <rect x="894" y="246" width="312" height="178" rx="24" fill="url(#card)"/>
+  <text x="926" y="294" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="18" font-weight="700">EVALUATION</text>
+  <text x="926" y="340" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Integrations</text>
+  <text x="926" y="372" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Governance</text>
+  <text x="926" y="404" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Extensibility</text>
+
+  <rect x="118" y="468" width="1088" height="242" rx="28" fill="#FFFDF8" stroke="#D8CCBB" stroke-width="2"/>
+  <text x="150" y="522" fill="#0F172A" font-family="Georgia, serif" font-size="28" font-weight="700">Tools covered</text>
+  <g font-family="Arial, sans-serif" font-size="24" fill="#334155">
+    <text x="150" y="580">Zapier</text>
+    <text x="286" y="580">Make</text>
+    <text x="408" y="580">n8n</text>
+    <text x="506" y="580">Workato</text>
+    <text x="680" y="580">Power Automate</text>
+    <text x="944" y="580">UiPath</text>
+  </g>
+  <g stroke="#94A3B8" stroke-width="4" stroke-linecap="round">
+    <path d="M208 612H318"/>
+    <path d="M342 612H452"/>
+    <path d="M476 612H586"/>
+    <path d="M610 612H744"/>
+    <path d="M768 612H924"/>
+    <path d="M948 612H1076"/>
+  </g>
+  <g fill="#0B5CAB">
+    <circle cx="208" cy="612" r="10"/>
+    <circle cx="342" cy="612" r="10"/>
+    <circle cx="476" cy="612" r="10"/>
+    <circle cx="610" cy="612" r="10"/>
+    <circle cx="768" cy="612" r="10"/>
+    <circle cx="948" cy="612" r="10"/>
+    <circle cx="1076" cy="612" r="10"/>
+  </g>
+  <text x="150" y="668" fill="#475569" font-family="Arial, sans-serif" font-size="22">Built for operators, admins, solution architects, and developers choosing the right automation stack.</text>
+</svg>

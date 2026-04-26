@@ -1,0 +1,59 @@
+<svg width="1400" height="860" viewBox="0 0 1400 860" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Best no-code tools in 2026 hero graphic</title>
+  <desc id="desc">Editorial style illustration for no-code app builders, websites, portals, and internal tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="96" y1="72" x2="1280" y2="792" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F0E8"/>
+      <stop offset="1" stop-color="#EAF6F2"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#0B5CAB"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="860" rx="36" fill="url(#bg)"/>
+  <circle cx="1190" cy="162" r="130" fill="#DCF0EA"/>
+  <circle cx="210" cy="700" r="146" fill="#E6EEF9"/>
+  <rect x="72" y="70" width="1256" height="720" rx="28" fill="#FFFDF8" stroke="#D8CCBB" stroke-width="2"/>
+  <text x="118" y="146" fill="#0F172A" font-family="Georgia, serif" font-size="44" font-weight="700">Best No-Code Tools in 2026</text>
+  <text x="118" y="190" fill="#475569" font-family="Arial, sans-serif" font-size="24">App builders, websites, portals, internal tools, databases, and workflow-friendly platforms</text>
+
+  <rect x="118" y="236" width="390" height="196" rx="24" fill="url(#panel)"/>
+  <text x="148" y="286" fill="#CCFBF1" font-family="Arial, sans-serif" font-size="18" font-weight="700">WHAT NO-CODE MEANS NOW</text>
+  <text x="148" y="338" fill="#FFFFFF" font-family="Georgia, serif" font-size="28" font-weight="700">Build faster without</text>
+  <text x="148" y="372" fill="#FFFFFF" font-family="Georgia, serif" font-size="28" font-weight="700">starting from zero code</text>
+  <text x="148" y="408" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="22">Modern tools blend AI prompting,</text>
+  <text x="148" y="438" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="22">visual editing, data, and permissions.</text>
+
+  <rect x="538" y="236" width="338" height="196" rx="24" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="568" y="286" fill="#0B5CAB" font-family="Arial, sans-serif" font-size="18" font-weight="700">BEST FOR</text>
+  <text x="568" y="336" fill="#0F172A" font-family="Georgia, serif" font-size="25" font-weight="700">Internal tools</text>
+  <text x="568" y="370" fill="#334155" font-family="Arial, sans-serif" font-size="21">Ops dashboards, client portals,</text>
+  <text x="568" y="400" fill="#334155" font-family="Arial, sans-serif" font-size="21">approvals, data apps, websites</text>
+
+  <rect x="906" y="236" width="300" height="196" rx="24" fill="#0F172A"/>
+  <text x="936" y="286" fill="#93C5FD" font-family="Arial, sans-serif" font-size="18" font-weight="700">CHECK CAREFULLY</text>
+  <text x="936" y="338" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Scalability</text>
+  <text x="936" y="372" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Permissions</text>
+  <text x="936" y="406" fill="#FFFFFF" font-family="Georgia, serif" font-size="24" font-weight="700">Integration depth</text>
+
+  <rect x="118" y="472" width="1088" height="244" rx="28" fill="#FFFDF8" stroke="#D8CCBB" stroke-width="2"/>
+  <text x="150" y="528" fill="#0F172A" font-family="Georgia, serif" font-size="28" font-weight="700">Platforms covered</text>
+  <g font-family="Arial, sans-serif" font-size="24" fill="#334155">
+    <text x="150" y="588">Bubble</text>
+    <text x="292" y="588">Webflow</text>
+    <text x="458" y="588">Airtable</text>
+    <text x="620" y="588">Glide</text>
+    <text x="736" y="588">Softr</text>
+    <text x="852" y="588">Retool</text>
+  </g>
+  <g fill="#0F766E">
+    <rect x="150" y="618" width="130" height="18" rx="9"/>
+    <rect x="292" y="618" width="146" height="18" rx="9"/>
+    <rect x="458" y="618" width="146" height="18" rx="9"/>
+    <rect x="620" y="618" width="94" height="18" rx="9"/>
+    <rect x="736" y="618" width="92" height="18" rx="9"/>
+    <rect x="852" y="618" width="118" height="18" rx="9"/>
+  </g>
+  <text x="150" y="684" fill="#475569" font-family="Arial, sans-serif" font-size="22">Practical guidance for founders, admins, operators, and developers deciding when no-code is the right tool.</text>
+</svg>
