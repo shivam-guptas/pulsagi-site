@@ -241,13 +241,11 @@
     /* ABOUT */
     .about-sec { padding: 2.4rem 2rem 4.2rem; max-width: 1180px; margin: var(--section-gap) auto 0; }
     .about-sec,
-    .tools-sec,
-    .start-here-sec {
+    .tools-sec {
       position: relative;
     }
     .about-sec::before,
-    .tools-sec::before,
-    .start-here-sec::before {
+    .tools-sec::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -257,8 +255,7 @@
       pointer-events: none;
     }
     .about-sec > *,
-    .tools-sec > *,
-    .start-here-sec > * {
+    .tools-sec > * {
       position: relative;
       z-index: 1;
     }
@@ -270,41 +267,6 @@
     .pillar:hover { border-color: rgba(118,224,192,0.32); transform: translateY(-3px); box-shadow: 0 20px 36px rgba(0,0,0,0.15); }
     .pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .pillar p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
-
-    .start-here-sec {
-      max-width: 1180px;
-      margin: var(--section-gap) auto 0;
-      padding: 2.35rem 2rem 3rem;
-    }
-    .start-here-sec::before {
-      background:
-        radial-gradient(circle at top right, rgba(118,224,192,0.12), transparent 34%),
-        linear-gradient(180deg, rgba(255,247,238,0.05), rgba(255,247,238,0.025));
-      border: 1px solid rgba(118,224,192,0.18);
-      box-shadow: 0 16px 34px rgba(0,0,0,0.12);
-    }
-    .start-here-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
-    .start-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      padding: 1.55rem;
-      border-radius: 18px;
-      border: 1px solid rgba(202,212,223,0.1);
-      background: linear-gradient(180deg, rgba(44,54,66,0.98), rgba(33,41,50,0.98));
-      box-shadow: 0 14px 28px rgba(0,0,0,0.1);
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-      cursor: pointer;
-    }
-    .start-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(118,224,192,0.34);
-      box-shadow: 0 20px 36px rgba(0,0,0,0.18);
-    }
-    .start-card-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; }
-    .start-card h3 { font-size: 1.06rem; margin-bottom: 0.45rem; }
-    .start-card p { color: var(--muted2); font-size: 0.91rem; line-height: 1.65; margin-bottom: 0.95rem; }
-    .start-link { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
 
     .workflows-sec,
     .final-cta {
@@ -410,12 +372,10 @@
       .hero-main { text-align: center; align-items: center; }
       .cta-group { justify-content: center; }
       .hero-kpis { grid-template-columns: 1fr; max-width: 520px; width: 100%; }
-      .start-here-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 700px) {
       nav ul { gap: 1rem; }
       .hero { padding: 3rem 1rem 2rem; }
-      .start-here-sec,
       .about-sec,
       .workflows-sec,
       .tools-sec,
@@ -475,7 +435,7 @@
         <p class="hero-sub">Use fast, browser-based tools to analyze data, clean content, inspect files, and simplify everyday tasks &mdash; no signup or setup required.</p>
         <div class="cta-group">
           <a href="/tools/" class="btn btn-primary">Explore Tools</a>
-          <a href="/tools/scam-checker.html" class="btn btn-ghost">Try Popular Tool</a>
+          <a href="/tools/apex-log-analyzer.html" class="btn btn-ghost">Try Popular Tool</a>
         </div>
         <div class="hero-kpis">
           <div class="hero-kpi">
@@ -507,53 +467,21 @@
           </div>
           <div class="spotlight-link">Open converter -></div>
         </a>
-        <a class="spotlight-card" href="/tools/apex-log-analyzer.html">
+        <a class="spotlight-card" href="/tools/scam-checker.html">
           <div class="spotlight-top">
-            <span class="spotlight-tag">DEVELOPER</span>
-            <span class="spotlight-state">Debug workflow</span>
+            <span class="spotlight-tag">POPULAR</span>
+            <span class="spotlight-state">Safety workflow</span>
           </div>
-          <h3>Apex Log Analyzer</h3>
-          <p>Inspect Salesforce debug logs for errors, hotspots, timelines, and performance issues.</p>
+          <h3>Scam Checker</h3>
+          <p>Check suspicious links, messages, fake jobs, and payment requests with simple browser-based analysis.</p>
           <div class="spotlight-meta">
-            <span>Debug logs</span>
-            <span>Hotspots</span>
-            <span>Timeline</span>
+            <span>OCR upload</span>
+            <span>Domain checks</span>
+            <span>Share links</span>
           </div>
-          <div class="spotlight-link">Open analyzer -></div>
+          <div class="spotlight-link">Open checker -></div>
         </a>
       </div>
-    </div>
-  </section>
-
-  <section class="start-here-sec" aria-labelledby="start-here-heading">
-    <div class="sec-label">Popular Tools</div>
-    <h2 id="start-here-heading">Start with these tools</h2>
-    <p class="about-copy">Quickly try some of the most useful tools on Pulsagi.</p>
-    <div class="start-here-grid">
-      <a class="start-card" href="/tools/json-viewer.html">
-        <div class="start-card-top">
-          <span class="tool-badge">Popular</span>
-        </div>
-        <h3>JSON Viewer</h3>
-        <p>Paste JSON to format, inspect, search, analyze, and visualize structured data quickly.</p>
-        <div class="start-link">Open tool -&gt;</div>
-      </a>
-      <a class="start-card" href="/tools/scam-checker.html">
-        <div class="start-card-top">
-          <span class="tool-badge">Recommended</span>
-        </div>
-        <h3>Scam Checker</h3>
-        <p>Review suspicious links, fake jobs, messages, and payment requests with simple browser-based checks.</p>
-        <div class="start-link">Open tool -&gt;</div>
-      </a>
-      <a class="start-card" href="/tools/json-to-toon-converter.html">
-        <div class="start-card-top">
-          <span class="tool-badge">AI workflow</span>
-        </div>
-        <h3>JSON to TOON Converter</h3>
-        <p>Convert repeated JSON into compact TOON format to reduce prompt size and make data easier to share.</p>
-        <div class="start-link">Open tool -&gt;</div>
-      </a>
     </div>
   </section>
 
