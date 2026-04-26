@@ -1,0 +1,63 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="84" x2="1458" y2="826" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5FBFF"/>
+      <stop offset="1" stop-color="#EEF8F1"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0B1E2D"/>
+      <stop offset="1" stop-color="#18435B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#082032" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <circle cx="240" cy="170" r="170" fill="#D6F6ED"/>
+  <circle cx="1386" cy="738" r="222" fill="#DDEFFF"/>
+  <circle cx="1296" cy="154" r="112" fill="#FEEBC8"/>
+
+  <g filter="url(#shadow)">
+    <rect x="76" y="78" width="716" height="744" rx="34" fill="url(#panel)"/>
+  </g>
+
+  <text x="128" y="192" fill="#D9FFF5" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="0.18em">AI IMAGE GENERATORS</text>
+  <text x="128" y="306" fill="white" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="800">Best Tools</text>
+  <text x="128" y="398" fill="white" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="800">for Visual Work</text>
+  <text x="128" y="470" fill="#B9D4DF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Concepting, editing, posters, product shots, and team workflows</text>
+
+  <rect x="128" y="544" width="608" height="196" rx="24" fill="#F8FFFD" fill-opacity="0.08" stroke="#6EE7B7" stroke-opacity="0.3"/>
+  <text x="164" y="602" fill="#7DEBC6" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="600">QUICK PICKS</text>
+  <text x="164" y="654" fill="white" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">ChatGPT for most users</text>
+  <text x="164" y="698" fill="#DCE8F0" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Midjourney for style, Firefly for editing</text>
+
+  <rect x="880" y="106" width="640" height="164" rx="28" fill="white" stroke="#CDE7DE"/>
+  <rect x="914" y="138" width="88" height="88" rx="22" fill="url(#accent)"/>
+  <path d="M950 162C939 170 932 183 932 198C932 214 940 227 952 235C964 243 980 244 993 237C1006 230 1014 216 1014 201C1014 186 1008 172 997 164C985 155 965 154 950 162Z" fill="white" fill-opacity="0.92"/>
+  <text x="1032" y="176" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800">What To Choose</text>
+  <text x="1032" y="224" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">Match the generator to the actual visual job</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="308" width="640" height="168" rx="28" fill="white"/>
+  </g>
+  <text x="920" y="360" fill="#0F172A" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="700">BEST OVERALL</text>
+  <text x="920" y="404" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">ChatGPT</text>
+  <text x="1038" y="404" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">instruction following, editing, text rendering</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="514" width="640" height="168" rx="28" fill="white"/>
+  </g>
+  <text x="920" y="566" fill="#0F172A" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="700">SPECIALISTS</text>
+  <text x="920" y="610" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Midjourney, Firefly, Ideogram</text>
+  <text x="920" y="652" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="500">style direction, commercial editing, and text-heavy posters</text>
+
+  <g filter="url(#shadow)">
+    <rect x="880" y="720" width="640" height="116" rx="28" fill="#ECFDF5" stroke="#A7F3D0"/>
+  </g>
+  <text x="920" y="790" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Strong image workflows need prompts, review, and editing.</text>
+</svg>
