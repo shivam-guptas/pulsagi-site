@@ -38,6 +38,11 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Machine Learning vs Deep Learning: What's the Difference, Use Cases, and Best Choice in 2026** (Apr 27, 2026): https://pulsagi.com/articles/machine_learning_vs_deep_learning_difference.html
+- **How Neural Networks Work: Beginner-Friendly Explanation with Examples in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how_neural_networks_work_beginner_guide.html
+- **Natural Language Processing Explained with Examples: Meaning, Use Cases, and Best Practices in 2026** (Apr 27, 2026): https://pulsagi.com/articles/natural_language_processing_explained_examples.html
+- **How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html
+- **Top Programming Languages for AI Development in 2026: Features, Use Cases, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/top_programming_languages_for_ai_2026.html
 - **Best AI Image Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai_image_generator_guide.html
 - **Best AI Content Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai_content_generator_guide.html
 - **Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt_prompts_guide.html

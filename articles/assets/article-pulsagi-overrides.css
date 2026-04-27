@@ -636,3 +636,20 @@ li code {
     max-width: 25ch !important;
   }
 }
+
+.article-page .hero-visual.article-hero-media {
+  overflow: visible;
+  background: #ffffff;
+}
+
+.article-page .hero-visual.article-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+  border-radius: 20px;
+}
