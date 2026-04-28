@@ -38,11 +38,11 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
-- **The Future of AI by 2030: Predictions, Expert Insights, Use Cases, Risks, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/future_of_ai_2030_predictions_guide.html
-- **Will AI Replace Jobs or Create New Ones? Economic Trends, Workforce Shifts, and What Happens Next** (Apr 27, 2026): https://pulsagi.com/articles/will_ai_replace_jobs_or_create_new_ones.html
-- **How AI Will Change Education Forever: Teaching, Learning, Assessment, and Skills in the AI Era** (Apr 27, 2026): https://pulsagi.com/articles/how_ai_will_change_education_forever.html
-- **The Rise of Generative AI: What It Means for You in Content, Business, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/rise_of_generative_ai_what_it_means_for_you.html
-- **AI and the Future of Work: Skills You Need to Learn Now for 2030** (Apr 27, 2026): https://pulsagi.com/articles/ai_future_of_work_skills_you_need_to_learn.html
+- **The Future of AI by 2030: Predictions, Expert Insights, Use Cases, Risks, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html
+- **Will AI Replace Jobs or Create New Ones? Economic Trends, Workforce Shifts, and What Happens Next** (Apr 27, 2026): https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html
+- **How AI Will Change Education Forever: Teaching, Learning, Assessment, and Skills in the AI Era** (Apr 27, 2026): https://pulsagi.com/articles/how-ai-will-change-education-forever.html
+- **The Rise of Generative AI: What It Means for You in Content, Business, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html
+- **AI and the Future of Work: Skills You Need to Learn Now for 2030** (Apr 27, 2026): https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html
 - **Machine Learning vs Deep Learning: What's the Difference, Use Cases, and Best Choice in 2026** (Apr 27, 2026): https://pulsagi.com/articles/machine_learning_vs_deep_learning_difference.html
 - **How Neural Networks Work: Beginner-Friendly Explanation with Examples in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how_neural_networks_work_beginner_guide.html
 - **Natural Language Processing Explained with Examples: Meaning, Use Cases, and Best Practices in 2026** (Apr 27, 2026): https://pulsagi.com/articles/natural_language_processing_explained_examples.html
