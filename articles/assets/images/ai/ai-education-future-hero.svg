@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">How AI Will Change Education Forever</title>
+  <desc id="desc">Hero image for an article about AI in education, teacher workflows, student learning, and assessment change.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffaf2" />
+      <stop offset="55%" stop-color="#eef7ff" />
+      <stop offset="100%" stop-color="#f7f2e8" />
+    </linearGradient>
+    <linearGradient id="ink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b5cab" />
+      <stop offset="100%" stop-color="#1f3f6e" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="1340" cy="160" r="180" fill="#d7eafe" opacity="0.8" />
+  <circle cx="256" cy="758" r="180" fill="#f7e2b8" opacity="0.6" />
+  <rect x="78" y="76" width="1444" height="748" rx="34" fill="#ffffff" stroke="#ddd3c2" stroke-width="3" />
+  <rect x="116" y="114" width="612" height="672" rx="28" fill="url(#ink)" />
+  <text x="166" y="188" fill="#c9dcf7" font-family="IBM Plex Mono, monospace" font-size="28" letter-spacing="3">AI EDUCATION • TEACHING AND LEARNING</text>
+  <text x="166" y="284" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="700">How AI Will</text>
+  <text x="166" y="362" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="700">Change Education</text>
+  <text x="166" y="440" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="700">Forever</text>
+  <text x="166" y="518" fill="#dce9fa" font-family="Source Sans 3, Arial, sans-serif" font-size="30">From lesson design and tutoring to assessment,</text>
+  <text x="166" y="558" fill="#dce9fa" font-family="Source Sans 3, Arial, sans-serif" font-size="30">teacher training, and lifelong learning pathways.</text>
+  <g transform="translate(166 620)">
+    <rect x="0" y="0" width="192" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="30" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">Tutoring</text>
+    <rect x="208" y="0" width="214" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="238" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">Assessment</text>
+    <rect x="438" y="0" width="146" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="470" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">Policy</text>
+  </g>
+  <g transform="translate(780 148)">
+    <rect x="0" y="0" width="650" height="290" rx="26" fill="#f7fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="34" y="52" fill="#0f172a" font-family="Georgia, serif" font-size="34" font-weight="700">The new classroom loop</text>
+    <rect x="36" y="92" width="146" height="130" rx="22" fill="#fffaf0" stroke="#eadfc8" stroke-width="2" />
+    <rect x="252" y="92" width="146" height="130" rx="22" fill="#eef6ff" stroke="#d4e5fb" stroke-width="2" />
+    <rect x="468" y="92" width="146" height="130" rx="22" fill="#fffaf0" stroke="#eadfc8" stroke-width="2" />
+    <text x="68" y="142" fill="#7c4a00" font-family="Georgia, serif" font-size="26" font-weight="700">Teacher</text>
+    <text x="284" y="142" fill="#0b5cab" font-family="Georgia, serif" font-size="26" font-weight="700">AI tools</text>
+    <text x="500" y="142" fill="#7c4a00" font-family="Georgia, serif" font-size="26" font-weight="700">Learner</text>
+    <text x="56" y="178" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Design</text>
+    <text x="56" y="200" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Coach</text>
+    <text x="272" y="178" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Adapt</text>
+    <text x="272" y="200" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Support</text>
+    <text x="488" y="178" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Practice</text>
+    <text x="488" y="200" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="16">Reflect</text>
+    <path d="M182 156 H252" stroke="#0b5cab" stroke-width="8" stroke-linecap="round" />
+    <path d="M398 156 H468" stroke="#0b5cab" stroke-width="8" stroke-linecap="round" />
+  </g>
+  <g transform="translate(780 472)">
+    <rect x="0" y="0" width="304" height="256" rx="26" fill="#fffaf0" stroke="#eadfc8" stroke-width="2" />
+    <text x="30" y="50" fill="#7c4a00" font-family="Georgia, serif" font-size="31" font-weight="700">What improves</text>
+    <text x="30" y="96" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Feedback speed</text>
+    <rect x="30" y="108" width="186" height="18" rx="9" fill="#f0c98e" />
+    <text x="30" y="150" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Accessibility support</text>
+    <rect x="30" y="162" width="224" height="18" rx="9" fill="#d6e4f5" />
+    <text x="30" y="204" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Teacher preparation</text>
+    <rect x="30" y="216" width="202" height="18" rx="9" fill="#76a9e3" />
+  </g>
+  <g transform="translate(1120 472)">
+    <rect x="0" y="0" width="310" height="256" rx="26" fill="#f7fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="28" y="50" fill="#0f172a" font-family="Georgia, serif" font-size="31" font-weight="700">What must change</text>
+    <text x="28" y="96" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Assessment design</text>
+    <text x="28" y="128" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Teacher training</text>
+    <text x="28" y="160" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Age and privacy rules</text>
+    <text x="28" y="192" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Approved tool governance</text>
+  </g>
+</svg>

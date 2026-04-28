@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Future of AI by 2030</title>
+  <desc id="desc">Editorial hero image for an article about AI predictions, multimodal systems, agents, governance, and work by 2030.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff9ef" />
+      <stop offset="55%" stop-color="#eef6ff" />
+      <stop offset="100%" stop-color="#f5efe4" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b5cab" />
+      <stop offset="100%" stop-color="#083d77" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f0c98e" />
+      <stop offset="100%" stop-color="#8ed6ff" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="1300" cy="160" r="190" fill="#dcecff" opacity="0.72" />
+  <circle cx="220" cy="780" r="210" fill="#f7e1b4" opacity="0.5" />
+  <rect x="76" y="74" width="1448" height="752" rx="34" fill="#ffffff" stroke="#ddd3c2" stroke-width="3" />
+  <rect x="118" y="116" width="586" height="668" rx="28" fill="url(#panel)" />
+  <text x="168" y="198" fill="#dbeafe" font-family="IBM Plex Mono, monospace" font-size="28" letter-spacing="3">AI STRATEGY • 2030 OUTLOOK</text>
+  <text x="168" y="292" fill="#ffffff" font-family="Georgia, serif" font-size="72" font-weight="700">The Future</text>
+  <text x="168" y="376" fill="#ffffff" font-family="Georgia, serif" font-size="72" font-weight="700">of AI by 2030</text>
+  <text x="168" y="452" fill="#d9e8fb" font-family="Source Sans 3, Arial, sans-serif" font-size="31">Predictions, expert signals, business impact,</text>
+  <text x="168" y="492" fill="#d9e8fb" font-family="Source Sans 3, Arial, sans-serif" font-size="31">and what leaders should prepare for now.</text>
+  <rect x="168" y="556" width="214" height="52" rx="26" fill="#ffffff" opacity="0.14" />
+  <text x="206" y="590" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="22">Agents</text>
+  <rect x="396" y="556" width="250" height="52" rx="26" fill="#ffffff" opacity="0.14" />
+  <text x="432" y="590" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="22">Multimodal AI</text>
+  <rect x="168" y="628" width="256" height="52" rx="26" fill="#ffffff" opacity="0.14" />
+  <text x="204" y="662" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="22">Governance</text>
+  <rect x="438" y="628" width="196" height="52" rx="26" fill="#ffffff" opacity="0.14" />
+  <text x="474" y="662" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="22">Robotics</text>
+  <g transform="translate(780 154)">
+    <rect x="0" y="0" width="650" height="278" rx="26" fill="#f7fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="34" y="52" fill="#0f172a" font-family="Georgia, serif" font-size="34" font-weight="700">Likely shifts by 2030</text>
+    <polyline points="46,212 156,184 260,152 370,124 486,92 596,66" fill="none" stroke="url(#accent)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+    <g fill="#0b5cab">
+      <circle cx="46" cy="212" r="10" />
+      <circle cx="156" cy="184" r="10" />
+      <circle cx="260" cy="152" r="10" />
+      <circle cx="370" cy="124" r="10" />
+      <circle cx="486" cy="92" r="10" />
+      <circle cx="596" cy="66" r="10" />
+    </g>
+    <text x="36" y="250" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="20">Assistants</text>
+    <text x="162" y="250" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="20">Copilots</text>
+    <text x="282" y="250" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="20">Agents</text>
+    <text x="396" y="250" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="20">Systems</text>
+    <text x="504" y="250" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="20">Platforms</text>
+  </g>
+  <g transform="translate(780 468)">
+    <rect x="0" y="0" width="304" height="262" rx="26" fill="#fffaf0" stroke="#eadfc8" stroke-width="2" />
+    <text x="30" y="50" fill="#7c4a00" font-family="Georgia, serif" font-size="32" font-weight="700">Decision stack</text>
+    <rect x="30" y="84" width="244" height="34" rx="17" fill="#f7e1b4" />
+    <rect x="30" y="132" width="214" height="34" rx="17" fill="#d7eafe" />
+    <rect x="30" y="180" width="176" height="34" rx="17" fill="#bdd8f8" />
+    <text x="46" y="107" fill="#5b3b06" font-family="IBM Plex Mono, monospace" font-size="18">Policy and trust</text>
+    <text x="46" y="155" fill="#184069" font-family="IBM Plex Mono, monospace" font-size="18">Workflow design</text>
+    <text x="46" y="203" fill="#184069" font-family="IBM Plex Mono, monospace" font-size="18">Model capability</text>
+  </g>
+  <g transform="translate(1112 468)">
+    <rect x="0" y="0" width="318" height="262" rx="26" fill="#f7fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="28" y="50" fill="#0f172a" font-family="Georgia, serif" font-size="32" font-weight="700">What scales</text>
+    <g transform="translate(34 84)">
+      <rect x="0" y="10" width="188" height="22" rx="11" fill="#0b5cab" opacity="0.9" />
+      <rect x="0" y="60" width="228" height="22" rx="11" fill="#2d78c8" opacity="0.85" />
+      <rect x="0" y="110" width="150" height="22" rx="11" fill="#76a9e3" opacity="0.85" />
+      <text x="0" y="0" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Grounded apps</text>
+      <text x="0" y="50" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Workflow agents</text>
+      <text x="0" y="100" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Experimental demos</text>
+    </g>
+  </g>
+</svg>

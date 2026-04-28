@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Will AI Replace Jobs or Create New Ones?</title>
+  <desc id="desc">Hero image for an article about AI and jobs, showing displacement, new roles, and workforce transition.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8ef" />
+      <stop offset="50%" stop-color="#eef8ff" />
+      <stop offset="100%" stop-color="#f7f3eb" />
+    </linearGradient>
+    <linearGradient id="navy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16345c" />
+      <stop offset="100%" stop-color="#0b5cab" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="1360" cy="170" r="200" fill="#d9ebff" opacity="0.8" />
+  <circle cx="220" cy="770" r="180" fill="#f5ddb0" opacity="0.55" />
+  <rect x="78" y="76" width="1444" height="748" rx="34" fill="#ffffff" stroke="#ddd3c2" stroke-width="3" />
+  <rect x="116" y="114" width="612" height="672" rx="28" fill="url(#navy)" />
+  <text x="164" y="188" fill="#c8dcf5" font-family="IBM Plex Mono, monospace" font-size="28" letter-spacing="3">AI WORKFORCE • EMPLOYMENT TRENDS</text>
+  <text x="164" y="284" fill="#ffffff" font-family="Georgia, serif" font-size="68" font-weight="700">Will AI Replace</text>
+  <text x="164" y="364" fill="#ffffff" font-family="Georgia, serif" font-size="68" font-weight="700">Jobs or Create</text>
+  <text x="164" y="444" fill="#ffffff" font-family="Georgia, serif" font-size="68" font-weight="700">New Ones?</text>
+  <text x="164" y="522" fill="#dce9fa" font-family="Source Sans 3, Arial, sans-serif" font-size="30">Economic signals, role shifts, and what</text>
+  <text x="164" y="562" fill="#dce9fa" font-family="Source Sans 3, Arial, sans-serif" font-size="30">workers, admins, and builders should expect.</text>
+  <g transform="translate(162 622)">
+    <rect x="0" y="0" width="164" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="30" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">Tasks</text>
+    <rect x="180" y="0" width="184" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="210" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">Reskilling</text>
+    <rect x="380" y="0" width="202" height="48" rx="24" fill="#ffffff" opacity="0.14" />
+    <text x="410" y="31" fill="#fff7e8" font-family="IBM Plex Mono, monospace" font-size="21">New roles</text>
+  </g>
+  <g transform="translate(780 148)">
+    <rect x="0" y="0" width="650" height="292" rx="26" fill="#f8fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="34" y="52" fill="#0f172a" font-family="Georgia, serif" font-size="34" font-weight="700">The practical answer</text>
+    <text x="36" y="106" fill="#334155" font-family="Source Sans 3, Arial, sans-serif" font-size="29">AI usually replaces tasks first, then redesigns roles,</text>
+    <text x="36" y="142" fill="#334155" font-family="Source Sans 3, Arial, sans-serif" font-size="29">and only sometimes removes full jobs.</text>
+    <g transform="translate(38 190)">
+      <rect x="0" y="0" width="178" height="50" rx="25" fill="#fee2e2" />
+      <text x="28" y="32" fill="#991b1b" font-family="IBM Plex Mono, monospace" font-size="20">Displacement</text>
+      <rect x="206" y="0" width="182" height="50" rx="25" fill="#ffefbf" />
+      <text x="238" y="32" fill="#8a5200" font-family="IBM Plex Mono, monospace" font-size="20">Transition</text>
+      <rect x="398" y="0" width="180" height="50" rx="25" fill="#dff7ea" />
+      <text x="430" y="32" fill="#146c43" font-family="IBM Plex Mono, monospace" font-size="20">Creation</text>
+    </g>
+  </g>
+  <g transform="translate(780 474)">
+    <rect x="0" y="0" width="310" height="254" rx="26" fill="#fffaf0" stroke="#eadfc8" stroke-width="2" />
+    <text x="30" y="50" fill="#7c4a00" font-family="Georgia, serif" font-size="31" font-weight="700">Declining first</text>
+    <text x="30" y="98" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Routine admin</text>
+    <rect x="30" y="110" width="210" height="18" rx="9" fill="#f3b0a8" />
+    <text x="30" y="154" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Template content</text>
+    <rect x="30" y="166" width="176" height="18" rx="9" fill="#f3c5ae" />
+    <text x="30" y="210" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Simple support triage</text>
+    <rect x="30" y="222" width="156" height="18" rx="9" fill="#f5d2b2" />
+  </g>
+  <g transform="translate(1120 474)">
+    <rect x="0" y="0" width="310" height="254" rx="26" fill="#f7fbff" stroke="#d6e4f5" stroke-width="2" />
+    <text x="30" y="50" fill="#0f172a" font-family="Georgia, serif" font-size="31" font-weight="700">Growing next</text>
+    <text x="30" y="98" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">AI operations</text>
+    <rect x="30" y="110" width="154" height="18" rx="9" fill="#0b5cab" />
+    <text x="30" y="154" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Data and governance</text>
+    <rect x="30" y="166" width="192" height="18" rx="9" fill="#2d78c8" />
+    <text x="30" y="210" fill="#475569" font-family="IBM Plex Mono, monospace" font-size="18">Human-heavy care work</text>
+    <rect x="30" y="222" width="218" height="18" rx="9" fill="#76a9e3" />
+  </g>
+</svg>
