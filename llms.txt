@@ -46,14 +46,14 @@ The articles directory is sorted newest first and includes search: https://pulsa
 - **Machine Learning vs Deep Learning: What's the Difference, Use Cases, and Best Choice in 2026** (Apr 27, 2026): https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html
 - **How Neural Networks Work: Beginner-Friendly Explanation with Examples in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html
 - **Natural Language Processing Explained with Examples: Meaning, Use Cases, and Best Practices in 2026** (Apr 27, 2026): https://pulsagi.com/articles/natural-language-processing-explained-examples.html
-- **How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html
-- **Top Programming Languages for AI Development in 2026: Features, Use Cases, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/top_programming_languages_for_ai_2026.html
-- **Best AI Image Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai_image_generator_guide.html
-- **Best AI Content Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai_content_generator_guide.html
-- **Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt_prompts_guide.html
+- **How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html
+- **Top Programming Languages for AI Development in 2026: Features, Use Cases, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html
+- **Best AI Image Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai-image-generator-guide.html
+- **Best AI Content Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai-content-generator-guide.html
+- **Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt-prompts-guide.html
 - **Best AI Tools in 2026 for Productivity, Writing, Design, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/best-ai-tools-guide.html
 - **Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_multi_framework_react.html
-- **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_async_apex_guide.html
+- **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce-async-apex-guide.html
 - **How to Connect Salesforce with ChatGPT using Hosted MCP Servers** (Apr 20, 2026): https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html
 - **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce_headless_360_guide.html
 - **Salesforce Hosted MCP Servers (Beta)** (Apr 15, 2026): https://pulsagi.com/articles/salesforce_hosted_mcp_servers_beta.html
@@ -65,9 +65,9 @@ The articles directory is sorted newest first and includes search: https://pulsa
 - **LWC vs Aura in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html
 - **Named Credentials and External Credentials in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/named-credentials-and-external-credentials.html
 - **Permission Set Groups in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/permission-set-groups-guide.html
-- **Platform Events vs Change Data Capture in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/platform_events_vs_change_data_capture.html
+- **Platform Events vs Change Data Capture in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/platform-events-vs-change-data-capture.html
 - **Salesforce GraphQL API Overview** (Apr 13, 2026): https://pulsagi.com/articles/graphql-api-overview.html
-- **Salesforce Pub/Sub API for Event-Driven Integrations** (Apr 13, 2026): https://pulsagi.com/articles/pub_sub_api_event_driven_integrations.html
+- **Salesforce Pub/Sub API for Event-Driven Integrations** (Apr 13, 2026): https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html
 - **HiClaw Explained: Alibaba's Transparent Multi-Agent OS, Matrix Collaboration, and Human-in-the-Loop Design** (Mar 18, 2026): https://pulsagi.com/articles/hiclaw-explained.html
 - **NVIDIA NemoClaw Explained: Safer OpenClaw Deployments, OpenShell Guardrails, and the Enterprise Runtime Story** (Mar 18, 2026): https://pulsagi.com/articles/nemoclaw-explained.html
 - **OneClaw Explained: Why Agent Discovery and Observability May Become a Major Enterprise Category** (Mar 18, 2026): https://pulsagi.com/articles/oneclaw-explained.html
