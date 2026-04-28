@@ -653,3 +653,23 @@ li code {
   object-position: center;
   border-radius: 20px;
 }
+
+.related-content {
+  margin: 2.5rem 0;
+  padding: 1.25rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.related-content h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.related-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.related-content ul li {
+  margin-bottom: 0.5rem;
+}
