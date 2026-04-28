@@ -1,24 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Platform Events vs Change Data Capture in Salesforce | Pulsagi Articles</title>
-  <meta name="description" content="A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations." />
-  <meta name="author" content="Shivam Gupta" />
-  <meta name="robots" content="index, follow" />
+  
+  <title>Platform Events vs CDC Guide Overview 2026 | Pulsagi</title>
+  <meta name="description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <link rel="canonical" href="https://pulsagi.com/articles/platform_events_vs_change_data_capture.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="Platform Events vs Change Data Capture in Salesforce" />
-  <meta property="og:description" content="When to use Platform Events, when to use Change Data Capture, and how replay, payload shape, and subscriber expectations affect your architecture." />
+  <meta property="og:title" content="Platform Events vs CDC Guide Overview 2026" />
+  <meta property="og:description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/platform_events_vs_change_data_capture.html" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
+  <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Platform Events vs Change Data Capture in Salesforce" />
-  <meta name="twitter:description" content="A practical, docs-first comparison of Salesforce Platform Events and Change Data Capture, now with Apex examples." />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:title" content="Platform Events vs CDC Guide Overview 2026 | Pulsagi" />
+  <meta name="twitter:description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Platform Events vs Change Data Capture in Salesforce",
+  "description": "Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/og-default.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-13",
+  "dateModified": "2026-04-13",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/platform_events_vs_change_data_capture.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Platform Events vs Change Data Capture in Salesforce", "item": "https://pulsagi.com/articles/platform_events_vs_change_data_capture.html" }
+  ]
+}
+</script>
+<meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -32,32 +69,21 @@
     .article-table td { color: var(--muted-strong); }
     .reference-list { padding-left: 22px; }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Platform Events vs Change Data Capture in Salesforce",
-    "description": "A high-quality, docs-checked comparison of Salesforce Platform Events and Change Data Capture, with Apex examples, replay guidance, channel naming, and design recommendations.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/platform_events_vs_change_data_capture.html",
-    "datePublished": "2026-04-13",
-    "dateModified": "2026-04-13",
-    "image": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"],
-    "author": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" },
-    "publisher": { "@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/" }
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
   <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="shell">
   <nav class="site-nav" aria-label="Main navigation">
@@ -76,10 +102,10 @@
         <h1 class="article-title">Platform Events vs Change Data Capture in Salesforce</h1>
         <p class="article-standfirst">A docs-first comparison of Salesforce's two main event-bus patterns, with Apex code examples, replay guidance, channel naming, and a practical decision framework for architects.</p>
         <div class="reading-meta"><span>14 min read</span><span>Published April 13, 2026</span><span>By Shivam Gupta</span></div>
-        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
       </div>
       <div class="article-hero-media">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Salesforce event bus architecture" loading="eager" />
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Salesforce event bus architecture" loading="eager"  width="1400"  height="933" />
         <p>This article stays anchored to current Salesforce documentation for the event bus, Pub/Sub API, CDC setup, durability, and event channel conventions.</p>
       </div>
     </section>

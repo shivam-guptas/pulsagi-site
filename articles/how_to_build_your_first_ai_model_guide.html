@@ -1,34 +1,63 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026 | Pulsagi Articles</title>
-  <meta name="description" content="A step-by-step guide to building your first AI model in 2026, including problem framing, data preparation, training, evaluation, limitations, and practical recommendations." />
-  <meta name="keywords" content="how to build your first AI model, AI model step by step, beginner AI project, machine learning project for beginners, scikit-learn tutorial, AI model example, train your first model, AI development guide, machine learning workflow, AI beginner tutorial" />
+  
+  <title>Build Your First AI Model Guide Overview | Pulsagi</title>
+  <meta name="description" content="Build Your First AI Model Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <link rel="canonical" href="https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Build Your First AI Model Guide Overview" />
+  <meta property="og:description" content="Build Your First AI Model Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta property="og:url" content="https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Build Your First AI Model Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Build Your First AI Model Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026",
+  "description": "Build Your First AI Model Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-02-28",
+  "dateModified": "2026-02-28",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026", "item": "https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="how to build your first AI model, AI model step by step, beginner AI project, machine learning project for beginners, scikit-learn tutorial, AI model example, train your first model, AI development guide, machine learning workflow, AI beginner tutorial" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-  <link rel="canonical" href="https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026" />
-  <meta property="og:description" content="Learn a practical beginner workflow for building an AI model from problem definition through evaluation and next-step deployment thinking." />
-  <meta property="og:url" content="https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html" />
-  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png" />
-  <meta property="article:published_time" content="2026-02-28T00:00:00+05:30" />
-  <meta property="article:modified_time" content="2026-02-28T00:00:00+05:30" />
-  <meta property="article:author" content="Shivam Gupta" />
-  <meta property="article:section" content="AI" />
-  <meta property="article:tag" content="AI Model" />
-  <meta property="article:tag" content="Machine Learning" />
-  <meta property="article:tag" content="scikit-learn" />
-  <meta property="article:tag" content="Beginner Guide" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026" />
-  <meta name="twitter:description" content="A practical beginner guide to training and evaluating your first AI model with a clean workflow and realistic expectations." />
-  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -49,37 +78,22 @@
     .example-block pre { white-space: pre-wrap; margin: 14px 0 0; padding: 16px 18px; border-radius: 16px; background: #0f172a; color: #e5eef8; overflow-x: auto; line-height: 1.7; font-size: 0.95rem; }
     .example-note { margin-top: 10px; color: var(--muted-strong); }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026",
-    "description": "A step-by-step guide to building your first AI model in 2026, including problem framing, data preparation, training, evaluation, limitations, and practical recommendations.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/how_to_build_your_first_ai_model_guide.html",
-    "datePublished": "2026-02-28",
-    "dateModified": "2026-02-28",
-    "image": ["https://pulsagi.com/articles/assets/images/ai/build-first-ai-model-hero.png"],
-    "author": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "publisher": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "keywords": ["how to build your first AI model", "AI model step by step", "beginner AI project", "scikit-learn tutorial", "machine learning workflow"]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
   <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
     <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -97,10 +111,10 @@
           <h1 class="article-title">How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026</h1>
           <p class="article-standfirst">The fastest way to get into AI is not by starting with the biggest model you can find. It is by learning a clear, repeatable workflow on a small supervised problem. This guide walks through the process from choosing a problem and dataset to training, evaluation, and sensible next steps, using a practical beginner-friendly approach.</p>
           <div class="reading-meta"><span>18 min read</span><span>Published February 28, 2026</span><span>By Shivam Gupta</span></div>
-          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
         </div>
         <div class="hero-visual article-hero-media">
-          <img src="assets/images/ai/build-first-ai-model-hero.png" alt="Step-by-step workflow illustration for building a first AI model, from problem framing to model evaluation" loading="eager" />
+          <img src="assets/images/ai/build-first-ai-model-hero.png" alt="Step-by-step workflow illustration for building a first AI model, from problem framing to model evaluation" loading="eager"  width="1536"  height="1024" />
           <p>A first AI model should teach judgment as well as code: what problem to frame, how to split data, how to read metrics, and when not to trust the result yet.</p>
         </div>
       </section>

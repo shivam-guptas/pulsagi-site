@@ -1,34 +1,63 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework | Pulsagi Articles</title>
-  <meta name="description" content="A practical Salesforce developer guide to Salesforce Multi-Framework, including how React works on Salesforce, setup steps, code examples, best practices, limitations, and when to choose React versus LWC." />
-  <meta name="keywords" content="Salesforce Multi-Framework, React on Salesforce, Salesforce React app, UIBundle, Agentforce 360 Platform, Salesforce Data SDK, React vs LWC" />
+  
+  <title>React on Salesforce Multi-Framework Guide | Pulsagi</title>
+  <meta name="description" content="React on Salesforce Multi-Framework with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce_multi_framework_react.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="React on Salesforce Multi-Framework Guide" />
+  <meta property="og:description" content="React on Salesforce Multi-Framework with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce_multi_framework_react.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="React on Salesforce Multi-Framework Guide | Pulsagi" />
+  <meta name="twitter:description" content="React on Salesforce Multi-Framework with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework",
+  "description": "React on Salesforce Multi-Framework with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-01-22",
+  "dateModified": "2026-01-22",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce_multi_framework_react.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework", "item": "https://pulsagi.com/articles/salesforce_multi_framework_react.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce Multi-Framework, React on Salesforce, Salesforce React app, UIBundle, Agentforce 360 Platform, Salesforce Data SDK, React vs LWC" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-  <link rel="canonical" href="https://pulsagi.com/articles/salesforce_multi_framework_react.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework" />
-  <meta property="og:description" content="How Salesforce Multi-Framework lets React apps run natively on Salesforce, what is available in beta, and how admins and developers should adopt it." />
-  <meta property="og:url" content="https://pulsagi.com/articles/salesforce_multi_framework_react.html" />
-  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
-  <meta property="article:published_time" content="2026-01-22T00:00:00+05:30" />
-  <meta property="article:modified_time" content="2026-01-22T00:00:00+05:30" />
-  <meta property="article:author" content="Shivam Gupta" />
-  <meta property="article:section" content="Salesforce" />
-  <meta property="article:tag" content="Salesforce Multi-Framework" />
-  <meta property="article:tag" content="React" />
-  <meta property="article:tag" content="UIBundle" />
-  <meta property="article:tag" content="Agentforce 360 Platform" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework" />
-  <meta name="twitter:description" content="A practical guide for Salesforce developers on building React apps with Salesforce Multi-Framework, Data SDK, UIBundle, and current beta guardrails." />
-  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -54,37 +83,22 @@
       border-radius: 20px;
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework",
-    "description": "A practical Salesforce developer guide to Salesforce Multi-Framework, including how React works on Salesforce, setup steps, code examples, best practices, limitations, and when to choose React versus LWC.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/salesforce_multi_framework_react.html",
-    "datePublished": "2026-01-22",
-    "dateModified": "2026-01-22",
-    "image": ["https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png"],
-    "author": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "publisher": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "keywords": ["Salesforce Multi-Framework", "React on Salesforce", "Salesforce React app", "UIBundle", "Agentforce 360 Platform", "Salesforce Data SDK", "React vs LWC"]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
   <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
     <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -102,10 +116,10 @@
           <h1 class="article-title">Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework</h1>
           <p class="article-standfirst">A practical guide for Salesforce developers, architects, and admins who want to understand what Salesforce Multi-Framework actually is, how React works on the platform, how to build a usable first app, and where the current beta still has important boundaries.</p>
           <div class="reading-meta"><span>15 min read</span><span>Published January 22, 2026</span><span>By Shivam Gupta</span></div>
-          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
         </div>
         <div class="article-hero-media">
-          <img src="assets/images/salesforce/salesforce-multi-framework-hero.png" alt="Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework infographic" loading="eager" />
+          <img src="assets/images/salesforce/salesforce-multi-framework-hero.png" alt="Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework infographic" loading="eager"  width="1024"  height="1536" />
           <p>Salesforce Multi-Framework lets teams build React apps with their own frontend stack while still running inside Salesforce's authentication, permission, and governance model.</p>
         </div>
       </section>

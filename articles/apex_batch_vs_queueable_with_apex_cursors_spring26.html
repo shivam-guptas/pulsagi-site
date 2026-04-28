@@ -1,24 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Apex Batch vs Queueable with Apex Cursors in Spring &#39;26 | Pulsagi Articles</title>
-  <meta name="description" content="A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring '26, including limits, patterns, tradeoffs, and when to choose each option." />
-  <meta name="author" content="Shivam Gupta" />
-  <meta name="robots" content="index, follow" />
+  
+  <title>Apex Batch vs Queueable Cursors Guide Overview | Pulsagi</title>
+  <meta name="description" content="Apex Batch vs Queueable Cursors Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <link rel="canonical" href="https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="Apex Batch vs Queueable with Apex Cursors in Spring '26" />
-  <meta property="og:description" content="How Batch Apex compares with Queueable plus Apex Cursors in Spring '26, with architecture guidance for high-volume Salesforce processing." />
+  <meta property="og:title" content="Apex Batch vs Queueable Cursors Guide Overview" />
+  <meta property="og:description" content="Apex Batch vs Queueable Cursors Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
+  <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Apex Batch vs Queueable with Apex Cursors in Spring '26" />
-  <meta name="twitter:description" content="A practical guide to Batch Apex, Queueable Apex, and the new Apex Cursor pattern for large Salesforce workloads." />
+  <meta name="twitter:title" content="Apex Batch vs Queueable Cursors Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Apex Batch vs Queueable Cursors Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apex Batch vs Queueable with Apex Cursors in Spring &#39;26",
+  "description": "Apex Batch vs Queueable Cursors Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-13",
+  "dateModified": "2026-04-13",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Apex Batch vs Queueable with Apex Cursors in Spring &#39;26", "item": "https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html" }
+  ]
+}
+</script>
+<meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -66,41 +103,7 @@
       margin-top: 10px;
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Apex Batch vs Queueable with Apex Cursors in Spring '26",
-    "description": "A practical Salesforce architect guide to Batch Apex, Queueable Apex, and Apex Cursors in Spring '26, including limits, patterns, tradeoffs, and when to choose each option.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html",
-    "datePublished": "2026-04-13",
-    "dateModified": "2026-04-13",
-    "image": [
-      "https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png"
-    ],
-    "author": {
-      "@type": "Person",
-      "name": "Shivam Gupta",
-      "url": "https://shivam.pulsagi.com/"
-    },
-    "publisher": {
-      "@type": "Person",
-      "name": "Shivam Gupta",
-      "url": "https://shivam.pulsagi.com/"
-    },
-    "keywords": [
-      "Apex Cursors",
-      "Batch Apex",
-      "Queueable Apex",
-      "Salesforce Spring 26",
-      "Async Apex"
-    ]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <!-- Google tag (gtag.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -113,12 +116,17 @@
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
   <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -134,14 +142,14 @@
       <div class="article-hero-copy">
         <div class="eyebrow">Async Apex - Spring '26</div>
         <h1 class="article-title">Apex Batch vs Queueable with Apex Cursors in Spring '26</h1>
-        <p class="article-standfirst">A practical guide for Salesforce architects and senior developers deciding when Batch Apex still fits best, when Queueable Apex is enough, and where Apex Cursors change the design conversation.</p>
+        <p class="article-standfirst">A practical guide for Salesforce architects and senior developers deciding when Batch <a href="/tools/apex-log-analyzer.html">Apex</a> still fits best, when Queueable Apex is enough, and where Apex Cursors change the design conversation.</p>
         <div class="reading-meta">
           <span>11 min read</span>
           <span>Published April 13, 2026</span>
           <span>By Shivam Gupta</span>
         </div>
         <div class="author-block">
-          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" />
+          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" />
           <div class="author-copy">
             <strong>Shivam Gupta</strong>
             <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
@@ -149,8 +157,8 @@
         </div>
       </div>
       <div class="article-hero-media">
-        <img src="assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" alt="Batch Apex vs Queueable Apex with cursors comparison graphic" loading="eager" />
-        <p>This article focuses on the real architectural tradeoff: when Salesforce's framework-managed batch model is enough and when a cursor-driven Queueable design gives you better control over chunking, retries, and downstream pressure.</p>
+        <img src="assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" alt="Batch Apex vs Queueable Apex with cursors comparison graphic" loading="eager"  width="1024"  height="1536" />
+        <p>This article focuses on the real architectural tradeoff: when Salesforce's framework-managed batch model is enough and when a cursor-driven <a href="/tools/apex-soql-formatter.html">Queueable</a> design gives you better control over chunking, retries, and downstream pressure.</p>
       </div>
     </section>
 
@@ -455,7 +463,7 @@ List&lt;Account&gt; records = (List&lt;Account&gt;) page.getRecords();
 
         <section id="limits">
           <h2>Limits and caveats</h2>
-          <p>Salesforce documents several important cursor constraints, and they matter for architecture. A standard Apex cursor can represent up to <strong>50 million rows</strong>. Fetch calls count against SOQL limits, fetched rows count against query row limits, and cursor-related daily or transaction limits should be monitored through the documented <code>Limits</code> and <code>OrgLimits</code> APIs.</p>
+          <p>Salesforce documents several important cursor constraints, and they matter for architecture. A standard Apex cursor can represent up to <strong>50 million rows</strong>. Fetch calls count against SOQL <a href="/tools/salesforce-governor-limit-analyzer.html">limit</a>s, fetched rows count against query row limits, and cursor-related daily or transaction limits should be monitored through the documented <code>Limits</code> and <code>OrgLimits</code> APIs.</p>
           <div class="callout">
             <strong>Design implication:</strong> Apex Cursors improve how you shape work. They do not remove CPU, DML, callout, heap, or SOQL pressure inside a transaction.
           </div>

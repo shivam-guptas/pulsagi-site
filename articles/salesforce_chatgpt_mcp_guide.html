@@ -1,34 +1,63 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>How to Connect Salesforce with ChatGPT using Hosted MCP Servers | Pulsagi Articles</title>
-  <meta name="description" content="A practical step-by-step guide to connecting Salesforce with ChatGPT using Salesforce Hosted MCP Servers, External Client Apps, OAuth, and real demo screenshots." />
-  <meta name="keywords" content="Salesforce MCP, ChatGPT Salesforce integration, Hosted MCP Servers, External Client App, Salesforce OAuth, Model Context Protocol, Salesforce Headless 360" />
+  
+  <title>Salesforce ChatGPT MCP Guide Overview 2026 | Pulsagi</title>
+  <meta name="description" content="Salesforce ChatGPT MCP Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce ChatGPT MCP Guide Overview 2026" />
+  <meta property="og:description" content="Salesforce ChatGPT MCP Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce ChatGPT MCP Guide Overview 2026 | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce ChatGPT MCP Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Connect Salesforce with ChatGPT using Hosted MCP Servers",
+  "description": "Salesforce ChatGPT MCP Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-01-12",
+  "dateModified": "2026-01-12",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "How to Connect Salesforce with ChatGPT using Hosted MCP Servers", "item": "https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce MCP, ChatGPT Salesforce integration, Hosted MCP Servers, External Client App, Salesforce OAuth, Model Context Protocol, Salesforce Headless 360" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-  <link rel="canonical" href="https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="How to Connect Salesforce with ChatGPT using Hosted MCP Servers" />
-  <meta property="og:description" content="Connect ChatGPT to Salesforce with Hosted MCP Servers, an External Client App, OAuth, and a governed per-user security model." />
-  <meta property="og:url" content="https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html" />
-  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" />
-  <meta property="article:published_time" content="2026-01-12T00:00:00+05:30" />
-  <meta property="article:modified_time" content="2026-04-21T00:00:00+05:30" />
-  <meta property="article:author" content="Shivam Gupta" />
-  <meta property="article:section" content="Salesforce" />
-  <meta property="article:tag" content="Salesforce MCP" />
-  <meta property="article:tag" content="ChatGPT" />
-  <meta property="article:tag" content="Hosted MCP Servers" />
-  <meta property="article:tag" content="External Client App" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="How to Connect Salesforce with ChatGPT using Hosted MCP Servers" />
-  <meta name="twitter:description" content="A practical Salesforce architect guide to connecting ChatGPT with Salesforce through Hosted MCP Servers and OAuth." />
-  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -45,26 +74,6 @@
     .reference-list li + li { margin-top: 10px; }
     .step-badge { display: inline-block; background: rgba(11, 92, 171, 0.10); color: #0b5cab; font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; font-weight: 500; border-radius: 6px; padding: 2px 10px; margin-bottom: 6px; letter-spacing: 0.04em; }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "How to Connect Salesforce with ChatGPT using Hosted MCP Servers",
-    "description": "A practical step-by-step guide to connecting Salesforce with ChatGPT using Salesforce Hosted MCP Servers, External Client Apps, OAuth, and real demo screenshots.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html",
-    "datePublished": "2026-01-12",
-    "dateModified": "2026-04-21",
-    "image": ["https://pulsagi.com/articles/assets/images/salesforce/salesforce-chatgpt-mcp-hero.png"],
-    "author": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "publisher": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "keywords": ["Salesforce MCP", "ChatGPT Salesforce integration", "Hosted MCP Servers", "External Client App", "Salesforce OAuth", "Model Context Protocol", "Salesforce Headless 360"]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
   <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
@@ -113,12 +122,17 @@
       }
     }
   </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
     <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -136,10 +150,10 @@
           <h1 class="article-title">How to Connect Salesforce with ChatGPT using Hosted MCP Servers</h1>
           <p class="article-standfirst">A practical, step-by-step guide to enabling ChatGPT to read, query, and create Salesforce data through the Model Context Protocol, using Salesforce Hosted MCP Servers, External Client Apps, OAuth, and real demo screenshots.</p>
           <div class="reading-meta"><span>10 min read</span><span>Published January 12, 2026</span><span>By Shivam Gupta</span></div>
-          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
         </div>
         <div class="hero-infographic">
-          <img src="assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" alt="Diagram showing Salesforce connecting to ChatGPT through a Hosted MCP Server with OAuth and secure MCP access" loading="eager" />
+          <img src="assets/images/salesforce/salesforce-chatgpt-mcp-hero.png" alt="Diagram showing Salesforce connecting to ChatGPT through a Hosted MCP Server with OAuth and secure MCP access" loading="eager"  width="1536"  height="1024" />
           <p>Salesforce data and actions flow to ChatGPT through a Hosted MCP Server, OAuth, and a governed MCP connection.</p>
         </div>
       </section>
@@ -217,9 +231,9 @@
               <li>Toggle on only the servers your team needs.</li>
               <li>Wait up to two minutes for activation to propagate before testing the connection.</li>
             </ol>
-            <p>For a custom MCP server, the Details tab shows the API name, description, server URL, status, tool count, and prompt count. Copy the server URL because you will paste it into ChatGPT later.</p>
+            <p>For a custom MCP server, the Details tab shows the API name, description, server URL, status, tool count, and <a href="/tools/json-to-toon-converter.html">prompt</a> count. Copy the server URL because you will paste it into ChatGPT later.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-server-details.png" alt="Salesforce Setup showing an active custom MCP server named ShivamTestMCP with server URL and creation details" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-server-details.png" alt="Salesforce Setup showing an active custom MCP server named ShivamTestMCP with server URL and creation details" loading="lazy" decoding="async"  width="967"  height="594" />
               <figcaption><strong>Custom MCP Server Details:</strong> the Details panel shows the API name, description, active status, server URL, and creation metadata. The Authentication Details section contains the URL used by ChatGPT.</figcaption>
             </figure>
             <div class="callout">
@@ -244,7 +258,7 @@
               <li>Click <strong>Create</strong>, then open <strong>Settings</strong> and copy the consumer key from <strong>Consumer Key and Secret</strong>.</li>
             </ol>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-external-client-app.png" alt="Salesforce External Client App Manager settings showing OAuth scopes and PKCE security settings for a ChatGPT MCP connector" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-external-client-app.png" alt="Salesforce External Client App Manager settings showing OAuth scopes and PKCE security settings for a ChatGPT MCP connector" loading="lazy" decoding="async"  width="1173"  height="2296" />
               <figcaption><strong>External Client App OAuth Settings:</strong> include the Salesforce hosted MCP scope and offline access scope, then enable JWT-based tokens and PKCE. The Callback URL in this example came from ChatGPT Advanced settings.</figcaption>
             </figure>
             <div class="callout">
@@ -269,7 +283,7 @@
               <li>Click <strong>Create</strong>.</li>
             </ol>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-chatgpt-new-app.png" alt="ChatGPT New App dialog showing Salesforce MCP Server URL, OAuth authentication, OAuth client ID, and callback URL settings" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-chatgpt-new-app.png" alt="ChatGPT New App dialog showing Salesforce MCP Server URL, OAuth authentication, OAuth client ID, and callback URL settings" loading="lazy" decoding="async"  width="1304"  height="598" />
               <figcaption><strong>ChatGPT New App configuration:</strong> the MCP Server URL points to Salesforce, authentication is set to OAuth, and the callback URL shown in Advanced settings is the value to paste into the Salesforce External Client App.</figcaption>
             </figure>
             <div class="callout">
@@ -289,7 +303,7 @@
               <li>Log in to Salesforce and approve the OAuth request.</li>
             </ol>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-oauth-consent.png" alt="ChatGPT OAuth consent screen for a Salesforce connector with permission notices and Continue button" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-oauth-consent.png" alt="ChatGPT OAuth consent screen for a Salesforce connector with permission notices and Continue button" loading="lazy" decoding="async"  width="836"  height="573" />
               <figcaption><strong>ChatGPT OAuth consent screen:</strong> ChatGPT explains permission behavior before redirecting to Salesforce. After the Salesforce OAuth approval, the connector becomes active.</figcaption>
             </figure>
             <p>Once OAuth completes, the Salesforce connector appears in the ChatGPT prompt area. Select it from the plus button when you want ChatGPT to use Salesforce tools.</p>
@@ -303,25 +317,25 @@
             <h3>Query a specific account record</h3>
             <p>Start with a narrow read-only prompt such as <strong>provide the account details for Shivam Gupta Pvt Ltd</strong>. ChatGPT identifies the right Salesforce MCP tool, asks for confirmation, and retrieves live record data.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-tool-confirmation.png" alt="ChatGPT showing a Salesforce MCP tool confirmation card before querying an account record" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-tool-confirmation.png" alt="ChatGPT showing a Salesforce MCP tool confirmation card before querying an account record" loading="lazy" decoding="async"  width="1351"  height="595" />
               <figcaption><strong>Tool confirmation:</strong> ChatGPT shows the data it plans to share with the Salesforce connector before running the query. This is the point where the user can approve or stop the tool call.</figcaption>
             </figure>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-account-summary.png" alt="ChatGPT displaying structured Salesforce account data for Shivam Gupta Pvt Ltd including Account ID, Website, Phone, and Business Details" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-account-summary.png" alt="ChatGPT displaying structured Salesforce account data for Shivam Gupta Pvt Ltd including Account ID, Website, Phone, and Business Details" loading="lazy" decoding="async"  width="1064"  height="571" />
               <figcaption><strong>Account record response:</strong> after approval, ChatGPT returns structured Salesforce data including Account ID, Name, Phone, Website, and business details.</figcaption>
             </figure>
 
             <h3>List accounts in a table</h3>
             <p>You can ask ChatGPT to retrieve multiple records and format the result. Specify the exact fields you want to keep the output useful and minimize unnecessary data exposure.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-account-table.png" alt="ChatGPT displaying a table of Salesforce Accounts with Name, Type, Industry, Phone, and Website columns" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-account-table.png" alt="ChatGPT displaying a table of Salesforce Accounts with Name, Type, Industry, Phone, and Website columns" loading="lazy" decoding="async"  width="1239"  height="596" />
               <figcaption><strong>Account list as a table:</strong> ChatGPT called the Salesforce MCP tool and rendered only the requested fields: Name, Type, Industry, Phone, and Website.</figcaption>
             </figure>
 
             <h3>Create a new Salesforce record</h3>
             <p>If your MCP server includes write tools, such as <code>platform/sobject-all</code>, ChatGPT can also create records. Keep this in a sandbox or tightly governed pilot until the process is proven.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-record-created.png" alt="ChatGPT confirming that a new Salesforce Account named Persistent Systems Ltd was created successfully with an Account ID" loading="lazy" decoding="async" />
+              <img src="assets/images/salesforce/salesforce-chatgpt-mcp-record-created.png" alt="ChatGPT confirming that a new Salesforce Account named Persistent Systems Ltd was created successfully with an Account ID" loading="lazy" decoding="async"  width="1349"  height="603" />
               <figcaption><strong>Record creation confirmation:</strong> Salesforce created the new Account record and returned the new Account ID. Salesforce validations, required fields, object permissions, field-level security, and sharing behavior still apply.</figcaption>
             </figure>
             <div class="callout">

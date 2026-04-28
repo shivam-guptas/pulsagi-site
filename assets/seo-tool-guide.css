@@ -1,0 +1,88 @@
+.tool-guide,
+.tool-related-articles {
+  width: min(1120px, calc(100vw - 28px));
+  margin: 28px auto 0;
+  padding: 28px;
+  border: 1px solid rgba(118, 224, 192, 0.16);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+}
+
+.tool-guide h2,
+.tool-related-articles h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.2;
+}
+
+.tool-guide h2 + p,
+.tool-guide p,
+.tool-guide li,
+.tool-guide dd,
+.tool-related-articles p,
+.tool-related-articles li {
+  color: rgba(234, 240, 255, 0.86);
+  line-height: 1.8;
+}
+
+.tool-guide p + h2,
+.tool-guide ol + h2,
+.tool-guide dl + h2 {
+  margin-top: 24px;
+}
+
+.tool-guide ol {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.tool-guide li + li {
+  margin-top: 10px;
+}
+
+.tool-guide dl {
+  margin: 0;
+}
+
+.tool-guide dt {
+  margin-top: 14px;
+  font-weight: 700;
+  color: #f6f1e7;
+}
+
+.tool-guide dt:first-child {
+  margin-top: 0;
+}
+
+.tool-guide dd {
+  margin: 6px 0 0;
+}
+
+.tool-related-articles ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.tool-related-articles li + li {
+  margin-top: 10px;
+}
+
+.tool-related-articles a {
+  color: #7ce7c8;
+  text-decoration: none;
+}
+
+.tool-related-articles a:hover,
+.tool-related-articles a:focus-visible {
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .tool-guide,
+  .tool-related-articles {
+    width: min(100%, calc(100vw - 20px));
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+}

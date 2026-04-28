@@ -1,24 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Salesforce Headless 360: Practical Setup Guide | Pulsagi Articles</title>
-  <meta name="description" content="A practical Salesforce Headless 360 guide covering what it is, why it matters, Hosted MCP Servers, Agentforce Vibes, setup steps, examples, code, best practices, limitations, and rollout recommendations." />
-  <meta name="author" content="Shivam Gupta" />
-  <meta name="robots" content="index, follow" />
+  
+  <title>Salesforce Headless 360 Guide Overview 2026 | Pulsagi</title>
+  <meta name="description" content="Salesforce Headless 360 Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on" />
   <link rel="canonical" href="https://pulsagi.com/articles/salesforce_headless_360_guide.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="Salesforce Headless 360: Practical Setup Guide" />
-  <meta property="og:description" content="From theory to practical setup: how Salesforce Headless 360 exposes CRM data, automation, workflows, APIs, MCP tools, and CLI capabilities for humans and agents." />
+  <meta property="og:title" content="Salesforce Headless 360 Guide Overview 2026" />
+  <meta property="og:description" content="Salesforce Headless 360 Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on" />
   <meta property="og:url" content="https://pulsagi.com/articles/salesforce_headless_360_guide.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/headless-360-hero.png" />
+  <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Salesforce Headless 360: Practical Setup Guide" />
-  <meta name="twitter:description" content="A practical architect guide to Salesforce Headless 360, Hosted MCP Servers, Agentforce Vibes, setup, examples, code, and governance." />
+  <meta name="twitter:title" content="Salesforce Headless 360 Guide Overview 2026 | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce Headless 360 Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on" />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/headless-360-hero.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce Headless 360: Practical Setup Guide",
+  "description": "Salesforce Headless 360 Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/headless-360-hero.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-19",
+  "dateModified": "2026-04-19",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce_headless_360_guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce Headless 360: Practical Setup Guide", "item": "https://pulsagi.com/articles/salesforce_headless_360_guide.html" }
+  ]
+}
+</script>
+<meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -36,37 +73,22 @@
     .reference-list { padding-left: 22px; }
     .reference-list li + li { margin-top: 10px; }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Salesforce Headless 360: Practical Setup Guide",
-    "description": "A practical Salesforce Headless 360 guide covering what it is, why it matters, Hosted MCP Servers, Agentforce Vibes, setup steps, examples, code, best practices, limitations, and rollout recommendations.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/salesforce_headless_360_guide.html",
-    "datePublished": "2026-04-19",
-    "dateModified": "2026-04-19",
-    "image": ["https://pulsagi.com/articles/assets/images/salesforce/headless-360-hero.png"],
-    "author": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "publisher": {"@type": "Person", "name": "Shivam Gupta", "url": "https://shivam.pulsagi.com/"},
-    "keywords": ["Salesforce Headless 360", "Salesforce MCP", "Hosted MCP Servers", "Agentforce Vibes", "Data 360", "Agentforce"]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
   <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
     <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -83,10 +105,10 @@
           <h1 class="article-title">Salesforce Headless 360: Practical Setup Guide</h1>
           <p class="article-standfirst">A practical guide for Salesforce admins, developers, architects, and AI teams who want to understand Salesforce Headless 360, configure the pieces that are usable today, and expose Salesforce data, workflows, and business logic safely to AI agents and external clients.</p>
           <div class="reading-meta"><span>16 min read</span><span>Published April 19, 2026</span><span>By Shivam Gupta</span></div>
-          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
         </div>
         <div class="article-hero-media">
-          <img src="assets/images/salesforce/headless-360-hero.png" alt="Salesforce Headless 360 overview graphic showing APIs, integrations, commerce, mobile, and customer 360" loading="eager" />
+          <img src="assets/images/salesforce/headless-360-hero.png" alt="Salesforce Headless 360 overview graphic showing APIs, integrations, commerce, mobile, and customer 360" loading="eager"  width="887"  height="1774" />
           <p>Headless 360 is Salesforce's move from browser-first CRM interaction to API, MCP, CLI, and agent-first access across data, workflows, business logic, analytics, and engagement surfaces.</p>
         </div>
       </section>
@@ -279,14 +301,14 @@ ChatGPT:         Copy the callback URL from ChatGPT Advanced settings</code></pr
             <p>For most pilots, start with <code>platform/sobject-reads</code>. Avoid <code>platform/sobject-all</code> until you have a validated business need, clear user permissions, and an approval model for write actions.</p>
 
             <h3>MCP configuration screens</h3>
-            <p>After a custom MCP server is active, the Details tab shows the server type, status, tool count, prompt count, and the server URL that the MCP client uses for authentication and tool discovery.</p>
+            <p>After a custom MCP server is active, the Details tab shows the server type, status, tool count, <a href="/tools/json-to-toon-converter.html">prompt</a> count, and the server URL that the MCP client uses for authentication and tool discovery.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/headless-360-custom-mcp-screen.svg" alt="Custom MCP server details screen in Salesforce Setup" loading="lazy" />
+              <img src="assets/images/salesforce/headless-360-custom-mcp-screen.svg" alt="Custom MCP server details screen in Salesforce Setup" loading="lazy"  width="1240"  height="620" />
               <figcaption><strong>Custom MCP Screen:</strong> the MCP Server Details and Authentication Details panels confirm that the custom server is active and expose the custom server URL.</figcaption>
             </figure>
             <p>The Tools tab is where admins and developers review which tools the server exposes. This is the practical governance screen: if a tool is listed here, an MCP-compatible client can discover it and may try to invoke it based on the user's prompt.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/headless-360-mcp-tools-list.svg" alt="Tools tab under a custom MCP server in Salesforce Setup" loading="lazy" />
+              <img src="assets/images/salesforce/headless-360-mcp-tools-list.svg" alt="Tools tab under a custom MCP server in Salesforce Setup" loading="lazy"  width="1332"  height="600" />
               <figcaption><strong>Tools under MCP:</strong> each enabled tool should have a clear purpose, safe permissions, and a description that helps the AI client choose it correctly.</figcaption>
             </figure>
 
@@ -305,7 +327,7 @@ Custom sandbox or scratch server:
 https://api.salesforce.com/platform/mcp/v1/sandbox/custom/ShivamTestMCP</code></pre>
 
             <h3>Step 5: Test with Postman first</h3>
-            <p>Postman is a good first test because it calls the MCP tool directly and shows raw JSON. That helps you separate Salesforce setup issues from LLM interpretation issues.</p>
+            <p>Postman is a good first test because it calls the MCP tool directly and shows raw <a href="/tools/json-viewer.html">JSON</a>. That helps you separate Salesforce setup issues from LLM interpretation issues.</p>
             <ol>
               <li>Create a new Postman request and select MCP.</li>
               <li>Switch the request transport from STDIO to HTTP.</li>
@@ -437,7 +459,7 @@ Do not update any records.</code></pre>
             <h3>Working Postman example</h3>
             <p>The screenshot below shows a working custom MCP server call from Postman. The request calls <code>listRecentSObjectRecordsplatform_sobject_all</code> with <code>subject-name</code> set to <code>Account</code>, and the response confirms that Postman is connected and receiving Salesforce account data through the MCP tool.</p>
             <figure class="article-figure">
-              <img src="assets/images/salesforce/headless-360-postman-mcp-working-example.svg" alt="Postman running a Salesforce custom MCP tools call and receiving an Account JSON response" loading="lazy" />
+              <img src="assets/images/salesforce/headless-360-postman-mcp-working-example.svg" alt="Postman running a Salesforce custom MCP tools call and receiving an Account JSON response" loading="lazy"  width="1080"  height="600" />
               <figcaption><strong>Working Postman MCP example:</strong> use this kind of direct tool response to validate the server URL, OAuth configuration, tool name, input arguments, and Salesforce permissions before moving the same server into an AI client.</figcaption>
             </figure>
           </section>

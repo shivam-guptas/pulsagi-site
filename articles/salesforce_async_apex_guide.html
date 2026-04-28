@@ -1,24 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Salesforce Async Apex: Queueable, Batch, Scheduled, and Future | Pulsagi Articles</title>
-  <meta name="description" content="A practical Salesforce guide to asynchronous Apex, including Queueable, Batch, Scheduled, and Future methods, with limits, code examples, tradeoffs, and recommendations." />
-  <meta name="author" content="Shivam Gupta" />
-  <meta name="robots" content="index, follow" />
+  
+  <title>Salesforce Async Apex Patterns Guide Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce Async Apex Patterns Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <link rel="canonical" href="https://pulsagi.com/articles/salesforce_async_apex_guide.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:title" content="Salesforce Async Apex: Queueable, Batch, Scheduled, and Future" />
-  <meta property="og:description" content="How Salesforce async Apex really works, where each option fits, and what limits and operational tradeoffs admins and developers should plan for." />
+  <meta property="og:title" content="Salesforce Async Apex Patterns Guide Overview" />
+  <meta property="og:description" content="Salesforce Async Apex Patterns Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/salesforce_async_apex_guide.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-async-apex-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Salesforce Async Apex: Queueable, Batch, Scheduled, and Future" />
-  <meta name="twitter:description" content="A practical Salesforce architect guide to Queueable, Batch, Scheduled, and Future Apex, including limitations, code, and when to choose each." />
+  <meta name="twitter:title" content="Salesforce Async Apex Patterns Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce Async Apex Patterns Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-async-apex-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce Async Apex: Queueable, Batch, Scheduled, and Future",
+  "description": "Salesforce Async Apex Patterns Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/salesforce-async-apex-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-01-17",
+  "dateModified": "2026-01-17",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce_async_apex_guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce Async Apex: Queueable, Batch, Scheduled, and Future", "item": "https://pulsagi.com/articles/salesforce_async_apex_guide.html" }
+  ]
+}
+</script>
+<meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -72,41 +109,7 @@
       background: #ffffff;
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Salesforce Async Apex: Queueable, Batch, Scheduled, and Future",
-    "description": "A practical Salesforce guide to asynchronous Apex, including Queueable, Batch, Scheduled, and Future methods, with limits, code examples, tradeoffs, and recommendations.",
-    "mainEntityOfPage": "https://pulsagi.com/articles/salesforce_async_apex_guide.html",
-    "datePublished": "2026-01-17",
-    "dateModified": "2026-01-17",
-    "image": [
-      "https://pulsagi.com/articles/assets/images/salesforce/salesforce-async-apex-guide.png"
-    ],
-    "author": {
-      "@type": "Person",
-      "name": "Shivam Gupta",
-      "url": "https://shivam.pulsagi.com/"
-    },
-    "publisher": {
-      "@type": "Person",
-      "name": "Shivam Gupta",
-      "url": "https://shivam.pulsagi.com/"
-    },
-    "keywords": [
-      "Salesforce Async Apex",
-      "Queueable Apex",
-      "Batch Apex",
-      "Scheduled Apex",
-      "Future Methods"
-    ]
-  }
-  </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-<!-- End Google Tag Manager --><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <!-- Google tag (gtag.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -119,12 +122,17 @@
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="shell">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
   <nav class="site-nav" aria-label="Main navigation">
   <a class="nav-brand" href="/">Pulsagi</a>
   <ul class="site-nav-list">
@@ -140,14 +148,14 @@
       <div class="article-hero-copy">
         <div class="eyebrow">Salesforce Async Apex</div>
         <h1 class="article-title">Salesforce Async Apex: Queueable, Batch, Scheduled, and Future</h1>
-        <p class="article-standfirst">A practical guide for Salesforce admins, architects, and developers who need to choose the right asynchronous pattern, respect the real platform limits, and keep operations supportable in production.</p>
+        <p class="article-standfirst">A practical guide for Salesforce admins, architects, and developers who need to choose the right asynchronous pattern, respect the real platform <a href="/tools/salesforce-governor-limit-analyzer.html">limit</a>s, and keep operations supportable in production.</p>
         <div class="reading-meta">
           <span>14 min read</span>
           <span>Published January 17, 2026</span>
           <span>By Shivam Gupta</span>
         </div>
         <div class="author-block">
-          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" />
+          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" />
           <div class="author-copy">
             <strong>Shivam Gupta</strong>
             <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
@@ -155,8 +163,8 @@
         </div>
       </div>
       <div class="article-hero-media article-hero-media--infographic">
-        <img src="assets/images/salesforce/salesforce-async-apex-guide.png" alt="Salesforce async Apex guide hero image" loading="eager" />
-        <p>Async Apex improves user experience and gives Salesforce room to schedule work efficiently, but it also introduces queueing behavior, monitoring overhead, and hard platform limits that teams need to understand upfront.</p>
+        <img src="assets/images/salesforce/salesforce-async-apex-guide.png" alt="Salesforce async Apex guide hero image" loading="eager"  width="1024"  height="1536" />
+        <p><a href="/tools/apex-log-analyzer.html">Async Apex</a> improves user experience and gives Salesforce room to schedule work efficiently, but it also introduces queueing behavior, monitoring overhead, and hard platform limits that teams need to understand upfront.</p>
       </div>
     </section>
 
@@ -181,7 +189,7 @@
       <article class="content-card">
         <section id="introduction">
           <h2>What async Apex actually is</h2>
-          <p>Asynchronous Apex means the work is placed onto Salesforce-managed infrastructure and executed later, outside the user's current transaction. That matters because not every action belongs in a synchronous save path. If a process is heavy, integration-driven, retry-prone, or scheduled by time rather than user interaction, async execution usually gives a better user experience and a safer resource model.</p>
+          <p>Asynchronous <a href="/tools/apex-soql-formatter.html">Apex</a> means the work is placed onto Salesforce-managed infrastructure and executed later, outside the user's current transaction. That matters because not every action belongs in a synchronous save path. If a process is heavy, integration-driven, retry-prone, or scheduled by time rather than user interaction, async execution usually gives a better user experience and a safer resource model.</p>
           <p>The architectural tradeoff is that async work is not immediate and it is not free. Salesforce can delay execution based on resource availability, and once work leaves the original transaction you also lose the simplicity of one end-to-end context. That means teams need to think about monitoring, idempotency, retries, and queue pressure, not just business logic.</p>
           <div class="callout">
             <strong>Important framing:</strong> async Apex should not be the default answer to every governor-limit problem. It is the right tool when the business process itself is asynchronous, slow, scheduled, or operationally separable from the initiating transaction.

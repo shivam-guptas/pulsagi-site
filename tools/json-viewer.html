@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON Viewer and Flow Visualizer | Pulsagi Tools</title>
-  <meta name="description" content="Free browser-based JSON viewer for API payloads, config files, arrays, logs, and Salesforce Flow JSON. Format, inspect, search, and visualize JSON in one fast tool." />
   <meta name="keywords" content="JSON viewer, JSON formatter, JSON visualizer, Flow JSON Viewer, Salesforce Flow, developer tools, Pulsagi tools" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="application-name" content="Pulsagi JSON Viewer" />
@@ -13,24 +11,52 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+  
+  <title>Free JSON Viewer and Flow Visualizer Online | Pulsagi</title>
+  <meta name="description" content="Free JSON viewer for payload inspection, formatting, and structure review. Browser-based with no login required for fast analysis. Use it free in the browser" />
   <link rel="canonical" href="https://pulsagi.com/tools/json-viewer.html" />
-  <meta property="og:title" content="JSON Viewer and Flow Visualizer | Pulsagi Tools" />
-  <meta property="og:description" content="Paste or upload any valid JSON to format, inspect, search, analyze, and visualize it in the browser." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Free JSON Viewer and Flow Visualizer Online" />
+  <meta property="og:description" content="Free JSON viewer for payload inspection, formatting, and structure review. Browser-based with no login required for fast analysis. Use it free in the browser" />
   <meta property="og:url" content="https://pulsagi.com/tools/json-viewer.html" />
-  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
   <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:locale" content="en_US" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="JSON Viewer and Flow Visualizer | Pulsagi Tools" />
-  <meta name="twitter:description" content="A fast browser-based JSON viewer with formatting, tree search, insights, and Flow-style visualization." />
-  <meta name="twitter:url" content="https://pulsagi.com/tools/json-viewer.html" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi JSON Viewer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://pulsagi.com/tools/json-viewer.html","description":"Browser-based JSON viewer for formatting, searching, inspecting, and visualizing generic JSON and Salesforce Flow JSON.","creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"JSON Viewer and Flow Visualizer","url":"https://pulsagi.com/tools/json-viewer.html","description":"General-purpose browser-based JSON viewer for formatting, searching, inspecting, and visualizing JSON.","isPartOf":{"@type":"WebSite","name":"Pulsagi","url":"https://pulsagi.com/"},"about":{"@type":"Thing","name":"JSON viewer"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pulsagi","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pulsagi.com/tools/"},{"@type":"ListItem","position":3,"name":"JSON Viewer","item":"https://pulsagi.com/tools/json-viewer.html"}]}}
-  </script>
-  <style>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free JSON Viewer and Flow Visualizer Online | Pulsagi" />
+  <meta name="twitter:description" content="Free JSON viewer for payload inspection, formatting, and structure review. Browser-based with no login required for fast analysis. Use it free in the browser" />
+  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Viewer",
+  "description": "Browser-based JSON viewer for formatting, searching, inspecting, and visualizing structured payloads and Flow-style metadata.",
+  "url": "https://pulsagi.com/tools/json-viewer.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pulsagi.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "JSON Viewer", "item": "https://pulsagi.com/tools/json-viewer.html" }
+  ]
+}
+</script>
+<style>
     :root{--bg:#0b1020;--panel:#121a30;--panel-2:#182341;--text:#eaf0ff;--muted:#a7b3d1;--border:#2b3963;--accent:#7c9cff;--accent-2:#5eead4;--danger:#ff7b7b;--warning:#ffd36d;--success:#77f2a1;--shadow:0 20px 50px rgba(0,0,0,.35)}
     *{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#09101e,#0e1630 45%,#0b1020);color:var(--text)}body{min-height:100vh;line-height:1.6}button,input,textarea{font:inherit}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;background:rgba(27,36,43,.78);backdrop-filter:blur(15px);border-bottom:1px solid #40505d}
@@ -63,12 +89,13 @@
     .hidden{display:none!important}
     @media (max-width:1180px){.layout{grid-template-columns:1fr}.canvas-wrap{height:600px}}@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.status-strip{grid-template-columns:1fr}.title{align-items:flex-start}}@media (max-width:760px){.container{padding:92px 14px 14px}.helper,.grid{grid-template-columns:1fr}.canvas-wrap{height:480px}.toolbar-input{min-width:100%}nav{padding:1rem 1.2rem}nav ul{gap:1rem;flex-wrap:wrap;justify-content:flex-end}.title{align-items:flex-start}.title h1,.title p{white-space:normal}}
   </style>
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <link rel="stylesheet" href="../assets/seo-tool-guide.css" />
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
   <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
-  <link rel="stylesheet" href="../assets/site-nav.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -189,7 +216,34 @@
       </section>
     </div>
   </div>
-  <footer>
+    <section class="tool-guide">
+    <h2>What is the JSON Viewer?</h2>
+    <p>The JSON viewer is a free browser-based inspection tool for developers, admins, and analysts who need to understand nested payloads quickly. It formats raw JSON, lets you search keys and values, and builds a visual structure so APIs, logs, config files, and Flow-like data are easier to review. Because the tool runs locally with no login required, it is useful when you need a safe, fast way to debug payloads during integration work, prompt design, or documentation.</p>
+
+    <h2>How to use the JSON Viewer</h2>
+    <ol>
+      <li>Paste JSON into the editor or upload a local file from your machine.</li>
+      <li>Analyze the payload to inspect the tree, formatted output, diagram, and summary insights.</li>
+      <li>Use search, copy, and export actions to move the cleaned structure into your next debugging or design step.</li>
+    </ol>
+
+    <h2>Frequently asked questions</h2>
+    <dl>
+      <dt>Can I use it for generic APIs?</dt><dd>Yes. The viewer is designed for generic JSON as well as Flow-style structures and nested configuration payloads.</dd>
+      <dt>Why visualize JSON?</dt><dd>Visualization helps you understand relationships, depth, and repeated branches faster than scanning a dense raw payload.</dd>
+      <dt>Is it helpful for prompt workflows?</dt><dd>Yes. It is a good first step before compressing or restructuring JSON for LLM prompts and agent inputs.</dd>
+    </dl>
+  </section>
+  <section class="tool-related-articles">
+    <h2>Related articles</h2>
+    <p>Explore a few deeper guides that connect with this workflow.</p>
+    <ul>
+      <li><a href="/articles/chatgpt_prompts_guide.html">Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research</a></li>
+      <li><a href="/articles/salesforce_chatgpt_mcp_guide.html">How to Connect Salesforce with ChatGPT using Hosted MCP Servers</a></li>
+      <li><a href="/articles/salesforce_headless_360_guide.html">Salesforce Headless 360: Practical Setup Guide</a></li>
+    </ul>
+  </section>
+<footer>
     <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
   </footer>
   <script>

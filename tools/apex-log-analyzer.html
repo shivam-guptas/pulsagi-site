@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools</title>
-  <meta name="description" content="Free browser-based Salesforce Apex log analyzer and debug log parser. Upload or paste Salesforce debug logs to inspect exceptions, governor limits, SOQL hotspots, DML hotspots, execution timeline, raw lines, and likely root cause." />
   <meta name="keywords" content="Salesforce Apex log analyzer, Salesforce debug log analyzer, Apex debug log parser, Salesforce log parser, Salesforce log analyzer, Apex log parser, governor limit log analyzer, Salesforce exception analyzer, SOQL log analyzer, DML log analyzer, Salesforce developer tools, Pulsagi tools" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="application-name" content="Pulsagi Apex Log Analyzer" />
@@ -14,24 +12,52 @@
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="theme-color" content="#081121" />
   <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+  
+  <title>Free Salesforce Apex Log Analyzer and Debug Parser | Pulsagi</title>
+  <meta name="description" content="Free Salesforce Apex log analyzer for debug logs, exceptions, SOQL spikes, and timelines. Browser-based with no login required. Use it free in the browser with" />
   <link rel="canonical" href="https://pulsagi.com/tools/apex-log-analyzer.html" />
-  <meta property="og:title" content="Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools" />
-  <meta property="og:description" content="Analyze Salesforce debug logs in the browser with exception summaries, governor usage, SOQL and DML hotspots, timeline views, and raw-log search." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Free Salesforce Apex Log Analyzer and Debug Parser" />
+  <meta property="og:description" content="Free Salesforce Apex log analyzer for debug logs, exceptions, SOQL spikes, and timelines. Browser-based with no login required. Use it free in the browser with" />
   <meta property="og:url" content="https://pulsagi.com/tools/apex-log-analyzer.html" />
-  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
   <meta property="og:site_name" content="Pulsagi" />
-  <meta property="og:locale" content="en_US" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Salesforce Apex Log Analyzer and Debug Log Parser | Pulsagi Tools" />
-  <meta name="twitter:description" content="Browser-based Salesforce debug log analysis for exceptions, governor limits, SOQL and DML hotspots, timelines, and raw line search." />
-  <meta name="twitter:url" content="https://pulsagi.com/tools/apex-log-analyzer.html" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pulsagi Salesforce Apex Log Analyzer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","url":"https://pulsagi.com/tools/apex-log-analyzer.html","description":"Browser-based Salesforce Apex log analyzer and debug log parser with exception summaries, governor usage, SOQL and DML hotspots, and raw-log exploration.","creator":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Salesforce Apex Log Analyzer","url":"https://pulsagi.com/tools/apex-log-analyzer.html","description":"A browser-based Salesforce Apex log analyzer and debug log parser for exceptions, governor limits, SOQL hotspots, DML hotspots, and execution hotspots.","isPartOf":{"@type":"WebSite","name":"Pulsagi","url":"https://pulsagi.com/"},"about":{"@type":"Thing","name":"Salesforce Apex debug logs"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pulsagi","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://pulsagi.com/tools/"},{"@type":"ListItem","position":3,"name":"Salesforce Apex Log Analyzer","item":"https://pulsagi.com/tools/apex-log-analyzer.html"}]}}
-  </script>
-  <style>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Salesforce Apex Log Analyzer and Debug Parser | Pulsagi" />
+  <meta name="twitter:description" content="Free Salesforce Apex log analyzer for debug logs, exceptions, SOQL spikes, and timelines. Browser-based with no login required. Use it free in the browser with" />
+  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Salesforce Apex Log Analyzer",
+  "description": "Browser-based Salesforce Apex log analyzer for parsing debug logs, surfacing errors, tracing limits, and reviewing execution timelines.",
+  "url": "https://pulsagi.com/tools/apex-log-analyzer.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://pulsagi.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce Apex Log Analyzer", "item": "https://pulsagi.com/tools/apex-log-analyzer.html" }
+  ]
+}
+</script>
+<style>
     :root {
       --bg: #06111c;
       --bg-2: #091729;
@@ -613,12 +639,13 @@
       .summary-grid, .execution-strip { grid-template-columns: 1fr; }
       .bottom-toolbar { padding-bottom: 16px; }
     }</style>
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <link rel="stylesheet" href="../assets/seo-tool-guide.css" />
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
   <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
-  <link rel="stylesheet" href="../assets/site-nav.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -711,7 +738,34 @@
       </div>
     </section>
   </main>
-  <footer>
+    <section class="tool-guide">
+    <h2>What is the Salesforce Apex Log Analyzer?</h2>
+    <p>The Salesforce Apex log analyzer is a free browser-based tool for developers, admins, and support teams who need to inspect raw debug logs without sending them to a server. It helps you spot exceptions, understand governor consumption, isolate SOQL and DML hotspots, and follow the execution timeline when a transaction becomes hard to read. Because the analysis runs locally in the browser, it is useful during triage calls, sandbox debugging, and handoffs where speed matters and no login required access keeps the workflow simple.</p>
+
+    <h2>How to use the Salesforce Apex Log Analyzer</h2>
+    <ol>
+      <li>Paste a Salesforce debug log or upload the exported log file from your org.</li>
+      <li>Run the analysis and review the exception summary, governor usage, hotspots, and timeline cards.</li>
+      <li>Use the detailed sections to confirm root cause, share the findings, or decide which code path to fix next.</li>
+    </ol>
+
+    <h2>Frequently asked questions</h2>
+    <dl>
+      <dt>Does the tool send my log to a backend?</dt><dd>No. The analyzer works in the browser so you can review debug details locally before sharing anything with a teammate.</dd>
+      <dt>When is it most useful?</dt><dd>It is most useful when a transaction fails, runs slowly, or produces a long log that is difficult to scan line by line.</dd>
+      <dt>Can admins use it too?</dt><dd>Yes. Admins and architects can use the summaries to understand failure patterns before pulling in a developer for a code change.</dd>
+    </dl>
+  </section>
+  <section class="tool-related-articles">
+    <h2>Related articles</h2>
+    <p>Explore a few deeper guides that connect with this workflow.</p>
+    <ul>
+      <li><a href="/articles/salesforce_async_apex_guide.html">Salesforce Async Apex: Queueable, Batch, Scheduled, and Future</a></li>
+      <li><a href="/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html">Apex Batch vs Queueable with Apex Cursors in Spring '26</a></li>
+      <li><a href="/articles/agent-actions-apex.html">Creating Custom Agent Actions with Apex</a></li>
+    </ul>
+  </section>
+<footer>
     <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
   </footer>
 
