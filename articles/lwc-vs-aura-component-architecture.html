@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+
+  <title>LWC vs Aura in Salesforce: Architecture, Code Examples, and Migration Guide | Pulsagi</title>
+  <meta name="description" content="A practical Salesforce guide to LWC vs Aura, including official platform guidance, architecture differences, side-by-side code examples, migration strategy, and where Aura still fits." />
+  <link rel="canonical" href="https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="LWC vs Aura in Salesforce: Architecture, Code Examples, and Migration Guide" />
+  <meta property="og:description" content="A practical Salesforce guide to LWC vs Aura, including official platform guidance, architecture differences, side-by-side code examples, migration strategy, and where Aura still fits." />
+  <meta property="og:url" content="https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html" />
+  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LWC vs Aura in Salesforce: Architecture, Code Examples, and Migration Guide | Pulsagi" />
+  <meta name="twitter:description" content="A practical Salesforce guide to LWC vs Aura, including official platform guidance, architecture differences, side-by-side code examples, migration strategy, and where Aura still fits." />
+  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LWC vs Aura in Salesforce",
+  "description": "A practical Salesforce guide to LWC vs Aura, including official platform guidance, architecture differences, side-by-side code examples, migration strategy, and where Aura still fits.",
+  "image": "https://pulsagi.com/og-default.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-10",
+  "dateModified": "2026-04-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "LWC vs Aura in Salesforce", "item": "https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html" }
+  ]
+}
+  </script>
+  <meta name="keywords" content="LWC vs Aura, Lightning Web Components, Aura Components, Salesforce UI architecture, Salesforce migration, Aura interoperability, LWC code examples" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media.article-hero-media--photo img {
+      aspect-ratio: auto;
+      object-fit: cover;
+      min-height: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="shell">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-brand" href="/">Pulsagi</a>
+      <ul class="site-nav-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/articles/" aria-current="page">Articles</a></li>
+      </ul>
+    </nav>
+
+    <main class="page-shell article-page">
+      <section class="article-hero">
+        <div class="article-hero-copy">
+          <div class="eyebrow">Salesforce UI Architecture</div>
+          <h1 class="article-title">LWC vs Aura in Salesforce</h1>
+          <p class="article-standfirst">A practical comparison of Lightning Web Components and Aura for teams making architecture decisions in real orgs, with official Salesforce guidance, side-by-side code, interoperability patterns, and a migration approach that avoids unnecessary rewrites.</p>
+          <div class="reading-meta">
+            <span>12 min read</span>
+            <span>Published April 10, 2026</span>
+            <span>Updated April 10, 2026</span>
+            <span>By Shivam Gupta</span>
+          </div>
+          <div class="author-block">
+            <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" loading="lazy" />
+            <div class="author-copy">
+              <strong>Shivam Gupta</strong>
+              <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="article-hero-media article-hero-media--photo">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Whiteboard and laptop used for planning component architecture" loading="eager" width="1400" height="933" />
+          <p>Salesforce's current recommendation is straightforward: build new UI in LWC unless you truly need an Aura-only capability, host, or base component.</p>
+        </div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc-card" aria-label="Table of contents">
+          <h2>Table of contents</h2>
+          <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#official-guidance">Official Salesforce guidance</a></li>
+            <li><a href="#architecture-differences">Architecture differences</a></li>
+            <li><a href="#comparison-table">Comparison table</a></li>
+            <li><a href="#code-example">Side-by-side code example</a></li>
+            <li><a href="#interop">Aura and LWC interoperability</a></li>
+            <li><a href="#when-aura">When Aura still makes sense</a></li>
+            <li><a href="#migration">Migration strategy</a></li>
+            <li><a href="#best-practices">Best practices</a></li>
+            <li><a href="#recommendation">Recommendation</a></li>
+            <li><a href="#references">References</a></li>
+          </ol>
+        </aside>
+
+        <article class="content-card">
+          <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Many Salesforce teams still ask whether they should build in <strong>Lightning Web Components (LWC)</strong> or <strong>Aura</strong>. The short answer is not balanced: for <strong>new development</strong>, Salesforce recommends LWC as the default programming model. Aura remains important mostly because older implementations still exist, some platform capabilities still depend on Aura, and many enterprise orgs need a staged migration rather than a full rewrite.</p>
+            <p>The real architectural decision is usually not "Which framework is better in theory?" It is "How do we move toward LWC without breaking a stable app, losing unsupported features, or creating migration churn that the business did not ask for?"</p>
+            <div class="callout">
+              <strong>Practical default:</strong> start every new Salesforce UI conversation with LWC. Move to Aura only when you can name the specific host, interface, or base component that LWC does not cover for your use case.
+            </div>
+          </section>
+
+          <section id="official-guidance">
+            <h2>Official Salesforce guidance</h2>
+            <p>Salesforce's own LWC documentation says to <strong>always choose Lightning Web Components unless you need a feature that is not supported</strong>. That is the cleanest rule in the entire comparison and it should drive architecture reviews, code review comments, and migration prioritization.</p>
+            <p>Salesforce also documents two important interoperability boundaries that matter in real projects:</p>
+            <ul>
+              <li><strong>Aura can contain LWC.</strong> This is why incremental migration is feasible.</li>
+              <li><strong>LWC cannot contain Aura.</strong> Once an LWC is the outer shell of a subtree, everything below it must also be LWC.</li>
+            </ul>
+            <p>That one-way composition model explains why teams often keep an Aura wrapper temporarily while they migrate the inner business UI to LWC.</p>
+            <div class="callout">
+              <strong>Another useful nuance from Salesforce docs:</strong> if an experience, interface, or base component is not supported in LWC, the recommended pattern is to keep the minimum possible Aura wrapper and put the real UI logic in LWC.
+            </div>
+          </section>
+
+          <section id="architecture-differences">
+            <h2>Architecture differences</h2>
+            <p>LWC is closer to standard web development. Its component model, lifecycle, events, and templating map more naturally to modern browser concepts, which usually makes the code easier to reason about for developers coming from JavaScript frameworks or web platform APIs.</p>
+            <p>Aura is older and more framework-driven. It uses its own event model, attribute syntax, component lifecycle, and controller/helper patterns. Aura still works, but it generally carries more framework ceremony and more legacy cognitive load.</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3>LWC strengths</h3>
+                <ul>
+                  <li>Better default for new development.</li>
+                  <li>Cleaner JavaScript module structure.</li>
+                  <li>Closer alignment with modern web standards.</li>
+                  <li>Stronger long-term maintainability for most teams.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Aura strengths</h3>
+                <ul>
+                  <li>Useful for legacy app continuity.</li>
+                  <li>Can host LWCs during phased migration.</li>
+                  <li>Still needed for some unsupported interfaces or base components.</li>
+                  <li>May reduce short-term risk when a large mature app is already stable.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>LWC tradeoffs</h3>
+                <ul>
+                  <li>Cannot contain Aura components.</li>
+                  <li>Some Aura-era capabilities still require wrappers or alternate design.</li>
+                  <li>Styling is more intentionally bounded, which is good for isolation but less flexible for ad hoc overrides.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Aura tradeoffs</h3>
+                <ul>
+                  <li>Not Salesforce's preferred model for new work.</li>
+                  <li>More framework-specific code and patterns.</li>
+                  <li>Harder to justify when a fresh build could simply start in LWC.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="comparison-table">
+            <h2>Comparison table</h2>
+            <p>The table below summarizes the differences that most often affect architecture decisions.</p>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Area</th>
+                    <th>LWC</th>
+                    <th>Aura</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Platform recommendation</strong></td>
+                    <td>Preferred for new development.</td>
+                    <td>Legacy but still supported.</td>
+                    <td>Architecture reviews should treat LWC as the default path.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Programming model</strong></td>
+                    <td>Modern JavaScript classes, modules, and reactive templates.</td>
+                    <td>Framework-specific markup plus controller and helper files.</td>
+                    <td>LWC is usually easier to onboard and maintain.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Composition</strong></td>
+                    <td>Can contain only LWC children.</td>
+                    <td>Can contain Aura and LWC children.</td>
+                    <td>Aura is useful as a migration shell around new LWCs.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Styling model</strong></td>
+                    <td>More isolated and standards-aligned, with stronger boundaries around custom styling.</td>
+                    <td>More permissive for legacy custom styling patterns.</td>
+                    <td>LWC reduces accidental style leakage but sometimes forces cleaner design decisions.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Base component coverage</strong></td>
+                    <td>Broad coverage, but not every Aura base component has an exact LWC equivalent.</td>
+                    <td>Still includes some components or capabilities without an LWC replacement.</td>
+                    <td>This is one of the few legitimate reasons to stay in Aura for a given surface.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Operational future</strong></td>
+                    <td>Better strategic fit for Salesforce UI going forward.</td>
+                    <td>Primarily important for coexistence and migration.</td>
+                    <td>New UI debt is less likely when teams standardize on LWC now.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Salesforce's current component mapping documentation is also worth checking before a migration spike. Some replacements are direct, but some have subtle API differences. For example, `lightning:card`, `lightning:datatable`, `lightning:formattedNumber`, and `lightning:recordEditForm` do not always migrate as a one-line rename.</p>
+          </section>
+
+          <section id="code-example">
+            <h2>Side-by-side code example</h2>
+            <p>The examples below implement the same simple record-page behavior in both frameworks: load an Account by `recordId` and render a small summary card. The goal is not to show every syntax detail. It is to make the architectural difference obvious.</p>
+
+            <h3>Apex controller used by both components</h3>
+<pre><code>public with sharing class AccountSummaryController {
+    @AuraEnabled(cacheable=true)
+    public static Account getAccount(Id accountId) {
+        return [
+            SELECT Id, Name, Industry, Phone
+            FROM Account
+            WHERE Id = :accountId
+            LIMIT 1
+        ];
+    }
+}</code></pre>
+
+            <h3>Aura version</h3>
+<pre><code>&lt;aura:component controller="AccountSummaryController"
+                implements="flexipage:availableForRecordHome,force:hasRecordId"&gt;
+    &lt;aura:attribute name="account" type="Account" /&gt;
+    &lt;aura:attribute name="errorMessage" type="String" /&gt;
+    &lt;aura:handler name="init" value="{!this}" action="{!c.doInit}" /&gt;
+
+    &lt;lightning:card title="Account Summary"&gt;
+        &lt;aura:if isTrue="{!not(empty(v.account))}"&gt;
+            &lt;div class="slds-p-around_medium"&gt;
+                &lt;p&gt;&lt;strong&gt;Name:&lt;/strong&gt; {!v.account.Name}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Industry:&lt;/strong&gt; {!v.account.Industry}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Phone:&lt;/strong&gt; {!v.account.Phone}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;aura:set attribute="else"&gt;
+                &lt;div class="slds-p-around_medium slds-text-color_error"&gt;
+                    {!v.errorMessage}
+                &lt;/div&gt;
+            &lt;/aura:set&gt;
+        &lt;/aura:if&gt;
+    &lt;/lightning:card&gt;
+&lt;/aura:component&gt;</code></pre>
+
+<pre><code>({
+    doInit: function(component) {
+        const action = component.get("c.getAccount");
+        action.setParams({ accountId: component.get("v.recordId") });
+
+        action.setCallback(this, function(response) {
+            if (response.getState() === "SUCCESS") {
+                component.set("v.account", response.getReturnValue());
+            } else {
+                component.set("v.errorMessage", "Unable to load account.");
+            }
+        });
+
+        $A.enqueueAction(action);
+    }
+})</code></pre>
+
+            <h3>LWC version</h3>
+<pre><code>import { LightningElement, api, wire } from 'lwc';
+import getAccount from '@salesforce/apex/AccountSummaryController.getAccount';
+
+export default class AccountSummary extends LightningElement {
+    @api recordId;
+
+    @wire(getAccount, { accountId: '$recordId' })
+    account;
+
+    get errorMessage() {
+        return this.account.error ? 'Unable to load account.' : '';
+    }
+}</code></pre>
+
+<pre><code>&lt;template&gt;
+    &lt;lightning-card title="Account Summary"&gt;
+        &lt;template lwc:if={account.data}&gt;
+            &lt;div class="slds-p-around_medium"&gt;
+                &lt;p&gt;&lt;strong&gt;Name:&lt;/strong&gt; {account.data.Name}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Industry:&lt;/strong&gt; {account.data.Industry}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Phone:&lt;/strong&gt; {account.data.Phone}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/template&gt;
+        &lt;template lwc:elseif={account.error}&gt;
+            &lt;div class="slds-p-around_medium slds-text-color_error"&gt;
+                {errorMessage}
+            &lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/lightning-card&gt;
+&lt;/template&gt;</code></pre>
+
+            <p>The LWC version is not just shorter. The reactive data flow is more direct, the module structure is clearer, and the framework-specific ceremony is lower. That is why LWC usually wins for new component work.</p>
+            <div class="callout">
+              <strong>Development takeaway:</strong> if the LWC version does the job cleanly, that is normally the end of the decision. Aura should not be chosen only because the team is more familiar with it.
+            </div>
+          </section>
+
+          <section id="interop">
+            <h2>Aura and LWC interoperability</h2>
+            <p>Coexistence is where many enterprise orgs live today. A large app may still be Aura at the page or container level, while new business widgets are implemented in LWC underneath. Salesforce explicitly supports that direction.</p>
+            <p>A common pattern is to leave a thin Aura wrapper in place while the real UI is migrated to an LWC child. That gives you a lower-risk path than rewriting the host and every nested dependency at once.</p>
+
+            <h3>Minimal Aura wrapper around an LWC child</h3>
+<pre><code>&lt;aura:component implements="flexipage:availableForRecordHome,force:hasRecordId"&gt;
+    &lt;aura:attribute name="recordId" type="Id" /&gt;
+
+    &lt;c:accountSummary recordId="{!v.recordId}" /&gt;
+&lt;/aura:component&gt;</code></pre>
+
+            <p>This pattern is especially useful when:</p>
+            <ul>
+              <li>The surrounding page structure is still Aura.</li>
+              <li>You are replacing one nested component at a time.</li>
+              <li>You need the smallest possible Aura surface while moving business logic and rendering into LWC.</li>
+            </ul>
+            <p>The same wrapper strategy also applies when you depend on an Aura-only experience or interface. Keep the Aura layer tiny and keep the real business UI in LWC wherever possible.</p>
+          </section>
+
+          <section id="when-aura">
+            <h2>When Aura still makes sense</h2>
+            <p>Aura is no longer the default, but there are still valid reasons to keep or use it in a targeted way.</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3>Keep Aura when the app is stable</h3>
+                <ul>
+                  <li>The business value of migration is low right now.</li>
+                  <li>The component is not causing performance, security, or maintenance pain.</li>
+                  <li>A rewrite would create more regression risk than benefit in the current release window.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Use Aura when LWC lacks a needed capability</h3>
+                <ul>
+                  <li>You rely on an Aura-only base component or interface.</li>
+                  <li>You have confirmed there is no clean LWC equivalent in current Salesforce docs.</li>
+                  <li>You intentionally keep the Aura surface as small as possible.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Examples from current docs</h3>
+                <ul>
+                  <li>`lightning:overlayLibrary` has no direct LWC component equivalent.</li>
+                  <li>Some Aura base components such as `lightning:path`, `lightning:listView`, or `lightning:unsavedChanges` still require extra evaluation.</li>
+                  <li>Some direct component mappings exist but behavior differs enough that migration still needs testing.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>What does not justify Aura</h3>
+                <ul>
+                  <li>"The old project used Aura."</li>
+                  <li>"We know Aura better."</li>
+                  <li>"It might be easier to copy an old component."</li>
+                  <li>"We have not checked whether LWC already supports it."</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="migration">
+            <h2>Migration strategy</h2>
+            <p>Aura-to-LWC migration works best as a sequence of architectural decisions, not as a blanket conversion exercise.</p>
+            <ol>
+              <li><strong>Inventory the Aura estate.</strong> Separate stable low-value legacy components from high-value components that actively need enhancement.</li>
+              <li><strong>Check Salesforce's component mapping docs first.</strong> Some migrations are direct, some require API adjustments, and some still need Aura.</li>
+              <li><strong>Migrate leaf components before host containers.</strong> This lets Aura wrappers host new LWC children while the page keeps working.</li>
+              <li><strong>Replace business logic with shared Apex or services where practical.</strong> That reduces rewrite duplication.</li>
+              <li><strong>Remove Aura only after the last genuine dependency is gone.</strong> Do not rewrite wrappers before the underlying capability is ready.</li>
+            </ol>
+            <p>For many teams, the best migration target is not "all Aura." It is "no new Aura unless documented necessity." That rule alone usually improves the codebase over time.</p>
+            <div class="callout">
+              <strong>Good migration posture:</strong> treat Aura as a shrinking compatibility layer, not as the place where new UI investment continues to grow.
+            </div>
+          </section>
+
+          <section id="best-practices">
+            <h2>Best practices</h2>
+            <ul>
+              <li><strong>Default to LWC for all new custom UI.</strong> Make exception requests explicit.</li>
+              <li><strong>Use Aura wrappers strategically.</strong> They are a bridge, not the destination.</li>
+              <li><strong>Re-check official docs before assuming a gap still exists.</strong> Base component coverage and migration guidance evolve.</li>
+              <li><strong>Test mapped components carefully.</strong> Some Aura-to-LWC replacements look similar but differ in attributes, slots, or event behavior.</li>
+              <li><strong>Prefer shared Apex and reusable services.</strong> It makes partial migration less painful.</li>
+              <li><strong>Do not launch a big-bang rewrite without business pressure.</strong> Incremental migration is safer and usually easier to support.</li>
+              <li><strong>Keep styling cleaner in LWC.</strong> Favor SLDS and supported styling hooks instead of relying on broad CSS overrides.</li>
+              <li><strong>Review composition boundaries early.</strong> Remember that an LWC subtree cannot drop an Aura child into the middle later.</li>
+            </ul>
+          </section>
+
+          <section id="recommendation">
+            <h2>Recommendation</h2>
+            <p>If you want one decision rule, use this: <strong>build in LWC unless you can point to a real Aura-only dependency</strong>. If a legacy app is already in Aura, migrate incrementally by moving inner functionality to LWC and keeping only a thin Aura shell where necessary.</p>
+            <p>For architects, the goal is not ideological purity. It is lowering future UI debt. For developers, the goal is to write the smallest amount of framework-specific code that still satisfies the business requirement. In 2026, that usually means LWC first, Aura only by exception.</p>
+          </section>
+
+          <section id="references">
+            <h2>References</h2>
+            <p>This article was refreshed against Salesforce's official Lightning Web Components documentation and component mapping guidance current as of April 29, 2026.</p>
+            <ul class="reference-list">
+              <li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/get-started-lwc-or-aura.html" target="_blank" rel="noopener">Salesforce Developers: How to Choose Lightning Web Components or Aura</a></li>
+              <li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/interop-intro.html" target="_blank" rel="noopener">Salesforce Developers: Lightning Web Components and Aura Components Working Together</a></li>
+              <li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/interop-aura-composition.html" target="_blank" rel="noopener">Salesforce Developers: Compose Aura Components from Lightning Web Components</a></li>
+              <li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/migrate-map-aura-lwc-components.html" target="_blank" rel="noopener">Salesforce Developers: Base Components - Aura vs Lightning Web Components</a></li>
+              <li><a href="https://developer.salesforce.com/docs/platform/lightning-component-reference/guide/aura-components.html" target="_blank" rel="noopener">Salesforce Developers: Aura Components Reference</a></li>
+              <li><a href="https://developer.salesforce.com/blogs/2026/01/migrate-from-aura-to-lwc-with-agentforce-vibes" target="_blank" rel="noopener">Salesforce Developers Blog: Migrate from Aura to LWC with Agentforce Vibes</a></li>
+            </ul>
+          </section>
+
+          <section class="related-content">
+            <h2>Related tools</h2>
+            <ul>
+              <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Format Apex classes and SOQL queries for quicker review and cleanup.</a></li>
+            </ul>
+
+            <h2>Related articles</h2>
+            <ul>
+              <li><a href="/articles/graphql-wire-adapter-lwc.html">GraphQL Wire Adapter for LWC</a></li>
+              <li><a href="/articles/salesforce_multi_framework_react.html">Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework</a></li>
+              <li><a href="/articles/graphql-api-overview.html">Salesforce GraphQL API Overview</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="pulsagi-article-footer">
+      <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+    </footer>
+  </div>
+</body>
+</html>

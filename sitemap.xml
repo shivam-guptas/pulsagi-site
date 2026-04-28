@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pulsagi.com/</loc>
@@ -61,7 +61,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/best_ai_tools_guide.html</loc>
+    <loc>https://pulsagi.com/articles/best-ai-tools-guide.html</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -121,13 +121,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/devops_center_guide.html</loc>
+    <loc>https://pulsagi.com/articles/devops-center-guide.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/dynamic_forms_guide.html</loc>
+    <loc>https://pulsagi.com/articles/dynamic-forms-guide.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -145,13 +145,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/graphql_api_overview.html</loc>
+    <loc>https://pulsagi.com/articles/graphql-api-overview.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/graphql_wire_adapter_lwc.html</loc>
+    <loc>https://pulsagi.com/articles/graphql-wire-adapter-lwc.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -169,7 +169,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/how_neural_networks_work_beginner_guide.html</loc>
+    <loc>https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -187,31 +187,31 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/lightning_web_security_vs_locker.html</loc>
+    <loc>https://pulsagi.com/articles/lightning-web-security-vs-locker.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/machine_learning_vs_deep_learning_difference.html</loc>
+    <loc>https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html</loc>
     <lastmod>2026-03-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/named_credentials_and_external_credentials.html</loc>
+    <loc>https://pulsagi.com/articles/named-credentials-and-external-credentials.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/natural_language_processing_explained_examples.html</loc>
+    <loc>https://pulsagi.com/articles/natural-language-processing-explained-examples.html</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -223,7 +223,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/no_code_tools_guide.html</loc>
+    <loc>https://pulsagi.com/articles/no-code-tools-guide.html</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -241,7 +241,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/permission_set_groups_guide.html</loc>
+    <loc>https://pulsagi.com/articles/permission-set-groups-guide.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
