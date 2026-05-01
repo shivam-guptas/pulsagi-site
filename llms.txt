@@ -61,7 +61,7 @@ The articles directory is sorted newest first and includes search: https://pulsa
 - **Salesforce Async Apex: Queueable, Batch, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce-async-apex-guide.html
 - **Connect Salesforce to ChatGPT with MCP** (Apr 20, 2026): https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html
 - **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce-headless-360-guide.html
-- **Salesforce Hosted MCP Servers (Beta)** (Apr 15, 2026): https://pulsagi.com/articles/salesforce-hosted-mcp-servers-beta.html
+- **Salesforce Hosted MCP Servers GA Guide** (Apr 15, 2026): https://pulsagi.com/articles/salesforce-hosted-mcp-servers-guide.html
 - **Apex Batch vs Queueable with Apex Cursors in Spring '26** (Apr 13, 2026): https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html
 - **DevOps Center in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/devops-center-guide.html
 - **Dynamic Forms in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/dynamic-forms-guide.html

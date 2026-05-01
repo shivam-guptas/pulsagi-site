@@ -3,16 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting to Home | Pulsagi</title>
+  <title>Page Not Found | Pulsagi</title>
+  <meta name="description" content="The page you requested could not be found. Browse Pulsagi tools, articles, and featured resources from this recovery page." />
   <meta name="robots" content="noindex, follow" />
-  <link rel="canonical" href="https://pulsagi.com/" />
-  <meta http-equiv="refresh" content="0; url=/" />
-  <script>
-    window.location.replace("/");
-  </script>
+  <link rel="canonical" href="https://pulsagi.com/404.html" />
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #1b242b;
+      --surface: #2b3540;
+      --border: #40505d;
+      --text: #f7f2e8;
+      --muted: #b6bfca;
+      --accent: #76e0c0;
+      --warm: #f0c98e;
+      --mono: "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(118, 224, 192, 0.12), transparent 24%),
+        radial-gradient(circle at 80% 12%, rgba(240, 201, 142, 0.10), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(147, 197, 253, 0.12), transparent 28%),
+        linear-gradient(180deg, #1b242b, #232d36 68%, #202931);
+    }
+    .shell {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 64px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(118, 224, 192, 0.25);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(118, 224, 192, 0.10);
+      font: 700 0.74rem var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 1rem 0 0.9rem;
+      font-size: clamp(2.8rem, 7vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #fffdf8 0%, #f2e1c4 32%, #d8e0ea 68%, #9ad0c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .lead {
+      max-width: 720px;
+      color: #dbe3eb;
+      font-size: 1.04rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.35rem;
+      border-radius: 10px;
+      font: 700 0.84rem var(--mono);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #9ee7cf);
+      color: #132018;
+    }
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid rgba(202, 212, 223, 0.18);
+      background: rgba(255, 248, 238, 0.05);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at top right, rgba(118, 224, 192, 0.10), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(240, 201, 142, 0.08), transparent 34%),
+        linear-gradient(180deg, rgba(47, 58, 70, 0.98), rgba(35, 44, 54, 0.98));
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+    }
+    .card h2 {
+      margin: 0 0 0.55rem;
+      font-size: 1.1rem;
+    }
+    .card p {
+      margin: 0 0 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .card a {
+      color: var(--accent);
+      font: 700 0.78rem var(--mono);
+      text-decoration: none;
+    }
+    .mini-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+    .mini-list li + li {
+      margin-top: 0.45rem;
+    }
+    .mini-list a {
+      color: var(--warm);
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to the homepage...</p>
-  <p><a href="/">Continue to Pulsagi</a></p>
+  <main class="shell">
+    <div class="badge">404 Recovery Page</div>
+    <h1>That page is gone, but the site is still here.</h1>
+    <p class="lead">The URL you requested does not exist anymore or may have moved. Use the quick links below to get back to Pulsagi tools, articles, and the most useful pages on the site.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Go Home</a>
+      <a class="btn btn-secondary" href="/tools/">Browse Tools</a>
+      <a class="btn btn-secondary" href="/articles/">Browse Articles</a>
+    </div>
+    <div class="grid">
+      <section class="card" aria-labelledby="popular-tools-title">
+        <h2 id="popular-tools-title">Popular tools</h2>
+        <p>Fast links to the most-used browser tools on the site.</p>
+        <ul class="mini-list">
+          <li><a href="/tools/scam-checker.html">Scam Checker</a></li>
+          <li><a href="/tools/json-viewer.html">JSON Viewer</a></li>
+          <li><a href="/tools/salesforce-governor-limit-analyzer.html">Governor Limit Analyzer</a></li>
+        </ul>
+      </section>
+      <section class="card" aria-labelledby="popular-articles-title">
+        <h2 id="popular-articles-title">Popular articles</h2>
+        <p>Jump back into current AI and Salesforce guides.</p>
+        <ul class="mini-list">
+          <li><a href="/articles/salesforce-chatgpt-mcp-guide.html">Connect Salesforce to ChatGPT with MCP</a></li>
+          <li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li>
+          <li><a href="/articles/agentforce-architecture.html">Salesforce Agentforce Architecture Guide</a></li>
+        </ul>
+      </section>
+      <section class="card" aria-labelledby="next-steps-title">
+        <h2 id="next-steps-title">Next steps</h2>
+        <p>If this was an old bookmarked URL, update your saved link to the current page version once you find it.</p>
+        <a href="/sitemap.xml">Open the XML sitemap</a>
+      </section>
+    </div>
+  </main>
 </body>
 </html>

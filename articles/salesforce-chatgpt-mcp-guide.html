@@ -6,23 +6,23 @@
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
             <title>Connect Salesforce to ChatGPT with MCP | Pulsagi</title>
-  <meta name="description" content="Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead" />
+  <meta name="description" content="Connect ChatGPT to Salesforce with Hosted MCP Servers, OAuth, and governed per-user access for queries, summaries, prompt templates, and safe updates." />
   <link rel="canonical" href="https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html" />
   <meta property="og:title" content="Connect Salesforce to ChatGPT with MCP" />
-  <meta property="og:description" content="Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead" />
+  <meta property="og:description" content="Connect ChatGPT to Salesforce with Hosted MCP Servers, OAuth, and governed per-user access for queries, summaries, prompt templates, and safe updates." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html" />
   <meta property="og:image" content="https://pulsagi.com/og-default.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Connect Salesforce to ChatGPT with MCP" />
-  <meta name="twitter:description" content="Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead" />
+  <meta name="twitter:description" content="Connect ChatGPT to Salesforce with Hosted MCP Servers, OAuth, and governed per-user access for queries, summaries, prompt templates, and safe updates." />
   <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
   <script type="application/ld+json">
 {
     "@context":  "https://schema.org",
     "@type":  "Article",
     "headline":  "Connect Salesforce to ChatGPT with MCP",
-    "description":  "Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead",
+    "description":  "Connect ChatGPT to Salesforce with Hosted MCP Servers, OAuth, and governed per-user access for queries, summaries, prompt templates, and safe updates.",
     "author":  {
                    "@type":  "Person",
                    "name":  "Shivam Gupta",
@@ -187,7 +187,7 @@
         <article class="content-card">
           <section id="introduction">
             <h2>Introduction</h2>
-            <p>Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead of building middleware or a custom API wrapper, you activate a Salesforce-managed server, create an OAuth-enabled External Client App, and point ChatGPT at the server URL.</p>
+            <p>Salesforce Hosted MCP Servers make it possible for AI clients like ChatGPT to connect directly to Salesforce through the Model Context Protocol (MCP). Instead of building middleware or a custom API wrapper, you activate a Salesforce-managed server, create an OAuth-enabled External Client App, and point ChatGPT at the server URL. That workflow is now part of the generally available Hosted MCP setup path, so it is worth aligning your configuration to the current GA documentation instead of older beta examples.</p>
             <p>The important part is governance. The AI client does not bypass Salesforce security. Tool calls run through Salesforce authentication, object permissions, field-level security, and sharing rules for the user who authorized the connector.</p>
             <div class="callout">
               <strong>What this enables:</strong> after setup, you can ask ChatGPT questions like "Get me the Shivam Gupta Pvt Ltd account information" or "List all Salesforce Accounts in a table" and receive live, structured data from Salesforce.
@@ -413,7 +413,7 @@
 
   <h2>Related articles</h2>
   <ul>
-      <li><a href="/articles/salesforce-hosted-mcp-servers-beta.html">Salesforce Hosted MCP Servers (Beta)</a></li>
+      <li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li>
       <li><a href="/articles/salesforce-headless-360-guide.html">Salesforce Headless 360: Practical Setup Guide</a></li>
       <li><a href="/articles/named-credentials-and-external-credentials.html">Named Credentials and External Credentials in Salesforce</a></li>
   </ul>
