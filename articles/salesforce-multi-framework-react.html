@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+            <title>React on Salesforce: Multi-Framework Guide | Pulsagi</title>
+  <meta name="description" content="For years, Salesforce frontend development effectively meant Lightning Web Components or Aura. That worked well when your goal was deep platform integration" />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-multi-framework-react.html" />
+  <meta property="og:title" content="React on Salesforce: Multi-Framework Guide" />
+  <meta property="og:description" content="For years, Salesforce frontend development effectively meant Lightning Web Components or Aura. That worked well when your goal was deep platform integration" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-multi-framework-react.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="React on Salesforce: Multi-Framework Guide" />
+  <meta name="twitter:description" content="For years, Salesforce frontend development effectively meant Lightning Web Components or Aura. That worked well when your goal was deep platform integration" />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-multi-framework-hero.png" />
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "React on Salesforce: Multi-Framework Guide",
+    "description":  "For years, Salesforce frontend development effectively meant Lightning Web Components or Aura. That worked well when your goal was deep platform integration",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-04-25",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/salesforce-multi-framework-react.html"
+}
+  </script>
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "React on Salesforce: Multi-Framework Guide",
+                                "item":  "https://pulsagi.com/articles/salesforce-multi-framework-react.html"
+                            }
+                        ]
+}
+  </script><meta name="keywords" content="Salesforce Multi-Framework, React on Salesforce, Salesforce React app, UIBundle, Agentforce 360 Platform, Salesforce Data SDK, React vs LWC" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 22px; background: rgba(255, 255, 255, 0.94); }
+    .article-table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    .article-table th, .article-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(221, 211, 194, 0.95); }
+    .article-table th { background: rgba(11, 92, 171, 0.08); color: var(--ink); font-family: "Merriweather", serif; font-size: 0.98rem; }
+    .article-table td { color: var(--muted-strong); }
+    .article-figure { margin: 26px 0; }
+    .article-figure img { display: block; width: 100%; height: auto; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 18px; background: #fff; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08); }
+    .article-figure figcaption { margin-top: 10px; color: var(--muted-strong); font-size: 0.95rem; }
+    .reference-list { padding-left: 22px; }
+    .reference-list li + li { margin-top: 10px; }
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+    <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+    <main class="page-shell article-page">
+      <section class="article-hero">
+        <div class="article-hero-copy">
+          <div class="eyebrow">Salesforce - React Development</div>
+          <h1 class="article-title">React on Salesforce: Multi-Framework Guide</h1>
+          <p class="article-standfirst">A practical guide for Salesforce developers, architects, and admins who want to understand what Salesforce Multi-Framework actually is, how React works on the platform, how to build a usable first app, and where the current beta still has important boundaries.</p>
+          <div class="reading-meta"><span>15 min read</span><span>Published April 25, 2026</span><span>By Shivam Gupta</span></div>
+          <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+        </div>
+        <div class="article-hero-media">
+          <img src="assets/images/salesforce/salesforce-multi-framework-hero.png" alt="React on Salesforce: Multi-Framework Guide infographic" loading="eager"  width="1024"  height="1536" />
+          <p>Salesforce Multi-Framework lets teams build React apps with their own frontend stack while still running inside Salesforce's authentication, permission, and governance model.</p>
+        </div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc-card" aria-label="Table of contents">
+          <h2>Table of contents</h2>
+          <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#what-it-is">What it is</a></li>
+            <li><a href="#why-it-matters">Why it matters</a></li>
+            <li><a href="#how-react-works">How React works with Salesforce</a></li>
+            <li><a href="#create-react-app">How to create a React app on Salesforce</a></li>
+            <li><a href="#code-examples">Code examples</a></li>
+            <li><a href="#use-cases">Use cases</a></li>
+            <li><a href="#admin-developer">Admin and developer perspective</a></li>
+            <li><a href="#best-practices">Best practices</a></li>
+            <li><a href="#limitations">Limitations</a></li>
+            <li><a href="#recommendation">Recommendation</a></li>
+            
+          </ol>
+        </aside>
+
+        <article class="content-card">
+          <section id="introduction">
+            <h2>Introduction</h2>
+            <p>For years, Salesforce frontend development effectively meant <strong>Lightning Web Components</strong> or Aura. That worked well when your goal was deep platform integration inside Lightning pages, but it also meant React teams had to choose between the Salesforce platform and the modern React ecosystem. <strong>Salesforce Multi-Framework</strong> changes that direction.</p>
+            <p>According to the Salesforce Developers Blog published on <strong>April 15, 2026</strong>, Salesforce Multi-Framework is a framework-agnostic runtime on the Agentforce 360 Platform that lets developers build native Salesforce apps with React. As of that announcement, <strong>React is the supported framework today</strong>, while additional frameworks are expected later.</p>
+            <div class="callout">
+              <strong>Practical framing:</strong> Salesforce Multi-Framework does not replace LWC. It gives Salesforce teams a new option for app-style experiences where React, npm libraries, modern tooling, and cross-platform reuse matter more than Lightning App Builder placement.
+            </div>
+          </section>
+
+          <section id="what-it-is">
+            <h2>What it is</h2>
+            <p>Salesforce Multi-Framework is the runtime and metadata model that allows a non-Salesforce frontend framework, currently React, to run as a first-class application on Salesforce. The underlying app is represented in Salesforce DX by the <code>UIBundle</code> metadata type, and the deployed app can target the <strong>App Launcher</strong> for internal users or <strong>Experience</strong> for external-facing experiences.</p>
+            <p>The key point is that this is not "host React somewhere else and call Salesforce APIs manually." The app runs on the Agentforce 360 Platform with Salesforce-managed identity, permissions, and hosting behavior. The Data SDK handles authentication, CSRF protection, and base path resolution so the React app can access Salesforce services without the usual custom token plumbing.</p>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Capability</th>
+                    <th>What Salesforce provides</th>
+                    <th>What the React team brings</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Runtime</strong></td>
+                    <td>Salesforce Multi-Framework on the Agentforce 360 Platform</td>
+                    <td>React app code and frontend architecture</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Metadata</strong></td>
+                    <td><code>UIBundle</code> definition and deployment lifecycle</td>
+                    <td>App structure, routing, build output, and packaging discipline</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Data access</strong></td>
+                    <td>GraphQL, UI API, Apex REST, user context, and platform services</td>
+                    <td>Components, queries, mutations, and UI behavior</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Security</strong></td>
+                    <td>Authentication, permissions, sharing, and governance</td>
+                    <td>Good component design and safe server-side logic</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tooling</strong></td>
+                    <td>Salesforce CLI, DX project structure, Agentforce Vibes, Live Preview</td>
+                    <td>Vite, npm, tests, design system, and React engineering practices</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="why-it-matters">
+            <h2>Why it matters</h2>
+            <p>Multi-Framework matters because it removes a tradeoff that many enterprise teams have felt for a long time. Before this, if a team wanted Salesforce-native governance and identity, it usually had to stay inside LWC. If it wanted React and the wider open-source ecosystem, it usually had to move the UI outside Salesforce and rebuild authentication, data access, and operational guardrails.</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3>Why developers care</h3>
+                <ul>
+                  <li>They can use React patterns, npm packages, Vite, and familiar testing stacks.</li>
+                  <li>They can reuse design systems and component ideas across Salesforce and non-Salesforce apps.</li>
+                  <li>They can query and mutate Salesforce data without building a custom auth layer.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Why architects care</h3>
+                <ul>
+                  <li>The trust boundary stays inside Salesforce instead of moving into custom middleware.</li>
+                  <li>The app remains part of Salesforce DX source, deployment, and metadata governance.</li>
+                  <li>Internal and external app targets are modeled explicitly through metadata.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Why admins care</h3>
+                <ul>
+                  <li>User access still depends on the same Salesforce permission model.</li>
+                  <li>Org setup is explicit and reviewable instead of hidden in an external frontend host.</li>
+                  <li>The experience can still appear in familiar Salesforce entry points like the App Launcher.</li>
+                </ul>
+              </div>
+            </div>
+            <p>The most important caveat is timing. <strong>As of April 25, 2026</strong>, Salesforce documents Multi-Framework for React as a <strong>beta</strong> capability available only in <strong>scratch orgs and sandboxes</strong>. It is not a production-ready replacement for every current LWC use case.</p>
+          </section>
+
+          <section id="how-react-works">
+            <h2>How React works with Salesforce</h2>
+            <p>React on Salesforce works through a few platform-specific layers, not through Lightning base components or the LWC wire service. Salesforce's React guidance is clear that these apps should use standard web APIs and npm packages, with <code>@salesforce/sdk-data</code> as the supported bridge for Salesforce data access.</p>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Area</th>
+                    <th>How it works in Multi-Framework</th>
+                    <th>What to remember</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Data reads and writes</strong></td>
+                    <td>Prefer GraphQL through <code>dataSdk.graphql?.()</code></td>
+                    <td>GraphQL is the recommended default for record data.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Custom server logic</strong></td>
+                    <td>Use <code>dataSdk.fetch?()</code> against supported Salesforce endpoints, especially Apex REST</td>
+                    <td>Do not call raw <code>fetch()</code> or <code>axios</code> directly for Salesforce endpoints.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Authentication</strong></td>
+                    <td>Handled by the Data SDK and the platform runtime</td>
+                    <td>No manual token handling should be needed in app code.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>UI stack</strong></td>
+                    <td>Bring your own React component model and styling strategy</td>
+                    <td><code>lightning/*</code> modules and Lightning base components are not available.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Deployment model</strong></td>
+                    <td>App assets and metadata live together in <code>force-app/main/default/uiBundles</code></td>
+                    <td>Think of the React app as a Salesforce metadata-backed application, not just a static site.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>In other words, Salesforce is not teaching React to behave like LWC. It is exposing Salesforce services to React through framework-agnostic libraries and a governed runtime.</p>
+            <div class="callout">
+              <strong>Important difference from LWC:</strong> if your use case depends on Lightning Data Service, <code>@wire</code>, Lightning base components, or App Builder drag-and-drop placement, React does not currently give you the same experience.
+            </div>
+          </section>
+
+          <section id="create-react-app">
+            <h2>How to create a React app on Salesforce</h2>
+            <p>The official setup flow is straightforward, but there are a few boundaries that matter.</p>
+            <ol>
+              <li>Use a <strong>sandbox or scratch org</strong>. Salesforce documents that the beta is not for production orgs.</li>
+              <li>Confirm prerequisites such as the <strong>latest Salesforce CLI</strong> and, if you plan to use Agentforce Vibes, the relevant extension setup.</li>
+              <li>In Setup, search for <strong>React Development with Salesforce Multi-Framework (Beta)</strong> and enable the beta. Salesforce explicitly notes that <strong>after you enable it, you cannot disable it</strong>.</li>
+              <li>If you plan to use Agentforce Vibes for development help, activate the relevant MCP servers such as <strong>Salesforce DX MCP Server</strong>, <strong>Salesforce Metadata Experts MCP Server</strong>, and <strong>Salesforce API Context MCP Server</strong>.</li>
+              <li>Generate a React app either from the <strong>Agentforce Vibes template</strong> or through the Salesforce CLI.</li>
+              <li>Develop locally like a normal React app, then build and deploy the <code>UIBundle</code> into the org.</li>
+            </ol>
+            <p>Salesforce currently documents two major app shapes:</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3><code>reactinternalapp</code></h3>
+                <p>Designed for employee-facing apps that authenticate with Salesforce credentials and are surfaced through the App Launcher.</p>
+              </div>
+              <div class="card">
+                <h3><code>reactexternalapp</code></h3>
+                <p>Designed for customer or partner experiences. This path depends on Digital Experiences and Experience Cloud metadata in addition to the React app itself.</p>
+              </div>
+            </div>
+            <p>For external apps, Salesforce also documents additional Experience Cloud setup and licensing expectations. That means the "React" part is only one piece of the delivery story; org architecture still matters.</p>
+          </section>
+
+          <section id="code-examples">
+            <h2>Code examples</h2>
+            <p>These examples follow the direction in the current Salesforce documentation and are meant to show the practical shape of a Multi-Framework app.</p>
+
+            <h3>1. Typical scaffold and local development flow</h3>
+            <p>Salesforce documents the <code>sf template generate ui-bundle</code> workflow and stores the app under <code>force-app/main/default/uiBundles</code>. A typical internal-app flow looks like this.</p>
+<pre><code>sf template generate ui-bundle
+
+cd force-app/main/default/uiBundles/myReactApp
+npm install
+npm run dev
+
+# When ready, build the app and deploy the Salesforce metadata
+npm run build
+sf project deploy start --source-dir force-app/main/default/uiBundles/myReactApp</code></pre>
+            <p>The exact template prompts and generated files can vary, but the important architecture is stable: the React app lives inside the DX project and deploys as a <code>UIBundle</code>.</p>
+
+            <h3>2. Runtime configuration for a single-page React app</h3>
+            <p>The <code>ui-bundle.json</code> file defines how Salesforce serves the built app. For a client-routed React SPA, a fallback to <code>index.html</code> is important.</p>
+<pre><code>{
+  "outputDir": "dist",
+  "apiVersion": "v66.0",
+  "routing": {
+    "fileBasedRouting": true,
+    "trailingSlash": "never",
+    "fallback": "index.html"
+  }
+}</code></pre>
+            <p>This is the kind of configuration you want when your React router owns sub-routes like <code>/dashboard</code> or <code>/accounts/001...</code>.</p>
+
+            <h3>3. Query Salesforce data with GraphQL and the Data SDK</h3>
+            <p>Salesforce recommends GraphQL as the preferred way to access record data from a React app. The example below uses <code>createDataSDK()</code> and the required <code>gql</code> tag.</p>
+<pre><code>import { useEffect, useState } from "react";
+import { createDataSDK, gql } from "@salesforce/sdk-data";
+
+const ACCOUNT_QUERY = gql`
+  query RecentAccounts {
+    uiapi {
+      query {
+        Account(first: 5, orderBy: { LastModifiedDate: { order: DESC } }) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+              Industry {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function RecentAccountsPanel() {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    async function load() {
+      const dataSdk = await createDataSDK();
+      const result = await dataSdk.graphql?.(ACCOUNT_QUERY);
+      const edges = result?.uiapi?.query?.Account?.edges ?? [];
+      setRows(
+        edges.map((edge) => ({
+          id: edge.node.Id,
+          name: edge.node.Name?.value,
+          industry: edge.node.Industry?.value
+        }))
+      );
+    }
+
+    load().catch(console.error);
+  }, []);
+
+  return (
+    &lt;ul&gt;
+      {rows.map((row) =&gt; (
+        &lt;li key={row.id}&gt;{row.name} - {row.industry ?? "No industry"}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+            <p>This pattern matters because it stays within the supported data access model and avoids writing custom token-handling code.</p>
+
+            <h3>4. Use Apex REST when GraphQL is not enough</h3>
+            <p>When you need custom business logic, orchestration, or a transactional operation that does not fit well into GraphQL, Salesforce recommends Apex REST via <code>dataSdk.fetch?()</code>.</p>
+<pre><code>// Apex
+@RestResource(urlMapping='/account-health/*')
+global with sharing class AccountHealthApi {
+    @HttpGet
+    global static Map&lt;String, Object&gt; getHealth() {
+        RestRequest req = RestContext.request;
+        String accountId = req.requestURI.substringAfterLast('/');
+        Account acc = [
+            SELECT Id, Name, Industry, AnnualRevenue
+            FROM Account
+            WHERE Id = :accountId
+            LIMIT 1
+        ];
+
+        return new Map&lt;String, Object&gt;{
+            'accountId' =&gt; acc.Id,
+            'name' =&gt; acc.Name,
+            'industry' =&gt; acc.Industry,
+            'health' =&gt; acc.AnnualRevenue != null &amp;&amp; acc.AnnualRevenue &gt; 1000000 ? 'Strong' : 'Monitor'
+        };
+    }
+}</code></pre>
+<pre><code>// React
+import { createDataSDK } from "@salesforce/sdk-data";
+
+export async function getAccountHealth(accountId) {
+  const dataSdk = await createDataSDK();
+  const response = await dataSdk.fetch?.(`/services/apexrest/account-health/${accountId}`);
+
+  if (!response?.ok) {
+    throw new Error("Failed to fetch account health");
+  }
+
+  return response.json();
+}</code></pre>
+            <p>This is a good pattern when the UI needs purpose-built business logic instead of raw record access.</p>
+          </section>
+
+          <section id="use-cases">
+            <h2>Use cases</h2>
+            <p>Multi-Framework is best understood as a good fit for <strong>application-style experiences</strong>, not as a universal replacement for all component work in Salesforce.</p>
+            <div class="card-grid">
+              <div class="card">
+                <h3>Good fit</h3>
+                <ul>
+                  <li>Internal operational dashboards with rich React interaction patterns.</li>
+                  <li>Highly customized portals where Experience Cloud is needed but a React stack is preferred.</li>
+                  <li>Apps that need to share frontend patterns across Salesforce and non-Salesforce surfaces.</li>
+                  <li>Teams that already have strong React engineering practices and design systems.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Not the best fit</h3>
+                <ul>
+                  <li>Simple record page enhancements that fit naturally into Lightning pages.</li>
+                  <li>Use cases that depend heavily on Lightning base components or App Builder configuration.</li>
+                  <li>Immediate production rollouts that cannot accept beta constraints.</li>
+                  <li>Teams without frontend engineering maturity that mainly need admin-configurable extensions.</li>
+                </ul>
+              </div>
+            </div>
+            <p>A helpful rule is this: <strong>choose React when you are building an app, choose LWC when you are extending Salesforce UI</strong>.</p>
+          </section>
+
+          <section id="admin-developer">
+            <h2>Admin and developer perspective</h2>
+            <div class="table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Perspective</th>
+                    <th>What matters most</th>
+                    <th>Practical advice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Admin</strong></td>
+                    <td>Enablement, permissions, Experience Cloud prerequisites, and safe beta rollout</td>
+                    <td>Turn it on only in the right sandbox strategy, document that it cannot be disabled, and review access model changes before exposing external experiences.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Developer</strong></td>
+                    <td>React architecture, GraphQL/Apex design, and deployment through DX</td>
+                    <td>Use GraphQL first, keep custom logic in Apex REST only where needed, and treat the app as Salesforce metadata plus frontend code.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Architect</strong></td>
+                    <td>Framework choice, reusability, and long-term supportability</td>
+                    <td>Do not select React only because it is fashionable. Use it when the experience justifies the extra frontend ownership compared with LWC.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>One of the healthiest adoption patterns is for admins and developers to treat Multi-Framework as a joint decision. Admins own org readiness and guardrails. Developers own frontend quality, data access discipline, and long-term maintainability.</p>
+          </section>
+
+          <section id="best-practices">
+            <h2>Best practices</h2>
+            <ul>
+              <li><strong>Start with an internal app pilot:</strong> the App Launcher path is simpler than beginning with an external Experience Cloud rollout.</li>
+              <li><strong>Prefer GraphQL for record data:</strong> this aligns with Salesforce's documented guidance and keeps data access standardized.</li>
+              <li><strong>Use Apex REST only for real business logic:</strong> do not recreate CRUD endpoints in Apex when GraphQL or UI API already handles the need.</li>
+              <li><strong>Design for platform boundaries:</strong> React apps do not get Lightning base components, <code>@wire</code>, or <code>lightning/*</code> modules.</li>
+              <li><strong>Keep routing explicit:</strong> configure <code>ui-bundle.json</code> correctly for SPA navigation and refresh behavior.</li>
+              <li><strong>Treat styling as an architectural choice:</strong> Salesforce documentation suggests SLDS blueprints, SLDS for React, or shadcn-based approaches depending on your design direction.</li>
+              <li><strong>Preserve least privilege:</strong> do not assume React changes the need for good permission set, object access, and sharing design.</li>
+              <li><strong>Keep LWC in the toolbox:</strong> many page-level Salesforce extensions still fit LWC better than React.</li>
+            </ul>
+          </section>
+
+          <section id="limitations">
+            <h2>Limitations</h2>
+            <p>This is where teams need discipline. Multi-Framework is promising, but the current constraints are not small details.</p>
+            <ul>
+              <li><strong>Beta only:</strong> official documentation currently limits React app development with Multi-Framework to scratch orgs and sandboxes.</li>
+              <li><strong>Language restriction in current docs:</strong> some Salesforce docs specify sandboxes and scratch orgs where English is the default language.</li>
+              <li><strong>Enablement is one-way:</strong> Salesforce states that once you enable the beta in an org, you cannot disable it.</li>
+              <li><strong>No Lightning App Builder support yet:</strong> Salesforce's launch blog says drag-and-drop App Builder placement is planned for GA, not available now.</li>
+              <li><strong>Not every platform API is available:</strong> Salesforce explicitly recommends checking the beta docs for known limitations.</li>
+              <li><strong>Experience Builder editing limitation:</strong> Salesforce documents that you cannot edit a React app's Experience Cloud site in Experience Builder.</li>
+              <li><strong>React is the supported framework today:</strong> "Multi-Framework" is broader in vision than in current day-one capability.</li>
+            </ul>
+            <div class="callout">
+              <strong>Date-sensitive note:</strong> the official launch blog on April 15, 2026 also described micro-frontend support for embedding React directly into Lightning pages as a developer preview / closed pilot target for Spring 2027. That is not the same thing as broad GA support today.
+            </div>
+          </section>
+
+          <section id="recommendation">
+            <h2>Recommendation</h2>
+            <p>My recommendation is simple: <strong>adopt Salesforce Multi-Framework deliberately, not emotionally</strong>. It is a strong option for React-capable Salesforce teams that want app-style experiences, broader ecosystem access, and cleaner frontend reuse. It is not yet the default answer for ordinary Salesforce component development.</p>
+            <p>If your team mainly builds record-page enhancements, admin-configurable UI, or deeply Lightning-native components, stay with LWC. If your team needs a richer React application on Salesforce and can accept beta constraints, start with a sandbox pilot, keep the scope tight, and validate the operational model before planning anything broader.</p>
+          </section>
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li>No direct tool match for this topic yet.</li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/lightning-web-security-vs-locker.html">Lightning Web Security vs Locker in Salesforce</a></li>
+      <li><a href="/articles/lwc-vs-aura-component-architecture.html">LWC vs Aura in Salesforce</a></li>
+      <li><a href="/articles/graphql-wire-adapter-lwc.html">GraphQL Wire Adapter for LWC</a></li>
+  </ul>
+</section>
+</article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+

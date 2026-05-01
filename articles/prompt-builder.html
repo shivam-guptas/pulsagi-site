@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Agentforce Prompt Builder Guide Overview | Pulsagi</title>
-  <meta name="description" content="Agentforce Prompt Builder Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+            <title>Agentforce Prompt Builder Deep Dive | Pulsagi</title>
+  <meta name="description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
   <link rel="canonical" href="https://pulsagi.com/articles/prompt-builder.html" />
+  <meta property="og:title" content="Agentforce Prompt Builder Deep Dive" />
+  <meta property="og:description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Agentforce Prompt Builder Guide Overview" />
-  <meta property="og:description" content="Agentforce Prompt Builder Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/prompt-builder.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
-  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Agentforce Prompt Builder Guide Overview | Pulsagi" />
-  <meta name="twitter:description" content="Agentforce Prompt Builder Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
-<script type="application/ld+json">
+  <meta name="twitter:title" content="Agentforce Prompt Builder Deep Dive" />
+  <meta name="twitter:description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Agentforce Prompt Builder Deep Dive",
-  "description": "Agentforce Prompt Builder Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
-  "image": "https://pulsagi.com/og-default.png",
-  "author": {
-    "@type": "Person",
-    "name": "Shivam Gupta",
-    "url": "https://shivam.pulsagi.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pulsagi",
-    "url": "https://pulsagi.com"
-  },
-  "datePublished": "2026-03-11",
-  "dateModified": "2026-03-11",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pulsagi.com/articles/prompt-builder.html"
-  }
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Agentforce Prompt Builder Deep Dive",
+    "description":  "Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-03-11",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/prompt-builder.html"
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
-    { "@type": "ListItem", "position": 3, "name": "Agentforce Prompt Builder Deep Dive", "item": "https://pulsagi.com/articles/prompt-builder.html" }
-  ]
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Agentforce Prompt Builder Deep Dive",
+                                "item":  "https://pulsagi.com/articles/prompt-builder.html"
+                            }
+                        ]
 }
-</script>
-<meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="assets/ai-blog/site.css" /><!-- Google tag (gtag.js) -->
+  </script><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="assets/ai-blog/site.css" /><!-- Google tag (gtag.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

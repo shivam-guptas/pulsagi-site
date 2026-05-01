@@ -5,56 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
-  <title>Salesforce GraphQL API Overview Guide Overview | Pulsagi</title>
-  <meta name="description" content="Salesforce GraphQL API Overview Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+            <title>Salesforce GraphQL API Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits" />
   <link rel="canonical" href="https://pulsagi.com/articles/graphql-api-overview.html" />
+  <meta property="og:title" content="Salesforce GraphQL API Overview" />
+  <meta property="og:description" content="Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Salesforce GraphQL API Overview Guide Overview" />
-  <meta property="og:description" content="Salesforce GraphQL API Overview Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/graphql-api-overview.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
-  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Salesforce GraphQL API Overview Guide Overview | Pulsagi" />
-  <meta name="twitter:description" content="Salesforce GraphQL API Overview Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
-<script type="application/ld+json">
+  <meta name="twitter:title" content="Salesforce GraphQL API Overview" />
+  <meta name="twitter:description" content="Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Salesforce GraphQL API Overview",
-  "description": "Salesforce GraphQL API Overview Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
-  "image": "https://pulsagi.com/og-default.png",
-  "author": {
-    "@type": "Person",
-    "name": "Shivam Gupta",
-    "url": "https://shivam.pulsagi.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pulsagi",
-    "url": "https://pulsagi.com"
-  },
-  "datePublished": "2026-04-13",
-  "dateModified": "2026-04-13",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pulsagi.com/articles/graphql-api-overview.html"
-  }
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Salesforce GraphQL API Overview",
+    "description":  "Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-04-13",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/graphql-api-overview.html"
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
-    { "@type": "ListItem", "position": 3, "name": "Salesforce GraphQL API Overview", "item": "https://pulsagi.com/articles/graphql-api-overview.html" }
-  ]
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Salesforce GraphQL API Overview",
+                                "item":  "https://pulsagi.com/articles/graphql-api-overview.html"
+                            }
+                        ]
 }
-</script>
-<meta name="author" content="Shivam Gupta" />
+  </script><meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,7 +131,7 @@
           <li><a href="#mutations">Mutations and current scope</a></li>
           <li><a href="#fit">When GraphQL fits</a></li>
           <li><a href="#mistakes">Common mistakes</a></li>
-          <li><a href="#references">References</a></li>
+          
         </ol>
       </aside>
       <article class="content-card">
@@ -323,25 +332,6 @@
             <li><strong>Missing version-specific behavior:</strong> optional fields, upper-bound pagination improvements, and mutation support all depend on the API version in the endpoint path.</li>
           </ul>
         </section>
-
-        <section id="references">
-          <h2>References</h2>
-          <ul class="reference-list">
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/graphql-about.html" target="_blank" rel="noopener">Get Started with GraphQL API</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/intro-graphql-api.html" target="_blank" rel="noopener">What is GraphQL API?</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html" target="_blank" rel="noopener">GraphQL Request and Response Structure</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/schema-conventions.html" target="_blank" rel="noopener">Schema Conventions</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-record-objects.html" target="_blank" rel="noopener">Query Objects</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-record-examples.html" target="_blank" rel="noopener">Query Objects Examples</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/paginate.html" target="_blank" rel="noopener">Paginate with Record Connections</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/paginate-use-upperbound.html" target="_blank" rel="noopener">Paginate with Upper-Bound Limit</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/query-limits.html" target="_blank" rel="noopener">GraphQL API Query Limitations</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-intro.html" target="_blank" rel="noopener">Mutations Overview</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-use.html" target="_blank" rel="noopener">Send Mutation Requests</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/graphql/guide/mutations-references.html" target="_blank" rel="noopener">Mutation Field References</a></li>
-          </ul>
-        </section>
-      
 <section class="related-content">
   <h2>Related tools</h2>
   <ul>
@@ -352,7 +342,7 @@
   <ul>
       <li><a href="/articles/lwc-vs-aura-component-architecture.html">LWC vs Aura in Salesforce</a></li>
       <li><a href="/articles/graphql-wire-adapter-lwc.html">GraphQL Wire Adapter for LWC</a></li>
-      <li><a href="/articles/salesforce_multi_framework_react.html">Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework</a></li>
+      <li><a href="/articles/salesforce-multi-framework-react.html">React on Salesforce: Multi-Framework Guide</a></li>
   </ul>
 </section>
 </article>

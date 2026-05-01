@@ -38,65 +38,68 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
-- **Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible(): Best Apex Security Choice with Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html
-- **Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html
-- **Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html
-- **Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html
-- **Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html
-- **The Future of AI by 2030: Predictions, Expert Insights, Use Cases, Risks, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html
-- **Will AI Replace Jobs or Create New Ones? Economic Trends, Workforce Shifts, and What Happens Next** (Apr 27, 2026): https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html
-- **How AI Will Change Education Forever: Teaching, Learning, Assessment, and Skills in the AI Era** (Apr 27, 2026): https://pulsagi.com/articles/how-ai-will-change-education-forever.html
-- **The Rise of Generative AI: What It Means for You in Content, Business, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html
-- **AI and the Future of Work: Skills You Need to Learn Now for 2030** (Apr 27, 2026): https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html
-- **Machine Learning vs Deep Learning: What's the Difference, Use Cases, and Best Choice in 2026** (Apr 27, 2026): https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html
-- **How Neural Networks Work: Beginner-Friendly Explanation with Examples in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html
-- **Natural Language Processing Explained with Examples: Meaning, Use Cases, and Best Practices in 2026** (Apr 27, 2026): https://pulsagi.com/articles/natural-language-processing-explained-examples.html
-- **How to Build Your First AI Model: Step-by-Step Guide for Beginners in 2026** (Apr 27, 2026): https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html
-- **Top Programming Languages for AI Development in 2026: Features, Use Cases, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html
-- **Best AI Image Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai-image-generator-guide.html
-- **Best AI Content Generators in 2026: Features, Use Cases, Examples, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/ai-content-generator-guide.html
-- **Best ChatGPT Prompts in 2026: Practical Examples for Work, Writing, Coding, and Research** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt-prompts-guide.html
-- **Best AI Tools in 2026 for Productivity, Writing, Design, and Creativity** (Apr 27, 2026): https://pulsagi.com/articles/best-ai-tools-guide.html
-- **Build with React, Run on Salesforce: Introducing Salesforce Multi-Framework** (Apr 26, 2026): https://pulsagi.com/articles/salesforce_multi_framework_react.html
-- **Salesforce Async Apex: Queueable, Batch, Scheduled, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce-async-apex-guide.html
-- **How to Connect Salesforce with ChatGPT using Hosted MCP Servers** (Apr 20, 2026): https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html
-- **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce_headless_360_guide.html
-- **Salesforce Hosted MCP Servers (Beta)** (Apr 15, 2026): https://pulsagi.com/articles/salesforce_hosted_mcp_servers_beta.html
-- **Apex Batch vs Queueable with Apex Cursors in Spring '26** (Apr 13, 2026): https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html
+- **USER_MODE vs SECURITY_ENFORCED vs stripInaccessible** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html
+- **stripInaccessible in Apex: CRUD and FLS Guide** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html
+- **Apex Sharing Keywords in Salesforce Explained** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html
+- **WITH USER_MODE in Apex: SOQL, SOSL, and DML** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html
+- **WITH SECURITY_ENFORCED in Apex Explained** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html
+- **Future of AI in 2030: Predictions and Risks** (Apr 27, 2026): https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html
+- **Will AI Replace Jobs or Create New Ones?** (Apr 27, 2026): https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html
+- **How AI Will Change Education in 2030** (Apr 27, 2026): https://pulsagi.com/articles/how-ai-will-change-education-forever.html
+- **Rise of Generative AI for Business** (Apr 27, 2026): https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html
+- **AI Skills for the Future of Work** (Apr 27, 2026): https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html
+- **Machine Learning vs Deep Learning Explained** (Apr 27, 2026): https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html
+- **How Neural Networks Work for Beginners** (Apr 27, 2026): https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html
+- **Natural Language Processing Explained** (Apr 27, 2026): https://pulsagi.com/articles/natural-language-processing-explained-examples.html
+- **How to Build Your First AI Model** (Apr 27, 2026): https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html
+- **Top Programming Languages for AI in 2026** (Apr 27, 2026): https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html
+- **Best AI Image Generators in 2026** (Apr 27, 2026): https://pulsagi.com/articles/ai-image-generator-guide.html
+- **Best AI Content Generators in 2026** (Apr 27, 2026): https://pulsagi.com/articles/ai-content-generator-guide.html
+- **Best ChatGPT Prompts for Work, Writing, and Coding** (Apr 27, 2026): https://pulsagi.com/articles/chatgpt-prompts-guide.html
+- **Best AI Tools in 2026** (Apr 27, 2026): https://pulsagi.com/articles/best-ai-tools-guide.html
+- **React on Salesforce: Multi-Framework Guide** (Apr 26, 2026): https://pulsagi.com/articles/salesforce-multi-framework-react.html
+- **Salesforce Async Apex: Queueable, Batch, and Future** (Apr 26, 2026): https://pulsagi.com/articles/salesforce-async-apex-guide.html
+- **Connect Salesforce to ChatGPT with MCP** (Apr 20, 2026): https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html
+- **Salesforce Headless 360: Practical Setup Guide** (Apr 19, 2026): https://pulsagi.com/articles/salesforce-headless-360-guide.html
+- **Salesforce Hosted MCP Servers (Beta)** (Apr 15, 2026): https://pulsagi.com/articles/salesforce-hosted-mcp-servers-beta.html
+- **Apex Batch vs Queueable with Apex Cursors in Spring '26** (Apr 13, 2026): https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html
 - **DevOps Center in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/devops-center-guide.html
 - **Dynamic Forms in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/dynamic-forms-guide.html
 - **GraphQL Wire Adapter for LWC** (Apr 13, 2026): https://pulsagi.com/articles/graphql-wire-adapter-lwc.html
 - **Lightning Web Security vs Locker in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/lightning-web-security-vs-locker.html
-- **LWC vs Aura in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/lwc_vs_aura_component_architecture.html
+- **LWC vs Aura in Salesforce** (Apr 10, 2026): https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html
 - **Named Credentials and External Credentials in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/named-credentials-and-external-credentials.html
 - **Permission Set Groups in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/permission-set-groups-guide.html
 - **Platform Events vs Change Data Capture in Salesforce** (Apr 13, 2026): https://pulsagi.com/articles/platform-events-vs-change-data-capture.html
 - **Salesforce GraphQL API Overview** (Apr 13, 2026): https://pulsagi.com/articles/graphql-api-overview.html
 - **Salesforce Pub/Sub API for Event-Driven Integrations** (Apr 13, 2026): https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html
-- **HiClaw Explained: Alibaba's Transparent Multi-Agent OS, Matrix Collaboration, and Human-in-the-Loop Design** (Mar 18, 2026): https://pulsagi.com/articles/hiclaw-explained.html
-- **NVIDIA NemoClaw Explained: Safer OpenClaw Deployments, OpenShell Guardrails, and the Enterprise Runtime Story** (Mar 18, 2026): https://pulsagi.com/articles/nemoclaw-explained.html
-- **OneClaw Explained: Why Agent Discovery and Observability May Become a Major Enterprise Category** (Mar 18, 2026): https://pulsagi.com/articles/oneclaw-explained.html
+- **HiClaw Explained: Alibaba AI Multi-Agent OS** (Mar 18, 2026): https://pulsagi.com/articles/hiclaw-explained.html
+- **NVIDIA NemoClaw Explained for Enterprise AI** (Mar 18, 2026): https://pulsagi.com/articles/nemoclaw-explained.html
+- **OneClaw Explained: AI Agent Discovery** (Mar 18, 2026): https://pulsagi.com/articles/oneclaw-explained.html
 - **OneClaw, OpenClaw, and the New AI Claw Wave** (Mar 18, 2026): https://pulsagi.com/articles/ai-claw-article.html
-- **OpenClaw Explained: Architecture, Use Cases, Components, and Why the AI Agent World Is Paying Attention** (Mar 18, 2026): https://pulsagi.com/articles/openclaw-explained.html
-- **QClaw Explained: Tencent's Bet on Mainstream AI Agents Through WeChat, Hunyuan, and Consumer Distribution** (Mar 18, 2026): https://pulsagi.com/articles/qclaw-explained.html
-- **Salesforce Approval Process vs Flow Approval: Architecture, Audit Trail, and Best Practices** (Mar 13, 2026): https://pulsagi.com/articles/salesforce_approval_vs_flow_approval.html
-- **Where Salesforce Developers Can Use Claude, Codex, Agentforce, Gemini, and Similar AI Tools** (Mar 12, 2026): https://pulsagi.com/articles/salesforce_ai_tools_comparison.html
-- **Admin, Development, and Automation** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html
+- **OpenClaw Explained: AI Agent Architecture** (Mar 18, 2026): https://pulsagi.com/articles/openclaw-explained.html
+- **QClaw Explained: Tencent AI Agent Platform** (Mar 18, 2026): https://pulsagi.com/articles/qclaw-explained.html
+- **Salesforce Approval Process vs Flow Approval** (Mar 13, 2026): https://pulsagi.com/articles/salesforce-approval-vs-flow-approval.html
+- **Best AI Tools for Salesforce Developers** (Mar 12, 2026): https://pulsagi.com/articles/salesforce-ai-tools-comparison.html
+- **Codex and Claude for Salesforce Admin and Automation** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html
 - **Advanced Multi-Step AI Agent Reasoning** (Mar 11, 2026): https://pulsagi.com/articles/advanced-reasoning.html
 - **Agentforce Prompt Builder Deep Dive** (Mar 11, 2026): https://pulsagi.com/articles/prompt-builder.html
 - **Agentforce Security, Governance and Trust Layer** (Mar 11, 2026): https://pulsagi.com/articles/security-governance.html
 - **Building Autonomous Customer Support Agents** (Mar 11, 2026): https://pulsagi.com/articles/support-agent.html
 - **Creating Custom Agent Actions with Apex** (Mar 11, 2026): https://pulsagi.com/articles/agent-actions-apex.html
 - **Deploying Agentforce to Production** (Mar 11, 2026): https://pulsagi.com/articles/production-deployment.html
-- **Discovery and Architecture** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html
-- **Documentation, Operations, and Prompt Library** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html
-- **Governance, Roadmap, and Operating Model** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html
+- **Codex and Claude for Salesforce Discovery and Architecture** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html
+- **Codex and Claude for Salesforce Documentation and Prompts** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html
+- **Codex and Claude for Salesforce Governance and Roadmap** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html
 - **How to Build Your First AI Agent in Salesforce Agentforce** (Mar 11, 2026): https://pulsagi.com/articles/build-first-agent.html
 - **Integrating Agentforce with External APIs** (Mar 11, 2026): https://pulsagi.com/articles/external-api.html
-- **Integrations, Quality, and Delivery** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html
-- **Overview, Comparison, and Lifecycle** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-overview.html
+- **Codex and Claude for Salesforce Integrations and Delivery** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html
+- **Codex and Claude for Salesforce Overview and Lifecycle** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-overview.html
 - **Using Agentforce with Data Cloud** (Mar 11, 2026): https://pulsagi.com/articles/data-cloud-agent.html
 - **What is Salesforce Agentforce - Complete Architecture Guide** (Mar 11, 2026): https://pulsagi.com/articles/agentforce-architecture.html
+- **Best SaaS Tools by Category in 2026** (Feb 20, 2026): https://pulsagi.com/articles/saas-tools-list-guide.html
+- **Best No-Code Tools in 2026** (Feb 16, 2026): https://pulsagi.com/articles/no-code-tools-guide.html
+- **Best Automation Tools in 2026** (Feb 12, 2026): https://pulsagi.com/articles/automation-tools-guide.html
 
 ## Crawl Guidance
 

@@ -5,56 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
-  <title>Salesforce WITH USER_MODE in Apex Guide Overview | Pulsagi</title>
-  <meta name="description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
+            <title>WITH USER_MODE in Apex: SOQL, SOSL, and DML | Pulsagi</title>
+  <meta name="description" content="Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be" />
   <link rel="canonical" href="https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" />
+  <meta property="og:title" content="WITH USER_MODE in Apex: SOQL, SOSL, and DML" />
+  <meta property="og:description" content="Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Salesforce WITH USER_MODE in Apex Guide Overview" />
-  <meta property="og:description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
   <meta property="og:url" content="https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png" />
-  <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Salesforce WITH USER_MODE in Apex Guide Overview | Pulsagi" />
-  <meta name="twitter:description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
+  <meta name="twitter:title" content="WITH USER_MODE in Apex: SOQL, SOSL, and DML" />
+  <meta name="twitter:description" content="Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be" />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png" />
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples",
-  "description": "Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED.",
-  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png",
-  "author": {
-    "@type": "Person",
-    "name": "Shivam Gupta",
-    "url": "https://shivam.pulsagi.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pulsagi",
-    "url": "https://pulsagi.com"
-  },
-  "datePublished": "2026-04-30",
-  "dateModified": "2026-05-01",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html"
-  }
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "WITH USER_MODE in Apex: SOQL, SOSL, and DML",
+    "description":  "Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-04-30",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html"
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
-    { "@type": "ListItem", "position": 3, "name": "Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples", "item": "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" }
-  ]
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "WITH USER_MODE in Apex: SOQL, SOSL, and DML",
+                                "item":  "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html"
+                            }
+                        ]
 }
-</script>
-<meta name="keywords" content="Salesforce WITH USER_MODE, Apex user mode, AccessLevel.USER_MODE, insert as user Salesforce, Salesforce secure SOQL, Salesforce secure DML, Salesforce secure SOSL, CRUD FLS sharing Apex, AI generated Apex security, Salesforce AI code review, Agentforce Apex security, Salesforce security best practices" />
+  </script><meta name="keywords" content="Salesforce WITH USER_MODE, Apex user mode, AccessLevel.USER_MODE, insert as user Salesforce, Salesforce secure SOQL, Salesforce secure DML, Salesforce secure SOSL, CRUD FLS sharing Apex, AI generated Apex security, Salesforce AI code review, Agentforce Apex security, Salesforce security best practices" />
   <meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
@@ -112,7 +121,7 @@
     <section class="article-hero">
       <div class="article-hero-copy">
         <div class="eyebrow">Apex Security - User Mode</div>
-        <h1 class="article-title">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</h1>
+        <h1 class="article-title">WITH USER_MODE in Apex: SOQL, SOSL, and DML</h1>
         <p class="article-standfirst">A practical guide for Salesforce admins, developers, architects, and AppExchange-minded teams that want Apex to behave like the user instead of the platform, especially when reviewing AI-generated queries and DML that look correct but quietly bypass CRUD, FLS, or sharing.</p>
         <div class="reading-meta"><span>14 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
         <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
@@ -264,7 +273,7 @@
               </ul>
             </div>
           </div>
-          <p>If you want the full limitation breakdown from the legacy side, see <a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a>.</p>
+          <p>If you want the full limitation breakdown from the legacy side, see <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED in Apex Explained</a>.</p>
         </section>
 
         <section id="admin-developer">
@@ -309,8 +318,8 @@
 
   <h2>Related articles</h2>
   <ul>
-      <li><a href="/articles/salesforce-apex-sharing-keywords-guide.html">Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword</a></li>
-      <li><a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a></li>
+      <li><a href="/articles/salesforce-apex-sharing-keywords-guide.html">Apex Sharing Keywords in Salesforce Explained</a></li>
+      <li><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED in Apex Explained</a></li>
       <li><a href="/articles/named-credentials-and-external-credentials.html">Named Credentials and External Credentials in Salesforce</a></li>
   </ul>
 </section>

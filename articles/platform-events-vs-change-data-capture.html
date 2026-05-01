@@ -5,56 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
-  <title>Platform Events vs CDC Guide Overview 2026 | Pulsagi</title>
-  <meta name="description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+            <title>Platform Events vs Change Data Capture in Salesforce | Pulsagi</title>
+  <meta name="description" content="Salesforce&#39;s modern event bus gives you two very different ways to tell the outside world that something happened: Platform Events and Change Data Capture" />
   <link rel="canonical" href="https://pulsagi.com/articles/platform-events-vs-change-data-capture.html" />
+  <meta property="og:title" content="Platform Events vs Change Data Capture in Salesforce" />
+  <meta property="og:description" content="Salesforce&#39;s modern event bus gives you two very different ways to tell the outside world that something happened: Platform Events and Change Data Capture" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Platform Events vs CDC Guide Overview 2026" />
-  <meta property="og:description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/platform-events-vs-change-data-capture.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
-  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Platform Events vs CDC Guide Overview 2026 | Pulsagi" />
-  <meta name="twitter:description" content="Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
-<script type="application/ld+json">
+  <meta name="twitter:title" content="Platform Events vs Change Data Capture in Salesforce" />
+  <meta name="twitter:description" content="Salesforce&#39;s modern event bus gives you two very different ways to tell the outside world that something happened: Platform Events and Change Data Capture" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Platform Events vs Change Data Capture in Salesforce",
-  "description": "Platform Events vs CDC Guide Overview 2026 with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
-  "image": "https://pulsagi.com/og-default.png",
-  "author": {
-    "@type": "Person",
-    "name": "Shivam Gupta",
-    "url": "https://shivam.pulsagi.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pulsagi",
-    "url": "https://pulsagi.com"
-  },
-  "datePublished": "2026-04-13",
-  "dateModified": "2026-04-13",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pulsagi.com/articles/platform-events-vs-change-data-capture.html"
-  }
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Platform Events vs Change Data Capture in Salesforce",
+    "description":  "Salesforce\u0027s modern event bus gives you two very different ways to tell the outside world that something happened: Platform Events and Change Data Capture",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-04-13",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/platform-events-vs-change-data-capture.html"
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
-    { "@type": "ListItem", "position": 3, "name": "Platform Events vs Change Data Capture in Salesforce", "item": "https://pulsagi.com/articles/platform-events-vs-change-data-capture.html" }
-  ]
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Platform Events vs Change Data Capture in Salesforce",
+                                "item":  "https://pulsagi.com/articles/platform-events-vs-change-data-capture.html"
+                            }
+                        ]
 }
-</script>
-<meta name="author" content="Shivam Gupta" />
+  </script><meta name="author" content="Shivam Gupta" />
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,7 +130,7 @@
           <li><a href="#decision">Decision framework</a></li>
           <li><a href="#mistakes">Common mistakes</a></li>
           <li><a href="#recommendation">Recommendation</a></li>
-          <li><a href="#references">References</a></li>
+          
         </ol>
       </aside>
       <article class="content-card">
@@ -302,23 +311,6 @@ All tracked CDC:      /data/ChangeEvents</code></pre>
           <p>Use <strong>Platform Events</strong> when you want Salesforce or an external publisher to announce a business event intentionally, with a clean contract that can survive internal data-model changes. Use <strong>CDC</strong> when you want subscribers to react to Salesforce record mutations themselves.</p>
           <p>If you are still unsure, choose based on what the subscriber is supposed to understand. If the subscriber should understand <em>business intent</em>, publish a Platform Event. If the subscriber should understand <em>which Salesforce record changed and how</em>, use CDC. Then consume either one through Pub/Sub API when you want a single external interface and replay-aware subscriber design.</p>
         </section>
-
-        <section id="references">
-          <h2>References</h2>
-          <ul class="reference-list">
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html" target="_blank" rel="noopener">Get Started with Pub/Sub API</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/expanded-event-bus.html" target="_blank" rel="noopener">Pub/Sub API and the Expanded Event Bus</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/supported-event-types.html" target="_blank" rel="noopener">Event Types</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html" target="_blank" rel="noopener">Event Message Durability</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-set-up-events.html" target="_blank" rel="noopener">Step 3: Set Up Events</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-subscribe.html" target="_blank" rel="noopener">Step 4: Write Code That Subscribes to an Event Channel</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/qs-java-change-events.html" target="_blank" rel="noopener">Step 5: Subscribe to Change Events</a></li>
-            <li><a href="https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-deserialization-considerations.html" target="_blank" rel="noopener">Event Deserialization Considerations</a></li>
-            <li><a href="https://developer.salesforce.com/docs/service/messaging-partner/guide/create-platform-event.html" target="_blank" rel="noopener">Create and Configure the Custom Platform Event</a></li>
-            <li><a href="https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm" target="_blank" rel="noopener">Apex Governor Limits</a></li>
-          </ul>
-        </section>
-      
 <section class="related-content">
   <h2>Related tools</h2>
   <ul>

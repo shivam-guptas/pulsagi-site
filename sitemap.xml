@@ -7,381 +7,381 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/advanced-reasoning.html</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://pulsagi.com/articles/</loc>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/advanced-reasoning.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/agent-actions-apex.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/agentforce-architecture.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/ai-content-generator-guide.html</loc>
-    <lastmod>2026-02-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/ai-image-generator-guide.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/ai-claw-article.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/ai-content-generator-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/ai-image-generator-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/automation-tools-guide.html</loc>
-    <lastmod>2026-02-12</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/best-ai-tools-guide.html</loc>
-    <lastmod>2026-01-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/build-first-agent.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/chatgpt-prompts-guide.html</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/codex-claude-salesforce-overview.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/data-cloud-agent.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/devops-center-guide.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/dynamic-forms-guide.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/external-api.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/graphql-api-overview.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/graphql-wire-adapter-lwc.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/hiclaw-explained.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/how-ai-will-change-education-forever.html</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/lightning-web-security-vs-locker.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html</loc>
-    <lastmod>2026-03-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/named-credentials-and-external-credentials.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/natural-language-processing-explained-examples.html</loc>
-    <lastmod>2026-03-06</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/nemoclaw-explained.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/no-code-tools-guide.html</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/oneclaw-explained.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/openclaw-explained.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/permission-set-groups-guide.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/platform-events-vs-change-data-capture.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/production-deployment.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/prompt-builder.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/qclaw-explained.html</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/saas-tools-list-guide.html</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce_ai_tools_comparison.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-ai-tools-comparison.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce_approval_vs_flow_approval.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-approval-vs-flow-approval.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce-async-apex-guide.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce_chatgpt_mcp_guide.html</loc>
-    <lastmod>2026-04-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce_headless_360_guide.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-headless-360-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce_hosted_mcp_servers_beta.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-hosted-mcp-servers-beta.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/salesforce_multi_framework_react.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://pulsagi.com/articles/salesforce-multi-framework-react.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/security-governance.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/support-agent.html</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html</loc>
-    <lastmod>2026-02-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html</loc>
-    <lastmod>2026-03-26</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>

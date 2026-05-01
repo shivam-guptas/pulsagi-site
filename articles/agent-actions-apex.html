@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.svg" sizes="any" />
-  <title>Custom Agent Actions With Apex Guide Overview | Pulsagi</title>
-  <meta name="description" content="Custom Agent Actions With Apex Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
+            <title>Creating Custom Agent Actions with Apex | Pulsagi</title>
+  <meta name="description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
   <link rel="canonical" href="https://pulsagi.com/articles/agent-actions-apex.html" />
+  <meta property="og:title" content="Creating Custom Agent Actions with Apex" />
+  <meta property="og:description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Custom Agent Actions With Apex Guide Overview" />
-  <meta property="og:description" content="Custom Agent Actions With Apex Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
   <meta property="og:url" content="https://pulsagi.com/articles/agent-actions-apex.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
-  <meta property="og:site_name" content="Pulsagi" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Custom Agent Actions With Apex Guide Overview | Pulsagi" />
-  <meta name="twitter:description" content="Custom Agent Actions With Apex Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
-<script type="application/ld+json">
+  <meta name="twitter:title" content="Creating Custom Agent Actions with Apex" />
+  <meta name="twitter:description" content="Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Creating Custom Agent Actions with Apex",
-  "description": "Custom Agent Actions With Apex Guide with practical examples, use cases, and guidance for developers, builders, and teams evaluating the topic on Pulsagi.",
-  "image": "https://pulsagi.com/og-default.png",
-  "author": {
-    "@type": "Person",
-    "name": "Shivam Gupta",
-    "url": "https://shivam.pulsagi.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pulsagi",
-    "url": "https://pulsagi.com"
-  },
-  "datePublished": "2026-03-11",
-  "dateModified": "2026-03-11",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pulsagi.com/articles/agent-actions-apex.html"
-  }
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Creating Custom Agent Actions with Apex",
+    "description":  "Salesforce Agentforce matters because enterprise teams do not need another isolated chatbot; they need an execution surface that can reason over business",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-03-11",
+    "dateModified":  "2026-05-01",
+    "url":  "https://pulsagi.com/articles/agent-actions-apex.html"
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
-    { "@type": "ListItem", "position": 3, "name": "Creating Custom Agent Actions with Apex", "item": "https://pulsagi.com/articles/agent-actions-apex.html" }
-  ]
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Creating Custom Agent Actions with Apex",
+                                "item":  "https://pulsagi.com/articles/agent-actions-apex.html"
+                            }
+                        ]
 }
-</script>
-<meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="assets/ai-blog/site.css" /><!-- Google tag (gtag.js) -->
+  </script><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="assets/ai-blog/site.css" /><!-- Google tag (gtag.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -125,7 +134,7 @@ private class GetAccountDetailsTest {
   <ul>
       <li><a href="/articles/agentforce-architecture.html">What is Salesforce Agentforce - Complete Architecture Guide</a></li>
       <li><a href="/articles/build-first-agent.html">How to Build Your First AI Agent in Salesforce Agentforce</a></li>
-      <li><a href="/articles/salesforce-async-apex-guide.html">Salesforce Async Apex: Queueable, Batch, Scheduled, and Future</a></li>
+      <li><a href="/articles/salesforce-async-apex-guide.html">Salesforce Async Apex: Queueable, Batch, and Future</a></li>
   </ul>
 </section></article></div></main>
 <footer class="pulsagi-article-footer">
