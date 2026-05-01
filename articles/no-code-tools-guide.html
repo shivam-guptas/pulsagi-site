@@ -69,7 +69,8 @@
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     .table-wrap { overflow-x: auto; margin-top: 22px; border: 1px solid rgba(221, 211, 194, 0.95); border-radius: 22px; background: rgba(255, 255, 255, 0.94); }
     .article-table { width: 100%; min-width: 860px; border-collapse: collapse; }
@@ -453,7 +454,7 @@
               <li><strong>Start with the data model:</strong> weak structure causes more problems later than weak UI polish.</li>
               <li><strong>Use role-based permissions early:</strong> especially for portals, approvals, and internal tooling.</li>
               <li><strong>Decide the system of record:</strong> know where the canonical data lives before connecting multiple tools.</li>
-              <li><strong>Document workflows:</strong> no-code apps can become fragile if logic only exists in one builder’s head.</li>
+              <li><strong>Document workflows:</strong> no-code apps can become fragile if logic only exists in one builderâ€™s head.</li>
               <li><strong>Build for iteration, not perfection:</strong> the main advantage of no-code is rapid improvement with real usage feedback.</li>
               <li><strong>Keep integration boundaries clear:</strong> use automation platforms or APIs intentionally instead of layering accidental complexity.</li>
               <li><strong>Review vendor lock-in risk honestly:</strong> speed now can be worth it, but you should know the tradeoff.</li>

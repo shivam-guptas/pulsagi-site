@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
-            <title>USER_MODE vs SECURITY_ENFORCED vs stripInaccessible | Pulsagi</title>
-  <meta name="description" content="Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you" />
+            <title>USER_MODE, SECURITY_ENFORCED, stripInaccessible | Pulsagi</title>
+  <meta name="description" content="Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs." />
   <link rel="canonical" href="https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" />
-  <meta property="og:title" content="USER_MODE vs SECURITY_ENFORCED vs stripInaccessible" />
-  <meta property="og:description" content="Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you" />
+  <meta property="og:title" content="USER_MODE, SECURITY_ENFORCED, stripInaccessible" />
+  <meta property="og:description" content="Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-comparison-guide.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="USER_MODE vs SECURITY_ENFORCED vs stripInaccessible" />
-  <meta name="twitter:description" content="Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you" />
+  <meta name="twitter:title" content="USER_MODE, SECURITY_ENFORCED, stripInaccessible" />
+  <meta name="twitter:description" content="Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs." />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-comparison-guide.png" />
   <script type="application/ld+json">
 {
     "@context":  "https://schema.org",
     "@type":  "Article",
-    "headline":  "USER_MODE vs SECURITY_ENFORCED vs stripInaccessible",
-    "description":  "Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you",
+    "headline":  "USER_MODE, SECURITY_ENFORCED, stripInaccessible",
+    "description":  "Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs.",
     "author":  {
                    "@type":  "Person",
                    "name":  "Shivam Gupta",
@@ -58,7 +58,7 @@
                             {
                                 "@type":  "ListItem",
                                 "position":  3,
-                                "name":  "USER_MODE vs SECURITY_ENFORCED vs stripInaccessible",
+                                "name":  "USER_MODE, SECURITY_ENFORCED, stripInaccessible",
                                 "item":  "https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html"
                             }
                         ]
@@ -69,7 +69,8 @@
   <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     .table-wrap {
       overflow-x: auto;
@@ -159,7 +160,7 @@
     <section class="article-hero">
       <div class="article-hero-copy">
         <div class="eyebrow">Apex Security - Comparison Guide</div>
-        <h1 class="article-title">USER_MODE vs SECURITY_ENFORCED vs stripInaccessible</h1>
+        <h1 class="article-title">USER_MODE, SECURITY_ENFORCED, stripInaccessible</h1>
         <p class="article-standfirst">A practical comparison for Salesforce admins, developers, architects, security reviewers, and AI-assisted delivery teams that need to choose the right Apex security pattern for secure reads, secure writes, graceful degradation, and AppExchange-style code review.</p>
         <div class="reading-meta"><span>16 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
         <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
@@ -193,7 +194,7 @@
       <article class="content-card">
         <section id="introduction">
           <h2>Introduction</h2>
-          <p>Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you explicitly enforced user-context access. In Summer '26 release notes for API version 67.0, Salesforce signals a major shift: Apex database operations move to user mode by default, classes enforce sharing by default, and triggers remain the important exception because they still run in system mode. That is exactly why teams still need to compare <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a>, <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>Security.stripInaccessible()</code></a>, and <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a>.</p>
+          <p>Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs. explicitly enforced user-context access. In Summer '26 release notes for API version 67.0, Salesforce signals a major shift: Apex database operations move to user mode by default, classes enforce sharing by default, and triggers remain the important exception because they still run in system mode. That is exactly why teams still need to compare <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a>, <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>Security.stripInaccessible()</code></a>, and <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a>.</p>
           <p>All three are valid security tools. The mistake is treating them as interchangeable. They solve different problems, fail differently, and fit different architecture choices. Some fail immediately when access is missing. Some sanitize data and keep going. Some enforce sharing, and some do not.</p>
           <div class="callout">
             <strong>Updated for Summer '26 / API 67.0 behavior:</strong> Salesforce release notes indicate that Apex database operations default to user mode in API version 67.0, <code>WITH SECURITY_ENFORCED</code> is removed, and Apex triggers still run in system mode. Because Apex behavior is versioned, older classes can still behave differently until upgraded.

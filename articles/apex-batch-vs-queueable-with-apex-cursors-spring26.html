@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.svg" sizes="any" />
   
-            <title>Apex Batch vs Queueable with Apex Cursors in Spring &#39;26 | Pulsagi</title>
-  <meta name="description" content="For a long time, the default answer to &quot;how do we process a very large Salesforce data set?&quot; was simple: use Batch Apex . That is still often the right answer." />
+            <title>Apex Batch vs Queueable with Apex Cursors | Pulsagi</title>
+  <meta name="description" content="Apex Batch vs Queueable with Apex Cursors in Spring 2026, including when to use each pattern, scaling tradeoffs, and practical design guidance for architects." />
   <link rel="canonical" href="https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html" />
-  <meta property="og:title" content="Apex Batch vs Queueable with Apex Cursors in Spring &#39;26" />
-  <meta property="og:description" content="For a long time, the default answer to &quot;how do we process a very large Salesforce data set?&quot; was simple: use Batch Apex . That is still often the right answer." />
+  <meta property="og:title" content="Apex Batch vs Queueable with Apex Cursors" />
+  <meta property="og:description" content="Apex Batch vs Queueable with Apex Cursors in Spring 2026, including when to use each pattern, scaling tradeoffs, and practical design guidance for architects." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html" />
   <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Apex Batch vs Queueable with Apex Cursors in Spring &#39;26" />
-  <meta name="twitter:description" content="For a long time, the default answer to &quot;how do we process a very large Salesforce data set?&quot; was simple: use Batch Apex . That is still often the right answer." />
+  <meta name="twitter:title" content="Apex Batch vs Queueable with Apex Cursors" />
+  <meta name="twitter:description" content="Apex Batch vs Queueable with Apex Cursors in Spring 2026, including when to use each pattern, scaling tradeoffs, and practical design guidance for architects." />
   <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-batch-vs-queueable-cursors-spring26.png" />
   <script type="application/ld+json">
 {
     "@context":  "https://schema.org",
     "@type":  "Article",
     "headline":  "Apex Batch vs Queueable with Apex Cursors in Spring \u002726",
-    "description":  "For a long time, the default answer to \"how do we process a very large Salesforce data set?\" was simple: use Batch Apex . That is still often the right answer.",
+    "description":  "Apex Batch vs Queueable with Apex Cursors in Spring 2026, including when to use each pattern, scaling tradeoffs, and practical design guidance for architects.",
     "author":  {
                    "@type":  "Person",
                    "name":  "Shivam Gupta",
@@ -67,7 +67,8 @@
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
   
   
   <style>
@@ -150,7 +151,7 @@
     <section class="article-hero">
       <div class="article-hero-copy">
         <div class="eyebrow">Async Apex - Spring '26</div>
-        <h1 class="article-title">Apex Batch vs Queueable with Apex Cursors in Spring '26</h1>
+        <h1 class="article-title">Apex Batch vs Queueable with Apex Cursors</h1>
         <p class="article-standfirst">A practical guide for Salesforce architects and senior developers deciding when Batch <a href="/tools/apex-log-analyzer.html">Apex</a> still fits best, when Queueable Apex is enough, and where Apex Cursors change the design conversation.</p>
         <div class="reading-meta">
           <span>11 min read</span>
