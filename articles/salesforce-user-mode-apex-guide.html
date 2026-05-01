@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+  <title>Salesforce WITH USER_MODE in Apex Guide Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce WITH USER_MODE in Apex Guide Overview" />
+  <meta property="og:description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce WITH USER_MODE in Apex Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples",
+  "description": "Salesforce WITH USER_MODE in Apex explained with secure SOQL, SOSL, and DML examples, plus best practices, limitations, admin impact, developer recommendations, and migration guidance from WITH SECURITY_ENFORCED.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-user-mode-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-30",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples", "item": "https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce WITH USER_MODE, Apex user mode, AccessLevel.USER_MODE, insert as user Salesforce, Salesforce secure SOQL, Salesforce secure DML, Salesforce secure SOSL, CRUD FLS sharing Apex, AI generated Apex security, Salesforce AI code review, Agentforce Apex security, Salesforce security best practices" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Apex Security - User Mode</div>
+        <h1 class="article-title">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</h1>
+        <p class="article-standfirst">A practical guide for Salesforce admins, developers, architects, and AppExchange-minded teams that want Apex to behave like the user instead of the platform, especially when reviewing AI-generated queries and DML that look correct but quietly bypass CRUD, FLS, or sharing.</p>
+        <div class="reading-meta"><span>14 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/apex-user-mode-guide.png" alt="Salesforce WITH USER_MODE infographic" loading="eager"  width="1536"  height="1024" />
+        <p><code>WITH USER_MODE</code> is Salesforce's modern way to enforce sharing, object permissions, and field-level security directly in database operations instead of relying on fragile manual checks.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-it-enforces">What WITH USER_MODE actually enforces</a></li>
+          <li><a href="#why-it-matters">Why it matters now</a></li>
+          <li><a href="#soql-example">SOQL example</a></li>
+          <li><a href="#dynamic-example">Dynamic query and DML examples</a></li>
+          <li><a href="#use-cases">Use cases</a></li>
+          <li><a href="#comparison">WITH USER_MODE vs WITH SECURITY_ENFORCED</a></li>
+          <li><a href="#admin-developer">Admin and developer perspective</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#limitations">Limitations and when it is not enough</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be able to access. <code>WITH USER_MODE</code> changes that by letting database operations execute in the user's context instead of the default privileged context.</p>
+          <p>In practical terms, this is one of the most important Apex security improvements of the last few years. It reduces boilerplate, closes several gaps left by older patterns, and makes code review easier because the security intent sits directly on the query or DML operation.</p>
+          <div class="callout">
+            <strong>Quick takeaway:</strong> if the business process should behave exactly like the running user, <code>WITH USER_MODE</code> is usually the modern first choice for reads, searches, and writes.
+          </div>
+        </section>
+
+        <section id="what-it-enforces">
+          <h2>What WITH USER_MODE actually enforces</h2>
+          <p>Official Salesforce guidance describes user mode database operations as enforcing the same core data-access model the user already lives inside: record sharing, object permissions, and field-level security. For modern teams, that means fewer silent security assumptions hiding inside service methods.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>What it checks</h3>
+              <ul>
+                <li>Record-level access driven by sharing.</li>
+                <li>Object-level permissions for the target sObject.</li>
+                <li>Field-level access on selected or written fields.</li>
+                <li>Modern platform access controls that Salesforce keeps extending, such as restriction and scoping rules.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Why that matters</h3>
+              <ul>
+                <li>You avoid hand-written CRUD and FLS checks for many common cases.</li>
+                <li>You reduce security review arguments about whether a helper method really enforced everything.</li>
+                <li>You make AI-generated Apex easier to audit because the security mode is visible inline.</li>
+              </ul>
+            </div>
+          </div>
+          <p>Salesforce Developers blog guidance also highlights a key advantage over <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a>: <code>WITH USER_MODE</code> handles more complex access scenarios, including fields used in <code>WHERE</code> and <code>ORDER BY</code>, relationship queries, and additional security controls the platform may add later.</p>
+        </section>
+
+        <section id="why-it-matters">
+          <h2>Why it matters now</h2>
+          <p>Older Apex security patterns often fell into one of two extremes. Either the code did too little, such as relying only on <code>with sharing</code>, or it did too much boilerplate through repeated describe checks that were hard to maintain. <code>WITH USER_MODE</code> gives a cleaner middle path.</p>
+          <p>This is especially relevant in 2026 because teams increasingly use code assistants for Apex generation and refactoring. Those tools are good at syntax, but they can still produce unsafe queries that omit CRUD and FLS enforcement. User mode makes secure intent far more obvious and repeatable.</p>
+        </section>
+
+        <section id="soql-example">
+          <h2>SOQL example</h2>
+          <p>For static SOQL, the syntax is simple and readable. If the user cannot read the object, the field, or the record, the query fails instead of returning privileged data.</p>
+<pre><code>public with sharing class ExpenseController {
+    public static List&lt;Expense__c&gt; getExpenses() {
+        return [
+            SELECT Id, Name, Amount__c, Status__c
+            FROM Expense__c
+            WHERE Status__c = 'Submitted'
+            WITH USER_MODE
+            ORDER BY CreatedDate DESC
+            LIMIT 50
+        ];
+    }
+}</code></pre>
+          <p>The important nuance is not just the selected fields. Salesforce's Spring '23 guidance says <code>WITH USER_MODE</code> also checks fields used in clauses like <code>WHERE</code> and <code>ORDER BY</code>, which is one reason it closes gaps that older approaches left open.</p>
+          <p>Static SOSL also supports user mode, which is useful when a search screen should only return records and fields the user is allowed to see. That matters for service desks, sales search flows, and AI-assisted lookup experiences where search results must stay permission-safe.</p>
+        </section>
+
+        <section id="dynamic-example">
+          <h2>Dynamic query and DML examples</h2>
+          <p>When you need dynamic SOQL, Salesforce added database methods that accept access level explicitly. That lets you keep the same security intent even when the query string is assembled at runtime.</p>
+<pre><code>public with sharing class InvoiceSelector {
+    public static List&lt;SObject&gt; selectByStatus(String statusFilter) {
+        String soql =
+            'SELECT Id, Name, Status__c, Total__c ' +
+            'FROM Invoice__c ' +
+            'WHERE Status__c = :statusFilter';
+
+        return Database.queryWithBinds(
+            soql,
+            new Map&lt;String, Object&gt;{ 'statusFilter' =&gt; statusFilter },
+            AccessLevel.USER_MODE
+        );
+    }
+}</code></pre>
+          <p>DML is just as important. If the user should only create or update records they are actually allowed to touch, use user mode there too.</p>
+<pre><code>public with sharing class InvoiceService {
+    public static void createInvoice(Invoice__c draftInvoice) {
+        insert as user draftInvoice;
+    }
+
+    public static void updateInvoices(List&lt;Invoice__c&gt; invoices) {
+        Database.update(invoices, false, AccessLevel.USER_MODE);
+    }
+}</code></pre>
+          <p>This is one of the biggest practical upgrades over older security clauses. <code>WITH SECURITY_ENFORCED</code> is read-query only. User mode reaches into DML as well, which makes it much more useful for real-world business services.</p>
+        </section>
+
+        <section id="use-cases">
+          <h2>Use cases</h2>
+          <ul>
+            <li><strong>User-facing controllers:</strong> LWC, Aura, Visualforce, or Experience Cloud endpoints that should mirror the user's access model.</li>
+            <li><strong>Flow-invocable Apex:</strong> service methods launched by admins that still need to respect the invoking user's actual permissions.</li>
+            <li><strong>Search-heavy tools:</strong> SOSL-backed lookup, triage, or agent-assist experiences where a broad system query would be risky.</li>
+            <li><strong>Write paths with compliance sensitivity:</strong> create and update operations that must respect CRUD and FLS instead of trusting the class context.</li>
+            <li><strong>AI-generated Apex hardening:</strong> replacing fragile manual security code with a simpler, more reviewable pattern.</li>
+          </ul>
+        </section>
+
+        <section id="comparison">
+          <h2>WITH USER_MODE vs WITH SECURITY_ENFORCED</h2>
+          <p>These two features solve related problems, but they are not equal. If you are starting a new secure Apex implementation, the practical question is usually not whether <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> still works. It is whether <code>WITH USER_MODE</code> gives you broader coverage with less future risk. In most modern code, the answer is yes.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Why WITH USER_MODE is stronger</h3>
+              <ul>
+                <li>It applies to SOQL, SOSL, and DML instead of read queries only.</li>
+                <li>It enforces sharing, object permissions, and field-level security together.</li>
+                <li>It aligns better with newer platform access controls that Salesforce continues to expand.</li>
+                <li>It is the cleaner choice when the business action should behave exactly like the user.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Where WITH SECURITY_ENFORCED still fits</h3>
+              <ul>
+                <li>Legacy read-only selectors and controllers already using it successfully.</li>
+                <li>Incremental hardening when a full migration has not happened yet.</li>
+                <li>Fail-fast SOQL paths where the codebase is not yet standardized on user mode.</li>
+              </ul>
+            </div>
+          </div>
+          <p>If you want the full limitation breakdown from the legacy side, see <a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a>.</p>
+        </section>
+
+        <section id="admin-developer">
+          <h2>Admin and developer perspective</h2>
+          <p>Admins usually like user mode because it keeps Apex closer to the permission model they configure through profiles, permission sets, restriction rules, and sharing settings. It reduces the number of exceptions where "the screen says no, but the code says yes."</p>
+          <p>Developers like user mode because it simplifies secure code without turning every selector into a long chain of describe checks. It also makes pull requests easier to review. When a query says <code>WITH USER_MODE</code> or a method writes <code>insert as user</code>, reviewers can immediately see the intended trust boundary.</p>
+          <p>That said, both groups should remember that some business logic genuinely needs system-level power. User mode is the right default when the process should behave like the user, not the right answer for every admin or integration workflow.</p>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Use user mode for user-like business processes.</strong> If the action conceptually belongs to the user, let the database operation reflect that.</li>
+            <li><strong>Keep sharing intent explicit on the class anyway.</strong> User mode can override the class-level operation context, but that is not a reason to make the surrounding class ambiguous.</li>
+            <li><strong>Use try/catch or controlled error handling.</strong> User mode throws security exceptions when access is denied, so the UX path should be deliberate.</li>
+            <li><strong>Prefer user mode over WITH SECURITY_ENFORCED for new secure reads.</strong> Salesforce's own Spring '23 guidance recommends this in most modern cases.</li>
+            <li><strong>Use <code>Security.stripInaccessible()</code> when graceful degradation matters.</strong> If you want to strip disallowed fields instead of failing fast, user mode may be too strict.</li>
+            <li><strong>Test negative permission scenarios.</strong> Build test users who lack some fields, objects, and record access so you validate the real behavior.</li>
+            <li><strong>Review AI-assisted code for accidental system-mode fallbacks.</strong> The fastest way to lose the benefit is to let a helper method quietly switch back to privileged access.</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations and when it is not enough</h2>
+          <p>User mode is strong, but it is not the answer to every security requirement. If the requirement is "show what the user can see and silently drop the rest," <code>Security.stripInaccessible()</code> may be better because it allows graceful degradation instead of exceptions.</p>
+          <p>It also does not remove the need for intentional architecture. A poorly designed service can still mix trusted and untrusted flows in confusing ways. User mode improves the operation-level security boundary, but developers still need clear class design, error handling, and data minimization.</p>
+          <p>Finally, some background operations really do need system behavior. Batch repair jobs, controlled reconciliations, or setup-driven maintenance routines may need a different access model. The correct question is not "can we use user mode everywhere?" but "should this specific operation behave like the user?"</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>For new Apex that reads or writes business data on behalf of a user, use <strong>WITH USER_MODE</strong> or its user-mode DML equivalent by default. It is the cleanest modern way to align Apex behavior with Salesforce security controls.</p>
+          <p>Keep <strong><a href="/articles/salesforce-apex-sharing-keywords-guide.html">sharing keywords</a></strong> explicit on the class, use <strong><code>Security.stripInaccessible()</code></strong> when you need graceful degradation, and treat user mode as your preferred modern path over <strong><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a></strong> for most new secure database operations.</p>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Clean up secure queries and example snippets faster.</a></li>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer - Inspect security exceptions and execution paths in debug logs.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-apex-sharing-keywords-guide.html">Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword</a></li>
+      <li><a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a></li>
+      <li><a href="/articles/named-credentials-and-external-credentials.html">Named Credentials and External Credentials in Salesforce</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

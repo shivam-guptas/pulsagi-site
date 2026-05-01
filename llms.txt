@@ -38,6 +38,11 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible(): Best Apex Security Choice with Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html
+- **Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html
+- **Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html
+- **Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html
+- **Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html
 - **The Future of AI by 2030: Predictions, Expert Insights, Use Cases, Risks, and Recommendation** (Apr 27, 2026): https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html
 - **Will AI Replace Jobs or Create New Ones? Economic Trends, Workforce Shifts, and What Happens Next** (Apr 27, 2026): https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html
 - **How AI Will Change Education Forever: Teaching, Learning, Assessment, and Skills in the AI Era** (Apr 27, 2026): https://pulsagi.com/articles/how-ai-will-change-education-forever.html

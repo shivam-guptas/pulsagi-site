@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+  <title>Salesforce WITH SECURITY_ENFORCED Guide Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce WITH SECURITY_ENFORCED in Apex explained with examples, limitations, differences from WITH USER_MODE, safe use cases, best practices, and migration guidance for secure read queries." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce WITH SECURITY_ENFORCED Guide Overview" />
+  <meta property="og:description" content="Salesforce WITH SECURITY_ENFORCED in Apex explained with examples, limitations, differences from WITH USER_MODE, safe use cases, best practices, and migration guidance for secure read queries." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-enforced-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce WITH SECURITY_ENFORCED Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce WITH SECURITY_ENFORCED in Apex explained with examples, limitations, differences from WITH USER_MODE, safe use cases, best practices, and migration guidance for secure read queries." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-enforced-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases",
+  "description": "Salesforce WITH SECURITY_ENFORCED in Apex explained with examples, limitations, differences from WITH USER_MODE, safe use cases, best practices, and migration guidance for secure read queries.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-security-enforced-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-30",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases", "item": "https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce WITH SECURITY_ENFORCED, Apex security enforced, secure SOQL Salesforce, Salesforce CRUD FLS Apex, WITH USER_MODE vs WITH SECURITY_ENFORCED, Salesforce QueryException security, legacy Apex security, AI generated Apex security review, Salesforce secure code, Agentforce Apex security" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Apex Security - Read Enforcement</div>
+        <h1 class="article-title">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</h1>
+        <p class="article-standfirst">A practical guide for Salesforce developers, admins, architects, and security reviewers who still maintain legacy secure SOQL patterns, need to understand where <code>WITH SECURITY_ENFORCED</code> helps, and need a clear recommendation on when to keep it, when to replace it, and how to review AI-generated Apex that still uses it.</p>
+        <div class="reading-meta"><span>12 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/apex-security-enforced-guide.png" alt="Salesforce WITH SECURITY_ENFORCED infographic" loading="eager"  width="1536"  height="1024" />
+        <p><code>WITH SECURITY_ENFORCED</code> still matters for secure read queries, but modern Salesforce guidance generally prefers <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> for new work.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-it-is">What it is</a></li>
+          <li><a href="#why-it-matters">Why it still matters</a></li>
+          <li><a href="#example">Example</a></li>
+          <li><a href="#use-cases">Use cases</a></li>
+          <li><a href="#comparison">WITH SECURITY_ENFORCED vs WITH USER_MODE</a></li>
+          <li><a href="#admin-developer">Admin and developer perspective</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p><code>WITH SECURITY_ENFORCED</code> was an important step forward for secure Apex because it gave developers a concise way to fail a query when the user lacked access to a selected object or field. For a long time, it was far cleaner than large blocks of describe-based CRUD and FLS checks.</p>
+          <p>It is still relevant today because many Salesforce orgs, managed packages, shared libraries, and AI-generated code samples use it. But it is no longer the whole story. Salesforce's later guidance around <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> changes how modern teams should think about it.</p>
+          <div class="callout">
+            <strong>Practical framing:</strong> <code>WITH SECURITY_ENFORCED</code> is still useful for some read queries, especially in legacy code, but it is no longer the default recommendation for most new secure Apex data access.
+          </div>
+        </section>
+
+        <section id="what-it-is">
+          <h2>What it is</h2>
+          <p>Salesforce introduced <code>WITH SECURITY_ENFORCED</code> as a SOQL clause that enforces object- and field-level read access for the fields returned by the query. If the user cannot access even one selected field, Salesforce throws a <code>System.QueryException</code> and returns no data.</p>
+          <p>Official Salesforce guidance from the Spring '20 developer blog also explains an important scope limit: this clause checks the fields in the <code>SELECT</code> portion of the query, including subqueries and cross-object relationships, but it does not validate field-level access for fields that appear only in the <code>WHERE</code> clause.</p>
+        </section>
+
+        <section id="why-it-matters">
+          <h2>Why it still matters</h2>
+          <p>Even though user mode is the modern preference for many teams, <code>WITH SECURITY_ENFORCED</code> still matters for three reasons. First, a large amount of production Apex already uses it. Second, some teams need a clear fail-fast read pattern while they gradually migrate older code. Third, reviewers still need to understand what it covers so they can judge legacy or AI-generated code accurately.</p>
+          <p>It also remains valuable as a teaching tool because it helps teams understand that <strong><a href="/articles/salesforce-apex-sharing-keywords-guide.html">sharing keywords</a></strong> alone are not enough. A query can respect record-level access and still expose fields the user is not allowed to read unless another security mechanism is added.</p>
+        </section>
+
+        <section id="example">
+          <h2>Example</h2>
+          <p>Here is the classic pattern. The query is wrapped in <code>try/catch</code> because the secure behavior is to throw an exception when access is denied.</p>
+<pre><code>public with sharing class AccountDirectoryService {
+    public static List&lt;Account&gt; getVisibleAccounts() {
+        try {
+            return [
+                SELECT Id, Name, Industry, Owner.Name
+                FROM Account
+                WITH SECURITY_ENFORCED
+                ORDER BY Name
+                LIMIT 100
+            ];
+        } catch (QueryException ex) {
+            throw new AuraHandledException(
+                'You do not have access to one or more requested fields.'
+            );
+        }
+    }
+}</code></pre>
+          <p>This is still a respectable pattern for read-only data access in many legacy code paths. But remember the boundary: if a sensitive field appears only in the filter, older Salesforce guidance says <code>WITH SECURITY_ENFORCED</code> does not protect that gap.</p>
+        </section>
+
+        <section id="use-cases">
+          <h2>Use cases</h2>
+          <ul>
+            <li><strong>Legacy read services:</strong> existing selectors and controllers that need a concise fail-fast read check.</li>
+            <li><strong>Incremental hardening:</strong> teams improving old SOQL before a larger migration to user mode.</li>
+            <li><strong>AppExchange or compliance review cleanup:</strong> places where a fast improvement to read-query enforcement is helpful.</li>
+            <li><strong>Training and code review:</strong> helping teams distinguish field/object enforcement from record-sharing enforcement.</li>
+          </ul>
+        </section>
+
+        <section id="comparison">
+          <h2>WITH SECURITY_ENFORCED vs WITH USER_MODE</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>WITH SECURITY_ENFORCED</th>
+                  <th>WITH USER_MODE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Main purpose</strong></td>
+                  <td>Fail-fast field and object read enforcement in SOQL.</td>
+                  <td>Broader user-context enforcement for SOQL, SOSL, and DML.</td>
+                </tr>
+                <tr>
+                  <td><strong>Read coverage</strong></td>
+                  <td>Selected fields, subqueries, cross-object reads.</td>
+                  <td>Selected fields plus broader modern access checks, including fields in filters according to Salesforce's Spring '23 guidance.</td>
+                </tr>
+                <tr>
+                  <td><strong>Write support</strong></td>
+                  <td>No.</td>
+                  <td>Yes, through user-mode DML patterns.</td>
+                </tr>
+                <tr>
+                  <td><strong>Modern recommendation</strong></td>
+                  <td>Useful, but often legacy or transitional.</td>
+                  <td>Preferred for most new secure database operations.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The most practical summary is this: <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a> is broader, newer, and better aligned with how modern Salesforce teams secure user-context data access. <code>WITH SECURITY_ENFORCED</code> still has value, but mostly where legacy read patterns already depend on it or where migration is still in progress.</p>
+        </section>
+
+        <section id="admin-developer">
+          <h2>Admin and developer perspective</h2>
+          <p>Admins care about whether Apex exposes fields they intentionally hid through permission sets and field-level security. <code>WITH SECURITY_ENFORCED</code> is reassuring because it fails closed instead of leaking data quietly. But admins should also know that it is read-only and not the final answer for secure writes.</p>
+          <p>Developers care about migration cost. If a codebase already uses this clause extensively, there is no need to rip everything out overnight. The better move is to understand which read paths are still acceptable, which ones have <code>WHERE</code>-clause gaps, and which newer services should move directly to user mode.</p>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Use try/catch intentionally.</strong> This clause throws exceptions by design, so the user experience should handle that cleanly.</li>
+            <li><strong>Keep it for legacy reads where it is already working well.</strong> Not every older class needs immediate refactoring.</li>
+            <li><strong>Do not treat it as a write-security solution.</strong> It is not for DML.</li>
+            <li><strong>Watch out for filter-only field exposure.</strong> If the query relies on sensitive fields in <code>WHERE</code>, evaluate whether user mode is the safer replacement.</li>
+            <li><strong>Prefer user mode for new development.</strong> Salesforce's Spring '23 guidance explicitly recommends that modern direction.</li>
+            <li><strong>Pair it with explicit sharing on the class.</strong> Record visibility still depends on sharing design.</li>
+            <li><strong>Review AI-generated queries carefully.</strong> Many generated snippets still use this clause without explaining its boundaries.</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations</h2>
+          <p>The first limitation is scope. <code>WITH SECURITY_ENFORCED</code> helps with secure reads, not writes. It cannot protect inserts, updates, deletes, or read-modify-write paths by itself.</p>
+          <p>The second limitation is coverage nuance. Official Salesforce Spring '20 guidance says it does not validate field permissions for fields used only in <code>WHERE</code>. That means a query can still rely on a sensitive field indirectly unless you choose a broader pattern.</p>
+          <p>The third limitation is strategic. Salesforce later recommended <code>WITH USER_MODE</code> for post-Spring '23 modern development because it covers more access scenarios and adapts better to evolving platform security features.</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Use <strong>WITH SECURITY_ENFORCED</strong> when you are maintaining or incrementally hardening legacy SOQL and you need a concise fail-fast read check. For most new secure Apex data access, prefer <strong><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a></strong>.</p>
+          <p>If the business requirement is graceful degradation rather than an exception, consider <code>Security.stripInaccessible()</code>. If the requirement is record-level control, remember to pair this clause with the right <a href="/articles/salesforce-apex-sharing-keywords-guide.html">sharing keyword</a> on the class.</p>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Clean up secure query clauses and review examples quickly.</a></li>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer - Inspect QueryException paths and debug secure read failures.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-user-mode-apex-guide.html">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</a></li>
+      <li><a href="/articles/salesforce-apex-sharing-keywords-guide.html">Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword</a></li>
+      <li><a href="/articles/lightning-web-security-vs-locker.html">Lightning Web Security vs Locker in Salesforce</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

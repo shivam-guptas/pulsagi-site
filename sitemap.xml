@@ -182,7 +182,7 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -295,6 +295,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pulsagi.com/articles/salesforce_approval_vs_flow_approval.html</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -325,8 +331,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pulsagi.com/articles/salesforce_multi_framework_react.html</loc>
     <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

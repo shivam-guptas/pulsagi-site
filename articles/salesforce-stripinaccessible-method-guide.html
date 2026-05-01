@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+  <title>Salesforce stripInaccessible Method Guide Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce Security.stripInaccessible method explained with Apex code examples, CRUD and FLS protection patterns, comparisons with WITH USER_MODE and WITH SECURITY_ENFORCED, plus best practices, limitations, and recommendations." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce stripInaccessible Method Guide Overview" />
+  <meta property="og:description" content="Salesforce Security.stripInaccessible method explained with Apex code examples, CRUD and FLS protection patterns, comparisons with WITH USER_MODE and WITH SECURITY_ENFORCED, plus best practices, limitations, and recommendations." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-stripinaccessible-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce stripInaccessible Method Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce Security.stripInaccessible method explained with Apex code examples, CRUD and FLS protection patterns, comparisons with WITH USER_MODE and WITH SECURITY_ENFORCED, plus best practices, limitations, and recommendations." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-stripinaccessible-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples",
+  "description": "Salesforce Security.stripInaccessible method explained with Apex code examples, CRUD and FLS protection patterns, comparisons with WITH USER_MODE and WITH SECURITY_ENFORCED, plus best practices, limitations, and recommendations.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-stripinaccessible-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-30",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples", "item": "https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce stripInaccessible, Security.stripInaccessible, Apex stripInaccessible method, Salesforce CRUD FLS Apex, secure Apex patterns, Salesforce field level security Apex, sanitize Apex records, Salesforce deserialization security, AI generated Apex review, Agentforce Apex security, WITH USER_MODE vs stripInaccessible, WITH SECURITY_ENFORCED vs stripInaccessible" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Apex Security - Graceful Degradation</div>
+        <h1 class="article-title">Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples</h1>
+        <p class="article-standfirst">A practical guide for Salesforce admins, developers, architects, and security reviewers who need Apex to enforce object and field security without turning every missing permission into a hard failure, especially in user-facing services, bulk operations, and AI-generated code that must be made safe before go-live.</p>
+        <div class="reading-meta"><span>15 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/apex-stripinaccessible-guide.png" alt="Salesforce stripInaccessible method infographic" loading="eager"  width="1536"  height="1024" />
+        <p><code>Security.stripInaccessible()</code> is the Apex option teams reach for when they want security enforced with graceful degradation instead of exception-first behavior.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-it-is">What stripInaccessible() actually is</a></li>
+          <li><a href="#why-it-matters">Why it matters</a></li>
+          <li><a href="#signature">Method signature and key features</a></li>
+          <li><a href="#query-example">Example for query results</a></li>
+          <li><a href="#dml-example">Example before DML</a></li>
+          <li><a href="#deserialization-example">Example for untrusted input</a></li>
+          <li><a href="#comparison">Comparison with WITH SECURITY_ENFORCED and WITH USER_MODE</a></li>
+          <li><a href="#use-cases">Use cases</a></li>
+          <li><a href="#admin-developer">Admin and developer perspective</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>Salesforce Apex runs in system mode by default, which means your code can easily read or write fields a user should not access unless you deliberately enforce security. <code>Security.stripInaccessible()</code> exists for exactly that problem. It lets you sanitize records by removing fields the current user should not see or update.</p>
+          <p>What makes this method especially valuable is its behavior under failure conditions. Instead of throwing an exception the moment one field is inaccessible, it can remove that field and let the broader operation continue. That makes it highly useful for user-facing applications, service layers, integration payloads, and AI-assisted code where graceful degradation is better than a complete stop.</p>
+          <div class="callout">
+            <strong>Core idea:</strong> use <code>stripInaccessible()</code> when you need CRUD and field-level security enforcement, but you do not want every access issue to abort the entire request.
+          </div>
+        </section>
+
+        <section id="what-it-is">
+          <h2>What stripInaccessible() actually is</h2>
+          <p><code>Security.stripInaccessible()</code> is an Apex method that checks a list of sObjects against the current user's object and field permissions, then returns a cleaned version of those records. Fields the user cannot access for the intended operation are removed from the returned records.</p>
+          <p>Salesforce documentation and developer guidance highlight three core uses. You can strip inaccessible fields from query results before returning data, remove disallowed fields before DML to avoid failures or data leakage, and sanitize records deserialized from an untrusted source before processing them further.</p>
+        </section>
+
+        <section id="why-it-matters">
+          <h2>Why it matters</h2>
+          <p>There are many real production paths where exception-first security is not the best user experience. Imagine a support console that should still load most of a record even if one sensitive field is hidden, or an integration update where a few blocked fields should be dropped while the permitted fields still save correctly.</p>
+          <p>This is also where the method becomes highly relevant for teams using AI tools to generate Apex. AI-written service methods often focus on object shape and DML success, but not on how a restricted user experiences that code. <code>stripInaccessible()</code> gives reviewers a cleaner way to harden those paths without rewriting everything into manual describe checks.</p>
+        </section>
+
+        <section id="signature">
+          <h2>Method signature and key features</h2>
+<pre><code>Security.stripInaccessible(
+    System.AccessType accessCheckType,
+    List&lt;SObject&gt; sourceRecords,
+    Boolean enforceRootObjectCRUD
+)</code></pre>
+          <p>Salesforce's Spring '20 guidance describes the method as returning an <code>SObjectAccessDecision</code>. The most important pieces developers actually use are <code>getRecords()</code>, which returns the sanitized records, and <code>getRemovedFields()</code>, which tells you what fields were stripped.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Access types</h3>
+              <ul>
+                <li><code>READABLE</code> for read paths and query results.</li>
+                <li><code>CREATABLE</code> before insert logic.</li>
+                <li><code>UPDATABLE</code> before update logic.</li>
+                <li><code>UPSERTABLE</code> for upsert scenarios.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Important behaviors</h3>
+              <ul>
+                <li>The original source list is not mutated; use <code>getRecords()</code> from the returned decision object.</li>
+                <li><code>enforceRootObjectCRUD</code> defaults to <code>true</code>.</li>
+                <li>If object-level access fails and root CRUD is enforced, the method can throw an exception.</li>
+                <li>Relationship fields and subquery results can also be stripped when the user lacks access.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="query-example">
+          <h2>Example for query results</h2>
+          <p>This is one of the cleanest uses of the method. Query the records, strip inaccessible fields with <code>READABLE</code>, then return only the sanitized list.</p>
+<pre><code>public with sharing class ExpenseQueryService {
+    public static List&lt;Expense__c&gt; getExpenses() {
+        List&lt;Expense__c&gt; rawExpenses = [
+            SELECT Id, Name, Amount__c, Internal_Notes__c, Owner.Name
+            FROM Expense__c
+            ORDER BY CreatedDate DESC
+            LIMIT 50
+        ];
+
+        SObjectAccessDecision decision =
+            Security.stripInaccessible(AccessType.READABLE, rawExpenses);
+
+        return (List&lt;Expense__c&gt;) decision.getRecords();
+    }
+}</code></pre>
+          <p>This pattern is especially useful when a page should still render even if some fields are restricted. It also gives you the option to inspect <code>decision.getRemovedFields()</code> and log or surface a controlled warning.</p>
+        </section>
+
+        <section id="dml-example">
+          <h2>Example before DML</h2>
+          <p>Before insert or update, the method can remove fields the user should not write. That means the broader DML can still succeed for allowed data instead of failing on a single blocked field.</p>
+<pre><code>public with sharing class ContactUpdateService {
+    public static void saveContacts(List&lt;Contact&gt; incomingContacts) {
+        SObjectAccessDecision decision =
+            Security.stripInaccessible(
+                AccessType.UPDATABLE,
+                incomingContacts
+            );
+
+        List&lt;Contact&gt; safeContacts = (List&lt;Contact&gt;) decision.getRecords();
+
+        if (!safeContacts.isEmpty()) {
+            update safeContacts;
+        }
+    }
+}</code></pre>
+          <p>This is the area where <code>stripInaccessible()</code> is often better than <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a>, because that older clause does not help with DML at all.</p>
+        </section>
+
+        <section id="deserialization-example">
+          <h2>Example for untrusted input</h2>
+          <p>Another valuable use case is sanitizing records after deserialization. If an external system or client sends fields the user should not touch, you should clean the payload before persisting or reusing it.</p>
+<pre><code>public with sharing class CasePayloadService {
+    public static void processPayload(String payloadJson) {
+        List&lt;Case&gt; incomingCases =
+            (List&lt;Case&gt;) JSON.deserialize(payloadJson, List&lt;Case&gt;.class);
+
+        SObjectAccessDecision decision =
+            Security.stripInaccessible(
+                AccessType.CREATABLE,
+                incomingCases
+            );
+
+        List&lt;Case&gt; safeCases = (List&lt;Case&gt;) decision.getRecords();
+        insert safeCases;
+    }
+}</code></pre>
+          <p>This is especially important in integration-heavy orgs, custom REST services, and AI-assisted workflows where untrusted input might contain more fields than the user or calling context should really be able to set.</p>
+        </section>
+
+        <section id="comparison">
+          <h2>Comparison with WITH SECURITY_ENFORCED and WITH USER_MODE</h2>
+          <p>These three security tools overlap, but they are not interchangeable. The best choice depends on whether you want exception-first security or graceful degradation, and whether the operation is read-only or includes DML.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>WITH SECURITY_ENFORCED</th>
+                  <th>stripInaccessible()</th>
+                  <th>WITH USER_MODE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Type</strong></td>
+                  <td>SOQL clause</td>
+                  <td>Apex method</td>
+                  <td>SOQL, SOSL, and DML access mode</td>
+                </tr>
+                <tr>
+                  <td><strong>Action on no field access</strong></td>
+                  <td>Throws exception</td>
+                  <td>Strips inaccessible fields from returned records</td>
+                  <td>Throws exception</td>
+                </tr>
+                <tr>
+                  <td><strong>CRUD and FLS support</strong></td>
+                  <td>Yes, for secure reads</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Sharing rules</strong></td>
+                  <td>No, not by itself</td>
+                  <td>No, not by itself</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>DML support</strong></td>
+                  <td>No</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Best fit</strong></td>
+                  <td>Legacy secure read queries</td>
+                  <td>Graceful degradation and sanitization</td>
+                  <td>Modern user-context operations</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>If you want a strict fail-fast query, see <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a>. If you want the operation to behave fully like the user, including sharing and DML, see <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a>. If you want to strip bad fields and continue safely, <code>stripInaccessible()</code> is usually the better fit.</p>
+        </section>
+
+        <section id="use-cases">
+          <h2>Use cases</h2>
+          <ul>
+            <li><strong>User-facing pages and APIs:</strong> return as much safe data as possible without leaking restricted fields.</li>
+            <li><strong>Bulk update services:</strong> drop disallowed fields before DML instead of failing the whole batch for field-level access reasons.</li>
+            <li><strong>Integration sanitization:</strong> clean payloads before save when external systems send over-permissioned fields.</li>
+            <li><strong>AI-generated Apex hardening:</strong> secure generated service logic without expanding into large describe-check blocks.</li>
+            <li><strong>Admin-friendly operations:</strong> preserve business flow even when different profiles have different field visibility.</li>
+          </ul>
+        </section>
+
+        <section id="admin-developer">
+          <h2>Admin and developer perspective</h2>
+          <p>Admins usually appreciate this method because it keeps permission design meaningful without forcing the application to break on every restricted field. A support user can still work with a record while sensitive fields remain hidden, which is often exactly what the business wants.</p>
+          <p>Developers appreciate it because it reduces verbose security plumbing and gives a clear, reusable pattern for secure reads and writes. It also creates a cleaner path for exception handling. Instead of wrapping every access violation in custom logic, the developer can decide when stripped fields are acceptable and when the missing data should trigger a controlled warning.</p>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Always use the returned records.</strong> The original list is not sanitized in place.</li>
+            <li><strong>Choose the right access type.</strong> Use <code>READABLE</code> for returned data and the matching write access type before DML.</li>
+            <li><strong>Inspect removed fields when the business impact matters.</strong> <code>getRemovedFields()</code> helps you log or explain partial results.</li>
+            <li><strong>Pair it with explicit sharing on the class.</strong> This method handles object and field access, not record sharing by itself.</li>
+            <li><strong>Use it when graceful degradation is a feature, not a bug.</strong> If the requirement is to fail loudly on any access issue, <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> or <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a> may be better.</li>
+            <li><strong>Sanitize untrusted payloads early.</strong> Do not wait until just before DML if downstream logic might already use unsafe fields.</li>
+            <li><strong>Test with restricted users.</strong> Good permission tests are essential because admin-level tests will not reveal stripped-field behavior.</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations</h2>
+          <p>The biggest limitation is scope. <code>stripInaccessible()</code> does not enforce record-level sharing rules by itself. If the operation must also respect who can see which records, you still need correct sharing behavior on the class or a user-mode data operation where appropriate.</p>
+          <p>The second limitation is behavioral. Because the method strips fields instead of always failing, teams must think carefully about whether partial success is really acceptable. In some processes, silent field removal is helpful. In others, it can hide a configuration problem the business actually wants surfaced.</p>
+          <p>The third limitation is architectural. This method is powerful, but it is not a substitute for good data minimization, good service boundaries, or secure API design. It is one tool in the Apex security model, not the entire model.</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Use <strong>Security.stripInaccessible()</strong> when your Apex needs object and field protection with graceful degradation. It is especially strong for sanitizing query results, cleaning records before DML, and hardening deserialized input.</p>
+          <p>If you want strict exception-first behavior for a query, consider <strong><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a></strong>. If you want the whole database operation to behave in the user's context, including sharing, prefer <strong><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a></strong>. In practice, many mature orgs use all three patterns, each for a different job.</p>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Clean up secure Apex snippets and query patterns faster.</a></li>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer - Inspect field-access failures and sanitized execution paths in debug logs.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-user-mode-apex-guide.html">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</a></li>
+      <li><a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a></li>
+      <li><a href="/articles/salesforce-apex-sharing-keywords-guide.html">Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

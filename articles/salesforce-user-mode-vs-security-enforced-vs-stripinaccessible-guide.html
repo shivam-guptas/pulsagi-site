@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+  <title>Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible Guide Overview | Pulsagi</title>
+  <meta name="description" content="Compare Salesforce WITH USER_MODE, WITH SECURITY_ENFORCED, and Security.stripInaccessible() with accurate Apex examples, CRUD/FLS and sharing behavior, admin and developer tradeoffs, AI code review guidance, limitations, and clear recommendations." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible Guide Overview" />
+  <meta property="og:description" content="Compare Salesforce WITH USER_MODE, WITH SECURITY_ENFORCED, and Security.stripInaccessible() with accurate Apex examples, CRUD/FLS and sharing behavior, admin and developer tradeoffs, AI code review guidance, limitations, and clear recommendations." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-comparison-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Compare Salesforce WITH USER_MODE, WITH SECURITY_ENFORCED, and Security.stripInaccessible() with accurate Apex examples, CRUD/FLS and sharing behavior, admin and developer tradeoffs, AI code review guidance, limitations, and clear recommendations." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-security-comparison-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible(): Best Apex Security Choice with Real Examples",
+  "description": "Compare Salesforce WITH USER_MODE, WITH SECURITY_ENFORCED, and Security.stripInaccessible() with accurate Apex examples, CRUD/FLS and sharing behavior, admin and developer tradeoffs, AI code review guidance, limitations, and clear recommendations.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-security-comparison-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-30",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible(): Best Apex Security Choice with Real Examples", "item": "https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible, Apex security comparison, Salesforce CRUD FLS sharing, AccessLevel.USER_MODE, Security.stripInaccessible, Salesforce secure SOQL, Salesforce secure DML, Salesforce AI code review, AI generated Apex security, Agentforce Apex security, Salesforce AppExchange security review, Salesforce security best practices, Salesforce admin developer guide" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .comparison-note {
+      margin-top: 16px;
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Apex Security - Comparison Guide</div>
+        <h1 class="article-title">Salesforce WITH USER_MODE vs WITH SECURITY_ENFORCED vs stripInaccessible(): Best Apex Security Choice with Real Examples</h1>
+        <p class="article-standfirst">A practical comparison for Salesforce admins, developers, architects, security reviewers, and AI-assisted delivery teams that need to choose the right Apex security pattern for secure reads, secure writes, graceful degradation, and AppExchange-style code review.</p>
+        <div class="reading-meta"><span>16 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/apex-security-comparison-guide.png" alt="Salesforce Apex security comparison infographic for WITH USER_MODE, WITH SECURITY_ENFORCED, and stripInaccessible" loading="eager"  width="1536"  height="1024" />
+        <p>The real decision is not which keyword sounds more secure. It is whether your Apex should fail fast, sanitize partial results, or fully behave in the running user's context.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-they-are">What each option actually is</a></li>
+          <li><a href="#why-it-matters">Why this comparison matters</a></li>
+          <li><a href="#comparison">Technical comparison table</a></li>
+          <li><a href="#security-enforced">WITH SECURITY_ENFORCED explained</a></li>
+          <li><a href="#stripinaccessible">stripInaccessible() explained</a></li>
+          <li><a href="#user-mode">WITH USER_MODE explained</a></li>
+          <li><a href="#examples">Code examples</a></li>
+          <li><a href="#use-cases">Use cases and decision guide</a></li>
+          <li><a href="#admin-developer">Admin and developer perspective</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#limitations">Limitations and common mistakes</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>Salesforce Apex security now needs version-aware thinking. In older Apex versions, database operations commonly ran with system-mode behavior unless you explicitly enforced user-context access. In Summer '26 release notes for API version 67.0, Salesforce signals a major shift: Apex database operations move to user mode by default, classes enforce sharing by default, and triggers remain the important exception because they still run in system mode. That is exactly why teams still need to compare <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a>, <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>Security.stripInaccessible()</code></a>, and <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a>.</p>
+          <p>All three are valid security tools. The mistake is treating them as interchangeable. They solve different problems, fail differently, and fit different architecture choices. Some fail immediately when access is missing. Some sanitize data and keep going. Some enforce sharing, and some do not.</p>
+          <div class="callout">
+            <strong>Updated for Summer '26 / API 67.0 behavior:</strong> Salesforce release notes indicate that Apex database operations default to user mode in API version 67.0, <code>WITH SECURITY_ENFORCED</code> is removed, and Apex triggers still run in system mode. Because Apex behavior is versioned, older classes can still behave differently until upgraded.
+          </div>
+          <div class="callout">
+            <strong>Short answer:</strong> for API 67.0+ classes, user-mode behavior becomes the default baseline for most Apex database operations. Use <code>stripInaccessible()</code> when graceful degradation is a requirement, and treat <code>WITH SECURITY_ENFORCED</code> mainly as a legacy pre-67 pattern rather than a forward-looking recommendation.
+          </div>
+        </section>
+
+        <section id="what-they-are">
+          <h2>What each option actually is</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a></h3>
+              <p>A SOQL clause that checks object- and field-level read access for fields returned by the query. If access is missing, the query throws an exception instead of returning data.</p>
+            </div>
+            <div class="card">
+              <h3><a href="/articles/salesforce-stripinaccessible-method-guide.html">Security.stripInaccessible()</a></h3>
+              <p>An Apex method that removes fields the user should not access from queried records, records headed for DML, or deserialized payloads. It is the graceful-degradation option.</p>
+            </div>
+            <div class="card">
+              <h3><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a></h3>
+              <p>A modern access mode for SOQL, SOSL, and DML that makes the database operation behave in the user's security context, including sharing, CRUD, and field-level security.</p>
+            </div>
+          </div>
+          <p>If you want the full standalone deep dives, this comparison pairs well with the site's dedicated guides for <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a>, <a href="/articles/salesforce-stripinaccessible-method-guide.html">stripInaccessible()</a>, and <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a>.</p>
+        </section>
+
+        <section id="why-it-matters">
+          <h2>Why this comparison matters</h2>
+          <p>This comparison matters because secure Apex is no longer just a developer concern. Admins configure the permission model. Architects decide whether a service should fail fast or degrade gracefully. Security reviewers need clear evidence that CRUD, FLS, and sharing were not forgotten. Teams using AI code assistants need patterns that are easy to audit in pull requests.</p>
+          <p>That last point is especially important now. AI-generated Apex often looks syntactically correct while quietly defaulting back to system-mode behavior. Inline patterns such as <code>WITH USER_MODE</code> or a deliberate <code>stripInaccessible()</code> call make secure intent much easier to review than large blocks of describe-check boilerplate.</p>
+        </section>
+
+        <section id="comparison">
+          <h2>Technical comparison table</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a></th>
+                  <th><a href="/articles/salesforce-stripinaccessible-method-guide.html">stripInaccessible()</a></th>
+                  <th><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Type</strong></td>
+                  <td>SOQL clause</td>
+                  <td>Apex method</td>
+                  <td>SOQL, SOSL, and DML access mode</td>
+                </tr>
+                <tr>
+                  <td><strong>Status in API 67.0+</strong></td>
+                  <td>Removed in Summer '26 release notes for Apex API 67.0.</td>
+                  <td>Still available and still useful.</td>
+                  <td>Still available, but often becomes explicit syntax for behavior that is already the default in version 67.0+ classes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Action on no access</strong></td>
+                  <td>Throws exception</td>
+                  <td>Removes inaccessible fields and relationship data from returned records</td>
+                  <td>Throws exception</td>
+                </tr>
+                <tr>
+                  <td><strong>CRUD/FLS support</strong></td>
+                  <td>Yes, for secure read queries</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Sharing rules</strong></td>
+                  <td>No, not by itself and now mainly relevant to older-version Apex.</td>
+                  <td>No, not by itself and still depends on the surrounding execution context.</td>
+                  <td>Yes, and API 67.0 release notes also say Apex classes enforce sharing by default.</td>
+                </tr>
+                <tr>
+                  <td><strong>DML support</strong></td>
+                  <td>No</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Best fit</strong></td>
+                  <td>Legacy fail-fast read enforcement in pre-67 code that has not been modernized yet.</td>
+                  <td>Graceful degradation, payload sanitization, and mixed-permission experiences.</td>
+                  <td>Modern user-context reads, searches, and writes, especially in older versions where explicit intent still matters.</td>
+                </tr>
+                <tr>
+                  <td><strong>Main recommendation now</strong></td>
+                  <td>Do not choose this for new API 67.0+ work.</td>
+                  <td>Keep using it whenever partial success is the right business behavior.</td>
+                  <td>Think of it as the target security model; in API 67.0+ it becomes more about version awareness and explicitness than basic enablement.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="comparison-note">Important nuance: <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>stripInaccessible()</code></a> is not literally a record-sharing tool. It strips inaccessible fields from records you already queried or are about to write. Also, when root-object CRUD enforcement is enabled and object access is missing, it can still throw an exception. That is why it is more accurate to think of it as <em>sanitize and continue where possible</em>, not <em>never fail</em>. A second nuance is versioning: a class compiled on an older Apex version does not automatically behave like a new API 67.0 class until you actually move it to that version and test the impact.</p>
+        </section>
+
+        <section id="security-enforced">
+          <h2><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a> explained</h2>
+          <p><a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> was a major improvement when it arrived because it gave Apex developers a compact way to reject read queries that returned fields the user should not see. If a selected field is not accessible, Salesforce throws a <code>QueryException</code> and no data is returned.</p>
+          <p>Its main limitation is scope. It is for SOQL reads, not DML. It also does not act as a complete record-security solution by itself because sharing behavior still depends on the surrounding execution context. In Summer '26 release notes for Apex API 67.0, Salesforce goes further and says this clause is removed. That makes it a legacy pattern teams should understand for maintenance, not a strategy to keep expanding.</p>
+          <div class="callout">
+            <strong>Good mental model:</strong> <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> is a fail-fast read guardrail, not a full user-context database model.
+          </div>
+        </section>
+
+        <section id="stripinaccessible">
+          <h2><a href="/articles/salesforce-stripinaccessible-method-guide.html">stripInaccessible()</a> explained</h2>
+          <p><a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>Security.stripInaccessible()</code></a> is the best option when your business requirement is "enforce security, but do not blow up the entire flow for every inaccessible field." It gives you sanitized sObjects that can be safely returned or written with blocked fields removed.</p>
+          <p>This matters in user-facing pages, service APIs, bulk updates, integration payload processing, and AI-generated service code where the user experience benefits from partial success. It is also one of the cleanest tools for sanitizing deserialized data from an untrusted source before that data touches deeper business logic.</p>
+          <div class="callout">
+            <strong>Best use:</strong> choose <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>stripInaccessible()</code></a> when graceful degradation is a feature, not a compromise.
+          </div>
+        </section>
+
+        <section id="user-mode">
+          <h2><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> explained</h2>
+          <p><a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a> is Salesforce's modern direction for secure database operations. It is broader than <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> because it supports SOQL, SOSL, and DML, and it is stronger because it evaluates the operation in the user's access context rather than only checking selected fields on a query.</p>
+          <p>Salesforce's official secure Apex guidance and Spring '23 developer guidance pointed modern teams here first, and Summer '26 release notes push the model even further by making user mode the default for database operations in API 67.0. That changes the practical question from "should we adopt user mode?" to "which classes are still on older behavior, and where do triggers or other system-mode contexts still need explicit care?"</p>
+          <div class="callout">
+            <strong>Best use:</strong> if the action should respect sharing, object permissions, and field permissions exactly as the running user experiences them, start with <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a>.
+          </div>
+        </section>
+
+        <section id="examples">
+          <h2>Code examples</h2>
+          <p>These examples are intentionally practical. They show where each pattern fits instead of pretending one tool should cover every security requirement.</p>
+
+          <h3>1. WITH SECURITY_ENFORCED for a fail-fast read</h3>
+          <p>This is the classic pattern for a secure read query that should stop immediately if the user lacks access to a requested field.</p>
+<pre><code>public with sharing class ExpenseDirectoryService {
+    public static List&lt;Expense__c&gt; getSubmittedExpenses() {
+        try {
+            return [
+                SELECT Id, Name, Amount__c, Status__c, Owner.Name
+                FROM Expense__c
+                WHERE Status__c = 'Submitted'
+                WITH SECURITY_ENFORCED
+                ORDER BY CreatedDate DESC
+                LIMIT 50
+            ];
+        } catch (QueryException ex) {
+            throw new AuraHandledException(
+                'You do not have access to one or more requested fields.'
+            );
+        }
+    }
+}</code></pre>
+          <p>This pattern is still respectable in legacy selectors. The tradeoff is strict failure and no write support.</p>
+
+          <h3>2. stripInaccessible() for graceful degradation</h3>
+          <p>Here the query can fetch the records first, then sanitize the response so restricted fields are removed instead of causing the whole request to fail.</p>
+<pre><code>public with sharing class ExpenseScreenService {
+    public static List&lt;Expense__c&gt; getVisibleExpenses() {
+        List&lt;Expense__c&gt; rawExpenses = [
+            SELECT Id, Name, Amount__c, Internal_Notes__c, Owner.Name
+            FROM Expense__c
+            ORDER BY CreatedDate DESC
+            LIMIT 50
+        ];
+
+        SObjectAccessDecision decision =
+            Security.stripInaccessible(AccessType.READABLE, rawExpenses);
+
+        return (List&lt;Expense__c&gt;) decision.getRecords();
+    }
+}</code></pre>
+          <p>The same method is also useful before DML.</p>
+<pre><code>public with sharing class ContactImportService {
+    public static void saveContacts(List&lt;Contact&gt; incomingContacts) {
+        SObjectAccessDecision decision =
+            Security.stripInaccessible(
+                AccessType.UPDATABLE,
+                incomingContacts
+            );
+
+        List&lt;Contact&gt; safeContacts = (List&lt;Contact&gt;) decision.getRecords();
+
+        if (!safeContacts.isEmpty()) {
+            update safeContacts;
+        }
+    }
+}</code></pre>
+
+          <h3>3. WITH USER_MODE for modern secure reads and writes</h3>
+          <p>This is the best fit when the action should behave exactly like the user.</p>
+<pre><code>public without sharing class InvoiceService {
+    public static List&lt;Invoice__c&gt; getOpenInvoices() {
+        return [
+            SELECT Id, Name, Total__c, Status__c
+            FROM Invoice__c
+            WHERE Status__c = 'Open'
+            WITH USER_MODE
+            ORDER BY CreatedDate DESC
+            LIMIT 50
+        ];
+    }
+
+    public static void createInvoice(Invoice__c draftInvoice) {
+        insert as user draftInvoice;
+    }
+}</code></pre>
+          <p>The important detail is that the database operation itself runs in user mode. That means the security behavior is attached directly to the read or write path, not left to wishful thinking about the broader class context.</p>
+
+          <h3>4. Dynamic query example with AccessLevel.USER_MODE</h3>
+          <p>Dynamic SOQL is where many teams accidentally drop security. User mode still works there through the database API.</p>
+<pre><code>public with sharing class InvoiceSelector {
+    public static List&lt;SObject&gt; findByStatus(String statusFilter) {
+        String soql =
+            'SELECT Id, Name, Status__c, Total__c ' +
+            'FROM Invoice__c ' +
+            'WHERE Status__c = :statusFilter';
+
+        return Database.queryWithBinds(
+            soql,
+            new Map&lt;String, Object&gt;{ 'statusFilter' =&gt; statusFilter },
+            AccessLevel.USER_MODE
+        );
+    }
+}</code></pre>
+        </section>
+
+        <section id="use-cases">
+          <h2>Use cases and decision guide</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Choose <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a> when</h3>
+              <ul>
+                <li>You are maintaining an older read-only selector that already uses fail-fast query behavior.</li>
+                <li>You want a short-term upgrade from insecure SOQL without redesigning the service yet.</li>
+                <li>You are intentionally dealing with read queries only.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Choose <a href="/articles/salesforce-stripinaccessible-method-guide.html">stripInaccessible()</a> when</h3>
+              <ul>
+                <li>You want to sanitize query results before returning them.</li>
+                <li>You want to clean inbound or deserialized payloads before DML.</li>
+                <li>You want partial success instead of exception-first behavior.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Choose <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> when</h3>
+              <ul>
+                <li>The operation should behave like the running user.</li>
+                <li>You need SOQL, SOSL, and DML covered under one modern security model.</li>
+                <li>You are building new Apex that should be easier to review, maintain, and secure.</li>
+              </ul>
+            </div>
+          </div>
+          <p>One practical recommendation is to stop asking which tool is "best overall" and ask which behavior the business actually wants. If the answer is "fail loudly," the answer is different from a screen that should still render safe partial data for a support user.</p>
+        </section>
+
+        <section id="admin-developer">
+          <h2>Admin and developer perspective</h2>
+          <p>Admins care about whether their permission model stays meaningful after custom Apex is deployed. They usually prefer <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a> because it keeps custom behavior closer to what profiles, permission sets, sharing, restriction rules, and field-level security already define. Summer '26 strengthens that alignment further for API 67.0+ classes. They often like <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>stripInaccessible()</code></a> for user-facing screens because it lets business users keep working without seeing protected fields.</p>
+          <p>Developers care about readability, maintenance, and security review friction. <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a> is easier to audit because the security decision sits directly on the operation, even if API 67.0 reduces the need to spell it out everywhere. <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>stripInaccessible()</code></a> is powerful because it reduces error-handling noise in bulk and integration scenarios. <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> is now mostly a legacy concept developers need for maintenance and migration, not a destination pattern.</p>
+          <p>From an AppExchange or internal review perspective, the clearest code is usually the safest code. Inline security intent is easier to trust than hidden helper logic, especially when reviewing AI-generated Apex where a secure-looking class may still contain unsafe system-mode reads or writes.</p>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Keep sharing intent explicit on the class.</strong> Even when user mode handles the operation, explicit class-level sharing still improves clarity and avoids accidental ambiguity.</li>
+            <li><strong>Prefer API 67.0+ behavior for new classes and review version settings deliberately.</strong> The biggest risk after Summer '26 is assuming every class already behaves like the newest Apex version.</li>
+            <li><strong>Use <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> explicitly when clarity helps, especially across mixed-version codebases.</strong> Even if the newest version makes user mode the default, explicit intent can still make reviews easier.</li>
+            <li><strong>Use <a href="/articles/salesforce-stripinaccessible-method-guide.html">stripInaccessible()</a> when graceful degradation is a business requirement.</strong> Do not force a fail-fast model onto experiences that should return safe partial data.</li>
+            <li><strong>Keep <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a> only as a legacy read-path concept.</strong> Do not build new API 67.0+ work around a clause Salesforce says is removed.</li>
+            <li><strong>Remember that triggers still run in system mode.</strong> Summer '26 does not erase the need to think carefully about trigger-side security design.</li>
+            <li><strong>Test with restricted users, not just admin users.</strong> Permission-sensitive code often looks correct until you run it under real constraints.</li>
+            <li><strong>Review AI-generated Apex for system-mode fallbacks.</strong> Generated code often handles object shape correctly but misses security intent.</li>
+            <li><strong>Sanitize deserialized input early.</strong> If an integration payload or UI payload is untrusted, clean it before more business logic touches it.</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations and common mistakes</h2>
+          <p>The biggest common mistake is assuming <code>with sharing</code> solves everything. It does not. Sharing helps with record-level access, but object-level and field-level checks still need explicit enforcement or must be understood through the class's versioned execution behavior.</p>
+          <p>The second mistake is assuming <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>stripInaccessible()</code></a> is just a softer version of <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a>. It is not. It sanitizes fields on records. It does not automatically turn the entire database operation into a user-context operation that includes sharing enforcement.</p>
+          <p>The third mistake is assuming <a href="/articles/salesforce-with-security-enforced-guide.html"><code>WITH SECURITY_ENFORCED</code></a> is future-proof simply because it is concise. It is concise, but it is also narrower. It does not help with DML, and Summer '26 release notes go further by saying the clause is removed in API 67.0.</p>
+          <p>The fourth mistake is forgetting that triggers still run in system mode. A team can modernize service classes and still leave trigger entry points with older security assumptions if they do not review them separately.</p>
+          <p>Finally, no keyword will rescue a confused service boundary. If one method mixes trusted admin behavior, public controller behavior, and integration payload processing, even the right security feature can still be used in the wrong place.</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>For new Apex classes compiled on <strong>API version 67.0 and later</strong>, treat user-mode database behavior as the new baseline rather than a special opt-in. The real architecture work becomes version management, exception handling, and identifying the places where Summer '26 does <em>not</em> flatten the problem, especially triggers.</p>
+          <p>If the business requirement is graceful degradation or payload sanitization, keep using <strong><a href="/articles/salesforce-stripinaccessible-method-guide.html">Security.stripInaccessible()</a></strong>. If you are maintaining older code, understand <strong><a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED</a></strong> well enough to migrate away from it rather than extending it.</p>
+          <p>The strongest practical recommendation now is: upgrade deliberately, test restricted-user scenarios on the actual Apex version in use, and separate <strong>API 67.0+ classes</strong> from <strong>older-version classes and triggers</strong> when you discuss security behavior with admins, developers, and reviewers.</p>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Clean up secure Apex examples, SOQL clauses, and review snippets faster.</a></li>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer - Inspect QueryException paths, CRUD/FLS failures, and user-mode execution results in debug logs.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-user-mode-apex-guide.html">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</a></li>
+      <li><a href="/articles/salesforce-stripinaccessible-method-guide.html">Salesforce Security.stripInaccessible() Method Explained: Secure Apex Patterns, CRUD/FLS Handling, and Real Examples</a></li>
+      <li><a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

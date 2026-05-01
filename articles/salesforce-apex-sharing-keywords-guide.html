@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  
+  <title>Salesforce Apex Sharing Keywords Guide Overview | Pulsagi</title>
+  <meta name="description" content="Salesforce Apex sharing keywords explained with practical examples for with sharing, without sharing, inherited sharing, and no keyword, including security impact, use cases, limitations, and best practices." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Salesforce Apex Sharing Keywords Guide Overview" />
+  <meta property="og:description" content="Salesforce Apex sharing keywords explained with practical examples for with sharing, without sharing, inherited sharing, and no keyword, including security impact, use cases, limitations, and best practices." />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-sharing-keywords-guide.png" />
+  <meta property="og:site_name" content="Pulsagi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce Apex Sharing Keywords Guide Overview | Pulsagi" />
+  <meta name="twitter:description" content="Salesforce Apex sharing keywords explained with practical examples for with sharing, without sharing, inherited sharing, and no keyword, including security impact, use cases, limitations, and best practices." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/apex-sharing-keywords-guide.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword",
+  "description": "Salesforce Apex sharing keywords explained with practical examples for with sharing, without sharing, inherited sharing, and no keyword, including security impact, use cases, limitations, and best practices.",
+  "image": "https://pulsagi.com/articles/assets/images/salesforce/apex-sharing-keywords-guide.png",
+  "author": {
+    "@type": "Person",
+    "name": "Shivam Gupta",
+    "url": "https://shivam.pulsagi.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pulsagi",
+    "url": "https://pulsagi.com"
+  },
+  "datePublished": "2026-04-30",
+  "dateModified": "2026-05-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pulsagi.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://pulsagi.com/articles/" },
+    { "@type": "ListItem", "position": 3, "name": "Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword", "item": "https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html" }
+  ]
+}
+</script>
+<meta name="keywords" content="Salesforce with sharing, Salesforce without sharing, Salesforce inherited sharing, Apex no keyword, Apex sharing keywords, Salesforce Apex security, record level security in Apex, Salesforce sharing rules Apex, secure Apex classes, AI generated Apex review, Salesforce AI coding best practices, Agentforce Apex security" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Apex Security - Sharing Model</div>
+        <h1 class="article-title">Salesforce Apex Sharing Keywords Explained: with sharing, without sharing, inherited sharing, and No Keyword</h1>
+        <p class="article-standfirst">A practical guide for Salesforce admins, developers, architects, and security reviewers who need to understand exactly what sharing keywords control in Apex, where they do <em>not</em> help, and how to keep human-written or AI-generated code from exposing records unintentionally.</p>
+        <div class="reading-meta"><span>13 min read</span><span>Published April 30, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/apex-sharing-keywords-guide.png" alt="Salesforce Apex sharing keywords infographic" loading="eager"  width="1536"  height="1024" />
+        <p>Sharing keywords decide whether Apex respects record-level access, but they do not replace CRUD, field-level security, or thoughtful service boundaries.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-it-controls">What sharing keywords actually control</a></li>
+          <li><a href="#with-sharing">with sharing</a></li>
+          <li><a href="#without-sharing">without sharing</a></li>
+          <li><a href="#inherited-sharing">inherited sharing</a></li>
+          <li><a href="#no-keyword">No keyword</a></li>
+          <li><a href="#examples">Examples and use cases</a></li>
+          <li><a href="#admin-developer">Admin and developer perspective</a></li>
+          <li><a href="#best-practices">Best practices</a></li>
+          <li><a href="#limitations">Limitations and common misconceptions</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>One of the most misunderstood parts of Salesforce security is the difference between <code>with sharing</code>, <code>without sharing</code>, <code>inherited sharing</code>, and writing an Apex class with no sharing keyword at all. These four choices look small in code review, but they can completely change what data a user sees and what your Apex transaction can do.</p>
+          <p>This matters even more now because many teams use AI code assistants to scaffold controllers, services, and integration classes. AI-generated Apex often compiles, but it does not always make a safe decision about sharing context. If a class boundary is wrong, the code may still pass unit tests while leaking records in production.</p>
+          <div class="callout">
+            <strong>Most important idea:</strong> sharing keywords control <strong>record-level access</strong>. They do <strong>not</strong> enforce object permissions or field-level security. For that, you still need patterns such as <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a>, <code>Security.stripInaccessible()</code>, or explicit describe checks where appropriate.
+          </div>
+        </section>
+
+        <section id="what-it-controls">
+          <h2>What sharing keywords actually control</h2>
+          <p>Salesforce data security has multiple layers. Sharing keywords affect only the record-level layer: whether the current user should be able to see or operate on a specific record according to organization-wide defaults, role hierarchy, territory rules, teams, and manual or criteria-based sharing.</p>
+          <p>That means a class can be perfectly correct on sharing and still be insecure on fields. A user may have access to the record but not to a sensitive field like salary, margin, or PII. This is why strong Apex design always treats sharing and CRUD/FLS as separate checks.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                  <th>What it does</th>
+                  <th>When it fits</th>
+                  <th>Main risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>with sharing</strong></td>
+                  <td>Respects record-level access for the running user.</td>
+                  <td>Controllers, UI services, and most business logic.</td>
+                  <td>Teams wrongly assume it also enforces field and object permissions.</td>
+                </tr>
+                <tr>
+                  <td><strong>without sharing</strong></td>
+                  <td>Runs without record-sharing checks.</td>
+                  <td>Privileged system operations with a clear business justification.</td>
+                  <td>Easy to overuse and hard to defend in security review.</td>
+                </tr>
+                <tr>
+                  <td><strong>inherited sharing</strong></td>
+                  <td>Uses the sharing mode of the calling code.</td>
+                  <td>Reusable service classes that must behave safely in multiple entry paths.</td>
+                  <td>Needs careful review because runtime context decides the final behavior.</td>
+                </tr>
+                <tr>
+                  <td><strong>No keyword</strong></td>
+                  <td>Also inherits context, but with less explicit intent.</td>
+                  <td>Usually not recommended.</td>
+                  <td>Ambiguous at code review and riskier at transaction entry points.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="with-sharing">
+          <h2>with sharing</h2>
+          <p><code>with sharing</code> is the safest default for most Apex classes that sit near users, screens, flows, LWC controllers, Experience Cloud endpoints, or admin-triggered automation. It tells Salesforce to respect the running user's record access when the class executes database work.</p>
+          <p>For admins, this usually aligns better with what users expect from the UI. If a sales rep cannot see an opportunity in Salesforce, they generally should not retrieve it through Apex-backed page logic either. For developers, it creates a more predictable trust boundary and reduces the chance of accidental overexposure.</p>
+<pre><code>public with sharing class OpportunitySummaryService {
+    public static List&lt;Opportunity&gt; getMyPipeline() {
+        return [
+            SELECT Id, Name, StageName, Amount
+            FROM Opportunity
+            WHERE IsClosed = false
+            ORDER BY CloseDate
+            LIMIT 50
+        ];
+    }
+}</code></pre>
+          <p>The example above respects record-level visibility, but it still assumes the user can read <code>Amount</code>. If field access is sensitive, pair this with <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a> or another CRUD/FLS enforcement pattern.</p>
+        </section>
+
+        <section id="without-sharing">
+          <h2>without sharing</h2>
+          <p><code>without sharing</code> intentionally bypasses record-sharing rules. This can be legitimate, but only when the business process truly requires system-level visibility. Typical examples include controlled reconciliation jobs, back-office repair scripts, platform-managed recalculation, or tightly governed admin operations.</p>
+          <p>What makes this keyword dangerous is not that it exists. The problem is that teams often use it to "make the query work" instead of designing the right security model. That is exactly the kind of shortcut that later fails security review or creates trust problems with admins who thought permissions were already protecting the data.</p>
+<pre><code>public without sharing class OrderReconciliationJob {
+    public static void reconcile(Set&lt;Id&gt; orderIds) {
+        List&lt;Order__c&gt; orders = [
+            SELECT Id, Status__c, External_Id__c
+            FROM Order__c
+            WHERE Id IN :orderIds
+        ];
+
+        // System-level reconciliation logic goes here.
+    }
+}</code></pre>
+          <div class="callout">
+            <strong>Use cautiously:</strong> if a class is <code>without sharing</code>, document why it must ignore record visibility, who approved that design, and what compensating controls protect the data path.
+          </div>
+        </section>
+
+        <section id="inherited-sharing">
+          <h2>inherited sharing</h2>
+          <p><code>inherited sharing</code> is the most deliberate way to say, "this class should follow the caller's sharing model." It is useful for service-layer code that may be invoked from both user-facing controllers and trusted internal processes, as long as the service is written to remain safe in both contexts.</p>
+          <p>Salesforce Developer guidance treats this as an advanced option, not a casual shortcut. That is fair. The runtime behavior is flexible, but the class must be reviewable. When a future developer reads the file, they should understand that context sensitivity is intentional.</p>
+<pre><code>public inherited sharing class CaseEscalationService {
+    public static List&lt;Case&gt; findOpenCasesForAccount(Id accountId) {
+        return [
+            SELECT Id, CaseNumber, Status, Priority
+            FROM Case
+            WHERE AccountId = :accountId
+            AND IsClosed = false
+            ORDER BY CreatedDate DESC
+        ];
+    }
+}</code></pre>
+          <p>This is a good fit when the caller already owns the security boundary. A Lightning controller might invoke it in user-safe mode, while a vetted back-office batch process can call it from a trusted system path. The service remains reusable without hard-coding one context everywhere.</p>
+        </section>
+
+        <section id="no-keyword">
+          <h2>No keyword</h2>
+          <p>Leaving a class without any sharing keyword is technically allowed, but it is poor security communication. The class still inherits behavior from the context in which it runs, yet the file gives reviewers no explicit signal that this was intentional.</p>
+          <p>Salesforce's security guidance is especially important here. The Salesforce Developers blog explains that both omitted sharing and <code>inherited sharing</code> follow the caller, but when the class is the transaction entry point, <code>inherited sharing</code> defaults to the more secure <code>with sharing</code> behavior while the omitted case defaults to <code>without sharing</code>. That is a real difference, not just a style preference.</p>
+<pre><code>public class LegacyAccountService {
+    public static List&lt;Account&gt; findAccounts(String nameFragment) {
+        return [
+            SELECT Id, Name
+            FROM Account
+            WHERE Name LIKE :('%' + nameFragment + '%')
+            LIMIT 20
+        ];
+    }
+}</code></pre>
+          <p>The example above may work fine today, but it is harder to reason about tomorrow. A future caller can silently change the class's effective security behavior. For modern code, writing the intent explicitly is better engineering and better governance.</p>
+        </section>
+
+        <section id="examples">
+          <h2>Examples and use cases</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Good use case for with sharing</h3>
+              <ul>
+                <li>LWC or Aura controller methods that return user-visible record lists.</li>
+                <li>Experience Cloud service classes where customer visibility must mirror sharing.</li>
+                <li>Flow-invocable service methods that support business-user actions.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Good use case for without sharing</h3>
+              <ul>
+                <li>System-managed reconciliation across records ordinary users cannot see.</li>
+                <li>Controlled maintenance or archiving utilities run by privileged processes.</li>
+                <li>AppExchange-packaged back-end services with a documented security rationale.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Good use case for inherited sharing</h3>
+              <ul>
+                <li>Reusable domain services called from both user-facing and privileged layers.</li>
+                <li>Selector-style classes where the caller should own the security boundary.</li>
+                <li>Libraries meant to behave consistently with their invoking workflow.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Bad use case for no keyword</h3>
+              <ul>
+                <li>Any new Apex class where the sharing choice is simply left undecided.</li>
+                <li>Controllers or APIs that form an entry point into the transaction.</li>
+                <li>Security-sensitive code that must survive audit, review, and future maintenance.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="admin-developer">
+          <h2>Admin and developer perspective</h2>
+          <p>Admins care about predictability. If permission sets, roles, and sharing rules define who should see what, Apex should not quietly undermine that model. <code>with sharing</code> generally keeps Apex aligned with access design, while <code>without sharing</code> creates exceptions that admins need to know about and monitor.</p>
+          <p>Developers care about architecture boundaries. A class's sharing keyword is part of its contract. It tells the next developer whether the class is user-safe, intentionally privileged, or context-dependent. In a mature org, this contract is as important as method names and test coverage.</p>
+          <p>For AI-assisted development, both teams should add one extra review question: "Did the code assistant choose the sharing mode intentionally, or did it default to whatever made the sample compile?" That single question catches many avoidable mistakes.</p>
+        </section>
+
+        <section id="best-practices">
+          <h2>Best practices</h2>
+          <ul>
+            <li><strong>Prefer explicit sharing declarations.</strong> Even when <code>inherited sharing</code> is the right choice, write it down instead of leaving the class ambiguous.</li>
+            <li><strong>Default to with sharing for user-facing logic.</strong> Make privileged behavior the exception, not the baseline.</li>
+            <li><strong>Use without sharing only with a documented reason.</strong> The reason should be understandable to admins, reviewers, and future maintainers.</li>
+            <li><strong>Pair sharing with CRUD and FLS enforcement.</strong> Use <a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE</a>, <code>Security.stripInaccessible()</code>, or explicit checks as needed.</li>
+            <li><strong>Keep service boundaries clean.</strong> If a utility must behave differently by caller, <code>inherited sharing</code> is usually clearer than no keyword.</li>
+            <li><strong>Review entry points carefully.</strong> REST services, controllers, invocable methods, and public selectors deserve extra attention because they define the security boundary others will rely on.</li>
+            <li><strong>Test with restricted users.</strong> Do not validate sharing behavior only with admin-level data and assumptions.</li>
+          </ul>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations and common misconceptions</h2>
+          <p>The biggest misconception is that <code>with sharing</code> makes Apex fully secure. It does not. Salesforce's own documentation and security guidance are clear that sharing keywords do not enforce object permissions or field-level security. A class can respect record visibility and still return fields the user should not read.</p>
+          <p>The second misconception is that <code>without sharing</code> is automatically wrong. It is not. Some platform processes genuinely need privileged access. The mistake is using it by default, or using it to hide a deeper design problem.</p>
+          <p>The third misconception is that "no keyword" and <code>inherited sharing</code> are interchangeable. They can behave similarly in some call chains, but they do not send the same design signal, and official Salesforce guidance distinguishes them at transaction entry points.</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>If you want one practical rule, use this: choose <strong>with sharing</strong> for most user-facing Apex, choose <strong>inherited sharing</strong> when a reusable service must follow the caller, use <strong>without sharing</strong> only for justified privileged processes, and avoid <strong>no keyword</strong> in new code.</p>
+          <p>For admins, keep a short inventory of classes that intentionally run without sharing. For developers, treat the sharing keyword as part of the security design, not formatting. For teams using AI coding assistants, make explicit sharing review part of your pull request checklist.</p>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-soql-formatter.html">Apex and SOQL Formatter - Clean up selectors, service methods, and review snippets faster.</a></li>
+      <li><a href="/tools/salesforce-governor-limit-analyzer.html">Salesforce Governor Limit Analyzer - Review Apex patterns before security and bulk risks combine.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-user-mode-apex-guide.html">Salesforce WITH USER_MODE in Apex: Secure SOQL, SOSL, and DML with Real Examples</a></li>
+      <li><a href="/articles/salesforce-with-security-enforced-guide.html">Salesforce WITH SECURITY_ENFORCED in Apex: What It Does, Limitations, and Safe Use Cases</a></li>
+      <li><a href="/articles/permission-set-groups-guide.html">Permission Set Groups in Salesforce</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>
