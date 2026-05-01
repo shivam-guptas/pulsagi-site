@@ -1,245 +1,134 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.svg" sizes="any" />
-            <title>Codex and Claude for Salesforce Governance | Pulsagi</title>
-  <meta name="description" content="Codex and Claude help Salesforce teams define AI governance, KPI tracking, adoption roadmaps, operating models, and human review controls for delivery." />
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  <title>Codex vs Claude for Salesforce AI Governance and Roadmap | Pulsagi</title>
+  <meta name="description" content="Codex vs Claude for Salesforce AI governance, adoption roadmap, quality controls, security practices, KPIs, and enterprise rollout planning." />
+  <meta name="keywords" content="salesforce ai governance, codex vs claude governance, salesforce ai adoption roadmap, salesforce ai security, ai governance for salesforce teams, salesforce ai compliance, salesforce ai operating model" />
   <link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html" />
-  <meta property="og:title" content="Codex and Claude for Salesforce Governance" />
-  <meta property="og:description" content="Codex and Claude help Salesforce teams define AI governance, KPI tracking, adoption roadmaps, operating models, and human review controls for delivery." />
+  <meta property="og:title" content="Codex vs Claude for Salesforce AI Governance and Roadmap" />
+  <meta property="og:description" content="A practical Salesforce guide to AI governance, rollout planning, risk controls, and operating models for Codex and Claude." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-governance-roadmap-and-appendices.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Codex and Claude for Salesforce Governance" />
-  <meta name="twitter:description" content="Codex and Claude help Salesforce teams define AI governance, KPI tracking, adoption roadmaps, operating models, and human review controls for delivery." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+  <meta name="twitter:title" content="Codex vs Claude for Salesforce AI Governance and Roadmap" />
+  <meta name="twitter:description" content="A practical Salesforce guide to AI governance, rollout planning, risk controls, and operating models for Codex and Claude." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-governance-roadmap-and-appendices.png" />
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "Article",
-    "headline":  "Codex and Claude for Salesforce Governance",
-    "description":  "Codex and Claude help Salesforce teams define AI governance, KPI tracking, adoption roadmaps, operating models, and human review controls for delivery.",
-    "author":  {
-                   "@type":  "Person",
-                   "name":  "Shivam Gupta",
-                   "url":  "https://shivam.pulsagi.com"
-               },
-    "publisher":  {
-                      "@type":  "Organization",
-                      "name":  "Pulsagi",
-                      "url":  "https://pulsagi.com"
-                  },
-    "datePublished":  "2026-03-11",
-    "dateModified":  "2026-05-01",
-    "url":  "https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html"
-}
+{"@context":"https://schema.org","@type":"Article","headline":"Codex vs Claude for Salesforce AI Governance and Roadmap","description":"Codex vs Claude for Salesforce AI governance, adoption roadmap, quality controls, security practices, KPIs, and enterprise rollout planning.","author":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"datePublished":"2026-03-11","dateModified":"2026-05-02","url":"https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html"}
   </script>
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "BreadcrumbList",
-    "itemListElement":  [
-                            {
-                                "@type":  "ListItem",
-                                "position":  1,
-                                "name":  "Home",
-                                "item":  "https://pulsagi.com/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  2,
-                                "name":  "Articles",
-                                "item":  "https://pulsagi.com/articles/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  3,
-                                "name":  "Codex and Claude for Salesforce Governance",
-                                "item":  "https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html"
-                            }
-                        ]
-}
-  </script><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript><!-- Google tag (gtag.js) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-S55MNPYJF8');
-</script>  <link rel="stylesheet" href="assets/article-site.css" />
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://pulsagi.com/articles/"},{"@type":"ListItem","position":3,"name":"Codex vs Claude for Salesforce AI Governance and Roadmap","item":"https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html"}]}
+  </script>
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <style>.reference-list{padding-left:22px}.reference-list li+li{margin-top:10px}</style>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-  <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="site-nav" aria-label="Main navigation">
-  <a class="nav-brand" href="/">Pulsagi</a>
-  <ul class="site-nav-list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/tools/">Tools</a></li>
-    <li><a href="/articles/" aria-current="page">Articles</a></li>
-  </ul>
-</nav>
-<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Codex and Claude for Salesforce Governance</h1><p class="article-standfirst">Enterprise governance, quality control, KPI tracking, adoption roadmap, and operating model.</p><div class="reading-meta"><span>20 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-20-sample-end-to-end-workflows">Section 20: Sample End-to-End Workflows</a></li><li><a href="#section-21-governance-security-and-compliance">Section 21: Governance, Security, and Compliance</a></li><li><a href="#section-22-quality-control-and-human-review-model">Section 22: Quality Control and Human Review Model</a></li><li><a href="#section-23-limitations-and-failure-modes">Section 23: Limitations and Failure Modes</a></li><li><a href="#section-24-kpi-and-roi-framework">Section 24: KPI and ROI Framework</a></li><li><a href="#section-25-implementation-roadmap">Section 25: Implementation Roadmap</a></li><li><a href="#section-26-recommended-operating-model">Section 26: Recommended Operating Model</a></li><li><a href="#section-27-final-recommendations">Section 27: Final Recommendations</a></li><li><a href="#appendix-a-enterprise-maturity-model">Appendix A: Enterprise Maturity Model</a></li><li><a href="#appendix-b-human-review-required-notes">Appendix B: Human Review Required Notes</a></li><li><a href="#appendix-c-practical-anti-patterns">Appendix C: Practical Anti-Patterns</a></li></ol></aside><article class="content-card doc-content"><section id="section-20-sample-end-to-end-workflows"><h2 id="section-20-sample-end-to-end-workflows">Section 20: Sample End-to-End Workflows</h2>
-<h3 id="20-1-new-salesforce-feature-delivery">20.1 New Salesforce feature delivery</h3>
-<div class="table-wrap"><table><thead><tr><th>Step</th><th>Tool</th><th>Output</th></tr></thead><tbody><tr><td>workshop note synthesis</td><td>Claude</td><td>epics, stories, questions</td></tr><tr><td>architecture optioning</td><td>Claude</td><td>option matrix</td></tr><tr><td>technical feasibility check</td><td>Codex</td><td>fit with existing repo/org patterns</td></tr><tr><td>implementation</td><td>Codex</td><td>config/code changes</td></tr><tr><td>documentation</td><td>Claude</td><td>TDD, release notes</td></tr><tr><td>testing support</td><td>Claude + Codex</td><td>test cases + test classes</td></tr><tr><td>release package</td><td>Codex</td><td>manifests/checklists</td></tr></tbody></table></div>
-<p><strong>Review checkpoints</strong></p>
-<ul><li>BA validates stories</li><li>Architect validates design</li><li>Dev lead validates implementation</li><li>QA validates coverage</li><li>Release manager validates deployment</li></ul>
-<h3 id="20-2-custom-apex-lwc-feature">20.2 Custom Apex + LWC feature</h3>
-<ol><li>Claude drafts capability and UX story.</li><li>Codex implements Apex service, LWC, and tests.</li><li>Claude creates user guide and support notes.</li><li>Human review validates security, UX, and performance.</li></ol>
-<h3 id="20-3-integration-project-delivery">20.3 Integration project delivery</h3>
-<ol><li>Claude creates integration option matrix and sequence narrative.</li><li>Codex builds callout/service classes, payload mappings, and tests.</li><li>Claude documents support flow and operational ownership.</li></ol>
-<h3 id="20-4-production-incident-troubleshooting">20.4 Production incident troubleshooting</h3>
-<ol><li>Claude summarizes incident evidence and forms RCA hypotheses.</li><li>Codex inspects code, logs, and diffs to isolate likely defect path.</li><li>Claude drafts business and executive communication.</li><li>Human lead confirms containment and permanent fix plan.</li></ol>
-<h3 id="20-5-documentation-and-handover-package-creation">20.5 Documentation and handover package creation</h3>
-<ol><li>Claude turns implementation notes into runbooks/admin guides.</li><li>Codex extracts technical details from actual repo files.</li><li>Claude produces a final handover pack for support and operations.</li></ol>
-<hr /></section>
-<section id="section-21-governance-security-and-compliance"><h2 id="section-21-governance-security-and-compliance">Section 21: Governance, Security, and Compliance</h2>
-<h3 id="21-1-core-enterprise-risks">21.1 Core enterprise risks</h3>
-<ul><li>sensitive data exposure</li><li>PII or PCI pasted into prompts</li><li>secrets or tokens exposed</li><li>confidential code or architecture leakage</li><li>hallucinated features or unsafe recommendations</li><li>legal/IP issues from uncontrolled use</li><li>non-compliant vendor usage</li></ul>
-<h3 id="21-2-prompt-hygiene-rules">21.2 Prompt hygiene rules</h3>
-<ul><li>never paste secrets, auth tokens, certificates, private keys</li><li>never paste raw customer PII unless policy explicitly allows sanitized handling</li><li>minimize copied production data</li><li>redact identifiers where not necessary</li><li>prefer synthetic examples</li></ul>
-<h3 id="21-3-governance-framework">21.3 Governance framework</h3>
-<div class="table-wrap"><table><thead><tr><th>Control Area</th><th>Required Practice</th></tr></thead><tbody><tr><td>Acceptable use</td><td>define approved and prohibited use cases</td></tr><tr><td>Data handling</td><td>redact PII, no secrets, no raw production dumps</td></tr><tr><td>Human review</td><td>mandatory for code, security, architecture, compliance</td></tr><tr><td>Auditability</td><td>log how AI is used in critical delivery flows</td></tr><tr><td>Training</td><td>teach prompt hygiene and validation discipline</td></tr><tr><td>Vendor review</td><td>legal, security, procurement review</td></tr><tr><td>IP/confidentiality</td><td>define what can be shared externally</td></tr></tbody></table></div>
-<h3 id="21-4-regulated-industry-considerations">21.4 Regulated industry considerations</h3>
-<p>For banking, insurance, healthcare, public sector, and similar environments:</p>
-<ul><li>define approved data classes for AI use</li><li>require security/legal review before scaling usage</li><li>keep prompt templates sanitized by design</li><li>add compliance signoff to high-risk artifacts</li><li>avoid using AI as final authority on policy interpretation</li></ul>
-<h3 id="21-5-security-review-workflow">21.5 Security review workflow</h3>
-<pre><code class="language-text">Use case proposed
-  -&gt;
-Data classification check
-  -&gt;
-Vendor/policy fit check
-  -&gt;
-Approved prompt/data templates
-  -&gt;
-Pilot with human review
-  -&gt;
-Audit and expand</code></pre>
-<hr /></section>
-<section id="section-22-quality-control-and-human-review-model"><h2 id="section-22-quality-control-and-human-review-model">Section 22: Quality Control and Human Review Model</h2>
-<h3 id="22-1-why-blind-trust-is-dangerous">22.1 Why blind trust is dangerous</h3>
-<p>AI can be fluent and still be wrong. In Salesforce that can mean:</p>
-<ul><li>incorrect sharing</li><li>broken bulk behavior</li><li>bad migration logic</li><li>missing test coverage</li><li>unsupported architectural assumptions</li></ul>
-<h3 id="22-2-code-validation-checklist">22.2 Code validation checklist</h3>
-<ul><li>compiles</li><li>passes tests</li><li>meets org coding standards</li><li>bulk-safe</li><li>sharing-safe</li><li>no hard-coded secrets/IDs</li><li>negative paths covered</li></ul>
-<h3 id="22-3-architecture-validation-checklist">22.3 Architecture validation checklist</h3>
-<ul><li>licensing fit confirmed</li><li>standard-first assumption reviewed</li><li>NFRs covered</li><li>support model defined</li><li>security impacts reviewed</li><li>data ownership clear</li></ul>
-<h3 id="22-4-security-validation-checklist">22.4 Security validation checklist</h3>
-<ul><li>least privilege enforced</li><li>sensitive fields identified</li><li>logging does not leak secrets</li><li>integration auth model approved</li><li>external user access reviewed</li></ul>
-<h3 id="22-5-test-validation-checklist">22.5 Test validation checklist</h3>
-<ul><li>positive/negative/edge cases</li><li>role-based behavior</li><li>integration failure cases</li><li>data quality cases</li><li>traceability to requirements</li></ul>
-<h3 id="22-6-documentation-review-checklist">22.6 Documentation review checklist</h3>
-<ul><li>technically accurate</li><li>audience-appropriate</li><li>includes assumptions and dependencies</li><li>includes support/runbook content where needed</li><li>reviewed by named owner</li></ul>
-<h3 id="22-7-signoff-model">22.7 Signoff model</h3>
-<div class="table-wrap"><table><thead><tr><th>Artifact</th><th>Minimum Signoff</th></tr></thead><tbody><tr><td>Apex/LWC</td><td>Developer + lead reviewer</td></tr><tr><td>Architecture</td><td>Solution architect + security if relevant</td></tr><tr><td>Migration plan</td><td>Data lead + architect + release manager</td></tr><tr><td>Runbook</td><td>Support lead + technical owner</td></tr><tr><td>Release notes</td><td>Release manager + product owner</td></tr></tbody></table></div>
-<hr /></section>
-<section id="section-23-limitations-and-failure-modes"><h2 id="section-23-limitations-and-failure-modes">Section 23: Limitations and Failure Modes</h2>
-<h3 id="23-1-common-failure-modes">23.1 Common failure modes</h3>
-<ul><li>hallucinated Salesforce features</li><li>incorrect Apex syntax or unsupported methods</li><li>poor bulkification</li><li>incomplete edge case handling</li><li>misunderstanding org-specific patterns</li><li>outdated assumptions about platform capabilities</li><li>weak security assumptions</li><li>superficial test coverage</li><li>over-engineering or under-engineering</li></ul>
-<h3 id="23-2-mitigation-strategies">23.2 Mitigation strategies</h3>
-<div class="table-wrap"><table><thead><tr><th>Failure Mode</th><th>Mitigation</th></tr></thead><tbody><tr><td>hallucinated feature</td><td>verify against current Salesforce docs and org setup</td></tr><tr><td>unsafe code</td><td>code review + static analysis + tests</td></tr><tr><td>weak architecture</td><td>review with architect and existing standards</td></tr><tr><td>poor requirements interpretation</td><td>confirm assumptions explicitly</td></tr><tr><td>low-quality tests</td><td>add traceability and risk-based review</td></tr></tbody></table></div>
-<hr /></section>
-<section id="section-24-kpi-and-roi-framework"><h2 id="section-24-kpi-and-roi-framework">Section 24: KPI and ROI Framework</h2>
-<h3 id="24-1-suggested-kpi-areas">24.1 Suggested KPI areas</h3>
-<div class="table-wrap"><table><thead><tr><th>KPI Area</th><th>Example Measures</th></tr></thead><tbody><tr><td>Developer productivity</td><td>time to first draft, PR cycle time, test generation time</td></tr><tr><td>Delivery speed</td><td>story turnaround, design doc turnaround, release prep duration</td></tr><tr><td>Quality</td><td>escaped defect rate, regression coverage, code review findings</td></tr><tr><td>Documentation</td><td>doc completion time, onboarding time reduction</td></tr><tr><td>Support</td><td>MTTR, RCA turnaround, KB article creation time</td></tr><tr><td>Architecture consistency</td><td>exceptions to standards, rework due to design changes</td></tr></tbody></table></div>
-<h3 id="24-2-roi-framing">24.2 ROI framing</h3>
-<p>Measure AI value through:</p>
-<ul><li>hours saved on repetitive artifacts</li><li>reduced rework from better requirement clarity</li><li>faster onboarding of new team members</li><li>lower incident handling effort</li><li>improved delivery predictability</li></ul>
-<h3 id="24-3-sample-kpi-table">24.3 Sample KPI table</h3>
-<div class="table-wrap"><table><thead><tr><th>Metric</th><th>Baseline</th><th>Target After AI Adoption</th><th>Owner</th></tr></thead><tbody><tr><td>story drafting turnaround</td><td>2 days</td><td>4 hours</td><td>BA lead</td></tr><tr><td>first-pass TDD creation</td><td>3 days</td><td>1 day</td><td>architecture lead</td></tr><tr><td>Apex unit test drafting</td><td>6 hours</td><td>2 hours</td><td>dev lead</td></tr><tr><td>release note prep</td><td>4 hours</td><td>1 hour</td><td>release manager</td></tr><tr><td>RCA draft turnaround</td><td>1 day</td><td>2 hours</td><td>support lead</td></tr></tbody></table></div>
-<hr /></section>
-<section id="section-25-implementation-roadmap"><h2 id="section-25-implementation-roadmap">Section 25: Implementation Roadmap</h2>
-<h3 id="phase-1-individual-productivity">Phase 1: individual productivity</h3>
-<ul><li>Objectives: prove value safely</li><li>Actions: pilot with architects, senior devs, BAs</li><li>Owners: CoE lead, delivery lead</li><li>Success measures: faster artifact drafting, positive feedback</li><li>Risks: ungoverned usage, inflated expectations</li></ul>
-<h3 id="phase-2-team-standardization">Phase 2: team standardization</h3>
-<ul><li>Objectives: repeatable patterns</li><li>Actions: standard prompts, review checklists, role guidance</li><li>Owners: tech lead, BA lead, QA lead</li><li>Success measures: consistent artifact quality</li><li>Risks: inconsistent adoption</li></ul>
-<h3 id="phase-3-governance-and-templates">Phase 3: governance and templates</h3>
-<ul><li>Objectives: secure and auditable usage</li><li>Actions: acceptable use policy, redaction standards, prompt libraries</li><li>Owners: security, enterprise architecture, CoE</li><li>Success measures: approved usage model</li><li>Risks: over-restriction or under-control</li></ul>
-<h3 id="phase-4-scaled-enterprise-adoption">Phase 4: scaled enterprise adoption</h3>
-<ul><li>Objectives: multi-team rollout</li><li>Actions: training, approved use cases, KPI tracking, documentation repository</li><li>Owners: platform leadership</li><li>Success measures: measurable productivity and quality improvement</li><li>Risks: uneven maturity across teams</li></ul>
-<h3 id="phase-5-continuous-optimization">Phase 5: continuous optimization</h3>
-<ul><li>Objectives: improve prompts, controls, workflows</li><li>Actions: review KPIs, refine templates, expand safe use cases</li><li>Owners: CoE and delivery leadership</li><li>Success measures: sustained value and lower defects</li><li>Risks: stagnation, tool sprawl</li></ul>
-<hr /></section>
-<section id="section-26-recommended-operating-model"><h2 id="section-26-recommended-operating-model">Section 26: Recommended Operating Model</h2>
-<h3 id="26-1-where-each-tool-fits">26.1 Where each tool fits</h3>
-<div class="table-wrap"><table><thead><tr><th>Area</th><th>Codex</th><th>Claude</th></tr></thead><tbody><tr><td>repo-aware implementation</td><td>primary</td><td>secondary</td></tr><tr><td>architecture writing</td><td>secondary</td><td>primary</td></tr><tr><td>long-form documentation</td><td>secondary</td><td>primary</td></tr><tr><td>technical review from code</td><td>primary</td><td>secondary</td></tr><tr><td>workshop synthesis</td><td>secondary</td><td>primary</td></tr><tr><td>release communication</td><td>supporting</td><td>primary</td></tr></tbody></table></div>
-<h3 id="26-2-standard-operating-model">26.2 Standard operating model</h3>
-<ol><li>Use approved prompt templates.</li><li>Classify input data before using AI.</li><li>Keep implementation work traceable.</li><li>Require review for any production-impacting artifact.</li><li>Store validated outputs in controlled repositories.</li></ol>
-<h3 id="26-3-center-of-excellence-model">26.3 Center of excellence model</h3>
-<p>The Salesforce AI enablement CoE should own:</p>
-<ul><li>approved use cases</li><li>prompt library</li><li>review checklists</li><li>training</li><li>KPI reporting</li><li>vendor/policy coordination</li><li>maturity roadmap</li></ul>
-<h3 id="26-4-repository-and-documentation-practices">26.4 Repository and documentation practices</h3>
-<ul><li>keep AI-generated artifacts in version control</li><li>record human reviewer</li><li>tag templates and patterns as approved</li><li>maintain reference examples by domain</li></ul>
-<h3 id="26-5-training-model">26.5 Training model</h3>
-<ul><li>intro training for all delivery roles</li><li>advanced pattern training for architects/devs</li><li>security and prompt hygiene training for everyone</li><li>periodic refreshers based on incidents and lessons learned</li></ul>
-<hr /></section>
-<section id="section-27-final-recommendations"><h2 id="section-27-final-recommendations">Section 27: Final Recommendations</h2>
-<h3 id="27-1-when-to-start">27.1 When to start</h3>
-<p>Start now, but start narrowly. The right first move is not &quot;AI for everything.&quot; The right first move is a controlled pilot in a Salesforce workstream with visible repetitive effort.</p>
-<h3 id="27-2-what-to-pilot-first">27.2 What to pilot first</h3>
-<ul><li>user story and acceptance criteria drafting</li><li>architecture option summaries</li><li>Apex/LWC test generation</li><li>release notes and runbooks</li><li>incident RCA drafts</li></ul>
-<h3 id="27-3-what-not-to-do">27.3 What not to do</h3>
-<ul><li>do not paste secrets or raw customer-sensitive data</li><li>do not let AI define security or compliance unreviewed</li><li>do not treat AI output as production-ready by default</li><li>do not measure success only by token usage or number of prompts</li></ul>
-<h3 id="27-4-how-to-scale-safely">27.4 How to scale safely</h3>
-<ul><li>define approved use cases</li><li>standardize prompts and review checklists</li><li>train teams</li><li>track KPIs</li><li>review incidents and near misses</li><li>evolve the operating model deliberately</li></ul>
-<h3 id="27-5-final-balanced-recommendation">27.5 Final balanced recommendation</h3>
-<p>Codex and Claude should be adopted as complementary enterprise delivery tools for Salesforce, not as replacements for architecture judgment, development skill, or governance discipline. Codex is the stronger implementation engine when the work is code- and repo-centered. Claude is the stronger strategy and synthesis engine when the work is document-heavy, cross-functional, and conceptually broad. Used together under clear governance, they can improve delivery speed, raise quality, reduce documentation drag, strengthen support readiness, and create a more mature Salesforce engineering system.</p>
-<p>The real opportunity is not just writing code faster. It is running the full Salesforce lifecycle with better clarity, stronger artifacts, better review discipline, and more reusable team knowledge.</p>
-<hr /></section>
-<section id="appendix-a-enterprise-maturity-model"><h2 id="appendix-a-enterprise-maturity-model">Appendix A: Enterprise Maturity Model</h2>
-<div class="table-wrap"><table><thead><tr><th>Level</th><th>Description</th></tr></thead><tbody><tr><td>Level 1</td><td>Individual ad hoc use, no standards</td></tr><tr><td>Level 2</td><td>Team templates and repeated prompt usage</td></tr><tr><td>Level 3</td><td>Governance, review checklists, approved use cases</td></tr><tr><td>Level 4</td><td>Cross-team operating model and KPI tracking</td></tr><tr><td>Level 5</td><td>Continuous optimization and CoE-led enterprise enablement</td></tr></tbody></table></div></section>
-<section id="appendix-b-human-review-required-notes"><h2 id="appendix-b-human-review-required-notes">Appendix B: Human Review Required Notes</h2>
-<ul><li>Human review required for all code, architecture, security, migration, release, and support RCA outputs.</li><li>Human review required before any externally shared stakeholder or customer-facing communication.</li><li>Human review required whenever assumptions touch regulatory, contractual, or legal interpretation.</li></ul></section>
-<section id="appendix-c-practical-anti-patterns"><h2 id="appendix-c-practical-anti-patterns">Appendix C: Practical Anti-Patterns</h2>
-<ul><li>Asking AI for &quot;best practice&quot; without org or business context</li><li>Generating code without test and review prompts</li><li>Using AI to justify decisions already made politically</li><li>Copying production data into prompts because it is &quot;faster&quot;</li><li>Publishing AI-generated documentation without technical owner signoff</li></ul></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-documentation-operations-and-prompts.html">Previous: Codex and Claude for Salesforce Documentation and Prompts</a> <a class="button button-primary" href="/">Back to guide home</a></div></section>
-<section class="related-content">
-  <h2>Related tools</h2>
-  <ul>
-      <li><a href="/tools/json-viewer.html">JSON Viewer - Inspect structured payloads, prompts, and API responses in a readable tree.</a></li>
-      <li><a href="/tools/json-to-toon-converter.html">JSON to TOON Converter - Transform structured JSON into compact prompt-ready TOON output.</a></li>
-  </ul>
-
-  <h2>Related articles</h2>
-  <ul>
-      <li><a href="/articles/best-ai-tools-guide.html">Best AI Tools in 2026</a></li>
-      <li><a href="/articles/chatgpt-prompts-guide.html">Best ChatGPT Prompts for Work, Writing, and Coding</a></li>
-      <li><a href="/articles/salesforce-ai-tools-comparison.html">Best AI Tools for Salesforce Developers</a></li>
-  </ul>
-</section></article></div></main><footer class="pulsagi-article-footer">
-  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
-</footer></div>
-</body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation"><a class="nav-brand" href="/">Pulsagi</a><ul class="site-nav-list"><li><a href="/">Home</a></li><li><a href="/#about">About</a></li><li><a href="/tools/">Tools</a></li><li><a href="/articles/" aria-current="page">Articles</a></li></ul></nav>
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Governance and Rollout</div>
+        <h1 class="article-title">Codex vs Claude for Salesforce AI Governance and Roadmap</h1>
+        <p class="article-standfirst">A practical guide for enterprise architects, platform owners, security teams, and delivery leaders building a safe operating model for Codex and Claude inside Salesforce delivery programs.</p>
+        <div class="reading-meta"><span>13 min read</span><span>Updated May 2, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="hero-visual article-hero-media">
+        <img src="assets/images/salesforce/codex-claude-salesforce-governance-roadmap-and-appendices.png" alt="Codex vs Claude for Salesforce AI governance and roadmap comparison infographic" loading="eager" width="1536" height="1024" />
+        <p>This visual focuses on governance themes such as security, privacy, explainability, operational controls, rollout planning, and safe Salesforce AI adoption.</p>
+      </div>
+    </section>
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents"><h2>Table of contents</h2><ol><li><a href="#introduction">Why governance matters</a></li><li><a href="#model">Operating model and controls</a></li><li><a href="#security">Security, compliance, and quality</a></li><li><a href="#roadmap">Adoption roadmap and KPIs</a></li><li><a href="#limitations">Limitations and failure modes</a></li><li><a href="#recommendation">Recommendation</a></li></ol></aside>
+      <article class="content-card doc-content">
+        <section id="introduction">
+          <h2>Why governance matters</h2>
+          <p>AI creates the most value in Salesforce when teams standardize how they use it. Without governance, the same tool that speeds up design and coding can also leak sensitive data, create unreviewed automation, or publish polished but inaccurate documentation. Governance is what turns experimentation into a repeatable delivery capability.</p>
+          <p>Codex and Claude do not need radically different security policies, but they do need different usage guidance. Codex is closer to implementation and code execution. Claude is closer to large-context synthesis and communication. The review checkpoints should reflect that difference.</p>
+        </section>
+        <section id="model">
+          <h2>Operating model and controls</h2>
+          <p>A workable Salesforce AI operating model should define approved use cases, prohibited inputs, signoff rules, and role-specific guidance. Admins, developers, architects, QA, and support teams do not all need the same AI playbook.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Control area</th><th>What good looks like</th></tr></thead>
+              <tbody>
+                <tr><td>Acceptable use</td><td>Clear guidance on where AI can draft, where it can assist, and where humans must decide</td></tr>
+                <tr><td>Data handling</td><td>No secrets, no raw tokens, and no unnecessary production data in prompts</td></tr>
+                <tr><td>Review model</td><td>Mandatory review for code, automation, security design, migration plans, and stakeholder communication</td></tr>
+                <tr><td>Template library</td><td>Approved prompt patterns for stories, architecture, tests, release notes, and support</td></tr>
+                <tr><td>Traceability</td><td>Store validated outputs in version control or a controlled documentation repository</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="security">
+          <h2>Security, compliance, and quality</h2>
+          <p>Salesforce programs often touch customer data, pricing, case history, regulated workflows, or integration credentials. That means AI governance has to start with data classification and prompt hygiene.</p>
+          <ul>
+            <li>Never paste secrets, certificates, or access tokens into prompts.</li>
+            <li>Redact or minimize production data, especially when PII or sensitive business context is involved.</li>
+            <li>Require named human signoff for Apex, Flow, sharing design, external auth, and customer-facing communication.</li>
+            <li>Audit recurring AI workflows so teams know which prompts and outputs are approved.</li>
+          </ul>
+          <div class="callout"><strong>Admin perspective:</strong> protect user data and access assumptions. <strong>Developer perspective:</strong> protect code integrity, credentials, and technical review quality.</div>
+        </section>
+        <section id="roadmap">
+          <h2>Adoption roadmap and KPIs</h2>
+          <p>Most teams should not roll AI out to every Salesforce workstream at once. A better sequence is to start with low-risk drafting and review support, then expand into implementation and operational use once prompt patterns and review controls are stable.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Phase</th><th>Recommended focus</th><th>Success measure</th></tr></thead>
+              <tbody>
+                <tr><td>Pilot</td><td>Stories, architecture summaries, test cases, release notes</td><td>Faster drafting without quality drop</td></tr>
+                <tr><td>Standardize</td><td>Prompt templates, review checklists, role guidance</td><td>Repeatable outputs across teams</td></tr>
+                <tr><td>Scale</td><td>Implementation support, QA acceleration, support workflows</td><td>Measured time savings and lower rework</td></tr>
+                <tr><td>Optimize</td><td>KPI review, incident learning, better templates</td><td>Sustained value with controlled risk</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Useful KPIs include story turnaround time, first-pass design document completion time, test drafting time, release-note preparation time, onboarding speed, and RCA turnaround time. The goal is not prompt volume. The goal is better delivery economics with controlled risk.</p>
+        </section>
+        <section id="limitations">
+          <h2>Limitations and failure modes</h2>
+          <ul>
+            <li>Fluent output can hide weak assumptions.</li>
+            <li>Unreviewed AI code can create security or bulkification defects.</li>
+            <li>Business summaries can sound persuasive while missing org-specific constraints.</li>
+            <li>Over-reliance on one tool can make teams skip technical or operational validation.</li>
+          </ul>
+          <p>These are not reasons to avoid AI. They are reasons to put guardrails around it.</p>
+        </section>
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Adopt Codex and Claude as complementary capabilities inside a governed Salesforce delivery model. Use Claude where synthesis, communication, and broad reasoning matter. Use Codex where implementation, repository context, review, and execution matter. Standardize prompts, review rules, and signoff paths before you try to scale usage enterprise-wide.</p>
+        </section>
+        <section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-documentation-operations-and-prompts.html">Previous: Codex vs Claude for Salesforce Documentation, Support, and Prompts</a> <a class="button button-primary" href="/articles/">Back to articles</a></div></section>
+        <section class="related-content"><h2>Related tools</h2><ul><li><a href="/tools/json-viewer.html">JSON Viewer - Inspect structured governance and prompt artifacts.</a></li><li><a href="/tools/scam-checker.html">Scam Checker - Useful when teaching teams how to review unsafe links or phishing-like content.</a></li></ul><h2>Related articles</h2><ul><li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li><li><a href="/articles/salesforce-ai-tools-comparison.html">Best AI Tools for Salesforce Developers</a></li><li><a href="/articles/codex-claude-salesforce-overview.html">Codex vs Claude for Salesforce Teams</a></li></ul></section>
+      </article>
+    </div>
+  </main>
+  <footer class="pulsagi-article-footer"><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
+</div>
+</body>
+</html>

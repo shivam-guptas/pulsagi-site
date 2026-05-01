@@ -81,12 +81,12 @@ The articles directory is sorted newest first and includes search: https://pulsa
 - **QClaw Explained: Tencent AI Agent Platform** (Mar 18, 2026): https://pulsagi.com/articles/qclaw-explained.html
 - **Salesforce Approval Process vs Flow Approval** (Mar 13, 2026): https://pulsagi.com/articles/salesforce-approval-vs-flow-approval.html
 - **Best AI Tools for Salesforce Developers** (Mar 12, 2026): https://pulsagi.com/articles/salesforce-ai-tools-comparison.html
-- **Codex and Claude for Salesforce Admin and Automation** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html
-- **Codex and Claude for Salesforce Discovery and Architecture** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html
-- **Codex and Claude for Salesforce Documentation and Prompts** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html
-- **Codex and Claude for Salesforce Governance and Roadmap** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html
-- **Codex and Claude for Salesforce Integrations and Delivery** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html
-- **Codex and Claude for Salesforce Overview and Lifecycle** (Mar 11, 2026): https://pulsagi.com/articles/codex-claude-salesforce-overview.html
+- **Codex vs Claude for Salesforce Admin, Apex, LWC, and Flow** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html
+- **Codex vs Claude for Salesforce Discovery and Architecture** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html
+- **Codex vs Claude for Salesforce Documentation, Support, and Prompts** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html
+- **Codex vs Claude for Salesforce AI Governance and Roadmap** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html
+- **Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html
+- **Codex vs Claude for Salesforce Teams** (May 2, 2026): https://pulsagi.com/articles/codex-claude-salesforce-overview.html
 - **Best SaaS Tools by Category in 2026** (Feb 20, 2026): https://pulsagi.com/articles/saas-tools-list-guide.html
 - **Best No-Code Tools in 2026** (Feb 16, 2026): https://pulsagi.com/articles/no-code-tools-guide.html
 - **Best Automation Tools in 2026** (Feb 12, 2026): https://pulsagi.com/articles/automation-tools-guide.html

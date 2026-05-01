@@ -1,225 +1,135 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.svg" sizes="any" />
-            <title>Codex and Claude for Salesforce Delivery | Pulsagi</title>
-  <meta name="description" content="Codex and Claude can accelerate Salesforce integration design, data migration, release planning, QA, and delivery reviews without replacing human judgment." />
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  <title>Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery | Pulsagi</title>
+  <meta name="description" content="Codex vs Claude for Salesforce integrations, data migration, QA, DevOps, and release delivery, including best practices, limitations, and practical recommendations." />
+  <meta name="keywords" content="salesforce integration ai, codex vs claude salesforce integration, salesforce devops ai, salesforce qa ai, salesforce release management ai, salesforce migration ai, salesforce named credentials ai, salesforce testing ai" />
   <link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html" />
-  <meta property="og:title" content="Codex and Claude for Salesforce Delivery" />
-  <meta property="og:description" content="Codex and Claude can accelerate Salesforce integration design, data migration, release planning, QA, and delivery reviews without replacing human judgment." />
+  <meta property="og:title" content="Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery" />
+  <meta property="og:description" content="A practical Salesforce guide to using Codex and Claude for integrations, migration, testing, and release delivery." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-integrations-quality-and-delivery.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Codex and Claude for Salesforce Delivery" />
-  <meta name="twitter:description" content="Codex and Claude can accelerate Salesforce integration design, data migration, release planning, QA, and delivery reviews without replacing human judgment." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+  <meta name="twitter:title" content="Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery" />
+  <meta name="twitter:description" content="A practical Salesforce guide to using Codex and Claude for integrations, migration, testing, and release delivery." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-integrations-quality-and-delivery.png" />
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "Article",
-    "headline":  "Codex and Claude for Salesforce Delivery",
-    "description":  "Codex and Claude can accelerate Salesforce integration design, data migration, release planning, QA, and delivery reviews without replacing human judgment.",
-    "author":  {
-                   "@type":  "Person",
-                   "name":  "Shivam Gupta",
-                   "url":  "https://shivam.pulsagi.com"
-               },
-    "publisher":  {
-                      "@type":  "Organization",
-                      "name":  "Pulsagi",
-                      "url":  "https://pulsagi.com"
-                  },
-    "datePublished":  "2026-03-11",
-    "dateModified":  "2026-05-01",
-    "url":  "https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html"
-}
+{"@context":"https://schema.org","@type":"Article","headline":"Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery","description":"Codex vs Claude for Salesforce integrations, data migration, QA, DevOps, and release delivery, including best practices, limitations, and practical recommendations.","author":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"datePublished":"2026-03-11","dateModified":"2026-05-02","url":"https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html"}
   </script>
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "BreadcrumbList",
-    "itemListElement":  [
-                            {
-                                "@type":  "ListItem",
-                                "position":  1,
-                                "name":  "Home",
-                                "item":  "https://pulsagi.com/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  2,
-                                "name":  "Articles",
-                                "item":  "https://pulsagi.com/articles/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  3,
-                                "name":  "Codex and Claude for Salesforce Delivery",
-                                "item":  "https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html"
-                            }
-                        ]
-}
-  </script><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript><!-- Google tag (gtag.js) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-S55MNPYJF8');
-</script>  <link rel="stylesheet" href="assets/article-site.css" />
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://pulsagi.com/articles/"},{"@type":"ListItem","position":3,"name":"Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery","item":"https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html"}]}
+  </script>
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <style>.reference-list{padding-left:22px}.reference-list li+li{margin-top:10px}</style>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-  <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="site-nav" aria-label="Main navigation">
-  <a class="nav-brand" href="/">Pulsagi</a>
-  <ul class="site-nav-list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/tools/">Tools</a></li>
-    <li><a href="/articles/" aria-current="page">Articles</a></li>
-  </ul>
-</nav>
-<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Codex and Claude for Salesforce Delivery</h1><p class="article-standfirst">Integration architecture, migration, DevOps, release management, and QA/testing.</p><div class="reading-meta"><span>16 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-11-use-in-integrations">Section 11: Use in Integrations</a></li><li><a href="#section-12-use-in-data-migration-and-data-quality">Section 12: Use in Data Migration and Data Quality</a></li><li><a href="#section-13-use-in-devops-releases-and-environment-management">Section 13: Use in DevOps, Releases, and Environment Management</a></li><li><a href="#section-14-use-in-qa-and-testing">Section 14: Use in QA and Testing</a></li></ol></aside><article class="content-card doc-content"><section id="section-11-use-in-integrations"><h2 id="section-11-use-in-integrations">Section 11: Use in Integrations</h2>
-<h3 id="11-1-ai-support-areas">11.1 AI support areas</h3>
-<ul><li>API design</li><li>payload mapping</li><li>JSON schema generation</li><li>authentication pattern explanation</li><li>named credentials planning</li><li>sequence diagrams</li><li>retry/error handling</li><li>logging strategy</li><li>event-driven architecture</li><li>webhook handling</li><li>middleware collaboration</li></ul>
-<h3 id="11-2-integration-examples">11.2 Integration examples</h3>
-<p>#### Loan origination system</p>
-<p>AI can help define:</p>
-<ul><li>application creation payload</li><li>underwriting update events</li><li>idempotent retry strategy</li><li>reconciliation rules</li></ul>
-<p>#### Payment gateway</p>
-<p>AI can help define:</p>
-<ul><li>tokenized payment flow</li><li>safe error categories</li><li>PCI-sensitive fields to never expose</li></ul>
-<p>#### Identity provider</p>
-<p>AI can help with:</p>
-<ul><li>SSO/SAML/OIDC explanation</li><li>user provisioning flow</li><li>role mapping model</li></ul>
-<p>#### ERP integration</p>
-<p>AI can generate:</p>
-<ul><li>account/order/invoice mapping sheets</li><li>ownership matrix</li><li>sync frequency tradeoffs</li></ul>
-<p>#### Communication tools</p>
-<p>AI can design:</p>
-<ul><li>SMS/email event flow</li><li>consent checks</li><li>communication logging strategy</li><li>campaign response integration patterns for marketing operations</li><li>audience segmentation data handoff guidance</li></ul>
-<h3 id="11-3-mulesoft-and-api-led-guidance">11.3 MuleSoft and API-led guidance</h3>
-<p>Where MuleSoft or another middleware layer exists, AI can help define:</p>
-<ul><li>experience, process, and system API separation</li><li>ownership of transformation logic</li><li>replay and dead-letter handling</li><li>API versioning policy</li><li>support model between Salesforce, middleware, and source systems</li></ul>
-<h3 id="11-4-sequence-diagram-prompt">11.4 Sequence diagram prompt</h3>
-<pre><code class="language-text">Create a text sequence diagram for Salesforce integrating with ERP for order fulfillment.
-Include:
-- order created in Salesforce
-- middleware transformation
-- ERP acknowledgment
-- failure handling
-- retry
-- status update back into Salesforce</code></pre>
-<h3 id="11-5-integration-checklist">11.5 Integration checklist</h3>
-<ul><li>What is the system of record?</li><li>Is the pattern sync or async?</li><li>How are retries handled?</li><li>Is idempotency required?</li><li>What gets logged?</li><li>Who owns schema changes?</li><li>What is the timeout strategy?</li><li>What is the support model?</li></ul>
-<hr /></section>
-<section id="section-12-use-in-data-migration-and-data-quality"><h2 id="section-12-use-in-data-migration-and-data-quality">Section 12: Use in Data Migration and Data Quality</h2>
-<h3 id="12-1-high-value-uses">12.1 High-value uses</h3>
-<ul><li>source-to-target mapping drafts</li><li>cleansing rules</li><li>dedupe logic</li><li>validation planning</li><li>sequencing plans</li><li>mock datasets</li><li>UAT data strategy</li><li>data quality dashboards</li><li>reconciliation logic</li><li>cutover and rollback planning</li></ul>
-<h3 id="12-2-example-prompt">12.2 Example prompt</h3>
-<pre><code class="language-text">Act as a Salesforce data migration architect.
-Create a source-to-target mapping and migration checklist for:
-- legacy customer table
-- contact table
-- loan table
-- communication preference table
-
-Target: Salesforce Account, Contact, Opportunity, custom Loan__c
-Include:
-- transformations
-- default values
-- dedupe rules
-- validation rules impact
-- load sequence
-- reconciliation checks</code></pre>
-<h3 id="12-3-migration-operating-principles">12.3 Migration operating principles</h3>
-<ul><li>migrate reference data before transactional data</li><li>define survivorship rules early</li><li>plan for inactive/archived records</li><li>separate cleansing from loading</li><li>define reconciliation reports before cutover</li></ul>
-<h3 id="12-4-data-quality-dashboard-ideas">12.4 Data quality dashboard ideas</h3>
-<ul><li>duplicate rate by source</li><li>mandatory field completeness</li><li>invalid email rate</li><li>orphan child records</li><li>status value normalization coverage</li></ul>
-<hr /></section>
-<section id="section-13-use-in-devops-releases-and-environment-management"><h2 id="section-13-use-in-devops-releases-and-environment-management">Section 13: Use in DevOps, Releases, and Environment Management</h2>
-<h3 id="13-1-ai-use-cases">13.1 AI use cases</h3>
-<ul><li>deployment plans</li><li>package manifest drafts</li><li>change risk summaries</li><li>release notes</li><li>regression scope identification</li><li>environment readiness checklists</li><li>user communication drafts</li><li>backout plans</li><li>branching strategy guidance</li><li>CI/CD explanation</li><li>Copado process documentation</li></ul>
-<h3 id="13-2-example-prompt">13.2 Example prompt</h3>
-<pre><code class="language-text">Given this deployment scope, generate:
-1. deployment checklist
-2. pre-deploy validation
-3. smoke test scope
-4. rollback plan
-5. support notification draft
-6. release note summary for business users</code></pre>
-<h3 id="13-3-release-manager-checklist">13.3 Release manager checklist</h3>
-<ul><li>metadata validated in lower environments</li><li>permission changes reviewed</li><li>data scripts sequenced</li><li>smoke tests agreed</li><li>backout criteria defined</li><li>support team briefed</li><li>user communication approved</li></ul>
-<h3 id="13-4-merge-conflict-help">13.4 Merge conflict help</h3>
-<p>AI can explain:</p>
-<ul><li>why metadata conflicts happened</li><li>which profile/permission set merges are risky</li><li>how to compare Flow versions safely</li><li>how to isolate high-risk deployment components</li></ul>
-<hr /></section>
-<section id="section-14-use-in-qa-and-testing"><h2 id="section-14-use-in-qa-and-testing">Section 14: Use in QA and Testing</h2>
-<h3 id="14-1-core-uses">14.1 Core uses</h3>
-<ul><li>test scenario generation</li><li>test case generation</li><li>negative testing</li><li>edge-case identification</li><li>regression suite planning</li><li>UAT scripts</li><li>defect summary creation</li><li>traceability matrix drafts</li><li>risk-based testing plans</li><li>automation test ideas</li></ul>
-<h3 id="14-2-example-scenarios">14.2 Example scenarios</h3>
-<div class="table-wrap"><table><thead><tr><th>Process</th><th>QA Questions AI Can Help Generate</th></tr></thead><tbody><tr><td>Lead conversion</td><td>What happens if duplicate account exists, required fields missing, owner inactive, or integration unavailable?</td></tr><tr><td>Contact creation</td><td>What if dedupe triggers, phone invalid, user lacks permission, or flow faults?</td></tr><tr><td>Case escalation</td><td>What if entitlement missing, queue full, SLA timestamp null, or omni-channel unavailable?</td></tr><tr><td>Approval process</td><td>What if delegated approver absent, approval recalled, or threshold changed mid-flight?</td></tr><tr><td>API failure handling</td><td>What if external timeout occurs, duplicate retry happens, or partial response returns?</td></tr></tbody></table></div>
-<h3 id="14-3-prompt-example">14.3 Prompt example</h3>
-<pre><code class="language-text">Generate a risk-based test suite for Salesforce lead conversion.
-Include:
-- happy path
-- negative path
-- edge cases
-- permission-based scenarios
-- integration dependencies
-- regression priorities
-- suggested automation candidates</code></pre>
-<h3 id="14-4-human-review-required">14.4 Human review required</h3>
-<ul><li>QA leads must validate business risk ranking.</li><li>Test data assumptions must match actual org rules.</li><li>AI-generated test coverage is not a substitute for domain expertise.</li></ul>
-<hr /></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-admin-development-and-automation.html">Previous: Codex and Claude for Salesforce Admin and Automation</a> <a class="button button-primary" href="codex-claude-salesforce-documentation-operations-and-prompts.html">Next: Codex and Claude for Salesforce Documentation and Prompts</a></div></section>
-<section class="related-content">
-  <h2>Related tools</h2>
-  <ul>
-      <li><a href="/tools/json-viewer.html">JSON Viewer - Inspect structured payloads, prompts, and API responses in a readable tree.</a></li>
-      <li><a href="/tools/json-to-toon-converter.html">JSON to TOON Converter - Transform structured JSON into compact prompt-ready TOON output.</a></li>
-  </ul>
-
-  <h2>Related articles</h2>
-  <ul>
-      <li><a href="/articles/best-ai-tools-guide.html">Best AI Tools in 2026</a></li>
-      <li><a href="/articles/chatgpt-prompts-guide.html">Best ChatGPT Prompts for Work, Writing, and Coding</a></li>
-      <li><a href="/articles/salesforce-ai-tools-comparison.html">Best AI Tools for Salesforce Developers</a></li>
-  </ul>
-</section></article></div></main><footer class="pulsagi-article-footer">
-  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
-</footer></div>
-</body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation"><a class="nav-brand" href="/">Pulsagi</a><ul class="site-nav-list"><li><a href="/">Home</a></li><li><a href="/#about">About</a></li><li><a href="/tools/">Tools</a></li><li><a href="/articles/" aria-current="page">Articles</a></li></ul></nav>
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Delivery and Operations</div>
+        <h1 class="article-title">Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery</h1>
+        <p class="article-standfirst">A practical guide for integration leads, release managers, QA teams, and Salesforce developers using AI to improve mapping, migration, testing, deployment planning, and support readiness.</p>
+        <div class="reading-meta"><span>12 min read</span><span>Updated May 2, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="hero-visual article-hero-media">
+        <img src="assets/images/salesforce/codex-claude-salesforce-integrations-quality-and-delivery.png" alt="Codex vs Claude for Salesforce integrations, QA, DevOps, and delivery comparison infographic" loading="eager" width="1536" height="1024" />
+        <p>This visual compares how Codex and Claude support Salesforce integration work, migration, QA, DevOps automation, release planning, and support handover.</p>
+      </div>
+    </section>
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents"><h2>Table of contents</h2><ol><li><a href="#introduction">Why this stage matters</a></li><li><a href="#integrations">Integration design and delivery</a></li><li><a href="#data">Migration and data quality</a></li><li><a href="#qa">QA, DevOps, and release work</a></li><li><a href="#best-practices">Best practices and limitations</a></li><li><a href="#recommendation">Recommendation</a></li></ol></aside>
+      <article class="content-card doc-content">
+        <section id="introduction">
+          <h2>Why this stage matters</h2>
+          <p>Integrations, migration, QA, and release delivery are where Salesforce teams usually pay for weak design decisions. This is also where AI can create strong value if used with discipline. The work is structured enough for automation support, but high-risk enough that careless AI output can be expensive.</p>
+          <p>Claude is useful for mapping the end-to-end story: system ownership, retry logic, support model, release communications, and test strategy. Codex becomes especially useful when implementation detail matters, such as payload handling, callout structure, metadata changes, deployment scripts, and code-level risk review.</p>
+        </section>
+        <section id="integrations">
+          <h2>Integration design and delivery</h2>
+          <p>Salesforce integrations involve more than payload samples. The important questions are usually around system of record, error handling, authentication, observability, and ownership. Claude helps teams express those decisions clearly. Codex helps validate whether the implementation can support them cleanly.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Integration concern</th><th>Where AI helps</th></tr></thead>
+              <tbody>
+                <tr><td>Payload mapping</td><td>Draft field mappings, default values, and transformation notes</td></tr>
+                <tr><td>Sync versus async design</td><td>Compare latency, retry, and support tradeoffs</td></tr>
+                <tr><td>Error handling</td><td>Define business errors, technical errors, and escalation paths</td></tr>
+                <tr><td>Authentication</td><td>Explain secure use of Named Credentials and external credential models</td></tr>
+                <tr><td>Support ownership</td><td>Clarify who owns failures across Salesforce, middleware, and source systems</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>From an admin perspective, AI can help keep integration requirements readable. From a developer perspective, Codex is more useful when the team needs to reason about callouts, event processing, retries, mocks, and unit-test isolation.</p>
+        </section>
+        <section id="data">
+          <h2>Migration and data quality</h2>
+          <p>Migration work benefits from AI because it is repetitive and document-heavy. Mapping sheets, load sequences, validation impacts, and reconciliation logic all have strong AI support potential. But migration is also where wrong assumptions can create business damage quickly.</p>
+          <ul>
+            <li>Use AI to draft source-to-target mapping logic and transformation rules.</li>
+            <li>Use AI to identify dedupe strategies, default value decisions, and data survivorship rules.</li>
+            <li>Use AI to build cutover and reconciliation checklists before the load begins.</li>
+            <li>Do not let AI invent business meaning for unclear source values without human confirmation.</li>
+          </ul>
+          <div class="callout"><strong>Migration principle:</strong> AI is good at structure and completeness. Humans still need to own business semantics and signoff.</div>
+        </section>
+        <section id="qa">
+          <h2>QA, DevOps, and release work</h2>
+          <p>Testing and release preparation are some of the most practical Salesforce AI use cases. Claude can draft risk-based test suites, UAT scripts, smoke-test packs, and stakeholder-ready release notes. Codex is better for diff review, code-level risk analysis, metadata inspection, and technical validation of what actually changed.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Delivery task</th><th>Best use of AI</th></tr></thead>
+              <tbody>
+                <tr><td>Regression planning</td><td>Generate edge cases, role-based scenarios, and integration-failure coverage</td></tr>
+                <tr><td>Release checklist</td><td>Draft pre-deploy checks, smoke tests, backout criteria, and stakeholder communications</td></tr>
+                <tr><td>Metadata risk review</td><td>Highlight high-risk Flows, permissions, data scripts, and integration touchpoints</td></tr>
+                <tr><td>Support handoff</td><td>Create deployment summaries, known issues, and rollback context for operations teams</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="best-practices">
+          <h2>Best practices and limitations</h2>
+          <ul>
+            <li>Always ask AI to separate technical failure from business impact.</li>
+            <li>Require explicit retry, timeout, logging, and support ownership thinking in integration designs.</li>
+            <li>For QA, ask for positive, negative, role-based, and integration-dependent scenarios.</li>
+            <li>For releases, ask for rollback conditions and communication drafts, not only deployment steps.</li>
+            <li>Never trust generated migration assumptions without source-data validation.</li>
+          </ul>
+          <p>The biggest limitation is false completeness. AI can produce a good-looking release or migration artifact that still misses one critical org-specific dependency. That is why technical and operational signoff still matters.</p>
+        </section>
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Use Claude to structure the delivery story: system boundaries, business impact, test strategy, and release communication. Use Codex when the team needs exact technical review, implementation alignment, or defect isolation. For Salesforce delivery, that combination is more reliable than trying to force one tool to handle every stage equally well.</p>
+        </section>
+        <section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-admin-development-and-automation.html">Previous: Codex vs Claude for Salesforce Admin, Apex, LWC, and Flow</a> <a class="button button-primary" href="codex-claude-salesforce-documentation-operations-and-prompts.html">Next: Codex vs Claude for Salesforce Documentation, Support, and Prompts</a></div></section>
+        <section class="related-content"><h2>Related tools</h2><ul><li><a href="/tools/json-viewer.html">JSON Viewer - Inspect API payloads and integration responses.</a></li><li><a href="/tools/apex-log-analyzer.html">Apex Log Analyzer - Review technical errors before release or RCA.</a></li></ul><h2>Related articles</h2><ul><li><a href="/articles/devops-center-guide.html">DevOps Center in Salesforce</a></li><li><a href="/articles/named-credentials-and-external-credentials.html">Named Credentials and External Credentials</a></li><li><a href="/articles/codex-claude-salesforce-documentation-operations-and-prompts.html">Codex vs Claude for Salesforce Documentation, Support, and Prompts</a></li></ul></section>
+      </article>
+    </div>
+  </main>
+  <footer class="pulsagi-article-footer"><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
+</div>
+</body>
+</html>

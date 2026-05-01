@@ -1,336 +1,135 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" href="/favicon.svg" sizes="any" />
-            <title>Codex and Claude for Salesforce Documentation | Pulsagi</title>
-  <meta name="description" content="Codex and Claude help Salesforce teams produce documentation, support runbooks, leadership updates, adoption guidance, and reusable prompt libraries faster." />
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+  <title>Codex vs Claude for Salesforce Documentation, Support, and Prompts | Pulsagi</title>
+  <meta name="description" content="Codex vs Claude for Salesforce documentation, support operations, leadership communication, and prompt engineering, with practical guidance and references." />
+  <meta name="keywords" content="salesforce prompt engineering ai, salesforce documentation ai, salesforce support ai, codex vs claude salesforce prompts, salesforce runbook ai, salesforce release notes ai, salesforce support operations ai" />
   <link rel="canonical" href="https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html" />
-  <meta property="og:title" content="Codex and Claude for Salesforce Documentation" />
-  <meta property="og:description" content="Codex and Claude help Salesforce teams produce documentation, support runbooks, leadership updates, adoption guidance, and reusable prompt libraries faster." />
+  <meta property="og:title" content="Codex vs Claude for Salesforce Documentation, Support, and Prompts" />
+  <meta property="og:description" content="A practical Salesforce guide to using Codex and Claude for documentation, support, prompt engineering, and operational communication." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html" />
-  <meta property="og:image" content="https://pulsagi.com/og-default.png" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-documentation-operations-and-prompts.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Codex and Claude for Salesforce Documentation" />
-  <meta name="twitter:description" content="Codex and Claude help Salesforce teams produce documentation, support runbooks, leadership updates, adoption guidance, and reusable prompt libraries faster." />
-  <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
+  <meta name="twitter:title" content="Codex vs Claude for Salesforce Documentation, Support, and Prompts" />
+  <meta name="twitter:description" content="A practical Salesforce guide to using Codex and Claude for documentation, support, prompt engineering, and operational communication." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/codex-claude-salesforce-documentation-operations-and-prompts.png" />
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "Article",
-    "headline":  "Codex and Claude for Salesforce Documentation",
-    "description":  "Codex and Claude help Salesforce teams produce documentation, support runbooks, leadership updates, adoption guidance, and reusable prompt libraries faster.",
-    "author":  {
-                   "@type":  "Person",
-                   "name":  "Shivam Gupta",
-                   "url":  "https://shivam.pulsagi.com"
-               },
-    "publisher":  {
-                      "@type":  "Organization",
-                      "name":  "Pulsagi",
-                      "url":  "https://pulsagi.com"
-                  },
-    "datePublished":  "2026-03-11",
-    "dateModified":  "2026-05-01",
-    "url":  "https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html"
-}
+{"@context":"https://schema.org","@type":"Article","headline":"Codex vs Claude for Salesforce Documentation, Support, and Prompts","description":"Codex vs Claude for Salesforce documentation, support operations, leadership communication, and prompt engineering, with practical guidance and references.","author":{"@type":"Person","name":"Shivam Gupta","url":"https://shivam.pulsagi.com"},"publisher":{"@type":"Organization","name":"Pulsagi","url":"https://pulsagi.com"},"datePublished":"2026-03-11","dateModified":"2026-05-02","url":"https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html"}
   </script>
   <script type="application/ld+json">
-{
-    "@context":  "https://schema.org",
-    "@type":  "BreadcrumbList",
-    "itemListElement":  [
-                            {
-                                "@type":  "ListItem",
-                                "position":  1,
-                                "name":  "Home",
-                                "item":  "https://pulsagi.com/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  2,
-                                "name":  "Articles",
-                                "item":  "https://pulsagi.com/articles/"
-                            },
-                            {
-                                "@type":  "ListItem",
-                                "position":  3,
-                                "name":  "Codex and Claude for Salesforce Documentation",
-                                "item":  "https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html"
-                            }
-                        ]
-}
-  </script><meta name="author" content="Shivam Gupta" /><meta name="robots" content="index, follow" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript><!-- Google tag (gtag.js) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-S55MNPYJF8');
-</script>  <link rel="stylesheet" href="assets/article-site.css" />
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pulsagi.com/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://pulsagi.com/articles/"},{"@type":"ListItem","position":3,"name":"Codex vs Claude for Salesforce Documentation, Support, and Prompts","item":"https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html"}]}
+  </script>
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <style>.reference-list{padding-left:22px}.reference-list li+li{margin-top:10px}</style>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
   <link rel="stylesheet" href="assets/article-mobile-first.css" />
   <link rel="stylesheet" href="assets/guide.css" />
   <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
   <link rel="stylesheet" href="../assets/site-nav.css" />
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-  <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) --><div class="shell"><nav class="site-nav" aria-label="Main navigation">
-  <a class="nav-brand" href="/">Pulsagi</a>
-  <ul class="site-nav-list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/tools/">Tools</a></li>
-    <li><a href="/articles/" aria-current="page">Articles</a></li>
-  </ul>
-</nav>
-<main class="page-shell article-page"><section class="article-hero doc-hero"><div class="article-hero-copy"><div class="eyebrow">Enterprise Guide  -  Codex and Claude in Salesforce</div><h1 class="article-title">Codex and Claude for Salesforce Documentation</h1><p class="article-standfirst">Documentation, support, leadership usage, role-based adoption, and reusable prompt patterns.</p><div class="reading-meta"><span>18 min read</span><span>Updated March 11, 2026</span><span>By Shivam Gupta</span></div></div><div class="article-hero-media doc-hero-panel"><div class="hero-metrics"><div class="metric"><strong>6</strong><span>Linked documentation pages</span></div><div class="metric"><strong>27</strong><span>Core guide sections</span></div><div class="metric"><strong>Mixed audience</strong><span>Architecture to leadership</span></div><div class="metric"><strong>Operational</strong><span>Prompts, governance, roadmaps</span></div></div></div></section><div class="article-layout"><aside class="toc-card" aria-label="Page table of contents"><h2>On this page</h2><ol><li><a href="#section-15-use-in-documentation">Section 15: Use in Documentation</a></li><li><a href="#section-16-use-in-support-and-maintenance">Section 16: Use in Support and Maintenance</a></li><li><a href="#section-17-use-for-leadership-pm-and-delivery-management">Section 17: Use for Leadership, PM, and Delivery Management</a></li><li><a href="#section-18-role-based-usage-model">Section 18: Role-Based Usage Model</a></li><li><a href="#section-19-prompt-library">Section 19: Prompt Library</a></li></ol></aside><article class="content-card doc-content"><section id="section-15-use-in-documentation"><h2 id="section-15-use-in-documentation">Section 15: Use in Documentation</h2>
-<h3 id="15-1-documents-ai-can-accelerate">15.1 Documents AI can accelerate</h3>
-<ul><li>technical design documents</li><li>low-level designs</li><li>architecture decision records</li><li>admin guides</li><li>runbooks</li><li>support guides</li><li>onboarding documents</li><li>release notes</li><li>troubleshooting guides</li><li>knowledge articles</li><li>README files</li><li>API docs</li><li>inline code comments</li><li>handover packs</li></ul>
-<h3 id="15-2-documentation-operating-model">15.2 Documentation operating model</h3>
-<div class="table-wrap"><table><thead><tr><th>Document Type</th><th>Draft by</th><th>Technical Validate by</th><th>Business Validate by</th></tr></thead><tbody><tr><td>TDD/LLD</td><td>Claude</td><td>Architect/Lead</td><td>BA/Product Owner</td></tr><tr><td>Runbook</td><td>Claude</td><td>Support Lead/Developer</td><td>Ops Manager</td></tr><tr><td>Release notes</td><td>Claude</td><td>Release Manager</td><td>Product Owner</td></tr><tr><td>Code comments/README</td><td>Codex</td><td>Developer</td><td>n/a</td></tr><tr><td>API docs</td><td>Codex + Claude</td><td>Integration Lead</td><td>BA if external consumers exist</td></tr></tbody></table></div>
-<h3 id="15-3-best-practice">15.3 Best practice</h3>
-<ul><li>generate first draft with AI</li><li>require named human owner</li><li>store docs in version control or controlled repository</li><li>maintain changelog and review date</li></ul>
-<hr /></section>
-<section id="section-16-use-in-support-and-maintenance"><h2 id="section-16-use-in-support-and-maintenance">Section 16: Use in Support and Maintenance</h2>
-<h3 id="16-1-support-use-cases">16.1 Support use cases</h3>
-<ul><li>incident analysis</li><li>log interpretation</li><li>impact analysis</li><li>root cause drafts</li><li>bug triage</li><li>troubleshooting playbooks</li><li>user issue summaries</li><li>knowledge article creation</li><li>trend detection from recurring incidents</li></ul>
-<h3 id="16-2-example-prompt">16.2 Example prompt</h3>
-<pre><code class="language-text">Analyze the following Salesforce production incident notes and logs.
-Provide:
-1. probable root cause
-2. impacted user groups
-3. immediate containment options
-4. permanent fix options
-5. support-friendly explanation
-6. KB article draft</code></pre>
-<h3 id="16-3-support-anti-patterns">16.3 Support anti-patterns</h3>
-<ul><li>pasting raw customer PII into prompts</li><li>using AI to communicate RCA before technical validation</li><li>skipping incident timelines and evidence</li></ul>
-<hr /></section>
-<section id="section-17-use-for-leadership-pm-and-delivery-management"><h2 id="section-17-use-for-leadership-pm-and-delivery-management">Section 17: Use for Leadership, PM, and Delivery Management</h2>
-<h3 id="17-1-management-use-cases">17.1 Management use cases</h3>
-<ul><li>project planning</li><li>estimate decomposition</li><li>RAID logs</li><li>sprint planning summaries</li><li>steering committee packs</li><li>executive summaries</li><li>stakeholder communication drafts</li><li>adoption plans</li><li>training plans</li></ul>
-<h3 id="17-2-example-outputs">17.2 Example outputs</h3>
-<ul><li>project milestone summary</li><li>risk summary by workstream</li><li>sprint objective draft</li><li>executive one-page decision memo</li><li>training rollout plan</li></ul>
-<h3 id="17-3-prompt-example">17.3 Prompt example</h3>
-<pre><code class="language-text">Create a steering committee summary for a Salesforce transformation.
-Include:
-- progress since last meeting
-- top risks
-- decisions required
-- dependencies
-- budget/scope watch items
-- next 30-day priorities
-
-Audience: CIO, business sponsor, enterprise architect, PMO</code></pre>
-<hr /></section>
-<section id="section-18-role-based-usage-model"><h2 id="section-18-role-based-usage-model">Section 18: Role-Based Usage Model</h2>
-<h3 id="salesforce-admin">Salesforce Admin</h3>
-<ul><li>Key use cases: formulas, Flow logic, page layouts, reports, release notes</li><li>High-value prompts: &quot;draft validation rules with examples&quot;, &quot;explain this Flow fault path&quot;</li><li>Benefits: faster configuration drafting, better documentation</li><li>Risks: incorrect security assumptions, inefficient automation logic</li><li>Best practices: always request test scenarios and performance notes</li></ul>
-<h3 id="salesforce-developer">Salesforce Developer</h3>
-<ul><li>Key use cases: Apex/LWC/test classes/refactoring</li><li>High-value prompts: &quot;review this trigger for bulk and sharing issues&quot;</li><li>Benefits: faster implementation and review</li><li>Risks: subtle limit/security defects</li><li>Best practices: static analysis and peer review mandatory</li></ul>
-<h3 id="technical-lead">Technical Lead</h3>
-<ul><li>Key use cases: code review standards, refactoring plans, release risk analysis</li><li>Benefits: team acceleration, consistency</li><li>Risks: over-trusting generated fixes</li><li>Best practices: use AI to augment review, not replace it</li></ul>
-<h3 id="solution-architect">Solution Architect</h3>
-<ul><li>Key use cases: option analysis, NFRs, security model, integration patterns</li><li>Benefits: faster architecture artifacts</li><li>Risks: elegant but unvalidated design assumptions</li><li>Best practices: cross-check with org constraints and enterprise standards</li></ul>
-<h3 id="enterprise-architect">Enterprise Architect</h3>
-<ul><li>Key use cases: operating model, platform strategy, multi-org decisions, governance</li><li>Benefits: better standardization</li><li>Risks: abstract outputs disconnected from delivery reality</li><li>Best practices: tie recommendations to measurable controls</li></ul>
-<h3 id="qa-engineer">QA Engineer</h3>
-<ul><li>Key use cases: test matrices, edge cases, defect summaries</li><li>Benefits: broader coverage</li><li>Risks: shallow tests if prompts are weak</li><li>Best practices: combine business risk and system dependency views</li></ul>
-<h3 id="business-analyst">Business Analyst</h3>
-<ul><li>Key use cases: stories, acceptance criteria, discovery packs, BRD/FRD</li><li>Benefits: stronger requirement clarity</li><li>Risks: missing domain nuance</li><li>Best practices: use AI to expose questions, not invent answers</li></ul>
-<h3 id="delivery-manager">Delivery Manager</h3>
-<ul><li>Key use cases: status, RAID, release comms, planning artifacts</li><li>Benefits: lower reporting overhead</li><li>Risks: over-polished but inaccurate summaries</li><li>Best practices: verify with workstream leads before sharing</li></ul>
-<h3 id="support-analyst">Support Analyst</h3>
-<ul><li>Key use cases: triage summaries, incident patterns, KB articles</li><li>Benefits: faster issue handling</li><li>Risks: unsupported RCA assumptions</li><li>Best practices: require evidence references in every support draft</li></ul>
-<h3 id="product-owner">Product Owner</h3>
-<ul><li>Key use cases: backlog shaping, priority articulation, acceptance readiness</li><li>Benefits: clearer stories and release communication</li><li>Risks: AI-generated priorities that miss business nuance</li><li>Best practices: keep final prioritization human-owned</li></ul>
-<hr /></section>
-<section id="section-19-prompt-library"><h2 id="section-19-prompt-library">Section 19: Prompt Library</h2>
-<h3 id="requirements">Requirements</h3>
-<pre><code class="language-text">Act as a Salesforce business analyst.
-Convert the following business requirement into epics, features, user stories, acceptance criteria, assumptions, open questions, and edge cases.
-Prioritize standard Salesforce functionality.
-Requirement:
-[paste]</code></pre>
-<h3 id="architecture">Architecture</h3>
-<pre><code class="language-text">Act as a Salesforce solution architect.
-Given the requirements below, propose solution options with pros/cons, risks, scalability considerations, integration implications, and a recommended approach.
-[paste]</code></pre>
-<h3 id="admin-configuration">Admin configuration</h3>
-<pre><code class="language-text">Design the Salesforce admin solution for this requirement.
-Include:
-- objects/fields
-- validation rules
-- Flow outline
-- page layout or Dynamic Forms recommendations
-- permission set impacts
-- reporting impacts</code></pre>
-<h3 id="apex-generation">Apex generation</h3>
-<pre><code class="language-text">Generate Apex for the following requirement using enterprise patterns:
-- with sharing unless justified otherwise
-- bulk-safe
-- null-safe
-- service layer
-- test class included
-- error handling included
-Requirement:
-[paste]</code></pre>
-<h3 id="lwc-generation">LWC generation</h3>
-<pre><code class="language-text">Create an LWC for the following use case.
-Include:
-- HTML
-- JS
-- CSS
-- Apex interface assumptions
-- accessibility notes
-- performance considerations
-- Jest tests outline</code></pre>
-<h3 id="flow-design">Flow design</h3>
-<pre><code class="language-text">Design a Salesforce Flow for this process.
-Include:
-- trigger type
-- entry criteria
-- decisions
-- subflows
-- fault paths
-- naming conventions
-- maintainability recommendations</code></pre>
-<h3 id="integrations">Integrations</h3>
-<pre><code class="language-text">Create an integration design for Salesforce and [system].
-Include:
-- system of record
-- API pattern
-- auth model
-- payload mapping
-- retries
-- logging
-- error handling
-- support ownership</code></pre>
-<h3 id="test-classes">Test classes</h3>
-<pre><code class="language-text">Create comprehensive Salesforce Apex tests for this class.
-Cover:
-- happy path
-- validation failures
-- limit-sensitive behavior
-- bulk scenarios
-- security assumptions</code></pre>
-<h3 id="test-scenarios">Test scenarios</h3>
-<pre><code class="language-text">Generate business and system test scenarios for this process.
-Include:
-- positive
-- negative
-- edge
-- role-based
-- integration failure
-- data quality</code></pre>
-<h3 id="documentation">Documentation</h3>
-<pre><code class="language-text">Turn the following implementation notes into a technical design document.
-Audience: architects, developers, admins, support
-Include assumptions, dependencies, design decisions, risks, and operational notes.</code></pre>
-<h3 id="release-notes">Release notes</h3>
-<pre><code class="language-text">Summarize these deployment changes into:
-1. technical release notes
-2. business release notes
-3. support impact summary
-4. rollback considerations</code></pre>
-<h3 id="support-troubleshooting">Support troubleshooting</h3>
-<pre><code class="language-text">Analyze this incident evidence and produce:
-- probable root cause
-- impact
-- immediate workaround
-- long-term fix
-- required teams
-- draft knowledge article</code></pre>
-<h3 id="data-migration">Data migration</h3>
-<pre><code class="language-text">Create a migration plan for these source datasets into Salesforce.
-Include mappings, transformations, load order, validation impacts, reconciliation, and rollback considerations.</code></pre>
-<h3 id="security-reviews">Security reviews</h3>
-<pre><code class="language-text">Review this Salesforce solution for security and compliance risks.
-Consider:
-- field access
-- sharing
-- secrets
-- integration auth
-- PII exposure
-- auditability
-- admin bypass risks</code></pre>
-<h3 id="code-review">Code review</h3>
-<pre><code class="language-text">Review this Salesforce code with a senior code-review mindset.
-Prioritize:
-- bugs
-- regressions
-- bulkification
-- security
-- readability
-- missing tests</code></pre>
-<h3 id="performance-review">Performance review</h3>
-<pre><code class="language-text">Review this design for Salesforce performance risks.
-Focus on:
-- limits
-- large data volume
-- query selectivity
-- Flow recursion
-- UI performance
-- integration latency</code></pre>
-<h3 id="refactoring">Refactoring</h3>
-<pre><code class="language-text">Refactor this Salesforce implementation for maintainability.
-Keep behavior unchanged.
-Improve structure, naming, reuse, error handling, and tests.</code></pre>
-<h3 id="user-story-writing">User story writing</h3>
-<pre><code class="language-text">Write a user story for Salesforce implementation using:
-As a
-I want
-So that
-
-Also provide acceptance criteria, dependencies, and test notes.</code></pre>
-<h3 id="acceptance-criteria-creation">Acceptance criteria creation</h3>
-<pre><code class="language-text">Create detailed acceptance criteria for this Salesforce requirement.
-Include business rules, permissions, edge cases, and reporting expectations.</code></pre>
-<hr /></section><section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-integrations-quality-and-delivery.html">Previous: Codex and Claude for Salesforce Integrations and Delivery</a> <a class="button button-primary" href="codex-claude-salesforce-governance-roadmap-and-appendices.html">Next: Codex and Claude for Salesforce Governance and Roadmap</a></div></section>
-<section class="related-content">
-  <h2>Related tools</h2>
-  <ul>
-      <li><a href="/tools/json-viewer.html">JSON Viewer - Inspect structured payloads, prompts, and API responses in a readable tree.</a></li>
-      <li><a href="/tools/json-to-toon-converter.html">JSON to TOON Converter - Transform structured JSON into compact prompt-ready TOON output.</a></li>
-  </ul>
-
-  <h2>Related articles</h2>
-  <ul>
-      <li><a href="/articles/best-ai-tools-guide.html">Best AI Tools in 2026</a></li>
-      <li><a href="/articles/chatgpt-prompts-guide.html">Best ChatGPT Prompts for Work, Writing, and Coding</a></li>
-      <li><a href="/articles/salesforce-ai-tools-comparison.html">Best AI Tools for Salesforce Developers</a></li>
-  </ul>
-</section></article></div></main><footer class="pulsagi-article-footer">
-  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
-</footer></div>
-</body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation"><a class="nav-brand" href="/">Pulsagi</a><ul class="site-nav-list"><li><a href="/">Home</a></li><li><a href="/#about">About</a></li><li><a href="/tools/">Tools</a></li><li><a href="/articles/" aria-current="page">Articles</a></li></ul></nav>
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Documentation and Operations</div>
+        <h1 class="article-title">Codex vs Claude for Salesforce Documentation, Support, and Prompts</h1>
+        <p class="article-standfirst">A practical guide for Salesforce teams using AI to produce better technical documentation, cleaner support runbooks, sharper operational communication, and more reusable prompt patterns.</p>
+        <div class="reading-meta"><span>12 min read</span><span>Updated May 2, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="hero-visual article-hero-media">
+        <img src="assets/images/salesforce/codex-claude-salesforce-documentation-operations-and-prompts.png" alt="Codex vs Claude for Salesforce documentation, support, and prompts comparison infographic" loading="eager" width="1536" height="1024" />
+        <p>This hero compares Codex and Claude across technical documentation, support runbooks, operational communication, prompt patterns, and governance-sensitive content.</p>
+      </div>
+    </section>
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents"><h2>Table of contents</h2><ol><li><a href="#introduction">Why this work matters</a></li><li><a href="#documentation">Documentation use cases</a></li><li><a href="#support">Support and operations use cases</a></li><li><a href="#prompts">Prompt engineering for Salesforce teams</a></li><li><a href="#best-practices">Best practices and limitations</a></li><li><a href="#recommendation">Recommendation</a></li></ol></aside>
+      <article class="content-card doc-content">
+        <section id="introduction">
+          <h2>Why this work matters</h2>
+          <p>Salesforce teams often underestimate how much delivery time disappears into documentation, support explanation, release packaging, and operational alignment. These are ideal AI use cases because the work is repetitive, language-heavy, and usually dependent on translating technical truth for multiple audiences.</p>
+          <p>Claude is usually the stronger first draft partner here because it handles structure, tone, and multi-audience writing well. Codex becomes useful when the document needs to be grounded in the actual codebase, metadata, or diff rather than memory or guesswork.</p>
+        </section>
+        <section id="documentation">
+          <h2>Documentation use cases</h2>
+          <p>Strong Salesforce documentation is not just about completeness. It is about usefulness for the next team that has to operate, extend, or troubleshoot the solution. AI can help speed up first drafts, but human owners still need to validate the final artifact.</p>
+          <ul>
+            <li>Technical design documents, low-level designs, and architecture decision records.</li>
+            <li>Admin guides, Flow notes, and configuration runbooks.</li>
+            <li>Release notes for business users, support teams, and technical reviewers.</li>
+            <li>Knowledge articles, onboarding guides, and hypercare summaries.</li>
+          </ul>
+          <div class="callout"><strong>Good pattern:</strong> let Claude shape the narrative, then let Codex pull concrete technical detail from files, classes, components, or deployment scope.</div>
+        </section>
+        <section id="support">
+          <h2>Support and operations use cases</h2>
+          <p>Support teams need speed, but they also need evidence. AI can help summarize incident timelines, translate logs into readable hypotheses, and draft KB articles or workaround notes. It should not become a substitute for root-cause validation.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Support artifact</th><th>Best AI contribution</th></tr></thead>
+              <tbody>
+                <tr><td>Incident summary</td><td>Clear timeline, affected users, suspected fault area, and next steps</td></tr>
+                <tr><td>RCA draft</td><td>Readable explanation of symptom, trigger, containment, and permanent fix options</td></tr>
+                <tr><td>KB article</td><td>User-facing steps, support notes, and escalation context</td></tr>
+                <tr><td>Operations handoff</td><td>Known issues, monitoring points, and support ownership</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="prompts">
+          <h2>Prompt engineering for Salesforce teams</h2>
+          <p>Prompt quality affects output quality more than most teams realize. Good Salesforce prompts should define the role, business context, constraints, output format, risk areas, and review expectations.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Prompt pattern</th><th>Why it works</th></tr></thead>
+              <tbody>
+                <tr><td>State the role</td><td>"Act as a Salesforce solution architect" sets the expected thinking style.</td></tr>
+                <tr><td>Describe the artifact</td><td>Ask for stories, test cases, Flow outline, or release note draft explicitly.</td></tr>
+                <tr><td>Add constraints</td><td>Standard-first, bulk-safe, secure, support-friendly, or admin-maintainable constraints improve relevance.</td></tr>
+                <tr><td>Request assumptions and risks</td><td>This prevents overly confident but incomplete output.</td></tr>
+                <tr><td>Request validation notes</td><td>Ask what must still be checked by a human before implementation or publication.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Admins benefit from prompts that emphasize business clarity and maintainability. Developers benefit from prompts that emphasize correctness, tests, and security. Support teams benefit from prompts that emphasize evidence and containment.</p>
+        </section>
+        <section id="best-practices">
+          <h2>Best practices and limitations</h2>
+          <ul>
+            <li>Assign a named human owner to every AI-generated document.</li>
+            <li>Use Codex when documentation needs code-level truth, not memory-based summaries.</li>
+            <li>Use Claude when the output needs clean language for executives, admins, or cross-functional teams.</li>
+            <li>Never paste secrets, raw tokens, or unnecessary production data into prompts.</li>
+            <li>Do not send AI-generated RCA or customer-facing communication without technical validation.</li>
+          </ul>
+          <p>The biggest limitation is polish hiding weakness. A beautifully written AI document can still be technically incomplete. That is why documentation review should focus on accuracy first and tone second.</p>
+        </section>
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>For Salesforce documentation and support work, use Claude for first-draft structure and communication quality. Use Codex to extract implementation truth and reduce drift between the document and the real system. That combination gives teams faster output without sacrificing credibility.</p>
+        </section>
+        <section class="related-section"><h2>Continue reading</h2><div class="doc-nav"><a class="button button-secondary" href="codex-claude-salesforce-integrations-quality-and-delivery.html">Previous: Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery</a> <a class="button button-primary" href="codex-claude-salesforce-governance-roadmap-and-appendices.html">Next: Codex vs Claude for Salesforce AI Governance and Roadmap</a></div></section>
+        <section class="related-content"><h2>Related tools</h2><ul><li><a href="/tools/json-viewer.html">JSON Viewer - Review structured prompt and payload content.</a></li><li><a href="/tools/json-to-toon-converter.html">JSON to TOON Converter - Reshape structured content into prompt-ready output.</a></li></ul><h2>Related articles</h2><ul><li><a href="/articles/chatgpt-prompts-guide.html">Best ChatGPT Prompts for Work, Writing, and Coding</a></li><li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li><li><a href="/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html">Codex vs Claude for Salesforce AI Governance and Roadmap</a></li></ul></section>
+      </article>
+    </div>
+  </main>
+  <footer class="pulsagi-article-footer"><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
+</div>
+</body>
+</html>
