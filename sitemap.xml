@@ -13,24 +13,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/advanced-reasoning.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/agent-actions-apex.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/agentforce-architecture.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pulsagi.com/articles/ai-claw-article.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -68,12 +50,6 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/best-ai-tools-guide.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/build-first-agent.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -121,12 +97,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/data-cloud-agent.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pulsagi.com/articles/devops-center-guide.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -134,12 +104,6 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/dynamic-forms-guide.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/external-api.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -253,18 +217,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pulsagi.com/articles/production-deployment.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/prompt-builder.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -356,18 +308,6 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/security-governance.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulsagi.com/articles/support-agent.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
