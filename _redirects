@@ -1,3 +1,5 @@
+/articles/articles/salesforce_approval_vs_flow_approval.html /articles/salesforce-approval-vs-flow-approval.html 301
+/articles/articles/* /articles/:splat 301
 /articles/apex_batch_vs_queueable_with_apex_cursors_spring26.html /articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html 301
 /articles/salesforce_ai_tools_comparison.html /articles/salesforce-ai-tools-comparison.html 301
 /articles/salesforce_approval_vs_flow_approval.html /articles/salesforce-approval-vs-flow-approval.html 301
