@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Free Fake Job Scam Checker for Recruiter Messages | Pulsagi</title>
-  <meta name="description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required. Use it free in the" />
+  <meta name="description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required." />
   <link rel="canonical" href="https://pulsagi.com/tools/fake-job-scam-checker.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Free Fake Job Scam Checker for Recruiter Messages" />
-  <meta property="og:description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required. Use it free in the" />
+  <meta property="og:description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required." />
   <meta property="og:url" content="https://pulsagi.com/tools/fake-job-scam-checker.html" />
   <meta property="og:image" content="https://pulsagi.com/og-default.png" />
   <meta property="og:site_name" content="Pulsagi" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Free Fake Job Scam Checker for Recruiter Messages | Pulsagi" />
-  <meta name="twitter:description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required. Use it free in the" />
+  <meta name="twitter:description" content="Free fake job scam checker for suspicious recruiter messages, payment requests, and document traps. Browser-based with no login required." />
   <meta name="twitter:image" content="https://pulsagi.com/og-default.png" />
-<script type="application/ld+json">
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -36,8 +39,8 @@
     "name": "Shivam Gupta"
   }
 }
-</script>
-<script type="application/ld+json">
+  </script>
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -47,206 +50,294 @@
     { "@type": "ListItem", "position": 3, "name": "Fake Job Scam Checker", "item": "https://pulsagi.com/tools/fake-job-scam-checker.html" }
   ]
 }
-</script>
-<meta name="robots" content="index, follow" />
+  </script>
   <style>
     :root {
-      --bg: #0a0b0d;
-      --surface: #13151a;
-      --surface-soft: rgba(255,255,255,0.04);
-      --border: #282b32;
-      --text: #f6f7fb;
-      --muted: #a5acba;
-      --accent: #78efba;
-      --accent-soft: rgba(120,239,186,0.12);
-      --shell-border: #40505d;
-      --shell-text: #b6bfca;
-      --shell-accent: #76e0c0;
-      --mono: "Courier New", monospace;
+      --bg: #f7f1e8;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-strong: #ffffff;
+      --ink: #1f2432;
+      --muted: #646f82;
+      --line: rgba(31, 36, 50, 0.12);
+      --accent: #9a3412;
+      --accent-dark: #7c2d12;
+      --danger-soft: #fef2f2;
+      --danger-text: #991b1b;
+      --shadow: 0 24px 60px rgba(31, 36, 50, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
     }
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Georgia, serif;
-      line-height: 1.65;
-      color: var(--text);
+      padding-top: 78px;
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      line-height: 1.6;
       background:
-        radial-gradient(circle at top left, rgba(120,239,186,0.08), transparent 24%),
-        linear-gradient(180deg, #0a0b0d, #10131a 68%, #0a0b0d);
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(250, 204, 21, 0.18), transparent 24%),
+        linear-gradient(180deg, #f7f1e8 0%, #f3ede4 100%);
     }
     a { color: inherit; text-decoration: none; }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.1rem 2rem;
-      border-bottom: 1px solid var(--shell-border);
-      background: rgba(27,36,43,0.78);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(15px);
+    .wrap, .tool-guide, .tool-related-articles { width: min(1220px, calc(100% - 20px)); margin: 0 auto; }
+    .wrap { padding: 8px 0 24px; display: grid; gap: 24px; }
+    .hero, .section-card, .tool-guide, .tool-related-articles {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.75rem;
-      margin: 0;
-      padding: 0;
-      font: 0.85rem var(--mono);
-      align-items: center;
+    .hero {
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+      padding: clamp(20px, 3vw, 36px);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 241, 0.94)),
+        rgba(255, 255, 255, 0.78);
     }
-    .brand { color: var(--shell-accent); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; }
-    nav a { color: var(--shell-text); text-decoration: none; transition: color 0.2s, background 0.2s, border-color 0.2s; }
-    nav a:hover { color: var(--text); }
-    .nav-pill { color: var(--shell-accent) !important; padding: 0.35rem 0.9rem; border-radius: 999px; background: linear-gradient(180deg, rgba(118,224,192,0.14), rgba(118,224,192,0.08)); border: 1px solid rgba(118,224,192,0.22); }
-    .wrap { width: min(920px, calc(100% - 24px)); margin: 0 auto; padding: 2.2rem 0 4rem; }
-    .hero, .section {
-      background: rgba(19,21,26,0.96);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 1.4rem;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(124, 45, 18, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 45, 18, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 82%);
+      pointer-events: none;
     }
-    .section { margin-top: 1rem; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: clamp(18px, 4vw, 48px);
+      top: 50%;
+      width: min(32vw, 320px);
+      aspect-ratio: 1;
+      transform: translateY(-50%);
+      border-radius: 38% 62% 58% 42% / 44% 40% 60% 56%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(154, 52, 18, 0.18), rgba(154, 52, 18, 0.05) 42%, transparent 72%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 246, 240, 0.56));
+      border: 1px solid rgba(154, 52, 18, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+      max-width: 680px;
+    }
     .eyebrow {
       display: inline-flex;
-      padding: 0.38rem 0.85rem;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 10px 16px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(120,239,186,0.24);
+      border: 1px solid rgba(124, 45, 18, 0.18);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--accent-dark);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .eyebrow svg { width: 18px; height: 18px; color: var(--accent); }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2 { font-family: "Space Grotesk", "Instrument Sans", sans-serif; letter-spacing: -0.04em; }
+    h1 { max-width: 12ch; font-size: clamp(2.8rem, 7vw, 5.4rem); line-height: 0.95; }
+    .hero-subtitle, .section-head p, .feature-card p, .tool-guide p, .tool-guide li, .tool-guide dd, .tool-related-articles p, .tool-related-articles li { color: var(--muted); }
+    .hero-subtitle { max-width: 56ch; font-size: 1.05rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent-dark); color: #fff7ed; box-shadow: 0 18px 30px rgba(124, 45, 18, 0.18); }
+    .btn-success { background: #15803d; color: #f0fdf4; }
+    .trust-row, .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .trust-row { color: var(--muted); font-size: 0.92rem; }
+    .section-card, .tool-guide, .tool-related-articles { padding: clamp(22px, 3vw, 30px); }
+    .tool-guide, .tool-related-articles { margin-top: 24px; }
+    .section-head { display: grid; gap: 8px; margin-bottom: 18px; }
+    .section-kicker {
       color: var(--accent);
-      font: 700 0.72rem var(--mono);
+      font-size: 0.84rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    h1 {
-      margin: 1rem 0 0.7rem;
-      font-size: clamp(2.3rem, 6vw, 3.8rem);
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-    }
-    h2 {
-      margin: 0 0 0.6rem;
-      font-size: 1.35rem;
-    }
-    p { margin: 0; color: var(--muted); }
-    .cta-row, .chips, .grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .cta-row { margin-top: 1.15rem; }
-    .btn {
-      display: inline-block;
-      padding: 0.86rem 1.15rem;
-      border-radius: 14px;
-      font: 700 0.82rem var(--mono);
-    }
-    .btn-primary { background: var(--accent); color: #08110c; }
-    .btn-secondary { border: 1px solid var(--border); background: var(--surface-soft); }
-    .chips { margin-top: 1rem; }
-    .chip {
-      padding: 0.48rem 0.78rem;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.88rem;
-      color: var(--text);
-    }
-    .note {
-      margin-top: 1rem;
-      padding: 0.95rem 1rem;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-    }
-    .note strong { display: block; margin-bottom: 0.25rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      margin-top: 0.9rem;
-    }
-    .card {
+    .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .feature-card {
       padding: 1rem;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 0.5px solid #d6d9df;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      display: grid;
+      gap: 10px;
     }
-    .card strong { display: block; margin-bottom: 0.3rem; }
-    footer {
-      padding: 2rem 1rem 3rem;
-      text-align: center;
-      color: var(--shell-text);
-      font: 0.8rem var(--mono);
-      border-top: 1px solid var(--shell-border);
-      background: rgba(255,247,238,0.03);
+    .feature-card svg { width: 24px; height: 24px; color: var(--accent); }
+    .feature-card strong { font-size: 1rem; }
+    .example-wrap { display: grid; justify-items: center; gap: 18px; text-align: center; }
+    .sms-bubble {
+      max-width: 480px;
+      padding: 18px 20px;
+      border-radius: 24px 24px 24px 8px;
+      background: #f3f4f6;
+      border: 1px solid rgba(31, 36, 50, 0.08);
+      text-align: left;
+      font-size: 0.98rem;
+      color: #24364d;
     }
-    footer a { color: var(--shell-accent); text-decoration: none; }
+    .danger-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--danger-soft);
+      color: var(--danger-text);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .tool-guide h2, .tool-related-articles h2 { margin-bottom: 12px; font-size: 1.6rem; }
+    .tool-guide ol, .tool-related-articles ul { margin: 18px 0 0; padding-left: 20px; }
+    .tool-guide dl { display: grid; gap: 12px; margin-top: 18px; }
+    .tool-guide dt { font-weight: 700; }
+    .tool-guide dt,
+    .tool-guide h2,
+    .tool-related-articles h2,
+    .tool-related-articles a { color: var(--ink); }
+    .tool-related-articles a {
+      text-decoration: underline;
+      text-decoration-color: rgba(154, 52, 18, 0.28);
+      text-underline-offset: 0.18em;
+    }
+    footer { padding: 24px 16px 40px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    footer a { color: var(--accent-dark); font-weight: 700; }
+    @media (max-width: 720px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1220px); padding-top: 6px; }
+      h1 { max-width: none; }
+      .hero::before { width: 180px; right: 14px; opacity: 0.7; }
+    }
   </style>
   <link rel="stylesheet" href="../assets/site-nav.css" />
-  <link rel="stylesheet" href="../assets/seo-tool-guide.css" />
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
-  <!-- End Google Tag Manager -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <nav class="site-nav" aria-label="Main navigation">
-  <a class="nav-brand" href="/">Pulsagi</a>
-  <ul class="site-nav-list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/tools/" aria-current="page">Tools</a></li>
-    <li><a href="/articles/">Articles</a></li>
-  </ul>
-</nav>
+    <a class="nav-brand" href="/">Pulsagi</a>
+    <ul class="site-nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/tools/" aria-current="page">Tools</a></li>
+      <li><a href="/articles/">Articles</a></li>
+    </ul>
+  </nav>
 
   <main class="wrap">
     <section class="hero">
-      <div class="eyebrow">Fake Job Preset</div>
-      <h1>Check suspicious recruiter messages before you pay or share documents.</h1>
-      <p>This page is only an entry point. The real tool is the main Pulsagi scam checker, already tuned here for job scams, recruiter impersonation, joining-fee asks, and no-interview offers.</p>
-
-      <div class="chips">
-        <span class="chip">Joining fee</span>
-        <span class="chip">WhatsApp recruiter</span>
-        <span class="chip">No interview</span>
-        <span class="chip">Offer letter rush</span>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="/tools/scam-checker.html?category=fake-job">Open the main checker with fake-job mode</a>
-        <a class="btn btn-secondary" href="/tools/scam-checker.html">Open general checker</a>
-      </div>
-
-      <div class="note">
-        <strong>Same tool, different preset</strong>
-        The fake-job view does not use a different analyzer. It opens the same checker with job-specific defaults and guidance.
+      <div class="hero-content">
+        <div class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="6" width="16" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7" />
+            <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+          Fake job scam checker
+        </div>
+        <h1>Is this job offer too good to be true?</h1>
+        <p class="hero-subtitle">Pulsagi reviews suspicious recruiter messages, joining-fee requests, and no-interview job offers before you send money or documents.</p>
+        <a class="btn btn-primary" href="/tools/scam-checker.html?category=fakejob">Check it now &rarr;</a>
+        <div class="trust-row" aria-label="Trust signals">
+          <span>No login required</span>
+          <span>&middot;</span>
+          <span>Browser-based</span>
+          <span>&middot;</span>
+          <span>Free forever</span>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>What usually makes a job offer suspicious?</h2>
-      <div class="grid">
-        <div class="card">
-          <strong>Upfront payment</strong>
-          <p>Legitimate employers do not ask candidates to pay registration, joining, or verification fees.</p>
+    <section class="section-card">
+      <div class="section-head">
+        <span class="section-kicker">What we detect</span>
+        <h2>Signals that a recruiter message may really be a money trap</h2>
+        <p>Use the fake job preset when the offer skips normal hiring steps, leans on chat apps, or asks you to pay first.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 8.5h12v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9Z" stroke="currentColor" stroke-width="1.7" />
+            <path d="M9 8V6.8A1.8 1.8 0 0 1 10.8 5h2.4A1.8 1.8 0 0 1 15 6.8V8" stroke="currentColor" stroke-width="1.7" />
+            <path d="M12 11v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+          <strong>Upfront fee requests</strong>
+          <p>Registration charges, training fees, or document-verification payments are classic warning signs.</p>
+        </article>
+        <article class="feature-card">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7" />
+            <path d="M12 8v4l2.5 1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+          <strong>No-interview offers</strong>
+          <p>Instant selection, same-day offer letters, and zero screening often mean the real goal is payment or data theft.</p>
+        </article>
+        <article class="feature-card">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5 6.5 8v4.5c0 3.1 2.1 5.9 5.5 6.8 3.4-.9 5.5-3.7 5.5-6.8V8L12 5Z" stroke="currentColor" stroke-width="1.7" />
+            <path d="M9.5 12.2 11 13.7l3.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <strong>Impersonated recruiters</strong>
+          <p>Scammers borrow company names, HR titles, and logos to look official without proving they work there.</p>
+        </article>
+        <article class="feature-card">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 7.5h12M6 12h8M6 16.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            <rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="1.7" />
+          </svg>
+          <strong>Vague job descriptions</strong>
+          <p>Blurred responsibilities and generic pay promises help scammers hook candidates before details get checked.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-head">
+        <span class="section-kicker">Real example</span>
+        <h2>What a fake job scam can look like</h2>
+        <p>This fictional message packs several familiar signals into one pitch: easy money, instant approval, and a fee to unlock the role.</p>
+      </div>
+      <div class="example-wrap">
+        <div class="sms-bubble">
+          Congratulations! You are shortlisted for our remote backend support role. No interview required. Pay Rs 1,999 for document verification today to receive your offer letter and onboarding kit.
         </div>
-        <div class="card">
-          <strong>Messaging-app hiring</strong>
-          <p>WhatsApp-only or Telegram-only hiring flows often skip normal screening and verification.</p>
+        <div class="pill-row" aria-label="Red flags in the example">
+          <span class="danger-pill">Upfront fee</span>
+          <span class="danger-pill">No interview</span>
+          <span class="danger-pill">Vague role details</span>
         </div>
-        <div class="card">
-          <strong>High pay, low effort</strong>
-          <p>Easy remote work with unusually high income and zero interview is a classic bait pattern.</p>
-        </div>
+        <a class="btn btn-success" href="/tools/scam-checker.html?category=fakejob">Check a message like this &rarr;</a>
       </div>
     </section>
   </main>
 
-    <section class="tool-guide">
+  <section class="tool-guide">
     <h2>What is the Fake Job Scam Checker?</h2>
-    <p>The fake job scam checker is a free browser-based review tool for job seekers who want a second look at recruiter messages before paying money or sharing documents. It highlights pressure language, interview shortcuts, payment requests, and other warning signs that often appear in fraudulent hiring outreach on chat apps or email. Because the experience is local and no login required, you can quickly review a suspicious message from any device before responding, forwarding identity proofs, or clicking a link.</p>
+    <p>The fake job scam checker is a free browser-based review tool for job seekers who want a second look at recruiter messages before paying money or sharing documents. It highlights pressure language, interview shortcuts, payment requests, and other warning signs that often appear in fraudulent hiring outreach on chat apps or email. Because the experience is local and no login required, you can quickly review a suspicious message from any device before responding or forwarding identity proofs.</p>
 
     <h2>How to use the Fake Job Scam Checker</h2>
     <ol>
@@ -257,11 +348,12 @@
 
     <h2>Frequently asked questions</h2>
     <dl>
-      <dt>What does the checker look for?</dt><dd>It looks for urgency, payment instructions, unverifiable recruiter claims, and requests for sensitive details that should trigger caution.</dd>
-      <dt>Should I trust the result alone?</dt><dd>No. Treat the result as a screening step, then verify the employer and role through official company channels.</dd>
-      <dt>Can this help with screenshots?</dt><dd>Yes. The tool supports message review from pasted text and image-based captures so you can inspect both formats quickly.</dd>
+      <div><dt>What does the checker look for?</dt><dd>It looks for urgency, payment instructions, unverifiable recruiter claims, and requests for sensitive details that should trigger caution.</dd></div>
+      <div><dt>Should I trust the result alone?</dt><dd>No. Treat the result as a screening step, then verify the employer and role through official company channels.</dd></div>
+      <div><dt>Can this help with screenshots?</dt><dd>Yes. The tool supports message review from pasted text and image-based captures so you can inspect both formats quickly.</dd></div>
     </dl>
   </section>
+
   <section class="tool-related-articles">
     <h2>Related articles</h2>
     <p>Explore a few deeper guides that connect with this workflow.</p>
@@ -271,6 +363,7 @@
       <li><a href="/articles/future-of-ai-2030-predictions-guide.html">Future of AI in 2030: Predictions and Risks</a></li>
     </ul>
   </section>
-<footer><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
+
+  <footer><p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p></footer>
 </body>
 </html>
