@@ -45,93 +45,119 @@ const state = {
 
 document.querySelector("#app").innerHTML = `
   <main class="app-shell">
-    <section class="hero-card">
-      <div class="hero-copy">
-        <p class="eyebrow">Browser-only AI chat</p>
-        <h1>Run AI chat locally with WebGPU and WebLLM</h1>
-        <p class="hero-text">
-          This beta test never sends prompts to a server. The first launch
-          downloads the selected model into your browser cache, and later
-          launches usually reuse that cached model for a faster start.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <button id="startButton" class="primary-button" type="button">
-          Start AI Chat
-        </button>
-        <button id="clearButton" class="secondary-button" type="button">
-          Clear chat
-        </button>
-      </div>
-    </section>
-
-    <section class="control-card">
-      <div class="control-row">
-        <label class="field-label" for="modelSelect">Model</label>
-        <select id="modelSelect" class="select-field">
-          ${MODELS.map(
-            (model) => `
-              <option value="${model.id}" ${
-                model.id === DEFAULT_MODEL_ID ? "selected" : ""
-              }>
-                ${model.label}: ${model.id}
-              </option>
-            `,
-          ).join("")}
-        </select>
-      </div>
-      <p id="modelHelp" class="field-help"></p>
-
-      <div class="status-grid">
-        <article class="status-card">
-          <p class="status-label">Compatibility</p>
-          <p id="compatibilityText" class="status-text">Checking browser support...</p>
-        </article>
-        <article class="status-card">
-          <p class="status-label">Model status</p>
-          <p id="statusText" class="status-text">
-            Choose a model, then start the chat when you're ready.
-          </p>
-          <div class="progress-wrap">
-            <progress id="progressBar" max="100" value="0"></progress>
-            <span id="progressValue" class="progress-value">0%</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="chat-card">
-      <div id="chatLog" class="chat-log" aria-live="polite">
-        <div class="empty-state">
-          <h2>Ready when you are</h2>
-          <p>
-            Start the model first, then send a message. Chat history stays in
-            memory until you refresh or clear it.
+    <section class="app-stage">
+      <header class="session-header">
+        <div class="header-copy">
+          <p class="eyebrow">Developer mode</p>
+          <h1>Developer mode</h1>
+          <p class="hero-text">
+            Memory is not used for this chat. First load downloads the selected
+            model into your browser cache, and later loads usually reuse that cache.
           </p>
         </div>
-      </div>
 
-      <form id="composerForm" class="composer">
-        <label class="sr-only" for="promptInput">Message</label>
-        <textarea
-          id="promptInput"
-          rows="3"
-          placeholder="Ask something once the model is ready..."
-        ></textarea>
-        <div class="composer-actions">
-          <p class="composer-hint">
-            First load may take time because the model downloads into the browser.
-          </p>
-          <button id="sendButton" class="primary-button" type="submit">
-            Send
+        <div class="session-toolbar">
+          <button id="startButton" class="toolbar-button toolbar-button-primary" type="button">
+            Start AI Chat
+          </button>
+          <button id="clearButton" class="toolbar-button" type="button">
+            Clear chat
           </button>
         </div>
-      </form>
+      </header>
+
+      <section class="session-panel">
+        <div class="session-meta">
+          <div class="meta-block">
+            <label class="field-label" for="modelSelect">Model</label>
+            <select id="modelSelect" class="select-field">
+              ${MODELS.map(
+                (model) => `
+                  <option value="${model.id}" ${
+                    model.id === DEFAULT_MODEL_ID ? "selected" : ""
+                  }>
+                    ${model.label}: ${model.id}
+                  </option>
+                `,
+              ).join("")}
+            </select>
+            <p id="modelHelp" class="field-help"></p>
+          </div>
+
+          <div class="status-row">
+            <article class="status-card">
+              <p class="status-label">Compatibility</p>
+              <p id="compatibilityText" class="status-text">Checking browser support...</p>
+            </article>
+            <article class="status-card">
+              <p class="status-label">Model status</p>
+              <p id="statusText" class="status-text">
+                Choose a model, then start the chat when you're ready.
+              </p>
+              <div class="progress-wrap">
+                <progress id="progressBar" max="100" value="0"></progress>
+                <span id="progressValue" class="progress-value">0%</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="chatView" class="chat-view">
+        <div id="chatLog" class="chat-log" aria-live="polite">
+          <div class="empty-hero">
+            <p class="eyebrow">Pulsagi local AI</p>
+            <h2>Ask anything</h2>
+            <p class="empty-subtext">
+              Run a local WebGPU chat model in the browser with no backend.
+            </p>
+          </div>
+
+          <div class="empty-state">
+            <div class="tip-row">
+              <span class="tip-chip">Create an image</span>
+              <span class="tip-chip">Write or edit</span>
+              <span class="tip-chip">Look something up</span>
+            </div>
+            <p>
+              Start the model first, then send a message. Chat history stays in
+              memory until you refresh or clear it.
+            </p>
+          </div>
+        </div>
+
+        <div class="composer-shell">
+          <form id="composerForm" class="composer">
+            <label class="sr-only" for="promptInput">Message</label>
+            <div class="composer-bar">
+              <div class="composer-leading" aria-hidden="true">+</div>
+              <textarea
+                id="promptInput"
+                rows="1"
+                placeholder="Ask anything"
+              ></textarea>
+              <div class="composer-trailing">
+                <span class="composer-mode">Instant</span>
+                <button id="sendButton" class="send-button" type="submit" aria-label="Send message">
+                  <span class="send-button-icon">◉</span>
+                </button>
+              </div>
+            </div>
+            <div class="composer-footer">
+              <p class="composer-hint">
+                First load may take time because the model downloads into the browser.
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
     </section>
   </main>
 `;
 
 const elements = {
+  appShell: document.querySelector(".app-shell"),
+  chatView: document.querySelector("#chatView"),
   startButton: document.querySelector("#startButton"),
   clearButton: document.querySelector("#clearButton"),
   modelSelect: document.querySelector("#modelSelect"),
@@ -172,6 +198,18 @@ function setStatus(text) {
   elements.statusText.textContent = text;
 }
 
+function autoResizeComposer() {
+  elements.promptInput.style.height = "0px";
+  const nextHeight = Math.min(elements.promptInput.scrollHeight, 180);
+  elements.promptInput.style.height = `${Math.max(30, nextHeight)}px`;
+}
+
+function updateLayoutState() {
+  const visibleMessages = state.messages.filter((message) => message.role !== "system");
+  const hasMessages = visibleMessages.length > 0;
+  elements.appShell.dataset.chatState = hasMessages ? "active" : "idle";
+}
+
 function updateControls() {
   const isBusy = state.isLoading || state.isGenerating;
   const selectedModelId = elements.modelSelect.value;
@@ -197,9 +235,9 @@ function updateControls() {
   }
 
   if (state.isGenerating) {
-    elements.sendButton.textContent = "Generating...";
+    elements.sendButton.innerHTML = '<span class="send-button-icon">...</span>';
   } else {
-    elements.sendButton.textContent = "Send";
+    elements.sendButton.innerHTML = '<span class="send-button-icon">◉</span>';
   }
 }
 
@@ -229,14 +267,27 @@ function renderMessages() {
 
   if (!visibleMessages.length) {
     elements.chatLog.innerHTML = `
+      <div class="empty-hero">
+        <p class="eyebrow">Pulsagi local AI</p>
+        <h2>Ask anything</h2>
+        <p class="empty-subtext">
+          Run a local WebGPU chat model in the browser with no backend.
+        </p>
+      </div>
+
       <div class="empty-state">
-        <h2>Ready when you are</h2>
+        <div class="tip-row">
+          <span class="tip-chip">Create an image</span>
+          <span class="tip-chip">Write or edit</span>
+          <span class="tip-chip">Look something up</span>
+        </div>
         <p>
           Start the model first, then send a message. Chat history stays in
           memory until you refresh or clear it.
         </p>
       </div>
     `;
+    updateLayoutState();
     return;
   }
 
@@ -245,6 +296,7 @@ function renderMessages() {
     fragment.appendChild(createMessageNode(message.role, message.content));
   });
   elements.chatLog.appendChild(fragment);
+  updateLayoutState();
   scrollChatToBottom();
 }
 
@@ -437,6 +489,7 @@ async function sendMessage(userText) {
   renderMessages();
 
   elements.promptInput.value = "";
+  autoResizeComposer();
   const assistantBody = appendStreamingAssistantMessage();
   let assistantText = "";
 
@@ -562,10 +615,15 @@ elements.promptInput.addEventListener("keydown", async (event) => {
   }
 });
 
+elements.promptInput.addEventListener("input", () => {
+  autoResizeComposer();
+});
+
 async function initializeApp() {
   setModelHelp();
   updateControls();
   renderMessages();
+  autoResizeComposer();
   await checkWebGPU();
 }
 
