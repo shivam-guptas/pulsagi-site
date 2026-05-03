@@ -275,8 +275,14 @@ function isGpuDeviceRemovedError(message) {
   );
 }
 
+function isGpuRuntimeMappingError(message) {
+  return /mapAsync|Buffer was unmapped before mapping was resolved|GPUBuffer/i.test(
+    message,
+  );
+}
+
 function isGpuMemoryOrDeviceError(message) {
-  return /Model not loaded|device was lost|insufficient memory|out of memory|device lost|DXGI_ERROR_DEVICE_REMOVED|requestDevice.*D3D12|create command queue failed/i.test(
+  return /Model not loaded|device was lost|insufficient memory|out of memory|device lost|DXGI_ERROR_DEVICE_REMOVED|requestDevice.*D3D12|create command queue failed|mapAsync|Buffer was unmapped before mapping was resolved|GPUBuffer/i.test(
     message,
   );
 }
@@ -290,7 +296,26 @@ function getRecoveryStatus(message, selectedModelLabel) {
     return `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModelLabel}. Try the Fast model.`;
   }
 
+  if (isGpuRuntimeMappingError(message)) {
+    return `Model load failed: ${message} The browser hit a WebGPU runtime error while using ${selectedModelLabel}. Refresh this tab and retry with the Fast model first.`;
+  }
+
   return `Model load failed: ${message}`;
+}
+
+async function resetEngineAfterGpuFailure() {
+  const currentEngine = state.engine;
+  state.engineReady = false;
+  state.engine = null;
+  state.activeModelId = null;
+
+  if (currentEngine && typeof currentEngine.unload === "function") {
+    try {
+      await currentEngine.unload();
+    } catch {
+      // Ignore cleanup failures after GPU/runtime loss; the main goal is to reset app state.
+    }
+  }
 }
 
 async function checkWebGPU() {
@@ -379,15 +404,16 @@ async function loadModel(modelId) {
     );
     elements.promptInput.focus();
   } catch (error) {
-    state.engineReady = false;
-    state.engine = null;
-    state.activeModelId = null;
+    await resetEngineAfterGpuFailure();
     setProgress(0, "Failed");
     const message = getFriendlyErrorMessage(error);
     setStatus(getRecoveryStatus(message, selectedModel.label));
     if (isGpuDeviceRemovedError(message)) {
       elements.compatibilityText.textContent =
         "WebGPU is present, but the GPU device was removed while starting the selected model. Refresh the tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+    } else if (isGpuRuntimeMappingError(message)) {
+      elements.compatibilityText.textContent =
+        "WebGPU is available, but the browser hit a GPU runtime mapping error while running the selected model. Refresh this tab and retry with the Fast model first.";
     }
   } finally {
     state.isLoading = false;
@@ -447,15 +473,30 @@ async function sendMessage(userText) {
   } catch (error) {
     const message = getFriendlyErrorMessage(error);
     if (isGpuMemoryOrDeviceError(message)) {
-      state.engineReady = false;
-      state.engine = null;
-      state.activeModelId = null;
-      assistantBody.textContent = isGpuDeviceRemovedError(message)
-        ? "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first."
-        : "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
-      setStatus(isGpuDeviceRemovedError(message)
-        ? `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`
-        : `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`);
+      await resetEngineAfterGpuFailure();
+      if (isGpuDeviceRemovedError(message)) {
+        assistantBody.textContent =
+          "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first.";
+        setStatus(
+          `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+        );
+        elements.compatibilityText.textContent =
+          "WebGPU is present, but the GPU device was removed during generation. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+      } else if (isGpuRuntimeMappingError(message)) {
+        assistantBody.textContent =
+          "Sorry, the browser hit a WebGPU runtime error while generating that reply. Refresh the tab, then retry with the Fast model first.";
+        setStatus(
+          `Generation failed: ${message} The browser hit a WebGPU runtime mapping error. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+        );
+        elements.compatibilityText.textContent =
+          "WebGPU is available, but the browser hit a GPU runtime mapping error during generation. Refresh this tab and retry with the Fast model first.";
+      } else {
+        assistantBody.textContent =
+          "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
+        setStatus(
+          `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
+        );
+      }
     } else {
       assistantBody.textContent = `Sorry, the response failed: ${message}`;
       setStatus(`Generation failed: ${message}`);
