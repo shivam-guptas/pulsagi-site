@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Agentic AI Tools: The Next Wave of Work Automation** (May 4, 2026): https://pulsagi.com/articles/agentic-ai-tools-next-wave.html
 - **Generative AI Adoption Statistics 2026: Global Usage Crosses 50%** (May 4, 2026): https://pulsagi.com/articles/generative-ai-adoption-statistics-2026-guide.html
 - **USER_MODE vs SECURITY_ENFORCED vs stripInaccessible** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html
 - **stripInaccessible in Apex: CRUD and FLS Guide** (Apr 30, 2026): https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html
