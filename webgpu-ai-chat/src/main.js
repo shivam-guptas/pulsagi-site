@@ -263,6 +263,36 @@ function getFriendlyErrorMessage(error) {
   return raw.replace(/\s+/g, " ").trim();
 }
 
+function wait(ms) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, ms);
+  });
+}
+
+function isGpuDeviceRemovedError(message) {
+  return /DXGI_ERROR_DEVICE_REMOVED|requestDevice.*D3D12|create command queue failed|DeviceLostError/i.test(
+    message,
+  );
+}
+
+function isGpuMemoryOrDeviceError(message) {
+  return /Model not loaded|device was lost|insufficient memory|out of memory|device lost|DXGI_ERROR_DEVICE_REMOVED|requestDevice.*D3D12|create command queue failed/i.test(
+    message,
+  );
+}
+
+function getRecoveryStatus(message, selectedModelLabel) {
+  if (isGpuDeviceRemovedError(message)) {
+    return `Model load failed: ${message} The browser's WebGPU device was removed by the graphics stack while starting ${selectedModelLabel}. Refresh this tab, close other GPU-heavy tabs or apps, and try the Fast model first.`;
+  }
+
+  if (/device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
+    return `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModelLabel}. Try the Fast model.`;
+  }
+
+  return `Model load failed: ${message}`;
+}
+
 async function checkWebGPU() {
   state.compatibilityChecked = true;
 
@@ -332,6 +362,8 @@ async function loadModel(modelId) {
   try {
     if (state.engine && typeof state.engine.unload === "function") {
       await state.engine.unload();
+      // Give the browser a short moment to release GPU resources before requesting a new device.
+      await wait(200);
     }
 
     state.engine = await webllm.CreateMLCEngine(modelId, {
@@ -352,12 +384,10 @@ async function loadModel(modelId) {
     state.activeModelId = null;
     setProgress(0, "Failed");
     const message = getFriendlyErrorMessage(error);
-    if (/device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
-      setStatus(
-        `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModel.label}. Try the Fast model.`,
-      );
-    } else {
-      setStatus(`Model load failed: ${message}`);
+    setStatus(getRecoveryStatus(message, selectedModel.label));
+    if (isGpuDeviceRemovedError(message)) {
+      elements.compatibilityText.textContent =
+        "WebGPU is present, but the GPU device was removed while starting the selected model. Refresh the tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
     }
   } finally {
     state.isLoading = false;
@@ -416,15 +446,16 @@ async function sendMessage(userText) {
     setStatus("Response complete.");
   } catch (error) {
     const message = getFriendlyErrorMessage(error);
-    if (/Model not loaded|device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
+    if (isGpuMemoryOrDeviceError(message)) {
       state.engineReady = false;
       state.engine = null;
       state.activeModelId = null;
-      assistantBody.textContent =
-        "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
-      setStatus(
-        `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
-      );
+      assistantBody.textContent = isGpuDeviceRemovedError(message)
+        ? "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first."
+        : "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
+      setStatus(isGpuDeviceRemovedError(message)
+        ? `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`
+        : `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`);
     } else {
       assistantBody.textContent = `Sorry, the response failed: ${message}`;
       setStatus(`Generation failed: ${message}`);
