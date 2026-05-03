@@ -174,16 +174,24 @@ function setStatus(text) {
 
 function updateControls() {
   const isBusy = state.isLoading || state.isGenerating;
+  const selectedModelId = elements.modelSelect.value;
+  const switchingModel =
+    state.engineReady &&
+    state.activeModelId &&
+    state.activeModelId !== selectedModelId;
+
   elements.startButton.disabled = !state.webgpuAvailable || isBusy;
   elements.clearButton.disabled = isBusy;
   elements.modelSelect.disabled = !state.webgpuAvailable || isBusy;
-  elements.promptInput.disabled = !state.engineReady || isBusy;
-  elements.sendButton.disabled = !state.engineReady || isBusy;
+  elements.promptInput.disabled = !state.engineReady || isBusy || switchingModel;
+  elements.sendButton.disabled = !state.engineReady || isBusy || switchingModel;
 
   if (state.isLoading) {
     elements.startButton.textContent = state.hasStarted ? "Switching model..." : "Starting AI Chat...";
   } else if (state.engineReady) {
-    elements.startButton.textContent = "Reload selected model";
+    elements.startButton.textContent = switchingModel
+      ? "Switch to selected model"
+      : "Reload current model";
   } else {
     elements.startButton.textContent = "Start AI Chat";
   }
@@ -302,6 +310,7 @@ async function loadModel(modelId) {
   }
 
   state.isLoading = true;
+  state.engineReady = false;
   updateControls();
   setStatus(
     `Loading ${selectedModel.label}. First load downloads the model into browser storage; later loads usually reuse the browser cache.`,
@@ -321,16 +330,13 @@ async function loadModel(modelId) {
   };
 
   try {
-    if (!state.engine) {
-      state.engine = await webllm.CreateMLCEngine(modelId, {
-        initProgressCallback,
-      });
-    } else {
-      if (typeof state.engine.setInitProgressCallback === "function") {
-        state.engine.setInitProgressCallback(initProgressCallback);
-      }
-      await state.engine.reload(modelId);
+    if (state.engine && typeof state.engine.unload === "function") {
+      await state.engine.unload();
     }
+
+    state.engine = await webllm.CreateMLCEngine(modelId, {
+      initProgressCallback,
+    });
 
     state.activeModelId = modelId;
     state.hasStarted = true;
@@ -342,8 +348,17 @@ async function loadModel(modelId) {
     elements.promptInput.focus();
   } catch (error) {
     state.engineReady = false;
+    state.engine = null;
+    state.activeModelId = null;
     setProgress(0, "Failed");
-    setStatus(`Model load failed: ${getFriendlyErrorMessage(error)}`);
+    const message = getFriendlyErrorMessage(error);
+    if (/device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
+      setStatus(
+        `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModel.label}. Try the Fast model.`,
+      );
+    } else {
+      setStatus(`Model load failed: ${message}`);
+    }
   } finally {
     state.isLoading = false;
     updateControls();
@@ -374,6 +389,7 @@ async function sendMessage(userText) {
   try {
     const stream = await state.engine.chat.completions.create({
       messages: state.messages,
+      model: state.activeModelId || undefined,
       temperature: 0.7,
       stream: true,
     });
@@ -399,8 +415,20 @@ async function sendMessage(userText) {
     });
     setStatus("Response complete.");
   } catch (error) {
-    assistantBody.textContent = `Sorry, the response failed: ${getFriendlyErrorMessage(error)}`;
-    setStatus(`Generation failed: ${getFriendlyErrorMessage(error)}`);
+    const message = getFriendlyErrorMessage(error);
+    if (/Model not loaded|device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
+      state.engineReady = false;
+      state.engine = null;
+      state.activeModelId = null;
+      assistantBody.textContent =
+        "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
+      setStatus(
+        `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
+      );
+    } else {
+      assistantBody.textContent = `Sorry, the response failed: ${message}`;
+      setStatus(`Generation failed: ${message}`);
+    }
   } finally {
     state.isGenerating = false;
     updateControls();
@@ -430,11 +458,20 @@ elements.startButton.addEventListener("click", async () => {
   await loadModel(elements.modelSelect.value);
 });
 
-elements.modelSelect.addEventListener("change", async () => {
+elements.modelSelect.addEventListener("change", () => {
   setModelHelp();
-  if (state.engineReady && !state.isLoading && !state.isGenerating) {
-    await loadModel(elements.modelSelect.value);
+  if (!state.engineReady) {
+    setStatus("Choose a model, then click Start AI Chat.");
+  } else if (state.activeModelId === elements.modelSelect.value) {
+    setStatus("This model is already loaded and ready.");
+  } else {
+    const currentModel = MODELS.find((model) => model.id === state.activeModelId);
+    const nextModel = getSelectedModel();
+    setStatus(
+      `${nextModel.label} is selected. Click Start AI Chat to switch from ${currentModel?.label || "the current model"}.`,
+    );
   }
+  updateControls();
 });
 
 elements.clearButton.addEventListener("click", () => {
