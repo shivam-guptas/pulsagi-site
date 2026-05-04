@@ -22,7 +22,7 @@ const MODELS = [
   },
 ];
 
-const DEFAULT_MODEL_ID = "Qwen3.5-0.8B-q4f16_1-MLC";
+const DEFAULT_MODEL_ID = "Qwen2.5-0.5B-Instruct-q4f16_1-MLC";
 const RECOVERY_MODEL_ID = "SmolLM2-360M-Instruct-q4f16_1-MLC";
 const SYSTEM_PROMPT =
   "You are a helpful, concise AI assistant running entirely in the browser.";

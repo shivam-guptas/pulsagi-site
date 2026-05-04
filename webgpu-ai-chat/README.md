@@ -8,7 +8,7 @@ The source lives in [`webgpu-ai-chat/`](./), but the production build is current
 
 - Browser-only AI chat using WebGPU
 - Lazy startup with a `Start AI Chat` button
-- Default model: `Qwen3.5-0.8B-q4f16_1-MLC`
+- Default model: `Qwen2.5-0.5B-Instruct-q4f16_1-MLC`
 - Optional model selector:
   - `Qwen 3.5 (0.8B)`: `Qwen3.5-0.8B-q4f16_1-MLC`
   - `Qwen 2.5 (0.5B)`: `Qwen2.5-0.5B-Instruct-q4f16_1-MLC`
