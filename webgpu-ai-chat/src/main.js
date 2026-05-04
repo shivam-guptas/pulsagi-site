@@ -32,6 +32,7 @@ const state = {
   hasStarted: false,
   isLoading: false,
   isGenerating: false,
+  drawerOpen: false,
   compatibilityChecked: false,
   webgpuAvailable: false,
   activeModelId: null,
@@ -57,6 +58,15 @@ document.querySelector("#app").innerHTML = `
         </div>
 
         <div class="session-toolbar">
+          <button
+            id="drawerToggle"
+            class="toolbar-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="sessionPanel"
+          >
+            Model & status
+          </button>
           <button id="startButton" class="toolbar-button toolbar-button-primary" type="button">
             Start AI Chat
           </button>
@@ -66,7 +76,7 @@ document.querySelector("#app").innerHTML = `
         </div>
       </header>
 
-      <section class="session-panel">
+      <section id="sessionPanel" class="session-panel" hidden>
         <div class="session-meta">
           <div class="meta-block">
             <label class="field-label" for="modelSelect">Model</label>
@@ -139,7 +149,7 @@ document.querySelector("#app").innerHTML = `
               <div class="composer-trailing">
                 <span class="composer-mode">Instant</span>
                 <button id="sendButton" class="send-button" type="submit" aria-label="Send message">
-                  <span class="send-button-icon">◉</span>
+                  <span class="send-button-icon">↑</span>
                 </button>
               </div>
             </div>
@@ -157,9 +167,10 @@ document.querySelector("#app").innerHTML = `
 
 const elements = {
   appShell: document.querySelector(".app-shell"),
-  chatView: document.querySelector("#chatView"),
+  drawerToggle: document.querySelector("#drawerToggle"),
   startButton: document.querySelector("#startButton"),
   clearButton: document.querySelector("#clearButton"),
+  sessionPanel: document.querySelector("#sessionPanel"),
   modelSelect: document.querySelector("#modelSelect"),
   modelHelp: document.querySelector("#modelHelp"),
   compatibilityText: document.querySelector("#compatibilityText"),
@@ -174,6 +185,12 @@ const elements = {
 
 function getSelectedModel() {
   return MODELS.find((model) => model.id === elements.modelSelect.value) || MODELS[0];
+}
+
+function getVisibleMessages() {
+  return state.messages
+    .map((message, actualIndex) => ({ ...message, actualIndex }))
+    .filter((message) => message.role !== "system");
 }
 
 function setModelHelp() {
@@ -198,6 +215,15 @@ function setStatus(text) {
   elements.statusText.textContent = text;
 }
 
+function toggleDrawer(forceValue) {
+  state.drawerOpen = typeof forceValue === "boolean" ? forceValue : !state.drawerOpen;
+  elements.sessionPanel.hidden = !state.drawerOpen;
+  elements.drawerToggle.setAttribute("aria-expanded", String(state.drawerOpen));
+  elements.drawerToggle.textContent = state.drawerOpen
+    ? "Hide model & status"
+    : "Model & status";
+}
+
 function autoResizeComposer() {
   elements.promptInput.style.height = "0px";
   const nextHeight = Math.min(elements.promptInput.scrollHeight, 180);
@@ -205,8 +231,7 @@ function autoResizeComposer() {
 }
 
 function updateLayoutState() {
-  const visibleMessages = state.messages.filter((message) => message.role !== "system");
-  const hasMessages = visibleMessages.length > 0;
+  const hasMessages = getVisibleMessages().length > 0;
   elements.appShell.dataset.chatState = hasMessages ? "active" : "idle";
 }
 
@@ -218,6 +243,7 @@ function updateControls() {
     state.activeModelId &&
     state.activeModelId !== selectedModelId;
 
+  elements.drawerToggle.disabled = isBusy;
   elements.startButton.disabled = !state.webgpuAvailable || isBusy;
   elements.clearButton.disabled = isBusy;
   elements.modelSelect.disabled = !state.webgpuAvailable || isBusy;
@@ -234,18 +260,108 @@ function updateControls() {
     elements.startButton.textContent = "Start AI Chat";
   }
 
-  if (state.isGenerating) {
-    elements.sendButton.innerHTML = '<span class="send-button-icon">...</span>';
-  } else {
-    elements.sendButton.innerHTML = '<span class="send-button-icon">◉</span>';
-  }
+  elements.sendButton.innerHTML = state.isGenerating
+    ? '<span class="send-button-icon">...</span>'
+    : '<span class="send-button-icon">↑</span>';
 }
 
 function scrollChatToBottom() {
   elements.chatLog.scrollTop = elements.chatLog.scrollHeight;
 }
 
-function createMessageNode(role, content) {
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function formatInlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
+function renderRichMessage(body, content) {
+  const normalized = content.replace(/\r\n/g, "\n").trim();
+  if (!normalized) {
+    body.textContent = "";
+    return;
+  }
+
+  const blocks = normalized.split(/\n{2,}/);
+  const fragment = document.createDocumentFragment();
+
+  blocks.forEach((block) => {
+    const lines = block.split("\n").map((line) => line.trimEnd());
+    const compactLines = lines.map((line) => line.trim()).filter(Boolean);
+    const isBulletList =
+      compactLines.length > 0 && compactLines.every((line) => /^[-*]\s+/.test(line));
+    const isNumberList =
+      compactLines.length > 0 && compactLines.every((line) => /^\d+\.\s+/.test(line));
+
+    if (isBulletList || isNumberList) {
+      const list = document.createElement(isNumberList ? "ol" : "ul");
+      list.className = "message-list";
+      compactLines.forEach((line) => {
+        const item = document.createElement("li");
+        item.innerHTML = formatInlineMarkdown(
+          line.replace(isNumberList ? /^\d+\.\s+/ : /^[-*]\s+/, ""),
+        );
+        list.appendChild(item);
+      });
+      fragment.appendChild(list);
+      return;
+    }
+
+    if (compactLines.length === 1 && /^#{1,3}\s+/.test(compactLines[0])) {
+      const level = Math.min(3, compactLines[0].match(/^#+/)[0].length);
+      const heading = document.createElement(`h${level + 1}`);
+      heading.className = `message-heading message-heading-${level}`;
+      heading.innerHTML = formatInlineMarkdown(compactLines[0].replace(/^#{1,3}\s+/, ""));
+      fragment.appendChild(heading);
+      return;
+    }
+
+    const paragraph = document.createElement("p");
+    paragraph.className = "message-paragraph";
+    paragraph.innerHTML = lines.map((line) => formatInlineMarkdown(line)).join("<br />");
+    fragment.appendChild(paragraph);
+  });
+
+  body.replaceChildren(fragment);
+}
+
+function createAssistantActions(actualIndex) {
+  const actions = document.createElement("div");
+  actions.className = "message-actions";
+
+  const copyButton = document.createElement("button");
+  copyButton.type = "button";
+  copyButton.className = "message-action-button";
+  copyButton.dataset.action = "copy";
+  copyButton.dataset.messageIndex = String(actualIndex);
+  copyButton.setAttribute("aria-label", "Copy assistant message");
+  copyButton.textContent = "⧉";
+
+  const retryButton = document.createElement("button");
+  retryButton.type = "button";
+  retryButton.className = "message-action-button";
+  retryButton.dataset.action = "retry";
+  retryButton.dataset.messageIndex = String(actualIndex);
+  retryButton.setAttribute("aria-label", "Retry assistant response");
+  retryButton.textContent = "↻";
+
+  const isLastAssistant =
+    actualIndex === state.messages.length - 1 && state.messages[actualIndex]?.role === "assistant";
+  retryButton.disabled = !isLastAssistant || state.isGenerating || state.isLoading;
+
+  actions.append(copyButton, retryButton);
+  return actions;
+}
+
+function createMessageNode(role, content, actualIndex) {
   const wrapper = document.createElement("article");
   wrapper.className = `message message-${role}`;
 
@@ -255,14 +371,23 @@ function createMessageNode(role, content) {
 
   const body = document.createElement("div");
   body.className = "message-body";
-  body.textContent = content;
+  if (role === "assistant") {
+    renderRichMessage(body, content);
+  } else {
+    body.textContent = content;
+  }
 
   wrapper.append(roleLabel, body);
+
+  if (role === "assistant" && Number.isInteger(actualIndex)) {
+    wrapper.appendChild(createAssistantActions(actualIndex));
+  }
+
   return wrapper;
 }
 
 function renderMessages() {
-  const visibleMessages = state.messages.filter((message) => message.role !== "system");
+  const visibleMessages = getVisibleMessages();
   elements.chatLog.innerHTML = "";
 
   if (!visibleMessages.length) {
@@ -293,7 +418,9 @@ function renderMessages() {
 
   const fragment = document.createDocumentFragment();
   visibleMessages.forEach((message) => {
-    fragment.appendChild(createMessageNode(message.role, message.content));
+    fragment.appendChild(
+      createMessageNode(message.role, message.content, message.actualIndex),
+    );
   });
   elements.chatLog.appendChild(fragment);
   updateLayoutState();
@@ -304,7 +431,10 @@ function appendStreamingAssistantMessage() {
   const node = createMessageNode("assistant", "");
   elements.chatLog.appendChild(node);
   scrollChatToBottom();
-  return node.querySelector(".message-body");
+  return {
+    wrapper: node,
+    body: node.querySelector(".message-body"),
+  };
 }
 
 function getFriendlyErrorMessage(error) {
@@ -328,9 +458,7 @@ function isGpuDeviceRemovedError(message) {
 }
 
 function isGpuRuntimeMappingError(message) {
-  return /mapAsync|Buffer was unmapped before mapping was resolved|GPUBuffer/i.test(
-    message,
-  );
+  return /mapAsync|Buffer was unmapped before mapping was resolved|GPUBuffer/i.test(message);
 }
 
 function isGpuMemoryOrDeviceError(message) {
@@ -439,7 +567,6 @@ async function loadModel(modelId) {
   try {
     if (state.engine && typeof state.engine.unload === "function") {
       await state.engine.unload();
-      // Give the browser a short moment to release GPU resources before requesting a new device.
       await wait(200);
     }
 
@@ -450,6 +577,7 @@ async function loadModel(modelId) {
     state.activeModelId = modelId;
     state.hasStarted = true;
     state.engineReady = true;
+    toggleDrawer(false);
     setProgress(100, "Ready");
     setStatus(
       `${selectedModel.label} is ready. Cached model files can make future loads much faster on this browser.`,
@@ -462,7 +590,7 @@ async function loadModel(modelId) {
     setStatus(getRecoveryStatus(message, selectedModel.label));
     if (isGpuDeviceRemovedError(message)) {
       elements.compatibilityText.textContent =
-        "WebGPU is present, but the GPU device was removed while starting the selected model. Refresh the tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+        "WebGPU is present, but the GPU device was removed while starting the selected model. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
     } else if (isGpuRuntimeMappingError(message)) {
       elements.compatibilityText.textContent =
         "WebGPU is available, but the browser hit a GPU runtime mapping error while running the selected model. Refresh this tab and retry with the Fast model first.";
@@ -470,6 +598,85 @@ async function loadModel(modelId) {
   } finally {
     state.isLoading = false;
     updateControls();
+  }
+}
+
+async function generateAssistantResponse() {
+  const assistantNode = appendStreamingAssistantMessage();
+  let assistantText = "";
+
+  setStatus("Generating response...");
+
+  try {
+    const stream = await state.engine.chat.completions.create({
+      messages: state.messages,
+      model: state.activeModelId || undefined,
+      temperature: 0.7,
+      stream: true,
+    });
+
+    for await (const chunk of stream) {
+      const delta = chunk.choices?.[0]?.delta?.content || "";
+      if (!delta) {
+        continue;
+      }
+      assistantText += delta;
+      renderRichMessage(assistantNode.body, assistantText);
+      scrollChatToBottom();
+    }
+
+    if (!assistantText && typeof state.engine.getMessage === "function") {
+      assistantText = await state.engine.getMessage();
+      renderRichMessage(assistantNode.body, assistantText);
+    }
+
+    state.messages.push({
+      role: "assistant",
+      content: assistantText || "No response was generated.",
+    });
+    renderMessages();
+    setStatus("Response complete.");
+  } catch (error) {
+    const message = getFriendlyErrorMessage(error);
+    if (isGpuMemoryOrDeviceError(message)) {
+      await resetEngineAfterGpuFailure();
+      if (isGpuDeviceRemovedError(message)) {
+        renderRichMessage(
+          assistantNode.body,
+          "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first.",
+        );
+        setStatus(
+          `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+        );
+        elements.compatibilityText.textContent =
+          "WebGPU is present, but the GPU device was removed during generation. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+      } else if (isGpuRuntimeMappingError(message)) {
+        renderRichMessage(
+          assistantNode.body,
+          "Sorry, the browser hit a WebGPU runtime error while generating that reply. Refresh the tab, then retry with the Fast model first.",
+        );
+        setStatus(
+          `Generation failed: ${message} The browser hit a WebGPU runtime mapping error. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+        );
+        elements.compatibilityText.textContent =
+          "WebGPU is available, but the browser hit a GPU runtime mapping error during generation. Refresh this tab and retry with the Fast model first.";
+      } else {
+        renderRichMessage(
+          assistantNode.body,
+          "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.",
+        );
+        setStatus(
+          `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
+        );
+      }
+    } else {
+      renderRichMessage(assistantNode.body, `Sorry, the response failed: ${message}`);
+      setStatus(`Generation failed: ${message}`);
+    }
+  } finally {
+    state.isGenerating = false;
+    updateControls();
+    scrollChatToBottom();
   }
 }
 
@@ -490,75 +697,8 @@ async function sendMessage(userText) {
 
   elements.promptInput.value = "";
   autoResizeComposer();
-  const assistantBody = appendStreamingAssistantMessage();
-  let assistantText = "";
 
-  setStatus("Generating response...");
-
-  try {
-    const stream = await state.engine.chat.completions.create({
-      messages: state.messages,
-      model: state.activeModelId || undefined,
-      temperature: 0.7,
-      stream: true,
-    });
-
-    for await (const chunk of stream) {
-      const delta = chunk.choices?.[0]?.delta?.content || "";
-      if (!delta) {
-        continue;
-      }
-      assistantText += delta;
-      assistantBody.textContent = assistantText;
-      scrollChatToBottom();
-    }
-
-    if (!assistantText && typeof state.engine.getMessage === "function") {
-      assistantText = await state.engine.getMessage();
-      assistantBody.textContent = assistantText;
-    }
-
-    state.messages.push({
-      role: "assistant",
-      content: assistantText || "No response was generated.",
-    });
-    setStatus("Response complete.");
-  } catch (error) {
-    const message = getFriendlyErrorMessage(error);
-    if (isGpuMemoryOrDeviceError(message)) {
-      await resetEngineAfterGpuFailure();
-      if (isGpuDeviceRemovedError(message)) {
-        assistantBody.textContent =
-          "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first.";
-        setStatus(
-          `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
-        );
-        elements.compatibilityText.textContent =
-          "WebGPU is present, but the GPU device was removed during generation. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
-      } else if (isGpuRuntimeMappingError(message)) {
-        assistantBody.textContent =
-          "Sorry, the browser hit a WebGPU runtime error while generating that reply. Refresh the tab, then retry with the Fast model first.";
-        setStatus(
-          `Generation failed: ${message} The browser hit a WebGPU runtime mapping error. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
-        );
-        elements.compatibilityText.textContent =
-          "WebGPU is available, but the browser hit a GPU runtime mapping error during generation. Refresh this tab and retry with the Fast model first.";
-      } else {
-        assistantBody.textContent =
-          "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.";
-        setStatus(
-          `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
-        );
-      }
-    } else {
-      assistantBody.textContent = `Sorry, the response failed: ${message}`;
-      setStatus(`Generation failed: ${message}`);
-    }
-  } finally {
-    state.isGenerating = false;
-    updateControls();
-    scrollChatToBottom();
-  }
+  await generateAssistantResponse();
 }
 
 function clearChat() {
@@ -579,8 +719,43 @@ function clearChat() {
   );
 }
 
+async function copyMessageContent(messageIndex) {
+  const message = state.messages[messageIndex];
+  if (!message?.content) {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(message.content);
+    setStatus("Assistant message copied to clipboard.");
+  } catch {
+    setStatus("Copy failed in this browser session.");
+  }
+}
+
+async function retryAssistantMessage(messageIndex) {
+  const targetMessage = state.messages[messageIndex];
+  if (!targetMessage || targetMessage.role !== "assistant") {
+    return;
+  }
+
+  if (messageIndex !== state.messages.length - 1 || state.isGenerating || state.isLoading) {
+    return;
+  }
+
+  state.messages.pop();
+  renderMessages();
+  state.isGenerating = true;
+  updateControls();
+  await generateAssistantResponse();
+}
+
 elements.startButton.addEventListener("click", async () => {
   await loadModel(elements.modelSelect.value);
+});
+
+elements.drawerToggle.addEventListener("click", () => {
+  toggleDrawer();
 });
 
 elements.modelSelect.addEventListener("change", () => {
@@ -619,8 +794,27 @@ elements.promptInput.addEventListener("input", () => {
   autoResizeComposer();
 });
 
+elements.chatLog.addEventListener("click", async (event) => {
+  const button = event.target.closest(".message-action-button");
+  if (!button) {
+    return;
+  }
+
+  const messageIndex = Number(button.dataset.messageIndex);
+  if (!Number.isInteger(messageIndex)) {
+    return;
+  }
+
+  if (button.dataset.action === "copy") {
+    await copyMessageContent(messageIndex);
+  } else if (button.dataset.action === "retry") {
+    await retryAssistantMessage(messageIndex);
+  }
+});
+
 async function initializeApp() {
   setModelHelp();
+  toggleDrawer(false);
   updateControls();
   renderMessages();
   autoResizeComposer();

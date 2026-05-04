@@ -151,6 +151,10 @@ button {
   box-shadow: var(--shadow-soft);
 }
 
+.session-panel[hidden] {
+  display: none;
+}
+
 .session-meta {
   display: grid;
   gap: 18px;
@@ -346,10 +350,89 @@ progress::-moz-progress-bar {
 }
 
 .message-body {
-  white-space: pre-wrap;
   word-break: break-word;
   font-size: 1.02rem;
   line-height: 1.72;
+}
+
+.message-body > :first-child {
+  margin-top: 0;
+}
+
+.message-body > :last-child {
+  margin-bottom: 0;
+}
+
+.message-heading {
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.message-heading-1 {
+  margin: 0 0 0.8rem;
+  font-size: 1.5rem;
+}
+
+.message-heading-2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.28rem;
+}
+
+.message-heading-3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.12rem;
+}
+
+.message-paragraph {
+  margin: 0 0 1rem;
+}
+
+.message-list {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+}
+
+.message-list li + li {
+  margin-top: 0.42rem;
+}
+
+.message-body code {
+  padding: 0.1rem 0.38rem;
+  border-radius: 8px;
+  background: rgba(17, 17, 17, 0.06);
+  font-size: 0.94em;
+}
+
+.message-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(24, 24, 23, 0.08);
+}
+
+.message-action-button {
+  padding: 6px 10px;
+  border: 1px solid rgba(24, 24, 23, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.message-action-button:hover {
+  border-color: rgba(255, 106, 26, 0.24);
+  color: var(--text);
+}
+
+.message-action-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .composer-shell {
