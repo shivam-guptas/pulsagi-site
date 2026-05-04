@@ -70,8 +70,18 @@ document.querySelector("#app").innerHTML = `
         </div>
       </header>
 
-      <section id="sessionPanel" class="session-panel" hidden>
-        <div class="session-meta">
+      <section
+        id="sessionPanel"
+        class="session-panel"
+        hidden
+        aria-hidden="true"
+      >
+        <div
+          class="session-meta"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Model and status"
+        >
           <div class="meta-block">
             <label class="field-label" for="modelSelect">Model</label>
             <select id="modelSelect" class="select-field">
@@ -226,6 +236,7 @@ function toggleDrawer(forceValue) {
   state.drawerOpen = typeof forceValue === "boolean" ? forceValue : !state.drawerOpen;
   elements.sessionPanel.hidden = !state.drawerOpen;
   elements.drawerToggle.setAttribute("aria-expanded", String(state.drawerOpen));
+  elements.sessionPanel.setAttribute("aria-hidden", String(!state.drawerOpen));
 }
 
 function autoResizeComposer() {
@@ -775,6 +786,12 @@ document.addEventListener("click", (event) => {
   const clickedToggle = elements.drawerToggle.contains(event.target);
 
   if (!clickedInsideDrawer && !clickedToggle) {
+    toggleDrawer(false);
+  }
+});
+
+elements.sessionPanel.addEventListener("click", (event) => {
+  if (event.target === elements.sessionPanel) {
     toggleDrawer(false);
   }
 });

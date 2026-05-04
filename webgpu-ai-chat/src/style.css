@@ -131,6 +131,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  position: relative;
+  z-index: 36;
 }
 
 .drawer-chevron {
@@ -159,17 +161,19 @@ button {
 }
 
 .session-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  z-index: 5;
-  width: min(560px, calc(100vw - 32px));
-  padding: 18px 20px;
-  border: 1px solid rgba(24, 24, 23, 0.06);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding:
+    92px
+    max(16px, calc((100vw - 1080px) / 2 + 14px))
+    24px
+    16px;
+  background: rgba(18, 17, 15, 0.12);
+  backdrop-filter: blur(6px);
 }
 
 .session-panel[hidden] {
@@ -177,6 +181,13 @@ button {
 }
 
 .session-meta {
+  width: min(560px, calc(100vw - 32px));
+  padding: 18px 20px;
+  border: 1px solid rgba(24, 24, 23, 0.06);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
   display: grid;
   gap: 18px;
 }
@@ -597,10 +608,6 @@ textarea::placeholder {
   right: 0;
 }
 
-.app-shell[data-chat-state="idle"] .session-panel {
-  right: 0;
-}
-
 .app-shell[data-chat-state="idle"] .composer-shell {
   margin-top: 28px;
 }
@@ -619,10 +626,6 @@ textarea::placeholder {
   .session-toolbar {
     flex-wrap: wrap;
     justify-content: flex-end;
-  }
-
-  .session-panel {
-    width: min(560px, calc(100vw - 24px));
   }
 
   .panel-actions {
@@ -658,11 +661,14 @@ textarea::placeholder {
   }
 
   .session-panel {
-    position: static;
-    width: 100%;
+    justify-content: center;
+    padding: 84px 12px 20px;
+  }
+
+  .session-meta {
+    width: min(100%, 560px);
     padding: 16px;
     border-radius: 20px;
-    margin-top: 12px;
   }
 
   .panel-actions {
