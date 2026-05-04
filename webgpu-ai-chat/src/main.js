@@ -65,7 +65,8 @@ document.querySelector("#app").innerHTML = `
             aria-expanded="false"
             aria-controls="sessionPanel"
           >
-            Model & status
+            <span>Model & status</span>
+            <span class="drawer-chevron" aria-hidden="true">▾</span>
           </button>
           <button id="startButton" class="toolbar-button toolbar-button-primary" type="button">
             Start AI Chat
@@ -219,9 +220,6 @@ function toggleDrawer(forceValue) {
   state.drawerOpen = typeof forceValue === "boolean" ? forceValue : !state.drawerOpen;
   elements.sessionPanel.hidden = !state.drawerOpen;
   elements.drawerToggle.setAttribute("aria-expanded", String(state.drawerOpen));
-  elements.drawerToggle.textContent = state.drawerOpen
-    ? "Hide model & status"
-    : "Model & status";
 }
 
 function autoResizeComposer() {
@@ -756,6 +754,25 @@ elements.startButton.addEventListener("click", async () => {
 
 elements.drawerToggle.addEventListener("click", () => {
   toggleDrawer();
+});
+
+document.addEventListener("click", (event) => {
+  if (!state.drawerOpen) {
+    return;
+  }
+
+  const clickedInsideDrawer = elements.sessionPanel.contains(event.target);
+  const clickedToggle = elements.drawerToggle.contains(event.target);
+
+  if (!clickedInsideDrawer && !clickedToggle) {
+    toggleDrawer(false);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && state.drawerOpen) {
+    toggleDrawer(false);
+  }
 });
 
 elements.modelSelect.addEventListener("change", () => {

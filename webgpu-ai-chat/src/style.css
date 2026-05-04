@@ -107,6 +107,7 @@ button {
 }
 
 .session-toolbar {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -123,6 +124,21 @@ button {
     border-color 160ms ease,
     transform 160ms ease,
     opacity 160ms ease;
+}
+
+#drawerToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-chevron {
+  display: inline-flex;
+  transition: transform 160ms ease;
+}
+
+#drawerToggle[aria-expanded="true"] .drawer-chevron {
+  transform: rotate(180deg);
 }
 
 .toolbar-button:hover {
@@ -142,13 +158,17 @@ button {
 }
 
 .session-panel {
-  margin-bottom: 18px;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 5;
+  width: min(560px, calc(100vw - 32px));
   padding: 18px 20px;
   border: 1px solid rgba(24, 24, 23, 0.06);
   border-radius: 24px;
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(18px);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow);
 }
 
 .session-panel[hidden] {
@@ -258,6 +278,7 @@ progress::-moz-progress-bar {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  padding-top: 8px;
 }
 
 .chat-log {
@@ -570,9 +591,7 @@ textarea::placeholder {
 }
 
 .app-shell[data-chat-state="idle"] .session-panel {
-  max-width: 860px;
-  margin-right: auto;
-  margin-left: auto;
+  right: 0;
 }
 
 .app-shell[data-chat-state="idle"] .composer-shell {
@@ -592,6 +611,10 @@ textarea::placeholder {
 
   .session-toolbar {
     flex-wrap: wrap;
+  }
+
+  .session-panel {
+    width: min(560px, calc(100vw - 24px));
   }
 
   .status-row {
@@ -617,9 +640,16 @@ textarea::placeholder {
     justify-content: center;
   }
 
+  .session-toolbar {
+    position: static;
+  }
+
   .session-panel {
+    position: static;
+    width: 100%;
     padding: 16px;
     border-radius: 20px;
+    margin-top: 12px;
   }
 
   .composer-bar {
