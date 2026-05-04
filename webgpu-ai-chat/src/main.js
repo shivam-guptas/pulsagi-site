@@ -3,26 +3,27 @@ import * as webllm from "@mlc-ai/web-llm";
 
 const MODELS = [
   {
-    key: "fast",
-    label: "Fast",
+    key: "qwen35",
+    label: "Qwen 3.5 (0.8B)",
+    id: "Qwen3.5-0.8B-q4f16_1-MLC",
+    detail: "Default balanced model with stronger responses than the smallest options.",
+  },
+  {
+    key: "qwen25",
+    label: "Qwen 2.5 (0.5B)",
+    id: "Qwen2.5-0.5B-Instruct-q4f16_1-MLC",
+    detail: "Lightweight Qwen model with quick startup and lower memory use.",
+  },
+  {
+    key: "smollm360",
+    label: "SmolLM2 (360M)",
     id: "SmolLM2-360M-Instruct-q4f16_1-MLC",
-    detail: "Smallest download and quickest first response.",
-  },
-  {
-    key: "better",
-    label: "Better",
-    id: "SmolLM2-1.7B-Instruct-q4f16_1-MLC",
-    detail: "Stronger responses with a larger download.",
-  },
-  {
-    key: "best",
-    label: "Best",
-    id: "Llama-3.2-3B-Instruct-q4f16_1-MLC",
-    detail: "Highest quality here, but the heaviest model for the browser.",
+    detail: "Smallest download here and the safest fallback for lower-memory devices.",
   },
 ];
 
-const DEFAULT_MODEL_ID = "SmolLM2-360M-Instruct-q4f16_1-MLC";
+const DEFAULT_MODEL_ID = "Qwen3.5-0.8B-q4f16_1-MLC";
+const RECOVERY_MODEL_ID = "SmolLM2-360M-Instruct-q4f16_1-MLC";
 const SYSTEM_PROMPT =
   "You are a helpful, concise AI assistant running entirely in the browser.";
 
@@ -132,8 +133,8 @@ document.querySelector("#app").innerHTML = `
               <span class="tip-chip">Look something up</span>
             </div>
             <p>
-              The fast default model loads automatically. Chat history stays in
-              memory until you refresh or clear it.
+              The default model loads automatically. Chat history stays in memory
+              until you refresh or clear it.
             </p>
           </div>
         </div>
@@ -187,6 +188,10 @@ const elements = {
 
 function getSelectedModel() {
   return MODELS.find((model) => model.id === elements.modelSelect.value) || MODELS[0];
+}
+
+function getRecoveryModel() {
+  return MODELS.find((model) => model.id === RECOVERY_MODEL_ID) || MODELS[0];
 }
 
 function getVisibleMessages() {
@@ -366,7 +371,7 @@ function createMessageNode(role, content, actualIndex) {
 
   const roleLabel = document.createElement("p");
   roleLabel.className = "message-role";
-  roleLabel.textContent = role === "user" ? "You" : "AI";
+  roleLabel.textContent = role === "user" ? "You" : "Pulsagi";
 
   const body = document.createElement("div");
   body.className = "message-body";
@@ -406,8 +411,8 @@ function renderMessages() {
           <span class="tip-chip">Look something up</span>
         </div>
         <p>
-          The fast default model loads automatically. Chat history stays in
-          memory until you refresh or clear it.
+          The default model loads automatically. Chat history stays in memory
+          until you refresh or clear it.
         </p>
       </div>
     `;
@@ -467,16 +472,18 @@ function isGpuMemoryOrDeviceError(message) {
 }
 
 function getRecoveryStatus(message, selectedModelLabel) {
+  const recoveryModelLabel = getRecoveryModel().label;
+
   if (isGpuDeviceRemovedError(message)) {
-    return `Model load failed: ${message} The browser's WebGPU device was removed by the graphics stack while starting ${selectedModelLabel}. Refresh this tab, close other GPU-heavy tabs or apps, and try the Fast model first.`;
+    return `Model load failed: ${message} The browser's WebGPU device was removed by the graphics stack while starting ${selectedModelLabel}. Refresh this tab, close other GPU-heavy tabs or apps, and try ${recoveryModelLabel} first.`;
   }
 
   if (/device was lost|insufficient memory|out of memory|device lost/i.test(message)) {
-    return `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModelLabel}. Try the Fast model.`;
+    return `Model load failed: ${message} This device may not have enough available GPU memory for ${selectedModelLabel}. Try ${recoveryModelLabel}.`;
   }
 
   if (isGpuRuntimeMappingError(message)) {
-    return `Model load failed: ${message} The browser hit a WebGPU runtime error while using ${selectedModelLabel}. Refresh this tab and retry with the Fast model first.`;
+    return `Model load failed: ${message} The browser hit a WebGPU runtime error while using ${selectedModelLabel}. Refresh this tab and retry with ${recoveryModelLabel} first.`;
   }
 
   return `Model load failed: ${message}`;
@@ -587,12 +594,13 @@ async function loadModel(modelId) {
     setProgress(0, "Failed");
     const message = getFriendlyErrorMessage(error);
     setStatus(getRecoveryStatus(message, selectedModel.label));
+    const recoveryModelLabel = getRecoveryModel().label;
     if (isGpuDeviceRemovedError(message)) {
       elements.compatibilityText.textContent =
-        "WebGPU is present, but the GPU device was removed while starting the selected model. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+        `WebGPU is present, but the GPU device was removed while starting the selected model. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with ${recoveryModelLabel} first.`;
     } else if (isGpuRuntimeMappingError(message)) {
       elements.compatibilityText.textContent =
-        "WebGPU is available, but the browser hit a GPU runtime mapping error while running the selected model. Refresh this tab and retry with the Fast model first.";
+        `WebGPU is available, but the browser hit a GPU runtime mapping error while running the selected model. Refresh this tab and retry with ${recoveryModelLabel} first.`;
     }
   } finally {
     state.isLoading = false;
@@ -637,35 +645,36 @@ async function generateAssistantResponse() {
     setStatus("Response complete.");
   } catch (error) {
     const message = getFriendlyErrorMessage(error);
+    const recoveryModelLabel = getRecoveryModel().label;
     if (isGpuMemoryOrDeviceError(message)) {
       await resetEngineAfterGpuFailure();
       if (isGpuDeviceRemovedError(message)) {
         renderRichMessage(
           assistantNode.body,
-          "Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with the Fast model first.",
+          `Sorry, the browser lost its WebGPU device while running that model. Refresh the tab, then retry with ${recoveryModelLabel} first.`,
         );
         setStatus(
-          `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+          `Generation failed: ${message} The browser lost its WebGPU device. Refresh this tab, then retry with ${recoveryModelLabel} or reduce GPU load from other apps.`,
         );
         elements.compatibilityText.textContent =
-          "WebGPU is present, but the GPU device was removed during generation. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with the Fast model first.";
+          `WebGPU is present, but the GPU device was removed during generation. Refresh this tab, close other GPU-intensive apps or browser tabs, and retry with ${recoveryModelLabel} first.`;
       } else if (isGpuRuntimeMappingError(message)) {
         renderRichMessage(
           assistantNode.body,
-          "Sorry, the browser hit a WebGPU runtime error while generating that reply. Refresh the tab, then retry with the Fast model first.",
+          `Sorry, the browser hit a WebGPU runtime error while generating that reply. Refresh the tab, then retry with ${recoveryModelLabel} first.`,
         );
         setStatus(
-          `Generation failed: ${message} The browser hit a WebGPU runtime mapping error. Refresh this tab, then retry with the Fast model or reduce GPU load from other apps.`,
+          `Generation failed: ${message} The browser hit a WebGPU runtime mapping error. Refresh this tab, then retry with ${recoveryModelLabel} or reduce GPU load from other apps.`,
         );
         elements.compatibilityText.textContent =
-          "WebGPU is available, but the browser hit a GPU runtime mapping error during generation. Refresh this tab and retry with the Fast model first.";
+          `WebGPU is available, but the browser hit a GPU runtime mapping error during generation. Refresh this tab and retry with ${recoveryModelLabel} first.`;
       } else {
         renderRichMessage(
           assistantNode.body,
-          "Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with the Fast model selected.",
+          `Sorry, that model could not stay loaded on this device. Try clicking Start AI Chat again with ${recoveryModelLabel} selected.`,
         );
         setStatus(
-          `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try the Fast model or reload this model again.`,
+          `Generation failed: ${message} The selected model likely exceeded available GPU memory. Try ${recoveryModelLabel} or reload this model again.`,
         );
       }
     } else {

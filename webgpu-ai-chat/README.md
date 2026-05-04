@@ -8,11 +8,11 @@ The source lives in [`webgpu-ai-chat/`](./), but the production build is current
 
 - Browser-only AI chat using WebGPU
 - Lazy startup with a `Start AI Chat` button
-- Default fast model: `SmolLM2-360M-Instruct-q4f16_1-MLC`
+- Default model: `Qwen3.5-0.8B-q4f16_1-MLC`
 - Optional model selector:
-  - `Fast`: `SmolLM2-360M-Instruct-q4f16_1-MLC`
-  - `Better`: `SmolLM2-1.7B-Instruct-q4f16_1-MLC`
-  - `Best`: `Llama-3.2-3B-Instruct-q4f16_1-MLC`
+  - `Qwen 3.5 (0.8B)`: `Qwen3.5-0.8B-q4f16_1-MLC`
+  - `Qwen 2.5 (0.5B)`: `Qwen2.5-0.5B-Instruct-q4f16_1-MLC`
+  - `SmolLM2 (360M)`: `SmolLM2-360M-Instruct-q4f16_1-MLC`
 - Streaming responses
 - Model download and loading progress UI
 - Friendly WebGPU compatibility message
@@ -78,3 +78,4 @@ The Vite config is in [`vite.config.js`](./vite.config.js).
 - Larger models need more GPU memory and may fail on lower-end machines.
 - Chat history is only stored in memory, so it resets on refresh.
 - All inference happens locally in the browser, so performance varies a lot by hardware.
+- `MobileLLM-R1 (~950M)` is not included yet because the installed WebLLM setup only loads built-in models or custom models already compiled into MLC/WebLLM artifacts.
