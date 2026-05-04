@@ -49,11 +49,9 @@ document.querySelector("#app").innerHTML = `
     <section class="app-stage">
       <header class="session-header">
         <div class="header-copy">
-          <p class="eyebrow">Developer mode</p>
-          <h1>Developer mode</h1>
           <p class="hero-text">
-            Memory is not used for this chat. First load downloads the selected
-            model into your browser cache, and later loads usually reuse that cache.
+            First load downloads the selected model into your browser cache, and
+            later loads usually reuse that cache.
           </p>
         </div>
 
@@ -67,12 +65,6 @@ document.querySelector("#app").innerHTML = `
           >
             <span>Model & status</span>
             <span class="drawer-chevron" aria-hidden="true">▾</span>
-          </button>
-          <button id="startButton" class="toolbar-button toolbar-button-primary" type="button">
-            Start AI Chat
-          </button>
-          <button id="clearButton" class="toolbar-button" type="button">
-            Clear chat
           </button>
         </div>
       </header>
@@ -103,13 +95,22 @@ document.querySelector("#app").innerHTML = `
             <article class="status-card">
               <p class="status-label">Model status</p>
               <p id="statusText" class="status-text">
-                Choose a model, then start the chat when you're ready.
+                The default model will load automatically when this page opens.
               </p>
               <div class="progress-wrap">
                 <progress id="progressBar" max="100" value="0"></progress>
                 <span id="progressValue" class="progress-value">0%</span>
               </div>
             </article>
+          </div>
+
+          <div class="panel-actions">
+            <button id="startButton" class="toolbar-button toolbar-button-primary" type="button">
+              Start AI Chat
+            </button>
+            <button id="clearButton" class="toolbar-button" type="button">
+              Clear chat
+            </button>
           </div>
         </div>
       </section>
@@ -131,7 +132,7 @@ document.querySelector("#app").innerHTML = `
               <span class="tip-chip">Look something up</span>
             </div>
             <p>
-              Start the model first, then send a message. Chat history stays in
+              The fast default model loads automatically. Chat history stays in
               memory until you refresh or clear it.
             </p>
           </div>
@@ -405,7 +406,7 @@ function renderMessages() {
           <span class="tip-chip">Look something up</span>
         </div>
         <p>
-          Start the model first, then send a message. Chat history stays in
+          The fast default model loads automatically. Chat history stays in
           memory until you refresh or clear it.
         </p>
       </div>
@@ -524,7 +525,7 @@ async function checkWebGPU() {
     state.webgpuAvailable = true;
     elements.compatibilityText.textContent =
       "WebGPU is available. You can start the chat when you're ready. If a model fails to load, try updating your browser or graphics drivers.";
-    setStatus("Choose a model, then click Start AI Chat.");
+    setStatus("Loading the default model automatically...");
     updateControls();
   } catch (error) {
     state.webgpuAvailable = false;
@@ -836,6 +837,10 @@ async function initializeApp() {
   renderMessages();
   autoResizeComposer();
   await checkWebGPU();
+
+  if (state.webgpuAvailable) {
+    await loadModel(DEFAULT_MODEL_ID);
+  }
 }
 
 initializeApp();

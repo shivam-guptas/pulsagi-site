@@ -111,6 +111,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .toolbar-button {
@@ -178,6 +179,12 @@ button {
 .session-meta {
   display: grid;
   gap: 18px;
+}
+
+.panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .meta-block {
@@ -611,10 +618,15 @@ textarea::placeholder {
 
   .session-toolbar {
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .session-panel {
     width: min(560px, calc(100vw - 24px));
+  }
+
+  .panel-actions {
+    flex-wrap: wrap;
   }
 
   .status-row {
@@ -642,6 +654,7 @@ textarea::placeholder {
 
   .session-toolbar {
     position: static;
+    justify-content: center;
   }
 
   .session-panel {
@@ -650,6 +663,14 @@ textarea::placeholder {
     padding: 16px;
     border-radius: 20px;
     margin-top: 12px;
+  }
+
+  .panel-actions {
+    flex-direction: column;
+  }
+
+  .panel-actions .toolbar-button {
+    width: 100%;
   }
 
   .composer-bar {
