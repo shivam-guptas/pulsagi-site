@@ -75,14 +75,6 @@ button {
   max-width: 620px;
 }
 
-.eyebrow {
-  margin: 0 0 8px;
-  color: var(--brand);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
 .header-copy h1 {
   margin: 0;
   font-size: clamp(1.9rem, 3.4vw, 3.1rem);
@@ -343,24 +335,6 @@ progress::-moz-progress-bar {
 .empty-state p {
   margin: 0;
   font-size: 0.98rem;
-}
-
-.tip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.tip-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 16px;
-  border: 1px solid rgba(24, 24, 23, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #5e5852;
-  box-shadow: var(--shadow-soft);
 }
 
 .message {
@@ -696,11 +670,4 @@ textarea::placeholder {
     justify-content: space-between;
   }
 
-  .tip-row {
-    gap: 10px;
-  }
-
-  .tip-chip {
-    padding: 9px 14px;
-  }
 }

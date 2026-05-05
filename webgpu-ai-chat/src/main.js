@@ -129,7 +129,7 @@ document.querySelector("#app").innerHTML = `
       <section id="chatView" class="chat-view">
         <div id="chatLog" class="chat-log" aria-live="polite">
           <div class="empty-hero">
-            <h2 class="eyebrow">Ask anything</h2>
+            <h2>Ask anything</h2>
             <p class="empty-subtext">
               Run a local WebGPU chat model in the browser with no backend.
             </p>
@@ -402,7 +402,6 @@ function renderMessages() {
   if (!visibleMessages.length) {
     elements.chatLog.innerHTML = `
       <div class="empty-hero">
-        <p class="eyebrow">Pulsagi local AI</p>
         <h2>Ask anything</h2>
         <p class="empty-subtext">
           Run a local WebGPU chat model in the browser with no backend.
@@ -410,11 +409,6 @@ function renderMessages() {
       </div>
 
       <div class="empty-state">
-        <div class="tip-row">
-          <span class="tip-chip">Create an image</span>
-          <span class="tip-chip">Write or edit</span>
-          <span class="tip-chip">Look something up</span>
-        </div>
         <p>
           The default model loads automatically. Chat history stays in memory
           until you refresh or clear it.
