@@ -80,7 +80,6 @@ button {
   color: var(--brand);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.72rem;
   font-weight: 700;
 }
 
@@ -163,6 +162,8 @@ button {
 .session-panel {
   position: fixed;
   inset: 0;
+  top: 54px;
+  right: -23px;
   z-index: 35;
   display: flex;
   align-items: flex-start;
