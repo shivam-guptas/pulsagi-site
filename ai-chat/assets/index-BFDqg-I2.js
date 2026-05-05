@@ -168,7 +168,6 @@ ${RE} For each function call return a json object.`;function BE(M,G){let k;try{k
       <section id="chatView" class="chat-view">
         <div id="chatLog" class="chat-log" aria-live="polite">
           <div class="empty-hero">
-            <p class="eyebrow">Pulsagi local AI</p>
             <h2>Ask anything</h2>
             <p class="empty-subtext">
               Run a local WebGPU chat model in the browser with no backend.
@@ -176,11 +175,6 @@ ${RE} For each function call return a json object.`;function BE(M,G){let k;try{k
           </div>
 
           <div class="empty-state">
-            <div class="tip-row">
-              <span class="tip-chip">Create an image</span>
-              <span class="tip-chip">Write or edit</span>
-              <span class="tip-chip">Look something up</span>
-            </div>
             <p>
               The default model loads automatically. Chat history stays in memory
               until you refresh or clear it.
@@ -219,7 +213,6 @@ ${RE} For each function call return a json object.`;function BE(M,G){let k;try{k
 `).trim();if(!k){M.textContent="";return}const R=k.split(/\n{2,}/),t=document.createDocumentFragment();R.forEach(r=>{const Z=r.split(`
 `).map($=>$.trimEnd()),m=Z.map($=>$.trim()).filter(Boolean),W=m.length>0&&m.every($=>/^[-*]\s+/.test($)),b=m.length>0&&m.every($=>/^\d+\.\s+/.test($));if(W||b){const $=document.createElement(b?"ol":"ul");$.className="message-list",m.forEach(n=>{const gA=document.createElement("li");gA.innerHTML=ZC(n.replace(b?/^\d+\.\s+/:/^[-*]\s+/,"")),$.appendChild(gA)}),t.appendChild($);return}if(m.length===1&&/^#{1,3}\s+/.test(m[0])){const $=Math.min(3,m[0].match(/^#+/)[0].length),n=document.createElement(`h${$+1}`);n.className=`message-heading message-heading-${$}`,n.innerHTML=ZC(m[0].replace(/^#{1,3}\s+/,"")),t.appendChild(n);return}const v=document.createElement("p");v.className="message-paragraph",v.innerHTML=Z.map($=>ZC($)).join("<br />"),t.appendChild(v)}),M.replaceChildren(t)}function Kw(M){var r;const G=document.createElement("div");G.className="message-actions";const k=document.createElement("button");k.type="button",k.className="message-action-button",k.dataset.action="copy",k.dataset.messageIndex=String(M),k.setAttribute("aria-label","Copy assistant message"),k.textContent="⧉";const R=document.createElement("button");R.type="button",R.className="message-action-button",R.dataset.action="retry",R.dataset.messageIndex=String(M),R.setAttribute("aria-label","Retry assistant response"),R.textContent="↻";const t=M===aA.messages.length-1&&((r=aA.messages[M])==null?void 0:r.role)==="assistant";return R.disabled=!t||aA.isGenerating||aA.isLoading,G.append(k,R),G}function JE(M,G,k){const R=document.createElement("article");R.className=`message message-${M}`;const t=document.createElement("p");t.className="message-role",t.textContent=M==="user"?"You":"Pulsagi";const r=document.createElement("div");return r.className="message-body",M==="assistant"?II(r,G):r.textContent=G,R.append(t,r),M==="assistant"&&Number.isInteger(k)&&R.appendChild(Kw(k)),R}function TI(){const M=KE();if(qA.chatLog.innerHTML="",!M.length){qA.chatLog.innerHTML=`
       <div class="empty-hero">
-        <p class="eyebrow">Pulsagi local AI</p>
         <h2>Ask anything</h2>
         <p class="empty-subtext">
           Run a local WebGPU chat model in the browser with no backend.
@@ -227,11 +220,6 @@ ${RE} For each function call return a json object.`;function BE(M,G){let k;try{k
       </div>
 
       <div class="empty-state">
-        <div class="tip-row">
-          <span class="tip-chip">Create an image</span>
-          <span class="tip-chip">Write or edit</span>
-          <span class="tip-chip">Look something up</span>
-        </div>
         <p>
           The default model loads automatically. Chat history stays in memory
           until you refresh or clear it.
