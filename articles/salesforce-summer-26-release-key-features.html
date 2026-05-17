@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+
+  <title>Salesforce Summer '26 Release: Key Features That Matter | Pulsagi</title>
+  <meta name="description" content="Explore the most useful Salesforce Summer '26 release features for admins, architects, and developers, with practical rollout advice and use cases. Read now." />
+  <meta name="keywords" content="Salesforce Summer 2026 release, Salesforce Summer '26 key features, Salesforce Summer 2026 release notes, Salesforce admin Summer 2026 features, Salesforce developer Summer 2026 updates, Salesforce Flow Summer 2026, Agentforce Summer 2026, Salesforce release readiness checklist" />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html" />
+  <meta property="og:title" content="Salesforce Summer '26 Release: Key Features That Matter" />
+  <meta property="og:description" content="Explore the most useful Salesforce Summer '26 release features for admins, architects, and developers, with practical rollout advice and use cases." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-summer-26-key-features-hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce Summer '26 Release: Key Features That Matter" />
+  <meta name="twitter:description" content="Explore the most useful Salesforce Summer '26 release features for admins, architects, and developers, with practical rollout advice and use cases." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-summer-26-key-features-hero.png" />
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Salesforce Summer '26 Release: Key Features That Matter",
+    "description":  "A practical Salesforce Summer '26 release guide covering the features that matter most for admins, architects, product owners, and developers.",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-05-18",
+    "dateModified":  "2026-05-18",
+    "url":  "https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html"
+}
+  </script>
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Salesforce Summer '26 Release: Key Features That Matter",
+                                "item":  "https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html"
+                            }
+                        ]
+}
+  </script><meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-figure {
+      margin: 28px 0;
+    }
+
+    .article-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .article-figure figcaption {
+      margin-top: 10px;
+      color: var(--muted-strong);
+      font-size: 0.95rem;
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Salesforce Release - Summer '26</div>
+        <h1 class="article-title">Salesforce Summer '26 Release: Key Features That Matter</h1>
+        <p class="article-standfirst">A practical guide for Salesforce product owners, admins, architects, and developers who want to understand what Summer '26 actually changes, where it adds business value, and what to test first before broad rollout.</p>
+        <div class="reading-meta">
+          <span>12 min read</span>
+          <span>Published May 18, 2026</span>
+          <span>By Shivam Gupta</span>
+        </div>
+        <div class="author-block">
+          <img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64" loading="lazy" />
+          <div class="author-copy">
+            <strong>Shivam Gupta</strong>
+            <span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="article-hero-media">
+        <img src="assets/images/salesforce/salesforce-summer-26-key-features-hero.png" alt="Salesforce Summer '26 release hero graphic highlighting the key features that matter for product owners, admins, architects, and developers" loading="eager" width="1693" height="929" />
+        <p>This release is strongest where it removes day-to-day friction: clearer Flow experiences, faster LWC iteration, better permission visibility, and more realistic AI operating models for teams moving from pilot to production.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">What changed in Summer '26</a></li>
+          <li><a href="#dates">Release dates and rollout</a></li>
+          <li><a href="#summary">10 key features at a glance</a></li>
+          <li><a href="#ai-data">AI, data, and service highlights</a></li>
+          <li><a href="#admin-flow">Admin and Flow improvements</a></li>
+          <li><a href="#developer">Developer and architecture updates</a></li>
+          <li><a href="#readiness">How to prioritize your sandbox</a></li>
+          <li><a href="#watchouts">Risks and watchouts</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>What changed in Summer '26</h2>
+          <p>The Salesforce Summer '26 release is not just another seasonal feature dump. It meaningfully shifts three layers of the platform: <strong>agent orchestration</strong>, <strong>admin productivity</strong>, and <strong>developer workflow</strong>. That combination matters because most enterprise teams are no longer asking whether they should automate more. They are asking how to automate without increasing operational drag, security risk, or maintenance overhead.</p>
+          <p>From a product owner perspective, Summer '26 is strongest when you treat it as a <strong>portfolio prioritization release</strong>. The biggest wins do not come from enabling everything. They come from identifying the few features that remove real friction in service delivery, internal operations, and release velocity.</p>
+          <div class="callout">
+            <strong>Quick take:</strong> if you only have one sprint for release readiness, start with Flow usability improvements, permission visibility, and LWC Live Preview. Then evaluate Agentforce and MCP-related capabilities in a tightly governed pilot rather than a broad activation.
+          </div>
+          <p>This article focuses on the Summer '26 features that are most relevant to practical Salesforce delivery teams: what they do, where they fit, and how I would sequence adoption.</p>
+        </section>
+
+        <section id="dates">
+          <h2>Release dates and rollout</h2>
+          <p>As of <strong>May 18, 2026</strong>, Summer '26 is in active rollout. The important point is that not every org receives the update on the same day, so teams should work with exact dates instead of vague phrases like "this month" or "soon."</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Milestone</th>
+                  <th>Date</th>
+                  <th>Why it matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pre-release org sign-up opens</td>
+                  <td>April 16, 2026</td>
+                  <td>Useful for early feature exploration without waiting for sandbox upgrades.</td>
+                </tr>
+                <tr>
+                  <td>Sandbox preview begins</td>
+                  <td>May 8, 2026</td>
+                  <td>Your best window to test flows, permissions, integrations, and custom UI before production maintenance.</td>
+                </tr>
+                <tr>
+                  <td>Main production release weekends</td>
+                  <td>May 9, June 5, and June 12, 2026</td>
+                  <td>Your org's exact cutover depends on instance maintenance scheduling.</td>
+                </tr>
+                <tr>
+                  <td>Salesforce Summer '26 release announcement</td>
+                  <td>May 11, 2026</td>
+                  <td>Good reference point for the officially promoted cross-cloud highlights.</td>
+                </tr>
+                <tr>
+                  <td>Broad availability messaging on Salesforce release announcement</td>
+                  <td>June 15, 2026</td>
+                  <td>This appears to reflect the end of the primary rollout window rather than every org's exact upgrade moment.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In practice, use Salesforce Trust for your org-specific maintenance date, but plan release testing around the dates above so your project team is not surprised by environment drift.</p>
+        </section>
+
+        <section id="summary">
+          <h2>10 key features at a glance</h2>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>What it does</th>
+                  <th>Best use case</th>
+                  <th>Why it matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Multi-Agent Orchestration</strong></td>
+                  <td>Lets multiple agents work together with shared context across a single resolution path.</td>
+                  <td>Complex service or employee workflows that span more than one team.</td>
+                  <td>Moves Agentforce closer to real enterprise operating models instead of isolated bot interactions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Tableau MCP</strong></td>
+                  <td>Allows AI agents to query Tableau analytics more directly through a trusted integration layer.</td>
+                  <td>Executive insights, performance analysis, and conversational analytics.</td>
+                  <td>Improves the odds that AI answers are grounded in governed business metrics.</td>
+                </tr>
+                <tr>
+                  <td><strong>Agentforce Self-Service</strong></td>
+                  <td>Adds a more guided, agent-first self-service experience with Help Agent and portal enhancements.</td>
+                  <td>Customer support portals and high-volume self-resolution journeys.</td>
+                  <td>Reduces the gap between knowledge content and actual resolution.</td>
+                </tr>
+                <tr>
+                  <td><strong>Customer Engagement Agent</strong></td>
+                  <td>Engages and qualifies leads continuously across web and email channels.</td>
+                  <td>Inbound lead response and qualification.</td>
+                  <td>Targets a real revenue problem: slow human follow-up on warm interest.</td>
+                </tr>
+                <tr>
+                  <td><strong>Screen Flow Data Table lookup improvements</strong></td>
+                  <td>Shows related record names instead of raw IDs and can open related records from the table.</td>
+                  <td>Case triage, order review, approval, or service flows with related records.</td>
+                  <td>Eliminates one of the more frustrating admin UX workarounds.</td>
+                </tr>
+                <tr>
+                  <td><strong>Scheduled Flow batching</strong></td>
+                  <td>Lets admins set a custom batch size from 1 to 200 for scheduled flows.</td>
+                  <td>Heavy scheduled automations with callouts, enrichment, or large updates.</td>
+                  <td>Gives teams better control over limit pressure and runtime stability.</td>
+                </tr>
+                <tr>
+                  <td><strong>Field Access Summary</strong></td>
+                  <td>Shows field-level access across profiles, permission sets, and permission set groups in one place.</td>
+                  <td>Security audits, troubleshooting, and role redesign.</td>
+                  <td>Saves admin time and improves permission diagnostics.</td>
+                </tr>
+                <tr>
+                  <td><strong>Flow Orchestration as a standard feature</strong></td>
+                  <td>Elevates orchestration into a more mainstream platform automation option.</td>
+                  <td>Human-in-the-loop multi-step processes across teams.</td>
+                  <td>Signals that Salesforce expects orchestration to become a normal design pattern.</td>
+                </tr>
+                <tr>
+                  <td><strong>LWC Live Preview and state managers</strong></td>
+                  <td>Improves real-time LWC feedback loops and supports cleaner state handling patterns.</td>
+                  <td>Teams iterating quickly on Lightning user experiences.</td>
+                  <td>Shortens developer feedback cycles while encouraging better component architecture.</td>
+                </tr>
+                <tr>
+                  <td><strong>Salesforce Functions retirement planning</strong></td>
+                  <td>Functions is no longer available for purchase or renewal, and existing customers need an exit path.</td>
+                  <td>Any org that still depends on Salesforce Functions workloads.</td>
+                  <td>This is not a shiny feature, but it is one of the most important roadmap actions in the release.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <figure class="article-figure">
+          <img src="assets/images/salesforce/salesforce-summer-26-release-guide.png" alt="Detailed Salesforce Summer '26 release guide infographic covering Agentforce, Flow, data and analytics, governance, and what to test first" loading="lazy" decoding="async" width="1024" height="1536" />
+          <figcaption><strong>Release guide visual:</strong> this summary graphic works well as a stakeholder handout because it groups the Summer '26 changes into business themes, feature clusters, and test priorities.</figcaption>
+        </figure>
+
+        <section id="ai-data">
+          <h2>AI, data, and service highlights</h2>
+
+          <h3>Multi-Agent Orchestration in Agentforce</h3>
+          <p>This is the most strategically important Summer '26 announcement. Salesforce positions Multi-Agent Orchestration as a way for multiple agents to act like a coordinated team instead of separate tools. That matters because most real business workflows are not single-step tasks. They cross service, operations, approval, and knowledge boundaries.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Good fit</h3>
+              <ul>
+                <li>Support journeys that require routing across specialist teams.</li>
+                <li>Employee support spanning HR, IT, and operations.</li>
+                <li>Complex intake processes where context must persist across handoffs.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What to validate</h3>
+              <ul>
+                <li>Who owns escalation when the agent path stalls.</li>
+                <li>How shared context is audited and reviewed.</li>
+                <li>Where human approval is still required.</li>
+              </ul>
+            </div>
+          </div>
+          <p>Do not treat orchestration as an excuse to automate broken processes. It works best when the underlying workflow already has clear ownership, clean states, and reliable knowledge sources.</p>
+
+          <h3>Tableau MCP</h3>
+          <p>Tableau MCP is one of the more meaningful AI-data bridge announcements in Summer '26. It gives AI agents a governed way to interact with Tableau's analytics layer, which is much more useful than asking a model to improvise answers from disconnected CRM records alone.</p>
+          <p>The real use case is not "chat with a dashboard." The real use case is <strong>trusted decision support</strong>. Think pipeline variance analysis, service backlog interpretation, or executive briefings where the answer needs to align with the metric definitions your business already trusts.</p>
+          <div class="callout">
+            <strong>Product owner note:</strong> Tableau MCP improves access to analytics, but it does not fix weak metric definitions. If your semantic layer is inconsistent, AI will surface those inconsistencies faster.
+          </div>
+
+          <h3>Agentforce Self-Service and Customer Engagement Agent</h3>
+          <p>These two updates matter because they target two expensive operational gaps: <strong>self-service deflection</strong> and <strong>lead response speed</strong>. Agentforce Self-Service focuses on faster resolution in the portal experience. Customer Engagement Agent focuses on responding to and qualifying inbound interest around the clock.</p>
+          <p>I would evaluate them differently.</p>
+          <ul>
+            <li><strong>Self-Service:</strong> prioritize if your service organization already has a mature knowledge base and a measurable deflection target.</li>
+            <li><strong>Customer Engagement Agent:</strong> prioritize if conversion loss is happening because leads sit too long before a human seller responds.</li>
+            <li><strong>Both:</strong> require thoughtful human handoff rules, not just activation.</li>
+          </ul>
+          <p>Service teams should also keep an eye on adjacent Summer '26 capabilities such as the <strong>IT Service Domain Pack enhancements</strong> and the <strong>new Scheduling Console</strong>, especially if operational work already lives in Slack or field dispatch workflows.</p>
+        </section>
+
+        <section id="admin-flow">
+          <h2>Admin and Flow improvements</h2>
+
+          <h3>Data tables finally become more human-readable</h3>
+          <p>One of the best admin-quality updates in Summer '26 is the ability to show <strong>related record names</strong> instead of raw Salesforce IDs in screen flow data tables, and optionally turn those names into links. This is the kind of improvement that sounds small in a keynote but has immediate daily value.</p>
+          <p>Typical use cases include:</p>
+          <ul>
+            <li>Approval or exception handling flows where a user must understand related Account, Contact, or Case context quickly.</li>
+            <li>Internal service flows that let users navigate to a related record without leaving the experience in confusion.</li>
+            <li>Experience Cloud flows where cleaner record context reduces support effort.</li>
+          </ul>
+          <p>Before this change, many teams used custom components, formulas, or awkward workarounds to make a data table understandable. Summer '26 reduces that need.</p>
+
+          <h3>Scheduled Flow batching becomes more practical</h3>
+          <p>Salesforce now lets you specify a maximum batch size from <strong>1 to 200</strong> for scheduled flows. That is a genuinely useful admin control because not all scheduled automation behaves well with the default batch size of 200.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Where it helps</h3>
+              <ul>
+                <li>Scheduled flows that make callouts or trigger downstream integrations.</li>
+                <li>Record updates with heavy formula evaluation or side effects.</li>
+                <li>Automations that intermittently hit CPU or row lock pressure.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Tradeoff</h3>
+              <ul>
+                <li>Smaller batches reduce per-transaction pressure.</li>
+                <li>They can also increase total runtime and interview counts.</li>
+                <li>You still need volume-aware test data in sandbox.</li>
+              </ul>
+            </div>
+          </div>
+          <p>If you already use our <a href="/tools/salesforce-governor-limit-analyzer.html">Salesforce Governor Limit Analyzer</a> or debug logs to assess resource pressure, this feature gives you a concrete tuning lever instead of forcing a redesign first.</p>
+
+          <h3>Radio button groups improve screen flow UX</h3>
+          <p>Summer '26 adds a more compact radio button group option for screen flows. This is not a headline feature, but it is exactly the kind of user-interface improvement that increases completion speed and reduces unnecessary clicks for internal users.</p>
+          <p>Use it when the user has a <strong>small, mutually exclusive set of options</strong>, such as yes or no decisions, fulfillment paths, urgency levels, or approval choices. It is usually a better experience than hiding obvious choices inside a picklist.</p>
+
+          <h3>Permission diagnostics get noticeably better</h3>
+          <p>The new <strong>Field Access Summary</strong> and improved permission dependency visibility solve a very common admin problem: finding out who can actually see or edit a field, and why. In complex orgs, this investigation used to require too many clicks across profiles, permission sets, and permission set groups.</p>
+          <p>That matters in three scenarios:</p>
+          <ul>
+            <li>Security review and audit preparation.</li>
+            <li>Troubleshooting why a flow or user sees different behavior than expected.</li>
+            <li>Cleaning up legacy profile-heavy permission models.</li>
+          </ul>
+          <div class="callout">
+            <strong>Important distinction:</strong> this feature improves visibility into access. It does not replace good permission design. Teams still need a clean security model built around permission sets and permission set groups.
+          </div>
+
+          <h3>Flow Orchestration becomes more mainstream</h3>
+          <p>Salesforce now lists <strong>Flow Orchestration</strong> as a standard feature in Summer '26. I would read that as an important product signal: orchestration is no longer a niche automation pattern for only a few advanced teams. Salesforce expects more customers to coordinate human tasks, wait states, approvals, and system actions in one managed flow.</p>
+          <p>For teams already debating whether to build a process tracker in custom objects or orchestrate the process natively, this release makes the native path more compelling. It is especially relevant for onboarding, internal approvals, service fulfillment, and multi-team operational processes.</p>
+        </section>
+
+        <section id="developer">
+          <h2>Developer and architecture updates</h2>
+
+          <h3>LWC Live Preview and state managers improve the dev loop</h3>
+          <p>Summer '26 renames Local Dev to <strong>Live Preview</strong> and makes single-component browser preview generally available. Salesforce also documents <strong>state managers for LWC</strong> as generally available. Together, these improvements address a real productivity issue: Lightning teams often spend too much time waiting for environment feedback or burying data logic inside presentation components.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Why it helps</h3>
+              <ul>
+                <li>Faster feedback while iterating on component behavior.</li>
+                <li>Cleaner separation between data logic and UI rendering.</li>
+                <li>Lower friction for small UI changes that do not need a full org round-trip.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What I would still test</h3>
+              <ul>
+                <li>Permission-sensitive behavior in real org context.</li>
+                <li>Page composition inside Lightning App Builder.</li>
+                <li>Device and browser-specific behavior before release.</li>
+              </ul>
+            </div>
+          </div>
+          <p>Developer teams should also note that Lightning Web Security continues to tighten protections. If you rely on anchor-based downloads that use the <code>data:</code> URI scheme, Summer '26 release notes indicate you should move to <code>blob:</code> instead.</p>
+
+          <h3>MCP and API Catalog direction becomes clearer</h3>
+          <p>Even if you are not turning on every AI feature this quarter, Summer '26 continues Salesforce's push to make <strong>MCP servers, API Catalog, and agent actions</strong> a first-class integration pattern. MuleSoft MCP servers can be surfaced in API Catalog, and Salesforce continues to mature the hosted MCP path.</p>
+          <p>That matters architecturally because the question is no longer only "how do I integrate system A with system B?" The new question is "how do I expose safe, governed business capabilities to agents, copilots, and workflow builders?" If your team is exploring that direction, the current site guides on <a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers</a> and <a href="/articles/salesforce-chatgpt-mcp-guide.html">Salesforce with ChatGPT via MCP</a> fit directly into this roadmap.</p>
+
+          <h3>Do not ignore the Salesforce Functions retirement signal</h3>
+          <p>Salesforce Functions is no longer available for purchase or renewal. Existing customers can continue through the current order term, but Summer '26 makes it clear that teams should plan alternatives now rather than later.</p>
+          <p>If you still use Functions, create a migration backlog immediately. Depending on the workload, the replacement may be Apex, Flow plus External Services, Heroku, serverless infrastructure, or a different middleware pattern. The main mistake would be pretending this is only a documentation note. It is a roadmap action item.</p>
+        </section>
+
+        <section id="readiness">
+          <h2>How to prioritize your sandbox</h2>
+          <p>Most teams cannot evaluate every Summer '26 feature in one cycle. I would prioritize in this order.</p>
+          <ol>
+            <li><strong>High-volume automations first.</strong> Review scheduled flows, integration-heavy flows, approval paths, and any automation that already produces intermittent governor or runtime issues.</li>
+            <li><strong>Permission-sensitive processes second.</strong> Use Field Access Summary and dependency visibility to validate access assumptions before a security or compliance review exposes the gaps for you.</li>
+            <li><strong>User-facing Flow UX third.</strong> Apply data table lookup improvements and radio button groups where they remove obvious friction for support, operations, or portal users.</li>
+            <li><strong>Developer workflow fourth.</strong> Enable Live Preview in a controlled subset of the team, validate state manager conventions, and update LWC component API versions deliberately.</li>
+            <li><strong>Agentic features fifth.</strong> Pilot Multi-Agent Orchestration, Self-Service, and MCP-linked capabilities in a narrow use case with real owners, clear escalation rules, and measurable success criteria.</li>
+          </ol>
+          <div class="callout">
+            <strong>Release readiness rule:</strong> test where volume, permissions, and handoffs intersect. That is where seasonal releases usually create the most expensive surprises.
+          </div>
+        </section>
+
+        <section id="watchouts">
+          <h2>Risks and watchouts</h2>
+          <ul>
+            <li><strong>Do not over-activate AI features.</strong> New agent features are useful, but broad activation without knowledge quality, escalation logic, and monitoring is how pilots become support problems.</li>
+            <li><strong>Scheduled Flow batching is a tuning tool, not a silver bullet.</strong> Smaller batches reduce pressure inside one transaction, but can increase total execution time and operational complexity.</li>
+            <li><strong>Permission visibility does not equal permission hygiene.</strong> Summer '26 gives you better diagnostics, but you still need disciplined role and permission set architecture.</li>
+            <li><strong>Live Preview does not replace org-based testing.</strong> It shortens the build loop, but you still need validation in real Lightning pages, security contexts, and supported browsers.</li>
+            <li><strong>Retirement notices deserve backlog space.</strong> Salesforce Functions retirement should be tracked alongside feature adoption, not after it.</li>
+            <li><strong>Some Help pages can still show preview language during rollout.</strong> As of May 18, 2026, parts of the release documentation still carry preview wording, so verify edition, availability, and setup requirements before committing to production plans.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>If I were prioritizing Summer '26 for a real delivery team, I would separate the release into two tracks. <strong>Track one</strong> is operational improvement: Flow batching, screen flow UX, permission visibility, and LWC workflow updates. Those items create fast value with comparatively low organizational risk. <strong>Track two</strong> is strategic enablement: Multi-Agent Orchestration, Tableau MCP, Self-Service, and other agentic capabilities. Those items can be powerful, but they need stronger ownership and a more disciplined rollout model.</p>
+          <p>That is the practical story of the Salesforce Summer '26 release. The release is valuable, but the highest return comes from selecting the features that solve current friction in your org instead of chasing every headline feature at once.</p>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <ol class="reference-list">
+            <li><a href="https://www.salesforce.com/news/stories/summer-2026-product-release-announcement/" rel="noopener" target="_blank">Salesforce: Summer '26 Release announcement</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.salesforce_release_notes.htm&language=en_US&type=5" rel="noopener" target="_blank">Salesforce Help: Salesforce Summer '26 Release Notes</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_feature_impact.htm&language=en_US&type=5" rel="noopener" target="_blank">Salesforce Help: How and When Do Features Become Available?</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_builder_scheduled_flow_batching.htm&language=en_US&release=262&type=5" rel="noopener" target="_blank">Salesforce Help: Improve Performance with Batching for Scheduled Flows</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_experiences_view_and_link_to_related_records_from_screen_flow_data_tables.htm&language=en_US&release=262&type=5" rel="noopener" target="_blank">Salesforce Help: View and Link to Related Records from Screen Flow Data Tables</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_lc.htm&language=en_US&type=5" rel="noopener" target="_blank">Salesforce Help: Lightning Components in Summer '26</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=release-notes.rn_lwc_single_component.htm&language=en_US&type=5" rel="noopener" target="_blank">Salesforce Help: Preview a Single Lightning Web Component in Your Browser</a></li>
+            <li><a href="https://trailhead.salesforce.com/content/learn/modules/summer-26-release-highlights" rel="noopener" target="_blank">Trailhead: Summer '26 Release Highlights</a></li>
+            <li><a href="https://www.salesforceben.com/salesforce-summer-26-release-date-preview-information/" rel="noopener" target="_blank">Salesforce Ben: Summer '26 release date and preview information</a></li>
+            <li><a href="https://automationchampion.com/2026/04/29/salesforce-summer26-release-quick-summary-2/" rel="noopener" target="_blank">Automation Champion: Salesforce Summer '26 release quick summary</a></li>
+            <li><a href="https://www.sigmainfo.net/blog/salesforce-summer-26-release-highlights/" rel="noopener" target="_blank">Sigma Infosolutions: Salesforce Summer '26 release highlights</a></li>
+          </ol>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/salesforce-governor-limit-analyzer.html">Salesforce Governor Limit Analyzer</a></li>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html">Apex Batch vs Queueable with Apex Cursors in Spring '26</a></li>
+      <li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li>
+      <li><a href="/articles/salesforce-chatgpt-mcp-guide.html">Connect Salesforce to ChatGPT with MCP</a></li>
+  </ul>
+</section>
+</article>
+      </div>
+    </main>
+
+    <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

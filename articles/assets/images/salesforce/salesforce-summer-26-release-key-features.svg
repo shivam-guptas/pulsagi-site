@@ -1,0 +1,90 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Salesforce Summer '26 Release Key Features</title>
+  <desc id="desc">A Salesforce-themed illustration showing major Summer '26 themes including Agentforce, Flow, Tableau MCP, LWC, permissions, and release readiness.</desc>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="64" x2="1100" y2="836" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B2F58"/>
+      <stop offset="0.55" stop-color="#124E8C"/>
+      <stop offset="1" stop-color="#1C6FB0"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#F2EBDD"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#9BD7FF"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1200" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#06203A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" rx="32" fill="url(#bg)"/>
+  <circle cx="147" cy="133" r="116" fill="#5EEAD4" fill-opacity="0.10"/>
+  <circle cx="1052" cy="170" r="148" fill="#F9C97D" fill-opacity="0.12"/>
+  <circle cx="1016" cy="766" r="182" fill="#8CCFFF" fill-opacity="0.10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="74" y="72" width="1052" height="756" rx="30" fill="#0F2542" fill-opacity="0.26" stroke="rgba(255,255,255,0.18)"/>
+  </g>
+
+  <text x="118" y="162" fill="#A7F3D0" font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="4">SALESFORCE RELEASE - SUMMER '26</text>
+  <text x="118" y="240" fill="#FFF9EF" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="800">Key Features That Matter</text>
+  <text x="118" y="286" fill="#D7E4F2" font-family="Source Sans 3, Arial, sans-serif" font-size="28">Practical priorities for admins, architects, developers, and product teams</text>
+
+  <g>
+    <rect x="118" y="348" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="140" y="372" width="92" height="16" rx="8" fill="#D7EEF7"/>
+    <text x="140" y="420" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Agentforce</text>
+    <text x="140" y="456" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Multi-agent orchestration,</text>
+    <text x="140" y="486" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">self-service, engagement</text>
+  </g>
+
+  <g>
+    <rect x="430" y="348" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="452" y="372" width="106" height="16" rx="8" fill="#F9D89C"/>
+    <text x="452" y="420" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Flow</text>
+    <text x="452" y="456" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Readable data tables,</text>
+    <text x="452" y="486" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">batching, cleaner UX</text>
+  </g>
+
+  <g>
+    <rect x="742" y="348" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="764" y="372" width="110" height="16" rx="8" fill="#C6E5FF"/>
+    <text x="764" y="420" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Tableau MCP</text>
+    <text x="764" y="456" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Trusted analytics for</text>
+    <text x="764" y="486" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">AI-assisted decisions</text>
+  </g>
+
+  <g>
+    <rect x="118" y="544" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="140" y="568" width="96" height="16" rx="8" fill="#B7F3E8"/>
+    <text x="140" y="616" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Permissions</text>
+    <text x="140" y="652" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Field Access Summary</text>
+    <text x="140" y="682" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">and dependency visibility</text>
+  </g>
+
+  <g>
+    <rect x="430" y="544" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="452" y="568" width="88" height="16" rx="8" fill="#D6D4FF"/>
+    <text x="452" y="616" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">LWC</text>
+    <text x="452" y="652" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Live Preview, state</text>
+    <text x="452" y="682" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">managers, API v67</text>
+  </g>
+
+  <g>
+    <rect x="742" y="544" width="280" height="160" rx="24" fill="url(#panel)"/>
+    <rect x="764" y="568" width="112" height="16" rx="8" fill="#FFDAB5"/>
+    <text x="764" y="616" fill="#112133" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Readiness</text>
+    <text x="764" y="652" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">Sandbox testing,</text>
+    <text x="764" y="682" fill="#4E5E6F" font-family="Source Sans 3, Arial, sans-serif" font-size="24">roadmap, migration</text>
+  </g>
+
+  <rect x="1042" y="354" width="36" height="344" rx="18" fill="url(#accent)" fill-opacity="0.85"/>
+  <circle cx="1060" cy="420" r="10" fill="#0B2F58"/>
+  <circle cx="1060" cy="524" r="10" fill="#0B2F58"/>
+  <circle cx="1060" cy="628" r="10" fill="#0B2F58"/>
+
+  <text x="118" y="774" fill="#F4F0E7" font-family="IBM Plex Mono, monospace" font-size="22">Focus on business-ready adoption, not feature-count vanity.</text>
+</svg>

@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://pulsagi.com/articles/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -297,6 +297,12 @@
   <url>
     <loc>https://pulsagi.com/articles/salesforce-multi-framework-react.html</loc>
     <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
