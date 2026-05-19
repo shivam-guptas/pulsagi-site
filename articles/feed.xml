@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Pulsagi Articles</title>
+  <subtitle>Recent AI, Salesforce, and engineering articles from Pulsagi.</subtitle>
+  <id>https://pulsagi.com/articles/feed.xml</id>
+  <link href="https://pulsagi.com/articles/feed.xml" rel="self" />
+  <link href="https://pulsagi.com/articles/" rel="alternate" />
+  <updated>2026-05-19T00:00:00+05:30</updated>
+  <entry>
+    <title>Salesforce Headless 360 Security Risks and Controls</title>
+    <link href="https://pulsagi.com/articles/salesforce-headless-360-security-risks.html" />
+    <id>https://pulsagi.com/articles/salesforce-headless-360-security-risks.html</id>
+    <published>2026-05-19T00:00:00+05:30</published>
+    <updated>2026-05-19T00:00:00+05:30</updated>
+    <summary>Salesforce Headless 360 security risks, token pitfalls, and control patterns. Learn how to secure MCP agents, prompts, APIs, and data before rollout. Read now.</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Summer &apos;26 Release: Key Features That Matter</title>
+    <link href="https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html" />
+    <id>https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html</id>
+    <published>2026-05-18T00:00:00+05:30</published>
+    <updated>2026-05-18T00:00:00+05:30</updated>
+    <summary>Explore the most useful Salesforce Summer &apos;26 release features for admins, architects, and developers, with practical rollout advice and use cases. Read now.</summary>
+  </entry>
+  <entry>
+    <title>Agentic AI Tools: The Next Wave of Work Automation</title>
+    <link href="https://pulsagi.com/articles/agentic-ai-tools-next-wave.html" />
+    <id>https://pulsagi.com/articles/agentic-ai-tools-next-wave.html</id>
+    <published>2026-05-04T00:00:00+05:30</published>
+    <updated>2026-05-04T00:00:00+05:30</updated>
+    <summary>Explore how agentic AI tools like Copilot, Adobe, and Agentforce move from answers to actions. Learn use cases, risks, and rollout advice. Read the guide.</summary>
+  </entry>
+  <entry>
+    <title>Generative AI Adoption Statistics 2026: Global Usage Crosses 50%</title>
+    <link href="https://pulsagi.com/articles/generative-ai-adoption-statistics-2026-guide.html" />
+    <id>https://pulsagi.com/articles/generative-ai-adoption-statistics-2026-guide.html</id>
+    <published>2026-05-04T00:00:00+05:30</published>
+    <updated>2026-05-04T00:00:00+05:30</updated>
+    <summary>Generative AI adoption statistics in 2026 show global usage crossing 50% fast. Learn what is driving adoption, where value appears, risks, use cases, and rollout advice.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce Documentation, Support, and Prompts</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-documentation-operations-and-prompts.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce documentation, support operations, leadership communication, and prompt engineering, with practical guidance and references.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce Discovery and Architecture</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-discovery-and-architecture.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce discovery and architecture: how to use AI for requirements gathering, process mapping, solution design, and technical planning.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce AI Governance and Roadmap</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-governance-roadmap-and-appendices.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce AI governance, adoption roadmap, quality controls, security practices, KPIs, and enterprise rollout planning.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce Teams</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-overview.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-overview.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce teams: where each AI tool fits across admin work, Apex, LWC, Flow, architecture, testing, documentation, and delivery.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce Integrations, QA, DevOps, and Delivery</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-integrations-quality-and-delivery.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce integrations, data migration, QA, DevOps, and release delivery, including best practices, limitations, and practical recommendations.</summary>
+  </entry>
+  <entry>
+    <title>Codex vs Claude for Salesforce Admin, Apex, LWC, and Flow</title>
+    <link href="https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html" />
+    <id>https://pulsagi.com/articles/codex-claude-salesforce-admin-development-and-automation.html</id>
+    <published>2026-03-11T00:00:00+05:30</published>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <summary>Codex vs Claude for Salesforce admin work, Apex, LWC, and Flow automation, including practical use cases, best practices, limitations, and recommendations.</summary>
+  </entry>
+  <entry>
+    <title>USER_MODE, SECURITY_ENFORCED, stripInaccessible</title>
+    <link href="https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html</id>
+    <published>2026-04-30T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce Apex security comparison of USER_MODE, SECURITY_ENFORCED, and stripInaccessible, including CRUD, FLS, sharing, DML, and use-case tradeoffs.</summary>
+  </entry>
+  <entry>
+    <title>WITH SECURITY_ENFORCED in Apex Explained</title>
+    <link href="https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-with-security-enforced-guide.html</id>
+    <published>2026-04-30T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>WITH SECURITY_ENFORCED was an important step forward for secure Apex because it gave developers a concise way to fail a query when the user lacked access to</summary>
+  </entry>
+  <entry>
+    <title>Apex Sharing Keywords in Salesforce Explained</title>
+    <link href="https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-apex-sharing-keywords-guide.html</id>
+    <published>2026-04-30T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>One of the most misunderstood parts of Salesforce security is the difference between with sharing , without sharing , inherited sharing , and writing an Apex</summary>
+  </entry>
+  <entry>
+    <title>WITH USER_MODE in Apex: SOQL, SOSL, and DML</title>
+    <link href="https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-user-mode-apex-guide.html</id>
+    <published>2026-04-30T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce Apex runs in system mode by default. That gives developers power, but it also makes it easy to return or modify data the running user should not be</summary>
+  </entry>
+  <entry>
+    <title>stripInaccessible in Apex: CRUD and FLS Guide</title>
+    <link href="https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-stripinaccessible-method-guide.html</id>
+    <published>2026-04-30T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce Apex runs in system mode by default, which means your code can easily read or write fields a user should not access unless you deliberately enforce</summary>
+  </entry>
+  <entry>
+    <title>React on Salesforce: Multi-Framework Guide</title>
+    <link href="https://pulsagi.com/articles/salesforce-multi-framework-react.html" />
+    <id>https://pulsagi.com/articles/salesforce-multi-framework-react.html</id>
+    <published>2026-04-25T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>For years, Salesforce frontend development effectively meant Lightning Web Components or Aura. That worked well when your goal was deep platform integration</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Async Apex Guide</title>
+    <link href="https://pulsagi.com/articles/salesforce-async-apex-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-async-apex-guide.html</id>
+    <published>2026-04-25T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Asynchronous Apex means the work is placed onto Salesforce-managed infrastructure and executed later, outside the user&amp;#39;s current transaction. That matters</summary>
+  </entry>
+  <entry>
+    <title>Connect Salesforce to ChatGPT with MCP</title>
+    <link href="https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-chatgpt-mcp-guide.html</id>
+    <published>2026-04-24T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Connect ChatGPT to Salesforce with Hosted MCP Servers, OAuth, and governed per-user access for queries, summaries, prompt templates, and safe updates.</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Headless 360: Practical Setup Guide</title>
+    <link href="https://pulsagi.com/articles/salesforce-headless-360-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-headless-360-guide.html</id>
+    <published>2026-04-19T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce Headless 360 guide for admins, developers, and AI teams covering architecture, setup steps, MCP access, governance, and safe rollout practices.</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Hosted MCP Servers GA Guide</title>
+    <link href="https://pulsagi.com/articles/salesforce-hosted-mcp-servers-guide.html" />
+    <id>https://pulsagi.com/articles/salesforce-hosted-mcp-servers-guide.html</id>
+    <published>2026-04-15T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce Hosted MCP Servers are now generally available, giving ChatGPT, Claude, Cursor, and Postman governed access to Salesforce data and actions.</summary>
+  </entry>
+  <entry>
+    <title>Permission Set Groups in Salesforce</title>
+    <link href="https://pulsagi.com/articles/permission-set-groups-guide.html" />
+    <id>https://pulsagi.com/articles/permission-set-groups-guide.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Permission Set Groups let admins bundle permission sets together around job functions or personas instead of managing many small assignments one by one.</summary>
+  </entry>
+  <entry>
+    <title>Named Credentials in Salesforce</title>
+    <link href="https://pulsagi.com/articles/named-credentials-and-external-credentials.html" />
+    <id>https://pulsagi.com/articles/named-credentials-and-external-credentials.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce strongly recommends the improved named credential model that arrived in Winter &amp;#39;23 instead of legacy named credentials. In the preferred model,</summary>
+  </entry>
+  <entry>
+    <title>Platform Events vs CDC in Salesforce</title>
+    <link href="https://pulsagi.com/articles/platform-events-vs-change-data-capture.html" />
+    <id>https://pulsagi.com/articles/platform-events-vs-change-data-capture.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce&amp;#39;s modern event bus gives you two very different ways to tell the outside world that something happened: Platform Events and Change Data Capture</summary>
+  </entry>
+  <entry>
+    <title>Lightning Web Security vs Locker in Salesforce</title>
+    <link href="https://pulsagi.com/articles/lightning-web-security-vs-locker.html" />
+    <id>https://pulsagi.com/articles/lightning-web-security-vs-locker.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Lightning Web Security is the current security architecture for Lightning Web Components and Aura components. In most orgs, the real design question is not</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Pub/Sub API Guide</title>
+    <link href="https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html" />
+    <id>https://pulsagi.com/articles/pub-sub-api-event-driven-integrations.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Pub/Sub API gives external applications one way to publish and subscribe to Salesforce events. The official documentation describes it as a gRPC and HTTP/2</summary>
+  </entry>
+  <entry>
+    <title>Apex Batch vs Queueable with Apex Cursors in Spring &apos;26</title>
+    <link href="https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html" />
+    <id>https://pulsagi.com/articles/apex-batch-vs-queueable-with-apex-cursors-spring26.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Apex Batch vs Queueable with Apex Cursors in Spring 2026, including when to use each pattern, scaling tradeoffs, and practical design guidance for architects.</summary>
+  </entry>
+  <entry>
+    <title>Dynamic Forms in Salesforce</title>
+    <link href="https://pulsagi.com/articles/dynamic-forms-guide.html" />
+    <id>https://pulsagi.com/articles/dynamic-forms-guide.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Dynamic Forms lets admins move fields and sections out of a single Record Detail block and place them individually on a Lightning record page. That makes</summary>
+  </entry>
+  <entry>
+    <title>DevOps Center in Salesforce</title>
+    <link href="https://pulsagi.com/articles/devops-center-guide.html" />
+    <id>https://pulsagi.com/articles/devops-center-guide.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>DevOps Center in Salesforce explained with strengths, limits, release workflow fit, and when enterprise teams should choose it over other delivery options.</summary>
+  </entry>
+  <entry>
+    <title>GraphQL Wire Adapter for LWC</title>
+    <link href="https://pulsagi.com/articles/graphql-wire-adapter-lwc.html" />
+    <id>https://pulsagi.com/articles/graphql-wire-adapter-lwc.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>The GraphQL wire adapter lets Lightning Web Components query Salesforce data using the GraphQL API while still relying on Lightning Data Service for caching</summary>
+  </entry>
+  <entry>
+    <title>Salesforce GraphQL API Overview</title>
+    <link href="https://pulsagi.com/articles/graphql-api-overview.html" />
+    <id>https://pulsagi.com/articles/graphql-api-overview.html</id>
+    <published>2026-04-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce GraphQL API gives you a single endpoint for querying Salesforce data in the UI API family. The official docs consistently emphasize three benefits</summary>
+  </entry>
+  <entry>
+    <title>LWC vs Aura in Salesforce</title>
+    <link href="https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html" />
+    <id>https://pulsagi.com/articles/lwc-vs-aura-component-architecture.html</id>
+    <published>2026-04-10T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Many Salesforce teams still ask whether they should build in Lightning Web Components (LWC) or Aura . The short answer is not balanced: for new development </summary>
+  </entry>
+  <entry>
+    <title>Future of AI in 2030: Predictions and Risks</title>
+    <link href="https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html" />
+    <id>https://pulsagi.com/articles/future-of-ai-2030-predictions-guide.html</id>
+    <published>2026-03-29T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>The future of AI by 2030 will probably look less like one dramatic moment and more like a steady operational shift. We are already seeing the early pattern</summary>
+  </entry>
+  <entry>
+    <title>Will AI Replace Jobs or Create New Ones?</title>
+    <link href="https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html" />
+    <id>https://pulsagi.com/articles/will-ai-replace-jobs-or-create-new-ones.html</id>
+    <published>2026-03-26T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Headlines about AI and jobs often swing between two extremes: either AI will destroy work, or AI will create abundance without meaningful disruption. Both are</summary>
+  </entry>
+  <entry>
+    <title>How AI Will Change Education in 2030</title>
+    <link href="https://pulsagi.com/articles/how-ai-will-change-education-forever.html" />
+    <id>https://pulsagi.com/articles/how-ai-will-change-education-forever.html</id>
+    <published>2026-03-23T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Education has absorbed technology waves before: search, video, mobile devices, LMS platforms, online classrooms, and collaborative documents. AI is different</summary>
+  </entry>
+  <entry>
+    <title>Rise of Generative AI for Business</title>
+    <link href="https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html" />
+    <id>https://pulsagi.com/articles/rise-of-generative-ai-what-it-means-for-you.html</id>
+    <published>2026-03-20T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Rise of generative AI explained for business, including why adoption accelerated, where value appears fastest, and what risks still need human judgment.</summary>
+  </entry>
+  <entry>
+    <title>QClaw Explained: Tencent AI Agent Platform</title>
+    <link href="https://pulsagi.com/articles/qclaw-explained.html" />
+    <id>https://pulsagi.com/articles/qclaw-explained.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>QClaw is described as Tencent&amp;#39;s individual-user product within a broader AI product suite. Reporting on March 18, 2026 connected it to a portfolio that also</summary>
+  </entry>
+  <entry>
+    <title>HiClaw Explained: Alibaba AI Multi-Agent OS</title>
+    <link href="https://pulsagi.com/articles/hiclaw-explained.html" />
+    <id>https://pulsagi.com/articles/hiclaw-explained.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>HiClaw is presented as an open-source collaborative multi-agent operating system. Its design centers on a transparent, human-in-the-loop task coordination</summary>
+  </entry>
+  <entry>
+    <title>OneClaw Explained: AI Agent Discovery</title>
+    <link href="https://pulsagi.com/articles/oneclaw-explained.html" />
+    <id>https://pulsagi.com/articles/oneclaw-explained.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>OneClaw is not another assistant trying to win end-user attention. It belongs to a different category entirely. Public descriptions frame it as a discovery</summary>
+  </entry>
+  <entry>
+    <title>OpenClaw Explained: AI Agent Architecture</title>
+    <link href="https://pulsagi.com/articles/openclaw-explained.html" />
+    <id>https://pulsagi.com/articles/openclaw-explained.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>OpenClaw has become a reference point for the current wave of always-on personal AI agents. The public materials around the project frame it as a personal</summary>
+  </entry>
+  <entry>
+    <title>OneClaw, OpenClaw, and the New AI Claw Wave</title>
+    <link href="https://pulsagi.com/articles/ai-claw-article.html" />
+    <id>https://pulsagi.com/articles/ai-claw-article.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>In the current AI cycle, a new pattern is becoming clear: users want systems that do more than generate text. They want AI that can open software, move data</summary>
+  </entry>
+  <entry>
+    <title>NVIDIA NemoClaw Explained for Enterprise AI</title>
+    <link href="https://pulsagi.com/articles/nemoclaw-explained.html" />
+    <id>https://pulsagi.com/articles/nemoclaw-explained.html</id>
+    <published>2026-03-18T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>NVIDIA positions NemoClaw as an open-source stack that adds privacy and security controls to OpenClaw-style deployments. That is more than a branding nuance.</summary>
+  </entry>
+  <entry>
+    <title>AI Skills for the Future of Work</title>
+    <link href="https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html" />
+    <id>https://pulsagi.com/articles/ai-future-of-work-skills-you-need-to-learn.html</id>
+    <published>2026-03-17T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>AI is changing what work looks like, but it is also changing what makes someone valuable at work. The World Economic Forum&amp;#39;s 2025 findings point to rapid</summary>
+  </entry>
+  <entry>
+    <title>Machine Learning vs Deep Learning Explained</title>
+    <link href="https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html" />
+    <id>https://pulsagi.com/articles/machine-learning-vs-deep-learning-difference.html</id>
+    <published>2026-03-14T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Machine learning is the broader category. It includes many techniques that learn from data, such as linear regression, logistic regression, decision trees</summary>
+  </entry>
+  <entry>
+    <title>Salesforce Approval Process vs Flow Approval</title>
+    <link href="https://pulsagi.com/articles/salesforce-approval-vs-flow-approval.html" />
+    <id>https://pulsagi.com/articles/salesforce-approval-vs-flow-approval.html</id>
+    <published>2026-03-13T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Salesforce now offers two very different ways to handle approvals. The classic Approval Process is still the fastest option for simple, record-centric</summary>
+  </entry>
+  <entry>
+    <title>Best AI Tools for Salesforce Developers</title>
+    <link href="https://pulsagi.com/articles/salesforce-ai-tools-comparison.html" />
+    <id>https://pulsagi.com/articles/salesforce-ai-tools-comparison.html</id>
+    <published>2026-03-12T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>This document explains how AI tools can be used across a Salesforce implementation lifecycle, especially for developers working on Apex, Lightning Web</summary>
+  </entry>
+  <entry>
+    <title>How Neural Networks Work for Beginners</title>
+    <link href="https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html" />
+    <id>https://pulsagi.com/articles/how-neural-networks-work-beginner-guide.html</id>
+    <published>2026-03-10T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>How neural networks work for beginners, including layers, weights, training, inference, examples, and the practical limits behind the core terminology.</summary>
+  </entry>
+  <entry>
+    <title>Natural Language Processing Explained</title>
+    <link href="https://pulsagi.com/articles/natural-language-processing-explained-examples.html" />
+    <id>https://pulsagi.com/articles/natural-language-processing-explained-examples.html</id>
+    <published>2026-03-06T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Natural language processing sits at the intersection of language and computation. Older NLP pipelines focused heavily on tokenization, rules, statistical</summary>
+  </entry>
+  <entry>
+    <title>How to Build Your First AI Model</title>
+    <link href="https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html" />
+    <id>https://pulsagi.com/articles/how-to-build-your-first-ai-model-guide.html</id>
+    <published>2026-02-28T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Your first AI model should not be judged by how flashy it sounds. It should be judged by whether you can explain the problem, trace the data, reproduce</summary>
+  </entry>
+  <entry>
+    <title>Top Programming Languages for AI in 2026</title>
+    <link href="https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html" />
+    <id>https://pulsagi.com/articles/top-programming-languages-for-ai-2026.html</id>
+    <published>2026-02-24T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>The best AI language depends on what you are building: a research notebook, a browser-side inference flow, a low-latency backend, a JVM-heavy enterprise</summary>
+  </entry>
+  <entry>
+    <title>Best SaaS Tools by Category in 2026</title>
+    <link href="https://pulsagi.com/articles/saas-tools-list-guide.html" />
+    <id>https://pulsagi.com/articles/saas-tools-list-guide.html</id>
+    <published>2026-02-20T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>SaaS tools are software products delivered as online services instead of locally installed applications. The category is huge: collaboration, CRM, project</summary>
+  </entry>
+  <entry>
+    <title>Best No-Code Tools in 2026</title>
+    <link href="https://pulsagi.com/articles/no-code-tools-guide.html" />
+    <id>https://pulsagi.com/articles/no-code-tools-guide.html</id>
+    <published>2026-02-16T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>No-code tools let teams build websites, apps, portals, internal tools, and operational systems with visual building blocks instead of traditional coding as</summary>
+  </entry>
+  <entry>
+    <title>Best Automation Tools in 2026</title>
+    <link href="https://pulsagi.com/articles/automation-tools-guide.html" />
+    <id>https://pulsagi.com/articles/automation-tools-guide.html</id>
+    <published>2026-02-12T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Automation tools are platforms that remove manual steps from business processes by linking systems, triggering actions, applying logic, and moving work across</summary>
+  </entry>
+  <entry>
+    <title>Best AI Image Generators in 2026</title>
+    <link href="https://pulsagi.com/articles/ai-image-generator-guide.html" />
+    <id>https://pulsagi.com/articles/ai-image-generator-guide.html</id>
+    <published>2026-02-08T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>Best AI image generators in 2026 compared across text-to-image, editing, style control, pricing, use cases, and practical recommendations for modern teams.</summary>
+  </entry>
+  <entry>
+    <title>Best AI Content Generators in 2026</title>
+    <link href="https://pulsagi.com/articles/ai-content-generator-guide.html" />
+    <id>https://pulsagi.com/articles/ai-content-generator-guide.html</id>
+    <published>2026-02-04T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>An AI content generator is a tool that uses generative AI to draft, rewrite, expand, summarize, personalize, or repurpose written content. In practice,</summary>
+  </entry>
+  <entry>
+    <title>Best ChatGPT Prompts for Work, Writing, and Coding</title>
+    <link href="https://pulsagi.com/articles/chatgpt-prompts-guide.html" />
+    <id>https://pulsagi.com/articles/chatgpt-prompts-guide.html</id>
+    <published>2026-01-31T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>A ChatGPT prompt is the instruction, question, context, or input you give to ChatGPT to start or guide a response. That sounds simple, but in practice</summary>
+  </entry>
+  <entry>
+    <title>Best AI Tools in 2026</title>
+    <link href="https://pulsagi.com/articles/best-ai-tools-guide.html" />
+    <id>https://pulsagi.com/articles/best-ai-tools-guide.html</id>
+    <published>2026-01-27T00:00:00+05:30</published>
+    <updated>2026-05-01T00:00:00+05:30</updated>
+    <summary>The phrase best AI tools is searched constantly because teams are trying to solve a real operational problem: there are now many strong AI products, but they</summary>
+  </entry>
+</feed>

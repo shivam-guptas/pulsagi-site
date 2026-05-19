@@ -1,3 +1,4 @@
 ﻿User-agent: *
 Allow: /
 Sitemap: https://pulsagi.com/sitemap.xml
+Sitemap: https://pulsagi.com/articles/feed.xml
