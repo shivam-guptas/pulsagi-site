@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" sizes="any" />
+
+            <title>Salesforce Headless 360 Security Risks and Controls | Pulsagi</title>
+  <meta name="description" content="Salesforce Headless 360 security risks, token pitfalls, and control patterns. Learn how to secure MCP agents, prompts, APIs, and data before rollout. Read now." />
+  <link rel="canonical" href="https://pulsagi.com/articles/salesforce-headless-360-security-risks.html" />
+  <meta property="og:title" content="Salesforce Headless 360 Security Risks and Controls" />
+  <meta property="og:description" content="Salesforce Headless 360 security risks, token pitfalls, and control patterns. Learn how to secure MCP agents, prompts, APIs, and data before rollout. Read now." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pulsagi.com/articles/salesforce-headless-360-security-risks.html" />
+  <meta property="og:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-headless-360-security-risks-hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salesforce Headless 360 Security Risks and Controls" />
+  <meta name="twitter:description" content="Salesforce Headless 360 security risks, token pitfalls, and control patterns. Learn how to secure MCP agents, prompts, APIs, and data before rollout. Read now." />
+  <meta name="twitter:image" content="https://pulsagi.com/articles/assets/images/salesforce/salesforce-headless-360-security-risks-hero.png" />
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "Article",
+    "headline":  "Salesforce Headless 360 Security Risks and Controls",
+    "description":  "A practical security guide for Salesforce architects and product teams rolling out Headless 360, MCP tools, external client apps, and autonomous agents.",
+    "author":  {
+                   "@type":  "Person",
+                   "name":  "Shivam Gupta",
+                   "url":  "https://shivam.pulsagi.com"
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Pulsagi",
+                      "url":  "https://pulsagi.com"
+                  },
+    "datePublished":  "2026-05-19",
+    "dateModified":  "2026-05-19",
+    "url":  "https://pulsagi.com/articles/salesforce-headless-360-security-risks.html"
+}
+  </script>
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://pulsagi.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Articles",
+                                "item":  "https://pulsagi.com/articles/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Salesforce Headless 360 Security Risks and Controls",
+                                "item":  "https://pulsagi.com/articles/salesforce-headless-360-security-risks.html"
+                            }
+                        ]
+}
+  </script><meta name="keywords" content="Salesforce Headless 360 security, Headless 360 security risks, Salesforce MCP security, Salesforce Hosted MCP Servers security, secure Salesforce AI agents, MCP token security, Salesforce agent governance, Salesforce Headless 360 best practices, how to secure Salesforce Headless 360" />
+  <meta name="author" content="Shivam Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+  <style>
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 22px;
+      border: 1px solid rgba(221, 211, 194, 0.95);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .article-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(221, 211, 194, 0.95);
+    }
+
+    .article-table th {
+      background: rgba(11, 92, 171, 0.08);
+      color: var(--ink);
+      font-family: "Merriweather", serif;
+      font-size: 0.98rem;
+    }
+
+    .article-table td {
+      color: var(--muted-strong);
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li + li {
+      margin-top: 10px;
+    }
+
+    .article-hero-media {
+      overflow: visible;
+      background: #ffffff;
+    }
+
+    .article-hero-media img {
+      height: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      border-radius: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/article-site.css" />
+  <link rel="stylesheet" href="assets/article-mobile-first.css" />
+  <link rel="stylesheet" href="assets/guide.css" />
+  <link rel="stylesheet" href="assets/article-pulsagi-overrides.css?v=20260420-reader5" />
+  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NFJXRZSV');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S55MNPYJF8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S55MNPYJF8');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJXRZSV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="shell">
+  <nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/">Pulsagi</a>
+  <ul class="site-nav-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/tools/">Tools</a></li>
+    <li><a href="/articles/" aria-current="page">Articles</a></li>
+  </ul>
+</nav>
+
+  <main class="page-shell article-page">
+    <section class="article-hero">
+      <div class="article-hero-copy">
+        <div class="eyebrow">Agentic Enterprise - Security</div>
+        <h1 class="article-title">Salesforce Headless 360 Security Risks and Controls</h1>
+        <p class="article-standfirst">Planning a Headless 360 rollout? This guide explains where Salesforce MCP tools, external client apps, prompt-driven agents, and privileged Apex create real risk. It also shows which controls actually reduce that risk before an agent can read, write, or route customer data at API speed.</p>
+        <div class="reading-meta"><span>15 min read</span><span>Published May 19, 2026</span><span>By Shivam Gupta</span></div>
+        <div class="author-block"><img class="author-avatar" src="assets/shivam.jpg" alt="Shivam Gupta" width="64" height="64"  loading="lazy" /><div class="author-copy"><strong>Shivam Gupta</strong><span>Salesforce Architect and founder at <a href="https://pulsagi.com" rel="noopener" target="_blank">pulsagi.com</a></span></div></div>
+      </div>
+      <div class="article-hero-media article-hero-media--infographic">
+        <img src="assets/images/salesforce/salesforce-headless-360-security-risks-hero.png" alt="Salesforce Headless 360 and MCP security infographic showing the loss of UI safety nets and the controls needed to secure agent-driven access" loading="eager"  width="1692"  height="930" />
+        <p>Headless 360 expands how Salesforce is accessed. That is good for delivery speed, but it also means trust, permissions, audit, and token hygiene must move from the UI layer into the architecture itself.</p>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="toc-card" aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-changes">What Headless 360 changes</a></li>
+          <li><a href="#features">Key features and functionality</a></li>
+          <li><a href="#use-cases">Common use cases</a></li>
+          <li><a href="#why-risk-different">Why the risk profile is different</a></li>
+          <li><a href="#security-risks">Top security risks</a></li>
+          <li><a href="#secure-pattern">Safer architecture pattern</a></li>
+          <li><a href="#controls">Admin and developer controls</a></li>
+          <li><a href="#monitoring">Monitoring and traceability</a></li>
+          <li><a href="#rollout-checklist">Rollout checklist</a></li>
+          <li><a href="#recommendation">Recommendation</a></li>
+          <li><a href="#references">References</a></li>
+        </ol>
+      </aside>
+
+      <article class="content-card">
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>Salesforce Headless 360 is a meaningful platform shift because it takes capabilities that were traditionally consumed through pages, buttons, and user journeys and exposes them through APIs, MCP tools, and CLI-driven workflows. That is exactly why it is strategically important for AI agents. It is also exactly why security conversations have to get sharper.</p>
+          <p>Make no mistake: <strong>Headless 360 is not just an integration decision. It is a security architecture decision.</strong> When an autonomous agent can inspect records, summarize them, update them, and hand results to Slack, Claude, ChatGPT, or another client without a human reviewing each step in the Salesforce UI, the old comfort of "the user will see what they are doing" disappears.</p>
+          <p>That does not mean Headless 360 is inherently unsafe. In fact, Salesforce is explicitly positioning it on top of the platform's existing trust model. But it does mean teams must stop relying on UI friction, manual review, or broad integration users as their hidden control strategy. Security has to become explicit in the tool contract, the OAuth setup, the permission model, the Apex patterns, and the monitoring layer.</p>
+          <div class="callout">
+            <strong>Important nuance:</strong> Headless 360 does not automatically bypass Salesforce permissions or validation rules. The real risk appears when teams expose broad tools, run privileged code, overuse system-mode integrations, or fail to create a usable audit trail for agent activity.
+          </div>
+        </section>
+
+        <section id="what-changes">
+          <h2>What Headless 360 changes</h2>
+          <p>Salesforce's own Headless 360 announcement frames the shift clearly: everything important on Salesforce is becoming an API, MCP tool, or CLI command that agents can use. That changes how work is executed in four practical ways.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Work moves from screens to tools</h3>
+              <p>Instead of a human navigating record pages, an MCP client or external app can call discrete operations directly. The execution path becomes faster and less visible to business users.</p>
+            </div>
+            <div class="card">
+              <h3>OAuth becomes the front door</h3>
+              <p>External Client Apps, scopes, refresh tokens, PKCE, callback URLs, and client distribution settings now matter as much as profile setup or page layout design.</p>
+            </div>
+            <div class="card">
+              <h3>Tool design becomes governance</h3>
+              <p>The real question is no longer just "can this user access the object?" It becomes "what exact business action is this tool allowed to perform, under what conditions, and for which persona?"</p>
+            </div>
+            <div class="card">
+              <h3>Activity spreads across clients</h3>
+              <p>Salesforce may remain the system of record, but activity can now originate from Slack, Postman, ChatGPT, Claude, Cursor, custom portals, and other MCP-capable clients.</p>
+            </div>
+          </div>
+          <p>For security teams, the headline is simple: <strong>Headless 360 expands the attack surface and compresses reaction time.</strong> The same trust model must now hold under machine-speed execution, cross-surface routing, and more fragmented identity flows.</p>
+        </section>
+
+        <section id="features">
+          <h2>Key features and functionality</h2>
+          <p>To secure Headless 360 well, you need to understand which parts of the stack are actually doing the work.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>What it does</th>
+                  <th>Why security teams should care</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Hosted MCP Servers</strong></td>
+                  <td>Expose Salesforce data and actions as MCP-consumable tools for external AI clients.</td>
+                  <td>They turn Salesforce into an agent-usable action plane, so over-broad tools or weak OAuth design can quickly create a large blast radius.</td>
+                </tr>
+                <tr>
+                  <td><strong>External Client Apps</strong></td>
+                  <td>Register third-party clients and define OAuth flows, scopes, callback URLs, token policies, and access rules.</td>
+                  <td>Misconfigured token settings, permissive user access, or poor secret hygiene can hand attackers a clean path into your org.</td>
+                </tr>
+                <tr>
+                  <td><strong>Custom MCP tools</strong></td>
+                  <td>Wrap Flow, Apex, API Catalog, or custom operations into persona-specific tools.</td>
+                  <td>Tool boundaries matter more than ever. A well-designed business action is safer than exposing raw reads and writes across many objects.</td>
+                </tr>
+                <tr>
+                  <td><strong>Agent clients and surfaces</strong></td>
+                  <td>Let users interact with Salesforce from conversational or developer environments instead of the core UI.</td>
+                  <td>Data can now move across more trust boundaries, which raises exfiltration, prompt-injection, and monitoring challenges.</td>
+                </tr>
+                <tr>
+                  <td><strong>Observability and tracing</strong></td>
+                  <td>Provide post-launch insight into agent behavior, tool invocation paths, and response quality.</td>
+                  <td>Without high-quality traces, proving who did what becomes difficult when actions span end users, agents, OAuth tokens, and server-side tools.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>If you want a broader orientation to the platform direction itself, see <a href="/articles/salesforce-headless-360-guide.html">Salesforce Headless 360: Practical Setup Guide</a>. This article focuses on the security model that sits underneath that direction.</p>
+        </section>
+
+        <section id="use-cases">
+          <h2>Common use cases</h2>
+          <p>Most enterprises will not adopt Headless 360 for novelty. They will use it to remove repetitive navigation and give people faster access to data and actions in the tools they already use.</p>
+          <ul>
+            <li><strong>Sales briefing agents:</strong> summarize account, opportunity, case, and activity context before a meeting.</li>
+            <li><strong>Service triage assistants:</strong> read case history, suggest a next action, and prepare escalation details.</li>
+            <li><strong>Slack or chat-based record workflows:</strong> let teams inspect status, request decisions, or trigger guided business actions from a conversational surface.</li>
+            <li><strong>Developer and admin copilots:</strong> inspect metadata, generate code, or run org-aware tasks without opening multiple Salesforce setup screens.</li>
+            <li><strong>Custom business tools for AI agents:</strong> expose narrow operations like "prepare renewal risk summary" instead of teaching an agent how to orchestrate five low-level calls on its own.</li>
+          </ul>
+          <p>These are strong use cases. The mistake is assuming strong use cases automatically mean strong controls. They do not.</p>
+        </section>
+
+        <section id="why-risk-different">
+          <h2>Why the risk profile is different</h2>
+          <p>Traditional UI-driven Salesforce work includes a surprising amount of natural friction. A user opens a page, scans context, clicks a button, sees a validation error, rethinks, and tries again. None of that is formal security, but it does slow down mistakes and make activity easier to notice.</p>
+          <p>Headless 360 removes that pacing. An agent can query, reason, branch, retry, and call other tools in seconds. If the underlying toolset is broad, the model is misdirected, or the identity boundary is weak, bad outcomes happen faster and at larger scale.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Less human review</h3>
+              <p>Decisions that previously happened on-screen can now happen inside prompts, tool descriptions, or autonomous orchestration paths.</p>
+            </div>
+            <div class="card">
+              <h3>More privileged pathways</h3>
+              <p>Custom Apex, integration users, and raw tool exposure can create access patterns that are broader than the human UI experience.</p>
+            </div>
+            <div class="card">
+              <h3>More audit complexity</h3>
+              <p>Investigations now have to connect the end user, the MCP client, the OAuth token, the invoked tool, and the downstream Salesforce action.</p>
+            </div>
+            <div class="card">
+              <h3>Higher transaction volume</h3>
+              <p>Agents do not get tired, and they do not pause. That means permission mistakes and limit issues can scale much faster than user mistakes.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="security-risks">
+          <h2>Top security risks</h2>
+          <p>The most important Headless 360 risks are not theoretical. They come directly from how the architecture works.</p>
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Risk</th>
+                  <th>What goes wrong</th>
+                  <th>Practical control</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Expanded blast radius from excess permissions</strong></td>
+                  <td>An agent or integration account with broad read or edit access can inspect, update, or delete far more data than the use case really requires.</td>
+                  <td>Use per-persona tool sets, least-privilege permission sets, and user-context enforcement such as <a href="/articles/salesforce-user-mode-apex-guide.html"><code>WITH USER_MODE</code></a> for custom data access.</td>
+                </tr>
+                <tr>
+                  <td><strong>Identity fragmentation and weak traceability</strong></td>
+                  <td>Security teams struggle to prove whether an action came from the end user, the external AI client, a proxy layer, or a reusable backend token.</td>
+                  <td>Log user identity, client identity, tool name, object touched, timestamp, and outcome together. Favor per-user OAuth over shared integration identities where possible.</td>
+                </tr>
+                <tr>
+                  <td><strong>Data leakage through prompts and routing</strong></td>
+                  <td>A misdirected prompt or poorly bounded tool can retrieve sensitive customer data and send it to Slack, a chat client, or another external service.</td>
+                  <td>Minimize data returned by tools, classify sensitive fields, block broad export-style tools in early phases, and require human review for outbound workflows.</td>
+                </tr>
+                <tr>
+                  <td><strong>Silent policy bypass through system-mode code</strong></td>
+                  <td>If a custom tool calls Apex that runs with elevated privileges or ignores FLS and CRUD, the agent can do what the UI would have prevented.</td>
+                  <td>Use explicit sharing keywords, secure Apex patterns, <code>WITH USER_MODE</code>, or <a href="/articles/salesforce-stripinaccessible-method-guide.html"><code>Security.stripInaccessible()</code></a> where graceful degradation is needed.</td>
+                </tr>
+                <tr>
+                  <td><strong>Credential exposure and token misuse</strong></td>
+                  <td>Stolen tokens, weak redirect URI handling, or poor client registration patterns can give attackers direct access to protected Salesforce resources.</td>
+                  <td>Use PKCE, exact callback URLs, token revocation processes, permission-set-based app access, secure client secret handling, and short review cycles for new external clients.</td>
+                </tr>
+                <tr>
+                  <td><strong>MCP trust-boundary failures</strong></td>
+                  <td>Poor token audience validation, token passthrough, confused deputy issues, or SSRF-style behavior in intermediary layers can let clients reach systems they should not.</td>
+                  <td>Validate token audience, avoid token passthrough, review proxy behavior carefully, and treat every MCP intermediary as part of the production attack surface.</td>
+                </tr>
+                <tr>
+                  <td><strong>Governor limit and volume excursions</strong></td>
+                  <td>Autonomous retries, large fan-out reads, and chain-invoked automations can create spikes that degrade org performance or fail business processes.</td>
+                  <td>Start with narrow tools, bulk-safe Apex, defensive limits, and monitoring for API usage, failures, and retry storms before enabling broader write actions.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The important pattern across all seven is that the failure usually starts <strong>before</strong> the model makes a bad decision. It starts when the architecture gives the model too much power, too little context, or too little accountability.</p>
+        </section>
+
+        <section id="secure-pattern">
+          <h2>Safer architecture pattern</h2>
+          <p>The safest Headless 360 design is usually not "give the agent Salesforce access." It is "give the agent one narrow business tool at a time, in the user's context, with a traceable contract."</p>
+          <p>A strong first pattern looks like this:</p>
+          <ol>
+            <li>Create a dedicated External Client App for the target client and persona.</li>
+            <li>Restrict app access with permission-set-based preauthorization where possible.</li>
+            <li>Expose a persona-specific custom MCP server instead of a broad all-tools server.</li>
+            <li>Prefer business actions over raw CRUD, for example <code>summarizeOpenEscalations</code> instead of free-form case reads plus updates.</li>
+            <li>Implement custom Apex tools with <code>with sharing</code> and user-context enforcement.</li>
+            <li>Keep writes behind explicit confirmation until the workflow is proven in production.</li>
+          </ol>
+          <p>This simple Apex pattern is much safer than a privileged raw data utility because it keeps the contract narrow and the security intent obvious.</p>
+<pre><code>public with sharing class CaseHealthAction {
+    @InvocableMethod(
+        label='Get Case Health Summary'
+        description='Returns a safe summary for one or more Cases.'
+    )
+    public static List&lt;CaseHealthResponse&gt; summarize(List&lt;CaseHealthRequest&gt; requests) {
+        Set&lt;Id&gt; caseIds = new Set&lt;Id&gt;();
+        for (CaseHealthRequest req : requests) {
+            if (req != null &amp;&amp; req.caseId != null) {
+                caseIds.add(req.caseId);
+            }
+        }
+
+        List&lt;Case&gt; cases = [
+            SELECT Id, CaseNumber, Subject, Status, Priority, Owner.Name
+            FROM Case
+            WHERE Id IN :caseIds
+            WITH USER_MODE
+        ];
+
+        List&lt;CaseHealthResponse&gt; results = new List&lt;CaseHealthResponse&gt;();
+        for (Case item : cases) {
+            CaseHealthResponse res = new CaseHealthResponse();
+            res.caseId = item.Id;
+            res.caseNumber = item.CaseNumber;
+            res.summary = item.Priority + ' priority case in ' + item.Status;
+            results.add(res);
+        }
+        return results;
+    }
+
+    public class CaseHealthRequest {
+        @InvocableVariable(required=true)
+        public Id caseId;
+    }
+
+    public class CaseHealthResponse {
+        @InvocableVariable
+        public Id caseId;
+
+        @InvocableVariable
+        public String caseNumber;
+
+        @InvocableVariable
+        public String summary;
+    }
+}</code></pre>
+          <p>This does not solve every problem, but it does three useful things immediately. It keeps sharing explicit, it keeps object and field access aligned with the user context, and it narrows the agent's freedom to one readable business function instead of unbounded record exploration.</p>
+        </section>
+
+        <section id="controls">
+          <h2>Admin and developer controls</h2>
+          <p>Strong Headless 360 security is a joint operating model. Admins cannot solve it alone, and developers should not treat it as a pure OAuth configuration exercise.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Admin controls</h3>
+              <ul>
+                <li>Use separate External Client Apps for materially different clients or trust zones.</li>
+                <li>Review callback URLs, scopes, token policies, and who is preauthorized to use the app.</li>
+                <li>Keep permission sets narrower than the human role if the agent only needs a subset of actions.</li>
+                <li>Prefer persona-specific custom MCP servers over broad defaults.</li>
+                <li>Start with read-only tools for the first production rollout.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Developer controls</h3>
+              <ul>
+                <li>Do not expose raw record manipulation when a narrow business action will do.</li>
+                <li>Use explicit sharing behavior and modern secure data-access patterns in Apex.</li>
+                <li>Design tools to return minimal data instead of whole records by default.</li>
+                <li>Make destructive actions obvious in the tool description and require confirmation upstream.</li>
+                <li>Test negative permission scenarios, not only happy paths.</li>
+              </ul>
+            </div>
+          </div>
+          <p>If your team still has older secure Apex patterns in circulation, revisit <a href="/articles/salesforce-with-security-enforced-guide.html">WITH SECURITY_ENFORCED in Apex Explained</a> and <a href="/articles/salesforce-user-mode-vs-security-enforced-vs-stripinaccessible-guide.html">USER_MODE vs SECURITY_ENFORCED vs stripInaccessible</a>. Headless 360 increases the cost of getting those choices wrong.</p>
+        </section>
+
+        <section id="monitoring">
+          <h2>Monitoring and traceability</h2>
+          <p>Security without monitoring is guesswork. In Headless 360, that is especially dangerous because a single prompt can trigger a chain of reads, tool calls, retries, and downstream actions.</p>
+          <p>At minimum, teams should be able to answer these questions after an incident:</p>
+          <ul>
+            <li>Which end user initiated the interaction?</li>
+            <li>Which client or agent surface made the request?</li>
+            <li>Which External Client App and token were used?</li>
+            <li>Which MCP tool or Apex action ran?</li>
+            <li>Which objects, fields, or records were touched?</li>
+            <li>What was returned, changed, or routed externally?</li>
+          </ul>
+          <p>Salesforce Event Monitoring and related observability features matter more in this model because they help you reconstruct activity that no human ever saw inside the core UI. They also help you detect permission changes, usage spikes, and suspicious API behavior earlier.</p>
+          <div class="callout">
+            <strong>Operational reality:</strong> if you cannot link a tool invocation to a user, client, token, and business result, you do not yet have production-grade traceability for autonomous access.
+          </div>
+        </section>
+
+        <section id="rollout-checklist">
+          <h2>Rollout checklist</h2>
+          <p>If you are moving from experiment to pilot, this is the checklist I would use before approval.</p>
+          <ol>
+            <li>Document the exact use case and why headless access is justified.</li>
+            <li>Define the smallest possible tool set for that persona.</li>
+            <li>Use a dedicated External Client App, not a recycled general-purpose one.</li>
+            <li>Confirm the permission model with negative tests for restricted users.</li>
+            <li>Review custom Apex for sharing, CRUD, FLS, and system-mode surprises.</li>
+            <li>Decide which actions require human approval before execution.</li>
+            <li>Enable monitoring that can reconstruct user, tool, and token activity.</li>
+            <li>Test revocation, rollback, and incident response before go-live.</li>
+          </ol>
+          <p>If any of those eight items is still hand-wavy, the rollout is probably not ready.</p>
+        </section>
+
+        <section id="recommendation">
+          <h2>Recommendation</h2>
+          <p>Salesforce Headless 360 is absolutely worth taking seriously. The direction is right, and the productivity upside is real. But the winning pattern is not maximum exposure. It is <strong>governed exposure</strong>.</p>
+          <p>My practical recommendation is to start with read-heavy assistants, persona-specific custom MCP servers, per-user OAuth where feasible, and business-action tools that are narrow enough to review line by line. Treat system-mode Apex, shared integration identities, unrestricted tool catalogs, and vague audit stories as launch blockers, not documentation gaps.</p>
+          <p>If you do that, Headless 360 can become a controlled enterprise capability. If you do not, it can become the fastest path to low-visibility data access your org has ever deployed.</p>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+          <ol class="reference-list">
+            <li><a href="https://www.salesforce.com/in/news/stories/salesforce-headless-360-announcement/" rel="noopener" target="_blank">Salesforce: Introducing Salesforce Headless 360. No Browser Required.</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/create-external-client-app.html" rel="noopener" target="_blank">Salesforce Developers: Create an External Client App</a></li>
+            <li><a href="https://developer.salesforce.com/docs/platform/lwc/guide/apex-security" rel="noopener" target="_blank">Salesforce Developers: Secure Apex Classes</a></li>
+            <li><a href="https://help.salesforce.com/s/articleView?id=xcloud.real_time_event_monitoring_quick_start.htm&amp;language=en_US&amp;type=5" rel="noopener" target="_blank">Salesforce Help: Quick Start: Event Monitoring</a></li>
+            <li><a href="https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization" rel="noopener" target="_blank">Model Context Protocol: Authorization</a></li>
+            <li><a href="https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices" rel="noopener" target="_blank">Model Context Protocol: Security Best Practices</a></li>
+          </ol>
+        </section>
+
+<section class="related-content">
+  <h2>Related tools</h2>
+  <ul>
+      <li><a href="/tools/apex-log-analyzer.html">Salesforce Apex Log Analyzer - Review failures, exceptions, and suspicious execution paths faster.</a></li>
+      <li><a href="/tools/salesforce-governor-limit-analyzer.html">Governor Limit Analyzer - Inspect Apex and automation patterns before agents amplify their runtime cost.</a></li>
+  </ul>
+
+  <h2>Related articles</h2>
+  <ul>
+      <li><a href="/articles/salesforce-headless-360-guide.html">Salesforce Headless 360: Practical Setup Guide</a></li>
+      <li><a href="/articles/salesforce-hosted-mcp-servers-guide.html">Salesforce Hosted MCP Servers GA Guide</a></li>
+      <li><a href="/articles/salesforce-user-mode-apex-guide.html">WITH USER_MODE in Apex: SOQL, SOSL, and DML</a></li>
+      <li><a href="/articles/named-credentials-and-external-credentials.html">Named Credentials and External Credentials in Salesforce</a></li>
+  </ul>
+</section>
+</article>
+    </div>
+  </main>
+
+  <footer class="pulsagi-article-footer">
+  <p>&copy; 2026 Pulsagi &middot; Built by <a href="https://shivam.pulsagi.com" rel="author">Shivam Gupta</a></p>
+</footer>
+  </div>
+</body>
+</html>

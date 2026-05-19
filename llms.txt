@@ -38,6 +38,7 @@ Pulsagi publishes browser-based tools and long-form technical articles by Shivam
 
 The articles directory is sorted newest first and includes search: https://pulsagi.com/articles/
 
+- **Salesforce Headless 360 Security Risks and Controls** (May 19, 2026): https://pulsagi.com/articles/salesforce-headless-360-security-risks.html
 - **Salesforce Summer '26 Release: Key Features That Matter** (May 18, 2026): https://pulsagi.com/articles/salesforce-summer-26-release-key-features.html
 - **Agentic AI Tools: The Next Wave of Work Automation** (May 4, 2026): https://pulsagi.com/articles/agentic-ai-tools-next-wave.html
 - **Generative AI Adoption Statistics 2026: Global Usage Crosses 50%** (May 4, 2026): https://pulsagi.com/articles/generative-ai-adoption-statistics-2026-guide.html
